@@ -1,0 +1,20 @@
+php artisan make:controller Super/SuperController
+php artisan make:controller Admin/AdminController
+php artisan make:model Admin -m
+php artisan make:model Super -m
+php artisan make:middleware Admin
+php artisan make:middleware Super
+php artisan make:seeder SupersTableSeeder
+php artisan make:seeder AdminsTableSeeder
+php artisan db:seed
+php artisan migrate:fresh --seed
+php artisan migrate:fresh
+php artisan make:factory SuperFactory
+php artisan make:factory AdminFactory
+php artisan optimize
+php artisan route:clear
+php artisan optimize:clear
+php artisan cache:clear
+php artisan route:cache  
+php artisan config:cache  
+php artisan view:clear

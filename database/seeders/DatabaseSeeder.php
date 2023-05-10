@@ -18,5 +18,7 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        $this->call(SupersTableSeeder::class);
+        \App\Models\Super::factory(0)->create();
     }
 }
