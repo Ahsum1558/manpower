@@ -16,21 +16,52 @@
                 </a>
             </li>
 <?php// } ?>
-<?php// if (Session::get('userRole') == '1' || Session::get('userRole') == '2') { ?>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="fa fa-wrench" aria-hidden="true"></i>
                     <span class="nav-text">Setting</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="aide.php">Sister Concern</a></li>
-                    <li><a href="asset.php">Assets</a></li>
-<?php// if (Session::get('userRole') == '1') { ?>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Site Option</a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('super.field') }}">Option in English</a></li>
+                            <li><a href="{{ route('super.fieldar') }}">Option in Arabic</a></li>
+                            <li><a href="{{ route('super.fieldbn') }}">Option in Bengali</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ route('super.meta') }}">Meta</a></li>
                     <li><a href="{{ route('super.theme') }}">Theme Option</a></li>
                     <li><a href="request.php">Request Option</a></li>
-<?php// } ?>
                 </ul>
             </li>
-<?php// } ?>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-database" aria-hidden="true"></i>
+                    <span class="nav-text">Money Transfer</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Cash Transfer</a>
+                        <ul aria-expanded="false">
+                            <li><a href="cashTransfer.php">Cash To Cash</a></li>
+                            <li><a href="cashReturn.php">Cash Return</a></li>
+                            <li><a href="cashTransBank.php">Cash To Bank</a></li>
+                            <li><a href="cashTransMobile.php">Cash To Mobile</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Bank Transfer</a>
+                        <ul aria-expanded="false">
+                            <li><a href="bankTransCash.php">Bank To Cash</a></li>
+                            <li><a href="bankTransBank.php">Bank To Bank</a></li>
+                            <li><a href="bankTransMobile.php">Bank To Mobile</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Mobile Transfer</a>
+                        <ul aria-expanded="false">
+                            <li><a href="mobileTransCash.php">Mobile To Cash</a></li>
+                            <li><a href="mobileTransBank.php">Mobile To Bank</a></li>
+                            <li><a href="mobileTransMobile.php">Mobile To Mobile</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="fa fa-map-marker"></i>
                     <span class="nav-text">Location</span>

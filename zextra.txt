@@ -9,6 +9,7 @@ php artisan make:seeder AdminsTableSeeder
 php artisan db:seed
 php artisan migrate:fresh --seed
 php artisan migrate:fresh
+php artisan migrate
 php artisan make:factory SuperFactory
 php artisan make:factory AdminFactory
 php artisan optimize
@@ -18,3 +19,12 @@ php artisan cache:clear
 php artisan route:cache  
 php artisan config:cache  
 php artisan view:clear
+php artisan make:controller Super/FieldController --resource
+php artisan make:controller Super/FieldarController --resource
+php artisan make:controller Super/FieldbnController --resource
+php artisan make:model Field -m
+php artisan make:model Fieldbn -m
+php artisan make:model Fieldar -m
+php artisan make:controller Super/CmspageController --resource
+php artisan make:model Cmspage -m
+php artisan make:seeder CmspagesTableSeeder

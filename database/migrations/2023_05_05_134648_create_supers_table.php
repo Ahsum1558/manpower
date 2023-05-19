@@ -24,7 +24,7 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->string('dateOfBirth')->nullable();
             $table->string('gender')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->string('type');
             $table->string('theme')->default('default')->nullable();
             $table->rememberToken();

@@ -81,6 +81,21 @@ class SuperController extends Controller
     public function superProfileInfoUpdate(Request $request){
         $id = Auth::guard('super')->user()->id;
         $data = Super::find($id);
+
+        $rules = [
+                'fullname' => 'required|max:255',
+                'designation' => 'required|max:255',
+                'phone' => 'required|numeric',
+            ];
+
+            $customMessage = [
+                'fullname.required' => "Name Field must not be empty !!",
+                'designation.required' => "Designation Field must not be empty !!",
+                'phone.required' => "Phone Field must not be empty !!",
+                'phone.numeric' => "Phone number is not valid !!",
+            ];
+
+            $this->validate($request, $rules, $customMessage);
         
         $data->fullname        = $request->fullname;
         $data->designation     = $request->designation;

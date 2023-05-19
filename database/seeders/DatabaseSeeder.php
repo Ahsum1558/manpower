@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call(SupersTableSeeder::class);
         \App\Models\Super::factory(0)->create();
+        \App\Models\Cmspage::factory(0)->create();
     }
 }

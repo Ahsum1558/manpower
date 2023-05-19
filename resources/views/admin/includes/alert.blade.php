@@ -20,7 +20,7 @@
     <div class="alert alert-danger alert-dismissible fade show" role="alert" style='animation: fadeOut 10s; opacity: 0; text-transform: none;'>
         <ul>
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+                <li><strong>Error: </strong> {{ $error }}</li>
             @endforeach
         </ul>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">

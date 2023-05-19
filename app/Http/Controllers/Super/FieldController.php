@@ -1,0 +1,250 @@
+<?php
+
+namespace App\Http\Controllers\Super;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Super;
+use App\Models\Field;
+
+class FieldController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $all_field = Field::latest() -> get(); // as latest
+        return view('super.field.index', compact('all_field'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('super.field.index');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        
+        if ($request->hasFile('logo')) {
+            $img = $request -> file('logo');
+            $unique_file_name = md5(time().rand()) . '.' . $img -> getClientOriginalExtension();
+            $img->move(public_path('admin/uploads/field/'), $unique_file_name);
+        }
+
+        $this -> validate($request, [
+            'title'         => 'required|unique:fields',
+            'smalltitle'    => 'required|unique:fields',
+            'license'       => 'required|unique:fields',
+            'email'         => 'required|email|max:255',
+            'description'   => 'required',
+            'proprietor'    => 'required',
+            'address'       => 'required',
+            'cellphone'     => 'required',
+        ],
+        [
+            'title.required'        => 'Title Field must not be Empty',
+            'title.unique'          => 'The Title is already exist',
+            'smalltitle.required'   => 'Small Title Field must not be Empty',
+            'smalltitle.unique'     => 'The Small Title is already exist',
+            'email.required'        => 'E-Mail Field must not be Empty',
+            'email.email'           => "E-Mail Address is not valid !!",
+            'description.required'  => 'Description Field must not be Empty',
+            'license.required'      => 'License Field is required',
+            'license.unique'        => 'The License Number is already exist',
+            'proprietor.required'   => 'Proprietor Name Field must not be Empty',
+            'address.required'      => 'Address Field must not be Empty',
+            'cellphone.required'    => 'Cellphone Field must not be Empty',
+        ]);
+
+        Field::create([
+            'title'             => $request->title,
+            'smalltitle'        => $request->smalltitle,
+            'license'           => $request->license,
+            'description'       => $request->description,
+            'address'           => $request->address,
+            'proprietor'        => $request->proprietor,
+            'proprietortitle'   => $request->proprietortitle,
+            'telephone'         => $request->telephone,
+            'cellphone'         => $request->cellphone,
+            'helpline'          => $request->helpline,
+            'web'               => $request->web,
+            'email'             => $request->email,
+            'logo'              => $unique_file_name,
+        ]);
+        return redirect() -> back() -> with('message', 'Field Option in English is added successfully');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show($id)
+    {
+        $single_field_data = Field::find($id);
+        return view('super.field.show', compact('single_field_data'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit($id)
+    {
+        $field_data = Field::findOrFail($id);
+        return view('super.field.edit', compact('field_data'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, $id)
+    {
+        $this -> validate($request, [
+            'email'         => 'required|email|max:255',
+            'description'   => 'required',
+            'proprietor'    => 'required',
+            'address'       => 'required',
+            'cellphone'     => 'required',
+        ],
+        [
+            'email.required'        => 'E-Mail Field must not be Empty',
+            'email.email'           => "E-Mail Address is not valid !!",
+            'description.required'  => 'Description Field must not be Empty',
+            'proprietor.required'   => 'Proprietor Name Field must not be Empty',
+            'address.required'      => 'Address Field must not be Empty',
+            'cellphone.required'    => 'Cellphone Field must not be Empty',
+        ]);
+
+        $field_data = Field::findOrFail($id);
+
+        $field_data->description        = $request->description;
+        $field_data->address            = $request->address;
+        $field_data->proprietor         = $request->proprietor;
+        $field_data->proprietortitle    = $request->proprietortitle;
+        $field_data->telephone          = $request->telephone;
+        $field_data->cellphone          = $request->cellphone;
+        $field_data->helpline           = $request->helpline;
+        $field_data->web                = $request->web;
+        $field_data->email              = $request->email;
+        $field_data->update();              
+
+        return back()->with('message', 'The English Site Option Information is Updated Successfully');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($id)
+    {
+        $data = Field::find($id);
+        $data -> delete();
+
+        if(file_exists('public/admin/uploads/field/' .$data->logo)){
+                unlink('public/admin/uploads/field/' .$data->logo);
+            }
+
+        return redirect() -> back() -> with('message', 'The English Site Option data is deleted successfully');
+    }
+
+    public function editTitle($id)
+    {
+        $field_data_title = Field::findOrFail($id);
+        return view('super.field.edit_title', compact('field_data_title'));
+    }
+
+    public function updateTitle(Request $request, $id)
+    {
+        $this -> validate($request, [
+            'title'         => 'required|unique:fields',
+        ],
+        [
+            'title.required'        => 'Title Field must not be Empty',
+            'title.unique'          => 'The Title is already exist',
+        ]);
+
+        $field_data_title = Field::findOrFail($id);
+
+        $field_data_title->title        = $request->title;
+        $field_data_title->update();              
+
+        return back()->with('message', 'The English Site Option Title is Updated Successfully');
+    }
+
+    public function editSmallTitle($id)
+    {
+        $field_data_small_title = Field::findOrFail($id);
+        return view('super.field.edit_small_title', compact('field_data_small_title'));
+    }
+
+    public function updateSmallTitle(Request $request, $id)
+    {
+        $this -> validate($request, [
+            'smalltitle'         => 'required|unique:fields',
+        ],
+        [
+            'smalltitle.required'        => 'Small Title Field must not be Empty',
+            'smalltitle.unique'          => 'The Small Title is already exist',
+        ]);
+
+        $field_data_small_title = Field::findOrFail($id);
+
+        $field_data_small_title->smalltitle        = $request->smalltitle;
+        $field_data_small_title->update();              
+
+        return back()->with('message', 'The English Site Option Small Title is Updated Successfully');
+    }
+
+    public function editLicense($id)
+    {
+        $field_data_license = Field::findOrFail($id);
+        return view('super.field.edit_license', compact('field_data_license'));
+    }
+
+    public function updateLicense(Request $request, $id)
+    {
+        $this -> validate($request, [
+            'license'         => 'required|unique:fields',
+        ],
+        [
+            'license.required'        => 'License Number Field must not be Empty',
+            'license.unique'          => 'The License Number is already exist',
+        ]);
+
+        $field_data_license = Field::findOrFail($id);
+
+        $field_data_license->license        = $request->license;
+        $field_data_license->update();              
+
+        return back()->with('message', 'The English Site Option License Number is Updated Successfully');
+    }
+
+    public function editLogo($id){
+        $field_data_logo = Field::findOrFail($id);
+        return view('super.field.edit_logo', compact('field_data_logo'));
+    }
+
+    public function updateLogo(Request $request, $id){
+       $field_data_logo = Field::findOrFail($id);
+
+        if ($request->hasFile('new_photo')) {
+            $img = $request -> file('new_photo');
+            $unique_file_name = md5(time().rand()) . '.' . $img -> getClientOriginalExtension();
+            $img->move(public_path('admin/uploads/field/'), $unique_file_name);
+            if(file_exists('public/admin/uploads/field/' .$request->old_photo)){
+                unlink('public/admin/uploads/field/' .$request->old_photo);
+            }
+        }else{
+            $unique_file_name = $request->old_photo;
+        }
+
+        $field_data_logo->logo     = $unique_file_name;
+        $field_data_logo->update();
+        
+        return back()->with('message', 'Logo is Updated Successfully');
+    }
+}

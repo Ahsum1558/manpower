@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('zipcode')->nullable();
             $table->string('dateOfBirth')->nullable();
             $table->string('gender')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->string('level')->nullable();
             $table->integer('authority');
             $table->enum('role',['admin','author','editor','contributor','user'])->default('user');
