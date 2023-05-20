@@ -60,6 +60,7 @@ class FieldarController extends Controller
             'telephone_ar'         => $request->telephone_ar,
             'cellphone_ar'         => $request->cellphone_ar,
             'helpline_ar'          => $request->helpline_ar,
+            'status'               => $request->status,
         ]);
         return redirect() -> back() -> with('message', 'Field Option in Arabic is added successfully');
     }
@@ -70,7 +71,12 @@ class FieldarController extends Controller
     public function show($id)
     {
         $single_fieldar_data = Fieldar::find($id);
-        return view('super.fieldar.show', compact('single_fieldar_data'));
+        
+        if ($single_fieldar_data !== null) {
+            return view('super.fieldar.show', compact('single_fieldar_data'));
+        }else{
+            return redirect('/super/fieldar');
+        }
     }
 
     /**
@@ -78,8 +84,13 @@ class FieldarController extends Controller
      */
     public function edit($id)
     {
-        $fieldar_data = Fieldar::findOrFail($id);
-        return view('super.fieldar.edit', compact('fieldar_data'));
+        $fieldar_data = Fieldar::find($id);
+        
+        if ($fieldar_data !== null) {
+            return view('super.fieldar.edit', compact('fieldar_data'));
+        }else{
+            return redirect('/super/fieldar');
+        }
     }
 
     /**
@@ -109,6 +120,7 @@ class FieldarController extends Controller
         $fieldar_data->telephone_ar          = $request->telephone_ar;
         $fieldar_data->cellphone_ar          = $request->cellphone_ar;
         $fieldar_data->helpline_ar           = $request->helpline_ar;
+        $fieldar_data->status                = $request->status;
         $fieldar_data->update();              
 
         return back()->with('message', 'The Arabic Site Option Information is Updated Successfully');
@@ -127,8 +139,13 @@ class FieldarController extends Controller
 
     public function editTitle($id)
     {
-        $fieldar_data_title = Fieldar::findOrFail($id);
-        return view('super.fieldar.edit_title', compact('fieldar_data_title'));
+        $fieldar_data_title = Fieldar::find($id);
+        
+        if ($fieldar_data_title !== null) {
+            return view('super.fieldar.edit_title', compact('fieldar_data_title'));
+        }else{
+            return redirect('/super/fieldar');
+        }
     }
 
     public function updateTitle(Request $request, $id)
@@ -152,8 +169,13 @@ class FieldarController extends Controller
 
     public function editLicense($id)
     {
-        $fieldar_data_license = Fieldar::findOrFail($id);
-        return view('super.fieldar.edit_license', compact('fieldar_data_license'));
+        $fieldar_data_license = Fieldar::find($id);
+        
+        if ($fieldar_data_license !== null) {
+            return view('super.fieldar.edit_license', compact('fieldar_data_license'));
+        }else{
+            return redirect('/super/fieldar');
+        }
     }
 
     public function updateLicense(Request $request, $id)

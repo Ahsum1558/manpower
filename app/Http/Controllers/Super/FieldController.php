@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Super;
 use App\Models\Field;
+use File;
 
 class FieldController extends Controller
 {
@@ -76,6 +77,7 @@ class FieldController extends Controller
             'helpline'          => $request->helpline,
             'web'               => $request->web,
             'email'             => $request->email,
+            'status'            => $request->status,
             'logo'              => $unique_file_name,
         ]);
         return redirect() -> back() -> with('message', 'Field Option in English is added successfully');
@@ -87,7 +89,12 @@ class FieldController extends Controller
     public function show($id)
     {
         $single_field_data = Field::find($id);
-        return view('super.field.show', compact('single_field_data'));
+        
+        if ($single_field_data !== null) {
+            return view('super.field.show', compact('single_field_data'));
+        }else{
+            return redirect('/super/field');
+        }
     }
 
     /**
@@ -95,8 +102,12 @@ class FieldController extends Controller
      */
     public function edit($id)
     {
-        $field_data = Field::findOrFail($id);
-        return view('super.field.edit', compact('field_data'));
+        $field_data = Field::find($id);
+        if ($field_data !== null) {
+            return view('super.field.edit', compact('field_data'));
+        }else{
+            return redirect('/super/field');
+        }
     }
 
     /**
@@ -131,6 +142,7 @@ class FieldController extends Controller
         $field_data->helpline           = $request->helpline;
         $field_data->web                = $request->web;
         $field_data->email              = $request->email;
+        $field_data->status             = $request->status;
         $field_data->update();              
 
         return back()->with('message', 'The English Site Option Information is Updated Successfully');
@@ -153,8 +165,13 @@ class FieldController extends Controller
 
     public function editTitle($id)
     {
-        $field_data_title = Field::findOrFail($id);
-        return view('super.field.edit_title', compact('field_data_title'));
+        $field_data_title = Field::find($id);
+        
+        if ($field_data_title !== null) {
+            return view('super.field.edit_title', compact('field_data_title'));
+        }else{
+            return redirect('/super/field');
+        }
     }
 
     public function updateTitle(Request $request, $id)
@@ -177,8 +194,12 @@ class FieldController extends Controller
 
     public function editSmallTitle($id)
     {
-        $field_data_small_title = Field::findOrFail($id);
-        return view('super.field.edit_small_title', compact('field_data_small_title'));
+        $field_data_small_title = Field::find($id);
+        if ($field_data_small_title !== null) {
+            return view('super.field.edit_small_title', compact('field_data_small_title'));
+        } else {
+            return redirect('/super/field');
+        }
     }
 
     public function updateSmallTitle(Request $request, $id)
@@ -201,8 +222,13 @@ class FieldController extends Controller
 
     public function editLicense($id)
     {
-        $field_data_license = Field::findOrFail($id);
-        return view('super.field.edit_license', compact('field_data_license'));
+        $field_data_license = Field::find($id);
+        
+        if ($field_data_license !== null) {
+            return view('super.field.edit_license', compact('field_data_license'));
+        }else{
+            return redirect('/super/field');
+        }
     }
 
     public function updateLicense(Request $request, $id)
@@ -224,8 +250,13 @@ class FieldController extends Controller
     }
 
     public function editLogo($id){
-        $field_data_logo = Field::findOrFail($id);
-        return view('super.field.edit_logo', compact('field_data_logo'));
+        $field_data_logo = Field::find($id);
+        
+        if ($field_data_logo !== null) {
+            return view('super.field.edit_logo', compact('field_data_logo'));
+        }else{
+            return redirect('/super/field');
+        }
     }
 
     public function updateLogo(Request $request, $id){
@@ -235,9 +266,12 @@ class FieldController extends Controller
             $img = $request -> file('new_photo');
             $unique_file_name = md5(time().rand()) . '.' . $img -> getClientOriginalExtension();
             $img->move(public_path('admin/uploads/field/'), $unique_file_name);
-            if(file_exists('public/admin/uploads/field/' .$request->old_photo)){
-                unlink('public/admin/uploads/field/' .$request->old_photo);
-            }
+            // if(file_exists('public/admin/uploads/field/' .$request->old_photo)){
+            //     unlink('public/admin/uploads/field/' .$request->old_photo);
+            // }
+            if(File::exists('public/admin/uploads/field/' .$request->old_photo)) {
+                File::delete('public/admin/uploads/field/' .$request->old_photo);
+              }
         }else{
             $unique_file_name = $request->old_photo;
         }

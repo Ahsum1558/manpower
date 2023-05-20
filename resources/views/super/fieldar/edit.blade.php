@@ -78,6 +78,23 @@
                                     <div class="col-9"><span><input type="text" name="helpline_ar" class="form-control d-inline-block inline_setup" value="{{ $fieldar_data->helpline_ar }}"></span>
                                     </div>
                                 </div>
+                                <div class="row mb-2">
+                                    <div class="col-3">
+                                        <h5 class="f-w-500">Status <span class="pull-right">:</span></h5>
+                                    </div>
+                                    <div class="col-9">
+                                    <select id="select" name="status" class="form-control d-inline-block inline_setup">
+                                      <option>Select Type</option>
+                            @if($fieldar_data->status == 1)
+                                      <option selected="selected" value="1">Active</option>
+                                      <option value="0">Inactive</option>
+                              @elseif($fieldar_data->status == 0)
+                                      <option selected="selected" value="0">Inactive</option>
+                                      <option value="1">Active</option>
+                              @endif
+                                    </select>
+                                    </div>
+                                </div>
                                 
                                 <div class="row mb-2">
                                     <div class="col-3"></div>

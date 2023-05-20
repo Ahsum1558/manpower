@@ -33,6 +33,7 @@
                               <th>License</th>
                               <th>Proprietor</th>
                               <th>Address</th>
+                              <th>Status</th>
                               <th>Action</th>
                           </tr>
                       </thead>
@@ -47,6 +48,13 @@
                             <td>{{ $fieldbn->license_bn }}</td>
                             <td>{{ $fieldbn->proprietor_bn }}</td>
                             <td>{{ $fieldbn->address_bn }}</td>
+                            <td>
+                              @if($fieldbn->status == 1)
+                                {{ __('Active') }}
+                                @elseif($fieldbn->status == 0)
+                                {{ __('Inactive') }}
+                              @endif
+                            </td>
                             <td>
                               <a class="view_option" href="{{ route('super.fieldbn.show', ['id'=>$fieldbn->id]) }}"><i class="fas fa-eye"></i><span>View Details</span></a>
                               <a class="delete_option" href="#delOptionBengali{{ $fieldbn->id }}" data-toggle="modal"><i class="fas fa-trash"></i><span>Delete Option</span></a>

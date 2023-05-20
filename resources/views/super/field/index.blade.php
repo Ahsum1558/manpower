@@ -33,6 +33,7 @@
                               <th>License</th>
                               <th>Proprietor</th>
                               <th>Address</th>
+                              <th>Status</th>
                               <th>Action</th>
                           </tr>
                       </thead>
@@ -47,6 +48,13 @@
                             <td>{{ $field->license }}</td>
                             <td>{{ $field->proprietor }}</td>
                             <td>{{ $field->address }}</td>
+                            <td>
+                              @if($field->status == 1)
+                                {{ __('Active') }}
+                                @elseif($field->status == 0)
+                                {{ __('Inactive') }}
+                              @endif
+                            </td>
                             <td>
                               <a class="view_option" href="{{ route('super.field.show', ['id'=>$field->id]) }}"><i class="fas fa-eye"></i><span>View Details</span></a>
                               {{-- <a class="edit_option" href=""><i class="fas fa-edit"></i><span>Update Option</span></a> --}}

@@ -61,6 +61,7 @@ class FieldbnController extends Controller
             'telephone_bn'         => $request->telephone_bn,
             'cellphone_bn'         => $request->cellphone_bn,
             'helpline_bn'          => $request->helpline_bn,
+            'status'               => $request->status,
         ]);
         return redirect() -> back() -> with('message', 'Field Option in Bengali is added successfully');
     }
@@ -71,7 +72,11 @@ class FieldbnController extends Controller
     public function show($id)
     {
         $single_fieldbn_data = Fieldbn::find($id);
-        return view('super.fieldbn.show', compact('single_fieldbn_data'));
+        if ($single_fieldbn_data !== null) {
+            return view('super.fieldbn.show', compact('single_fieldbn_data'));
+        }else{
+            return redirect('/super/fieldbn');
+        }
     }
 
     /**
@@ -79,8 +84,12 @@ class FieldbnController extends Controller
      */
     public function edit($id)
     {
-        $fieldbn_data = Fieldbn::findOrFail($id);
-        return view('super.fieldbn.edit', compact('fieldbn_data'));
+        $fieldbn_data = Fieldbn::find($id);
+        if ($fieldbn_data !== null) {
+            return view('super.fieldbn.edit', compact('fieldbn_data'));
+        }else{
+            return redirect('/super/fieldbn');
+        }
     }
 
     /**
@@ -110,6 +119,7 @@ class FieldbnController extends Controller
         $fieldbn_data->telephone_bn          = $request->telephone_bn;
         $fieldbn_data->cellphone_bn          = $request->cellphone_bn;
         $fieldbn_data->helpline_bn           = $request->helpline_bn;
+        $fieldbn_data->status                = $request->status;
         $fieldbn_data->update();              
 
         return back()->with('message', 'The Bengali Site Option Information is Updated Successfully');
@@ -128,8 +138,13 @@ class FieldbnController extends Controller
 
     public function editTitle($id)
     {
-        $fieldbn_data_title = Fieldbn::findOrFail($id);
-        return view('super.fieldbn.edit_title', compact('fieldbn_data_title'));
+        $fieldbn_data_title = Fieldbn::find($id);
+        
+        if ($fieldbn_data_title !== null) {
+            return view('super.fieldbn.edit_title', compact('fieldbn_data_title'));
+        }else{
+            return redirect('/super/fieldbn');
+        }
     }
 
     public function updateTitle(Request $request, $id)
@@ -152,8 +167,13 @@ class FieldbnController extends Controller
 
     public function editLicense($id)
     {
-        $fieldbn_data_license = Fieldbn::findOrFail($id);
-        return view('super.fieldbn.edit_license', compact('fieldbn_data_license'));
+        $fieldbn_data_license = Fieldbn::find($id);
+        
+        if ($fieldbn_data_license !== null) {
+            return view('super.fieldbn.edit_license', compact('fieldbn_data_license'));
+        }else{
+            return redirect('/super/fieldbn');
+        }
     }
 
     public function updateLicense(Request $request, $id)

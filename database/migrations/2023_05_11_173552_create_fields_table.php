@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('web')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('telephone_bn')->nullable();
             $table->string('cellphone_bn')->nullable();
             $table->string('helpline_bn')->nullable();
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

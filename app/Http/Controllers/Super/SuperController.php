@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\RedirectResponse;
+use File;
 
 class SuperController extends Controller
 {
@@ -179,9 +180,12 @@ class SuperController extends Controller
             $img = $request -> file('new_photo');
             $unique_file_name = md5(time().rand()) . '.' . $img -> getClientOriginalExtension();
             $img->move(public_path('admin/uploads/super/'), $unique_file_name);
-            if(file_exists('public/admin/uploads/super/' .$request->old_photo)){
-                unlink('public/admin/uploads/super/' .$request->old_photo);
-            }
+            // if(file_exists('public/admin/uploads/super/' .$request->old_photo)){
+            //     unlink('public/admin/uploads/super/' .$request->old_photo);
+            // }
+            if(File::exists('public/admin/uploads/super/' .$request->old_photo)) {
+                File::delete('public/admin/uploads/super/' .$request->old_photo);
+              }
         }else{
             $unique_file_name = $request->old_photo;
         }

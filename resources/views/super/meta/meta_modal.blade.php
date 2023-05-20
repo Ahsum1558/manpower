@@ -74,6 +74,13 @@
                                                 </span>
                                                 </div>
                                             </div>
+                                            <div class="row mb-2">
+                                                <div class="col-3">
+                                                    <h5 class="f-w-500">Created At<span class="pull-right">:</span></h5>
+                                                </div>
+                                                <div class="col-9"><span>{{ date('d-M-Y', strtotime($meta_data->created_at)) }}</span>
+                                                </div>
+                                            </div>
 
                                         </div>
                                     </div>

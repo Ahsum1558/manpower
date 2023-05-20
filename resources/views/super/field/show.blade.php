@@ -70,8 +70,6 @@
                                     <div class="col-9"><span>{{ $single_field_data->address }}</span>
                                     </div>
                                 </div>
-                                
-                                
                                 <div class="row mb-2">
                                     <div class="col-3">
                                         <h5 class="f-w-500">Proprietor Name<span class="pull-right">:</span></h5>
@@ -123,6 +121,19 @@
                                         <h5 class="f-w-500">Web Address<span class="pull-right">:</span></h5>
                                     </div>
                                     <div class="col-9"><span>{{ $single_field_data->web }}</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-3">
+                                        <h5 class="f-w-500">Status<span class="pull-right">:</span></h5>
+                                    </div>
+                                    <div class="col-9"><span>
+                                        @if($single_field_data->status == 1)
+                                            {{ __('Active') }}
+                                            @elseif($single_field_data->status == 0)
+                                            {{ __('Inactive') }}
+                                        @endif
+                                    </span>
                                     </div>
                                 </div>
 

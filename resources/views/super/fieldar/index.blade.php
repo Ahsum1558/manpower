@@ -33,6 +33,7 @@
                               <th>License</th>
                               <th>Proprietor</th>
                               <th>Address</th>
+                              <th>Status</th>
                               <th>Action</th>
                           </tr>
                       </thead>
@@ -47,6 +48,13 @@
                             <td>{{ $fieldar->license_ar }}</td>
                             <td>{{ $fieldar->proprietor_ar }}</td>
                             <td>{{ $fieldar->address_ar }}</td>
+                            <td>
+                              @if($fieldar->status == 1)
+                                {{ __('Active') }}
+                                @elseif($fieldar->status == 0)
+                                {{ __('Inactive') }}
+                              @endif
+                            </td>
                             <td>
                               <a class="view_option" href="{{ route('super.fieldar.show', ['id'=>$fieldar->id]) }}"><i class="fas fa-eye"></i><span>View Details</span></a>
                               <a class="delete_option" href="#delOptionArabic{{ $fieldar->id }}" data-toggle="modal"><i class="fas fa-trash"></i><span>Delete Option</span></a>

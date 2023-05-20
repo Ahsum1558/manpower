@@ -25,7 +25,7 @@
                 <div class="profile-uoloaded-post border-bottom-1 pb-5">
                     <div class="row">
                         
-                        <div class="col-xl-9 col-sm-12">
+                        <div class="col-xl-12 col-sm-12">
                             <div class="profile-personal-info">
                             
                                 <div class="row mb-2">
@@ -93,6 +93,19 @@
                                         <h5 class="f-w-500">Helpline Number<span class="pull-right">:</span></h5>
                                     </div>
                                     <div class="col-9"><span>{{ $single_fieldbn_data->helpline_bn }}</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-3">
+                                        <h5 class="f-w-500">Status<span class="pull-right">:</span></h5>
+                                    </div>
+                                    <div class="col-9"><span>
+                                        @if($single_fieldbn_data->status == 1)
+                                            {{ __('Active') }}
+                                            @elseif($single_fieldbn_data->status == 0)
+                                            {{ __('Inactive') }}
+                                        @endif
+                                    </span>
                                     </div>
                                 </div>
 
