@@ -281,4 +281,27 @@ class FieldController extends Controller
         
         return back()->with('message', 'Logo is Updated Successfully');
     }
+
+    public function inactive(Request $request, $id)
+    {
+
+        $field_inactive = Field::findOrFail($id);
+
+        $field_inactive->title        = $request->title;
+        $field_inactive->status       = 0;
+        $field_inactive->update();              
+
+        return redirect('/super/field')->with('message', 'The English Site Option is Inactive Successfully');
+    }
+    public function active(Request $request, $id)
+    {
+
+        $field_active = Field::findOrFail($id);
+
+        $field_active->title        = $request->title;
+        $field_active->status       = 1;
+        $field_active->update();              
+
+        return redirect('/super/field')->with('message', 'The English Site Option is Active Successfully');
+    }
 }

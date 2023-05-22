@@ -57,9 +57,16 @@
                             </td>
                             <td>
                               <a class="view_option" href="{{ route('super.fieldar.show', ['id'=>$fieldar->id]) }}"><i class="fas fa-eye"></i><span>View Details</span></a>
+                            @if($fieldar->status == 1)
+                              <a class="edit_option bg-warning" href="#inActiveId{{ $fieldar->id }}" data-toggle="modal"><i class="fas fa-caret-square-down"></i><span>Set Inctive</span></a>
+                            @elseif($fieldar->status == 0)
+                              <a class="edit_option" href="#activeId{{ $fieldar->id }}" data-toggle="modal"><i class="fas fa-caret-square-up"></i><span>Set Active</span></a>
+                            @endif
                               <a class="delete_option" href="#delOptionArabic{{ $fieldar->id }}" data-toggle="modal"><i class="fas fa-trash"></i><span>Delete Option</span></a>
                             </td>
                 @include('super.fieldar.option_modal')
+                @include('super.fieldar.option_inactive')
+                @include('super.fieldar.option_active')
                         </tr>
                @endforeach
                       </tbody>

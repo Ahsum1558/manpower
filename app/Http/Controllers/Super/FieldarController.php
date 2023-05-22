@@ -196,4 +196,27 @@ class FieldarController extends Controller
 
         return back()->with('message', 'The Arabic Site Option License Number is Updated Successfully');
     }
+
+    public function inactive(Request $request, $id)
+    {
+
+        $fieldar_inactive = Fieldar::findOrFail($id);
+
+        $fieldar_inactive->title_ar     = $request->title_ar;
+        $fieldar_inactive->status       = 0;
+        $fieldar_inactive->update();              
+
+        return redirect('/super/fieldar')->with('message', 'The Arabic Site Option is Inactive Successfully');
+    }
+    public function active(Request $request, $id)
+    {
+
+        $fieldar_active = Fieldar::findOrFail($id);
+
+        $fieldar_active->title_ar     = $request->title_ar;
+        $fieldar_active->status       = 1;
+        $fieldar_active->update();              
+
+        return redirect('/super/fieldar')->with('message', 'The Arabic Site Option is Active Successfully');
+    }
 }

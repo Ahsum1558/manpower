@@ -57,9 +57,16 @@
                             </td>
                             <td>
                               <a class="view_option" href="{{ route('super.fieldbn.show', ['id'=>$fieldbn->id]) }}"><i class="fas fa-eye"></i><span>View Details</span></a>
+                            @if($fieldbn->status == 1)
+                              <a class="edit_option bg-warning" href="#inActiveId{{ $fieldbn->id }}" data-toggle="modal"><i class="fas fa-caret-square-down"></i><span>Set Inctive</span></a>
+                            @elseif($fieldbn->status == 0)
+                              <a class="edit_option" href="#activeId{{ $fieldbn->id }}" data-toggle="modal"><i class="fas fa-caret-square-up"></i><span>Set Active</span></a>
+                            @endif
                               <a class="delete_option" href="#delOptionBengali{{ $fieldbn->id }}" data-toggle="modal"><i class="fas fa-trash"></i><span>Delete Option</span></a>
                             </td>
                 @include('super.fieldbn.option_modal')
+                @include('super.fieldbn.option_inactive')
+                @include('super.fieldbn.option_active')
                         </tr>
                @endforeach
                       </tbody>

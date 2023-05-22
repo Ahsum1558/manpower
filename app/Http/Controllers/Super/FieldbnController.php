@@ -193,4 +193,27 @@ class FieldbnController extends Controller
 
         return back()->with('message', 'The Bengali Site Option License Number is Updated Successfully');
     }
+
+    public function inactive(Request $request, $id)
+    {
+
+        $fieldbn_inactive = Fieldbn::findOrFail($id);
+
+        $fieldbn_inactive->title_bn     = $request->title_bn;
+        $fieldbn_inactive->status       = 0;
+        $fieldbn_inactive->update();              
+
+        return redirect('/super/fieldbn')->with('message', 'The Bengali Site Option is Inactive Successfully');
+    }
+    public function active(Request $request, $id)
+    {
+
+        $fieldbn_active = Fieldbn::findOrFail($id);
+
+        $fieldbn_active->title_bn     = $request->title_bn;
+        $fieldbn_active->status       = 1;
+        $fieldbn_active->update();              
+
+        return redirect('/super/fieldbn')->with('message', 'The Bengali Site Option is Active Successfully');
+    }
 }

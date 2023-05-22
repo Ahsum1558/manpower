@@ -109,6 +109,12 @@ Route::group(['middleware' => 'super'], function() {
 
     // English Site Option Delete
     Route::get('/super/field/destroy/{id}', [FieldController::class, 'destroy'])->name('super.field.destroy');
+
+    // English Site Option Inactive
+    Route::post('/super/field/inactive/{id}', [FieldController::class, 'inactive'])->name('super.field.inactive');
+
+    // English Site Option Active
+    Route::post('/super/field/active/{id}', [FieldController::class, 'active'])->name('super.field.active');
 });
 // English Site Option Area End
 
@@ -134,6 +140,12 @@ Route::group(['middleware' => 'super'], function() {
 
     // Arabic Site Option Delete
     Route::get('/super/fieldar/destroy/{id}', [FieldarController::class, 'destroy'])->name('super.fieldar.destroy');
+
+    // Arabic Site Option Inactive
+    Route::post('/super/fieldar/inactive/{id}', [FieldarController::class, 'inactive'])->name('super.fieldar.inactive');
+
+    // Arabic Site Option Active
+    Route::post('/super/fieldar/active/{id}', [FieldarController::class, 'active'])->name('super.fieldar.active');
 });
 // Arabic Site Option Area End
 
@@ -159,6 +171,12 @@ Route::group(['middleware' => 'super'], function() {
 
     // Bengali Site Option Delete
     Route::get('/super/fieldbn/destroy/{id}', [FieldbnController::class, 'destroy'])->name('super.fieldbn.destroy');
+
+    // Bengali Site Option Inactive
+    Route::post('/super/fieldbn/inactive/{id}', [FieldbnController::class, 'inactive'])->name('super.fieldbn.inactive');
+
+    // Bengali Site Option Active
+    Route::post('/super/fieldbn/active/{id}', [FieldbnController::class, 'active'])->name('super.fieldbn.active');
 });
 // Bengali Site Option Area End
 

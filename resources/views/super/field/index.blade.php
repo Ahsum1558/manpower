@@ -57,10 +57,16 @@
                             </td>
                             <td>
                               <a class="view_option" href="{{ route('super.field.show', ['id'=>$field->id]) }}"><i class="fas fa-eye"></i><span>View Details</span></a>
-                              {{-- <a class="edit_option" href=""><i class="fas fa-edit"></i><span>Update Option</span></a> --}}
+                            @if($field->status == 1)
+                              <a class="edit_option bg-warning" href="#inActiveId{{ $field->id }}" data-toggle="modal"><i class="fas fa-caret-square-down"></i><span>Set Inctive</span></a>
+                            @elseif($field->status == 0)
+                              <a class="edit_option" href="#activeId{{ $field->id }}" data-toggle="modal"><i class="fas fa-caret-square-up"></i><span>Set Active</span></a>
+                            @endif
                               <a class="delete_option" href="#delOption{{ $field->id }}" data-toggle="modal"><i class="fas fa-trash"></i><span>Delete Option</span></a>
                             </td>
                 @include('super.field.option_modal')
+                @include('super.field.option_inactive')
+                @include('super.field.option_active')
                         </tr>
                @endforeach
                       </tbody>
