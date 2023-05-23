@@ -30,7 +30,7 @@
                     </li>
                     <li><a href="{{ route('super.meta') }}">Meta</a></li>
                     <li><a href="{{ route('super.theme') }}">Theme Option</a></li>
-                    <li><a href="request.php">Request Option</a></li>
+                    <li><a href="{{ route('super.setting') }}">Header and Footer</a></li>
                 </ul>
             </li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">

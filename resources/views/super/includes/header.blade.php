@@ -11,14 +11,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-<?php  
-    //  $getTitle = $rt->getPageTitle();
-    // if ($getTitle) {
-    //    while ($result = $getTitle->fetch_assoc()) {
-?>
-    <title><?php //echo $result['titleEn']; ?>-<?php //echo TITLE; ?>Title</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="admin/<?php// echo $result['logo']; ?>">
-<?php //} } ?>
+@foreach(session('session_info') as $session_info)
+    <title>{{ $session_info->title }}</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ (!empty($session_info->logo)) ? url('public/admin/uploads/field/'.$session_info->logo) : url('public/admin/assets/images/avatar.png') }}">
+@endforeach
     <?php// include 'scripts/meta.php'; ?>
     <link rel="stylesheet" href="{{ asset('public/admin/assets/vendor/select2/css/select2.min.css') }}">
     <link href="{{ asset('public/admin/assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet">
@@ -42,17 +38,13 @@
     </div>
         <div id="main-wrapper">
            <div class="nav-header" id="header_nav">
-<?php  
-    //  $getTitle = $rt->getPageTitle();
-    // if ($getTitle) {
-    //    while ($result = $getTitle->fetch_assoc()) {
-?>
+@foreach(session('session_info') as $session_info)
             <a href="{{ url('/super') }}" class="brand-logo">
-                <img class="logo-abbr" src="admin/<?php //echo $result['logo']; ?>" alt="">
-                <h3 class="logo-compact" id="header_logotitle"><?php //echo $result['smallTitle']; ?></h3>
-                <h3 class="brand-title" id="header_logotitle"><?php //echo $result['smallTitle']; ?></h3>
+                <img class="logo-abbr" src="{{ (!empty($session_info->logo)) ? url('public/admin/uploads/field/'.$session_info->logo) : url('public/admin/assets/images/avatar.png') }}" alt="">
+                <h3 class="logo-compact" id="header_logotitle">{{ $session_info->smalltitle }}</h3>
+                <h3 class="brand-title" id="header_logotitle">{{ $session_info->smalltitle }}</h3>
             </a>
-<?php //} } ?>
+@endforeach
             <div class="nav-control" id="control_nav">
                 <div class="hamburger">
                     <span class="line" id="line_nav"></span><span class="line" id="line_nav"></span><span class="line" id="line_nav"></span>
@@ -65,16 +57,17 @@
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
                             <div class="header_bar w-100">
-
-                                <span class="office_name"><?php //echo $result['titleEn']; ?></span>
-                                <span class="licene_no">(<?php// echo $result['licenseEn']; ?>)</span>
+                            @foreach(session('session_info') as $session_info)
+                                <span class="office_name">{{ $session_info->title }}</span>
+                                <span class="licene_no">({{ $session_info->license }})</span>
                                 <span class="current_time">
                                     <?php 
                                         date_default_timezone_set('Asia/Dhaka');
                                         echo date('F j, Y');
                                     ?>
                                 </span>
-                                <span class="doc_num"><?php //echo $result['address']; ?></span>
+                                <span class="doc_num">{{ $session_info->address }}</span>
+                            @endforeach
 
                             </div>
                         </div>

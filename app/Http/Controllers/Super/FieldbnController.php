@@ -205,6 +205,7 @@ class FieldbnController extends Controller
 
         return redirect('/super/fieldbn')->with('message', 'The Bengali Site Option is Inactive Successfully');
     }
+    
     public function active(Request $request, $id)
     {
 

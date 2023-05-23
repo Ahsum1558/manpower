@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('footer_title')->nullable();
             $table->text('content')->nullable();
             $table->string('type')->nullable();
-            $table->string('office_logo')->nullable();
             $table->string('menu')->nullable();
             $table->string('contact_info')->nullable();
             $table->string('links')->nullable();

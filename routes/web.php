@@ -7,6 +7,7 @@ use App\Http\Controllers\Super\CmspageController;
 use App\Http\Controllers\Super\FieldarController;
 use App\Http\Controllers\Super\FieldbnController;
 use App\Http\Controllers\Super\FieldController;
+use App\Http\Controllers\Super\HeaderfooterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -76,6 +77,12 @@ Route::group(['middleware' => 'super'], function() {
 
     // Meta Delete
     Route::get('/super/meta/destroy/{id}', [CmspageController::class, 'destroy'])->name('super.meta.destroy');
+
+    // Meta Inactive
+    Route::post('/super/meta/inactive/{id}', [CmspageController::class, 'inactive'])->name('super.meta.inactive');
+
+    // Meta Active
+    Route::post('/super/meta/active/{id}', [CmspageController::class, 'active'])->name('super.meta.active');
 });
 // Meta Area End
 
@@ -179,6 +186,30 @@ Route::group(['middleware' => 'super'], function() {
     Route::post('/super/fieldbn/active/{id}', [FieldbnController::class, 'active'])->name('super.fieldbn.active');
 });
 // Bengali Site Option Area End
+
+// Header and Footer Setting Area Start
+Route::group(['middleware' => 'super'], function() {
+    // Super Header and Footer Setting Home Page
+    Route::get('/super/setting', [HeaderfooterController::class, 'index'])->name('super.setting');
+    Route::get('/super/setting/create', [HeaderfooterController::class, 'create'])->name('super.setting.create');
+    Route::post('/super/setting/store', [HeaderfooterController::class, 'store'])->name('super.setting.store');
+
+    Route::get('/super/setting/show/{id}', [HeaderfooterController::class, 'show'])->name('super.setting.show');
+
+    // Header and Footer Setting Info Update
+    Route::get('/super/setting/edit/{id}', [HeaderfooterController::class, 'edit'])->name('super.setting.edit');
+    Route::post('/super/setting/update/{id}', [HeaderfooterController::class, 'update'])->name('super.setting.update');
+
+    // Header and Footer Setting Delete
+    Route::get('/super/setting/destroy/{id}', [HeaderfooterController::class, 'destroy'])->name('super.setting.destroy');
+
+    // Header and Footer Setting Inactive
+    Route::post('/super/setting/inactive/{id}', [HeaderfooterController::class, 'inactive'])->name('super.setting.inactive');
+
+    // Header and Footer Setting Active
+    Route::post('/super/setting/active/{id}', [HeaderfooterController::class, 'active'])->name('super.setting.active');
+});
+// Header and Footer Setting Area End
 
 // Super Admin Page End
 

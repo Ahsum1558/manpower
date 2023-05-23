@@ -293,6 +293,7 @@ class FieldController extends Controller
 
         return redirect('/super/field')->with('message', 'The English Site Option is Inactive Successfully');
     }
+    
     public function active(Request $request, $id)
     {
 

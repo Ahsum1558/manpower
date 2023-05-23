@@ -55,10 +55,17 @@
                             <td>
                               <a class="view_option" href="#viewMeta{{ $meta_data->id }}" data-toggle="modal"><i class="fas fa-eye"></i><span>View Details</span></a>
                               <a class="edit_option" href="{{ route('super.meta.edit', ['id'=>$meta_data->id]) }}"><i class="fas fa-edit"></i><span>Update Meta</span></a>
+                            @if($meta_data->status == 1)
+                              <a class="edit_option bg-warning" href="#inActiveId{{ $meta_data->id }}" data-toggle="modal"><i class="fas fa-caret-square-down"></i><span>Set Inctive</span></a>
+                            @elseif($meta_data->status == 0)
+                              <a class="edit_option bg-success" href="#activeId{{ $meta_data->id }}" data-toggle="modal"><i class="fas fa-caret-square-up"></i><span>Set Active</span></a>
+                            @endif
                               <a class="delete_option" href="#delMeta{{ $meta_data->id }}" data-toggle="modal"><i class="fas fa-trash"></i><span>Delete Meta</span></a>
                             </td>
                 @include('super.meta.meta_modal')
                 @include('super.meta.meta_modal_del')
+                @include('super.meta.meta_inactive')
+                @include('super.meta.meta_active')
                         </tr>
                @endforeach
                       </tbody>

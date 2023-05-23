@@ -208,6 +208,7 @@ class FieldarController extends Controller
 
         return redirect('/super/fieldar')->with('message', 'The Arabic Site Option is Inactive Successfully');
     }
+    
     public function active(Request $request, $id)
     {
 

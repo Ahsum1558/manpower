@@ -20,7 +20,7 @@
             </div>
             <div class="card-body">
 @include('super.includes.alert')
-                <form action="{{ route('super.meta.update', ['id'=>$meta_data->id]) }}" class="form-group" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('super.setting.update', ['id'=>$header_footer_info[0]->id]) }}" class="form-group" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                     <!--Tab slider End-->
@@ -30,44 +30,57 @@
                             <div class="new-arrival-content pr">
                                 <div class="row mb-2">
                                     <div class="col-3">
-                                        <h5 class="f-w-500">Title<span class="pull-right">:</span></h5>
+                                        <h5 class="f-w-500">Office Name<span class="pull-right">:</span></h5>
                                     </div>
-                                    <div class="col-9"><span><input type="text" name="title" class="form-control d-inline-block inline_setup" value="{{ $meta_data->title }}"></span>
-                                    </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-3">
-                                        <h5 class="f-w-500">Meta Title<span class="pull-right">:</span></h5>
-                                    </div>
-                                    <div class="col-9"><span><input type="text" name="meta_title" class="form-control d-inline-block inline_setup" value="{{ $meta_data->meta_title }}"></span>
-                                    </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-3">
-                                        <h5 class="f-w-500">Description<span class="pull-right">:</span></h5>
-                                    </div>
-                                    <div class="col-9"><span><input type="text" name="description" class="form-control d-inline-block inline_setup" value="{{ $meta_data->description }}"></span>
+                                    <div class="col-9">
+                                    <select id="select" name="field_id" class="form-control d-inline-block inline_setup">
+                                      <option>Select Office Option</option>
+                                    @foreach($field_data_info as $field_info)
+                                      <option value="{{ $field_info->id }}" {{ $header_footer_info[0]->field_id == $field_info->id ? 'selected' : '' }}>{{ $field_info->title }}</option>
+                                    @endforeach
+                                    </select>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-3">
-                                        <h5 class="f-w-500">Meta Description<span class="pull-right">:</span></h5>
+                                        <h5 class="f-w-500">Footer Title<span class="pull-right">:</span></h5>
                                     </div>
-                                    <div class="col-9"><span><input type="text" name="meta_description" class="form-control d-inline-block inline_setup" value="{{ $meta_data->meta_description }}"></span>
-                                    </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-3">
-                                        <h5 class="f-w-500">URL<span class="pull-right">:</span></h5>
-                                    </div>
-                                    <div class="col-9"><span><input type="text" name="url" class="form-control d-inline-block inline_setup" value="{{ $meta_data->url }}"></span>
+                                    <div class="col-9"><span><input type="text" name="footer_title" class="form-control d-inline-block inline_setup" value="{{ $header_footer_info[0]->footer_title }}"></span>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-3">
-                                        <h5 class="f-w-500">Meta Keywords<span class="pull-right">:</span></h5>
+                                        <h5 class="f-w-500">Content<span class="pull-right">:</span></h5>
                                     </div>
-                                    <div class="col-9"><span><input type="text" name="meta_keywords" class="form-control d-inline-block inline_setup" value="{{ $meta_data->meta_keywords }}"></span>
+                                    <div class="col-9"><span><input type="text" name="content" class="form-control d-inline-block inline_setup" value="{{ $header_footer_info[0]->content }}"></span>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-3">
+                                        <h5 class="f-w-500">Type<span class="pull-right">:</span></h5>
+                                    </div>
+                                    <div class="col-9"><span><input type="text" name="type" class="form-control d-inline-block inline_setup" value="{{ $header_footer_info[0]->type }}"></span>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-3">
+                                        <h5 class="f-w-500">Menu<span class="pull-right">:</span></h5>
+                                    </div>
+                                    <div class="col-9"><span><input type="text" name="menu" class="form-control d-inline-block inline_setup" value="{{ $header_footer_info[0]->menu }}"></span>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-3">
+                                        <h5 class="f-w-500">Contact Info<span class="pull-right">:</span></h5>
+                                    </div>
+                                    <div class="col-9"><span><input type="text" name="contact_info" class="form-control d-inline-block inline_setup" value="{{ $header_footer_info[0]->contact_info }}"></span>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-3">
+                                        <h5 class="f-w-500">Web Links<span class="pull-right">:</span></h5>
+                                    </div>
+                                    <div class="col-9"><span><input type="text" name="links" class="form-control d-inline-block inline_setup" value="{{ $header_footer_info[0]->links }}"></span>
                                     </div>
                                 </div>
 
@@ -78,10 +91,10 @@
                                     <div class="col-9">
                                     <select id="select" name="status" class="form-control d-inline-block inline_setup">
                                       <option>Select Type</option>
-                            @if($meta_data->status == 1)
+                            @if($header_footer_info[0]->status == 1)
                                       <option selected="selected" value="1">Active</option>
                                       <option value="0">Inactive</option>
-                              @elseif($meta_data->status == 0)
+                              @elseif($header_footer_info[0]->status == 0)
                                       <option selected="selected" value="0">Inactive</option>
                                       <option value="1">Active</option>
                               @endif
@@ -92,8 +105,8 @@
                                 <div class="row mb-2">
                                     <div class="col-3"></div>
                                     <div class="col-9 mybtn">
-                                        <button type="submit" name="updateMeta" class="form-control inline_setup btn submitbtn text-uppercase">Update</button>
-                                        <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase pull-right" href="{{ route('super.meta') }}">Back</a>
+                                        <button type="submit" name="updateSetting" class="form-control inline_setup btn submitbtn text-uppercase">Update</button>
+                                        <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase pull-right" href="{{ route('super.setting') }}">Back</a>
                                     </div>
                                 </div>
                             </div>

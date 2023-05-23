@@ -117,4 +117,28 @@ class CmspageController extends Controller
 
         return redirect() -> back() -> with('message', 'Meta data deleted successfully');
     }
+
+    public function inactive(Request $request, $id)
+    {
+
+        $meta_inactive = Cmspage::findOrFail($id);
+
+        $meta_inactive->title     = $request->title;
+        $meta_inactive->status       = 0;
+        $meta_inactive->update();              
+
+        return redirect('/super/meta')->with('message', 'The Meta Info is Inactive Successfully');
+    }
+    
+    public function active(Request $request, $id)
+    {
+
+        $meta_active = Cmspage::findOrFail($id);
+
+        $meta_active->title     = $request->title;
+        $meta_active->status       = 1;
+        $meta_active->update();              
+
+        return redirect('/super/meta')->with('message', 'The Meta Info is Active Successfully');
+    }
 }
