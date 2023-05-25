@@ -30,3 +30,5 @@ php artisan make:model Cmspage -m
 php artisan make:seeder CmspagesTableSeeder
 php artisan make:model Headerfooter -m
 php artisan make:controller Super/HeaderfooterController --resource
+php artisan make:provider Custom/SuperServiceProvider
+php artisan make:provider Custom/AdminServiceProvider
