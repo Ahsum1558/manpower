@@ -9,25 +9,21 @@
                     <span class="nav-text">Dashboard</span>
                 </a>
             </li>
-<?php //if (Session::get('userRole') == '1') { ?>
-            <li><a href="summary.php" class="ai-icon" aria-expanded="false">
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-381-internet"></i>
-                    <span class="nav-text">Account Summary</span>
+                    <span class="nav-text">Site Option</span>
                 </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('super.field') }}">Option in English</a></li>
+                    <li><a href="{{ route('super.fieldar') }}">Option in Arabic</a></li>
+                    <li><a href="{{ route('super.fieldbn') }}">Option in Bengali</a></li>
+                </ul>
             </li>
-<?php// } ?>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="fa fa-wrench" aria-hidden="true"></i>
                     <span class="nav-text">Setting</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Site Option</a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{ route('super.field') }}">Option in English</a></li>
-                            <li><a href="{{ route('super.fieldar') }}">Option in Arabic</a></li>
-                            <li><a href="{{ route('super.fieldbn') }}">Option in Bengali</a></li>
-                        </ul>
-                    </li>
                     <li><a href="{{ route('super.meta') }}">Meta</a></li>
                     <li><a href="{{ route('super.theme') }}">Theme Option</a></li>
                     <li><a href="{{ route('super.setting') }}">Header and Footer</a></li>
@@ -338,7 +334,7 @@
                     <li><a href="link.php">Links</a></li>
                 </ul>
             </li>
-            <li><a href="?action=logout" class="ai-icon" aria-expanded="false">
+            <li><a href="{{ url('super/logout') }}" class="ai-icon" aria-expanded="false">
                     <i class="fas fa-sign-out-alt"></i>
                     <span class="nav-text">Logout</span>
                 </a>

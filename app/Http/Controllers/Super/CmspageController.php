@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Super;
 use App\Models\Cmspage;
+use DB;
 
 class CmspageController extends Controller
 {
@@ -140,5 +141,15 @@ class CmspageController extends Controller
         $meta_active->update();              
 
         return redirect('/super/meta')->with('message', 'The Meta Info is Active Successfully');
+    }
+
+    public function metaSuper(Request $request)
+    {
+         // $session_meta = DB::table('cmspages')->get();
+        $session_meta = Cmspage::latest() -> get();
+        if ($session_meta) {
+            $request->session()->put('session_meta', $session_meta);
+        }
+        return view('super.home.index');
     }
 }

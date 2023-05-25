@@ -6,19 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-<?php  
-    //  $getTitle = $rt->getPageTitle();
-    // if ($getTitle) {
-    //    while ($result = $getTitle->fetch_assoc()) {
-?>
-    <title><?php //echo $result['titleEn']; ?></title>
-    <link rel="icon" type="image/png" sizes="16x16" href="admin/<?php //echo $result['logo']; ?>">
-<?php //} } ?>
+@foreach($login_header as $header)
+    <title>{{ $header->title }} - {{ $header->footer_title }}</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ (!empty($header->logo)) ? url('public/admin/uploads/field/'.$header->logo) : url('public/admin/assets/images/avatar.png') }}">
+@endforeach
+    @include('super.includes.meta')
     <link href="{{ asset('public/admin/assets/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('public/admin/assets/css/main.css') }}" rel="stylesheet">
-    
-    <?php //include 'inc/scripts/css.php'; ?>
-
 </head>
 
 <body class="h-100">

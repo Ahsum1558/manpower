@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 // Admin Area Start
 Route::get('/', [AdminController::class, 'index'])->name('admin.home.index');
+Route::get('/login', [AdminController::class, 'login'])->name('admin.users.login');
 // Admin Area End
 
 // Super Admin Page Start
@@ -70,6 +71,8 @@ Route::group(['middleware' => 'super'], function() {
     // Super Meta Home Page
     Route::get('/super/meta', [CmspageController::class, 'index'])->name('super.meta');
     Route::post('/super/meta/store', [CmspageController::class, 'store'])->name('super.meta.store');
+
+    Route::get('/super', [CmspageController::class, 'metaSuper'])->name('super.header.meta');
 
     // Meta Info Update
     Route::get('/super/meta/edit/{id}', [CmspageController::class, 'edit'])->name('super.meta.edit');
@@ -191,8 +194,12 @@ Route::group(['middleware' => 'super'], function() {
 Route::group(['middleware' => 'super'], function() {
     // Super Header and Footer Setting Home Page
     Route::get('/super/setting', [HeaderfooterController::class, 'index'])->name('super.setting');
+
+     // Header and Footer Setting Create
     Route::get('/super/setting/create', [HeaderfooterController::class, 'create'])->name('super.setting.create');
     Route::post('/super/setting/store', [HeaderfooterController::class, 'store'])->name('super.setting.store');
+
+    Route::get('/super', [HeaderfooterController::class, 'infoSuper'])->name('super.header');
 
     Route::get('/super/setting/show/{id}', [HeaderfooterController::class, 'show'])->name('super.setting.show');
 
@@ -223,4 +230,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+// require __DIR__.'/auth.php';
