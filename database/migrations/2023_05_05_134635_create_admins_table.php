@@ -23,14 +23,12 @@ return new class extends Migration
             $table->string('password');
             $table->text('address')->nullable();
             $table->string('city')->nullable();
-            $table->integer('districtId');
-            $table->integer('countryId');
+            $table->integer('districtId')->nullable();
+            $table->integer('countryId')->nullable();
             $table->string('zipcode')->nullable();
             $table->string('dateOfBirth')->nullable();
             $table->string('gender')->nullable();
             $table->text('description')->nullable();
-            $table->string('level')->nullable();
-            $table->integer('authority');
             $table->enum('role',['admin','author','editor','contributor','user'])->default('user');
             $table->enum('status',['active','inactive'])->default('active');
             $table->string('theme')->default('default')->nullable();

@@ -39,30 +39,7 @@ class FieldController extends Controller
             $img->move(public_path('admin/uploads/field/'), $unique_file_name);
         }
 
-        $this -> validate($request, [
-            'title'         => 'required|unique:fields',
-            'smalltitle'    => 'required|unique:fields',
-            'license'       => 'required|unique:fields',
-            'email'         => 'required|email|max:255',
-            'description'   => 'required',
-            'proprietor'    => 'required',
-            'address'       => 'required',
-            'cellphone'     => 'required',
-        ],
-        [
-            'title.required'        => 'Title Field must not be Empty',
-            'title.unique'          => 'The Title is already exist',
-            'smalltitle.required'   => 'Small Title Field must not be Empty',
-            'smalltitle.unique'     => 'The Small Title is already exist',
-            'email.required'        => 'E-Mail Field must not be Empty',
-            'email.email'           => "E-Mail Address is not valid !!",
-            'description.required'  => 'Description Field must not be Empty',
-            'license.required'      => 'License Field is required',
-            'license.unique'        => 'The License Number is already exist',
-            'proprietor.required'   => 'Proprietor Name Field must not be Empty',
-            'address.required'      => 'Address Field must not be Empty',
-            'cellphone.required'    => 'Cellphone Field must not be Empty',
-        ]);
+        $this->validation($request);
 
         Field::create([
             'title'             => $request->title,
@@ -115,21 +92,7 @@ class FieldController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this -> validate($request, [
-            'email'         => 'required|email|max:255',
-            'description'   => 'required',
-            'proprietor'    => 'required',
-            'address'       => 'required',
-            'cellphone'     => 'required',
-        ],
-        [
-            'email.required'        => 'E-Mail Field must not be Empty',
-            'email.email'           => "E-Mail Address is not valid !!",
-            'description.required'  => 'Description Field must not be Empty',
-            'proprietor.required'   => 'Proprietor Name Field must not be Empty',
-            'address.required'      => 'Address Field must not be Empty',
-            'cellphone.required'    => 'Cellphone Field must not be Empty',
-        ]);
+        $this->validationInfo($request);
 
         $field_data = Field::findOrFail($id);
 
@@ -176,14 +139,8 @@ class FieldController extends Controller
 
     public function updateTitle(Request $request, $id)
     {
-        $this -> validate($request, [
-            'title'         => 'required|unique:fields',
-        ],
-        [
-            'title.required'        => 'Title Field must not be Empty',
-            'title.unique'          => 'The Title is already exist',
-        ]);
-
+        $this->validationTitle($request);
+        
         $field_data_title = Field::findOrFail($id);
 
         $field_data_title->title        = $request->title;
@@ -204,13 +161,7 @@ class FieldController extends Controller
 
     public function updateSmallTitle(Request $request, $id)
     {
-        $this -> validate($request, [
-            'smalltitle'         => 'required|unique:fields',
-        ],
-        [
-            'smalltitle.required'        => 'Small Title Field must not be Empty',
-            'smalltitle.unique'          => 'The Small Title is already exist',
-        ]);
+        $this->validationSmallTitle($request);
 
         $field_data_small_title = Field::findOrFail($id);
 
@@ -233,13 +184,8 @@ class FieldController extends Controller
 
     public function updateLicense(Request $request, $id)
     {
-        $this -> validate($request, [
-            'license'         => 'required|unique:fields',
-        ],
-        [
-            'license.required'        => 'License Number Field must not be Empty',
-            'license.unique'          => 'The License Number is already exist',
-        ]);
+        
+        $this->validationLicense($request);
 
         $field_data_license = Field::findOrFail($id);
 
@@ -304,5 +250,80 @@ class FieldController extends Controller
         $field_active->update();              
 
         return redirect('/super/field')->with('message', 'The English Site Option is Active Successfully');
+    }
+
+    protected function validation($request){
+        $this -> validate($request, [
+            'title'         => 'required|unique:fields',
+            'smalltitle'    => 'required|unique:fields',
+            'license'       => 'required|unique:fields',
+            'email'         => 'required|email|max:255',
+            'description'   => 'required',
+            'proprietor'    => 'required',
+            'address'       => 'required',
+            'cellphone'     => 'required',
+        ],
+        [
+            'title.required'        => 'Title Field must not be Empty',
+            'title.unique'          => 'The Title is already exist',
+            'smalltitle.required'   => 'Small Title Field must not be Empty',
+            'smalltitle.unique'     => 'The Small Title is already exist',
+            'email.required'        => 'E-Mail Field must not be Empty',
+            'email.email'           => "E-Mail Address is not valid !!",
+            'description.required'  => 'Description Field must not be Empty',
+            'license.required'      => 'License Field is required',
+            'license.unique'        => 'The License Number is already exist',
+            'proprietor.required'   => 'Proprietor Name Field must not be Empty',
+            'address.required'      => 'Address Field must not be Empty',
+            'cellphone.required'    => 'Cellphone Field must not be Empty',
+        ]);
+    }
+
+    protected function validationInfo($request){
+        $this -> validate($request, [
+            'email'         => 'required|email|max:255',
+            'description'   => 'required',
+            'proprietor'    => 'required',
+            'address'       => 'required',
+            'cellphone'     => 'required',
+        ],
+        [
+            'email.required'        => 'E-Mail Field must not be Empty',
+            'email.email'           => "E-Mail Address is not valid !!",
+            'description.required'  => 'Description Field must not be Empty',
+            'proprietor.required'   => 'Proprietor Name Field must not be Empty',
+            'address.required'      => 'Address Field must not be Empty',
+            'cellphone.required'    => 'Cellphone Field must not be Empty',
+        ]);
+    }
+
+    protected function validationTitle($request){
+        $this -> validate($request, [
+            'title'         => 'required|unique:fields',
+        ],
+        [
+            'title.required'        => 'Title Field must not be Empty',
+            'title.unique'          => 'The Title is already exist',
+        ]);
+    }
+
+     protected function validationSmallTitle($request){
+        $this -> validate($request, [
+            'smalltitle'         => 'required|unique:fields',
+        ],
+        [
+            'smalltitle.required'        => 'Small Title Field must not be Empty',
+            'smalltitle.unique'          => 'The Small Title is already exist',
+        ]);
+    }
+
+    protected function validationLicense($request){
+        $this -> validate($request, [
+            'license'       => 'required|unique:fields',
+        ],
+        [
+            'license.required'      => 'License Field is required',
+            'license.unique'        => 'The License Number is already exist',
+        ]);
     }
 }

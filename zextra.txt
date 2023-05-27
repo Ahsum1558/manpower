@@ -9,6 +9,7 @@ php artisan make:seeder AdminsTableSeeder
 php artisan db:seed
 php artisan migrate:fresh --seed
 php artisan migrate:fresh
+php artisan migrate:refresh
 php artisan migrate
 php artisan make:factory SuperFactory
 php artisan make:factory AdminFactory
@@ -32,3 +33,5 @@ php artisan make:model Headerfooter -m
 php artisan make:controller Super/HeaderfooterController --resource
 php artisan make:provider Custom/SuperServiceProvider
 php artisan make:provider Custom/AdminServiceProvider
+php artisan make:controller Super/SuperuserController --resource
+php artisan make:middleware CheckAuth

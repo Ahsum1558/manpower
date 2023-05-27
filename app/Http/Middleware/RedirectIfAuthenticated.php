@@ -21,6 +21,9 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+                if($guard == 'super'){
+                    return redirect(RouteServiceProvider::SUPER);
+                }
                 return redirect(RouteServiceProvider::HOME);
             }
         }

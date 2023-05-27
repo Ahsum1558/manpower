@@ -63,7 +63,7 @@ class HeaderfooterController extends Controller
             $header_footer_data->save();
         return redirect() -> back() -> with('message', 'Header and Footer Option is added successfully');
         }else{
-            return redirect() -> back() -> with('error_message', 'Header and Footer Option is already exist !');
+            return redirect() -> back() -> with('error_message', 'Header and Footer Option is already exist in the table !');
         }
     }
 

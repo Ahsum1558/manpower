@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Auth\SuperLoginRequest;
+use App\Providers\RouteServiceProvider;
+use Illuminate\View\View;
 use File;
 
 class SuperController extends Controller
@@ -62,7 +66,6 @@ class SuperController extends Controller
         }
         
     }
-
 
     public function superProfile(){
         $id = Auth::guard('super')->user()->id;
@@ -246,6 +249,15 @@ class SuperController extends Controller
         $data->update();              
 
         return back()->with('message', 'The Theme is Updated Successfully');
+    }
+
+    public function store(SuperLoginRequest $request): RedirectResponse
+    {
+        $request->authenticate();
+
+        $request->session()->regenerate();
+
+        return redirect()->intended(RouteServiceProvider::SUPER);
     }
 
     public function superLogout(Request $request): RedirectResponse
