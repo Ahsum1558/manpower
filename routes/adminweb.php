@@ -12,6 +12,7 @@ use App\Http\Controllers\Locaton\DivisionController;
 use App\Http\Controllers\Locaton\DistrictController;
 use App\Http\Controllers\Locaton\PolicestationController;
 use App\Http\Controllers\Locaton\IssueController;
+use App\Http\Controllers\Locaton\CityController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -72,6 +73,12 @@ Route::middleware(['auth'])->group(function () {
 
     // Country Delete
     Route::get('/country/destroy/{id}', [CountryController::class, 'destroy'])->name('admin.country.destroy');
+
+    // Country Inactive
+    Route::post('/country/inactive/{id}', [CountryController::class, 'inactive'])->name('admin.country.inactive');
+
+    // Country Active
+    Route::post('/country/active/{id}', [CountryController::class, 'active'])->name('admin.country.active');
 });
 // Country Area End
 
@@ -96,6 +103,12 @@ Route::middleware(['auth'])->group(function () {
 
     // Division Delete
     Route::get('/division/destroy/{id}', [DivisionController::class, 'destroy'])->name('admin.division.destroy');
+
+    // Division Inactive
+    Route::post('/division/inactive/{id}', [DivisionController::class, 'inactive'])->name('admin.division.inactive');
+
+    // Division Active
+    Route::post('/division/active/{id}', [DivisionController::class, 'active'])->name('admin.division.active');
 });
 // Division Area End
 
@@ -122,6 +135,12 @@ Route::middleware(['auth'])->group(function () {
 
     // District Delete
     Route::get('/district/destroy/{id}', [DistrictController::class, 'destroy'])->name('admin.district.destroy');
+
+    // District Inactive
+    Route::post('/district/inactive/{id}', [DistrictController::class, 'inactive'])->name('admin.district.inactive');
+
+    // District Active
+    Route::post('/district/active/{id}', [DistrictController::class, 'active'])->name('admin.district.active');
 });
 // District Area End
 
@@ -149,6 +168,12 @@ Route::middleware(['auth'])->group(function () {
 
     // Police Station Delete
     Route::get('/upzila/destroy/{id}', [PolicestationController::class, 'destroy'])->name('admin.policestation.destroy');
+
+    // Police Station Inactive
+    Route::post('/upzila/inactive/{id}', [PolicestationController::class, 'inactive'])->name('admin.policestation.inactive');
+
+    // Police Station Active
+    Route::post('/upzila/active/{id}', [PolicestationController::class, 'active'])->name('admin.policestation.active');
 });
 // Police Station Area End
 
@@ -173,8 +198,53 @@ Route::middleware(['auth'])->group(function () {
 
     // Issue Place Delete
     Route::get('/issue/destroy/{id}', [IssueController::class, 'destroy'])->name('admin.issue.destroy');
+
+    // Issue Place Inactive
+    Route::post('/issue/inactive/{id}', [IssueController::class, 'inactive'])->name('admin.issue.inactive');
+
+    // Issue Place Active
+    Route::post('/issue/active/{id}', [IssueController::class, 'active'])->name('admin.issue.active');
 });
 // Issue Place Area End
+
+// City Area Start
+Route::middleware(['auth'])->group(function () {
+    // City Home Page
+    Route::get('/city', [CityController::class, 'index'])->name('admin.city');
+
+    // City Create
+    Route::get('/city/create', [CityController::class, 'create'])->name('admin.city.create');
+    Route::post('/city/store', [CityController::class, 'store'])->name('admin.city.store');
+
+    Route::get('/city/get', [CityController::class, 'getDivision'])->name('admin.city.get');
+    Route::get('/city/getDistrict', [CityController::class, 'getDistrict'])->name('admin.city.getDistrict');
+
+    Route::get('/city/show/{id}', [CityController::class, 'show'])->name('admin.city.show');
+
+    // City Name Update
+    Route::get('/city/edit/{id}', [CityController::class, 'edit'])->name('admin.city.edit');
+    Route::post('/city/update/{id}', [CityController::class, 'update'])->name('admin.city.update');
+
+    // City Info Update
+    Route::get('/city/editInfo/{id}', [CityController::class, 'editInfo'])->name('admin.city.editInfo');
+    Route::post('/city/updateInfo/{id}', [CityController::class, 'updateInfo'])->name('admin.city.updateInfo');
+
+    // City Delete
+    Route::get('/city/destroy/{id}', [CityController::class, 'destroy'])->name('admin.city.destroy');
+
+    // City Inactive
+    Route::post('/city/inactive/{id}', [CityController::class, 'inactive'])->name('admin.city.inactive');
+
+    // City Active
+    Route::post('/city/active/{id}', [CityController::class, 'active'])->name('admin.city.active');
+});
+// City Area End
+
+
+
+
+
+
 // Location Page Area End
 
 

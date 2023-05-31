@@ -38,6 +38,7 @@
                     <li><a href="{{ route('admin.division') }}">Division</a></li>
                     <li><a href="{{ route('admin.district') }}">District</a></li>
                     <li><a href="{{ route('admin.policestation') }}">Upzila</a></li>
+                    <li><a href="{{ route('admin.city') }}">City</a></li>
                     <li><a href="{{ route('admin.issue') }}">Issue Place</a></li>
                 </ul>
             </li>

@@ -41,6 +41,19 @@
                                     <div class="col-9"><span>{{ $single_country->nationality }}</span>
                                     </div>
                                 </div>
+                                <div class="row mb-2">
+                                    <div class="col-3">
+                                        <h5 class="f-w-500">Status<span class="pull-right">:</span></h5>
+                                    </div>
+                                    <div class="col-9"><span>
+                                        @if($single_country->status == 1)
+                                            {{ __('Active') }}
+                                            @elseif($single_country->status == 0)
+                                            {{ __('Inactive') }}
+                                        @endif
+                                    </span>
+                                    </div>
+                                </div>
                                
                                 <div class="row mb-2">
                                     <div class="col-3">

@@ -41,7 +41,8 @@ class IssueController extends Controller
         $issue_create = new Issue();
 
         $issue_create->issuePlace  = $request->issuePlace; 
-        $issue_create->countryId     = $request->countryId;
+        $issue_create->countryId   = $request->countryId;
+        $issue_create->status      = $request->status;
         $issue_create->save();
 
         return redirect() -> back() -> with('message', 'Issue Place is added successfully');
@@ -110,6 +111,7 @@ class IssueController extends Controller
         $issue_data_info = Issue::findOrFail($id);
 
         $issue_data_info->countryId     = $request->countryId;
+        $issue_data_info->status        = $request->status;
         $issue_data_info->update();
 
         return redirect() -> back() -> with('message', 'Issue Place Info is Updated successfully');
@@ -124,6 +126,30 @@ class IssueController extends Controller
         $data_issue -> delete();
 
         return redirect() -> back() -> with('message', 'The Issue Place is deleted successfully');
+    }
+
+    public function inactive(Request $request, $id)
+    {
+
+        $issue_inactive = Issue::findOrFail($id);
+
+        $issue_inactive->issuePlace  = $request->issuePlace;
+        $issue_inactive->status      = 0;
+        $issue_inactive->update();              
+
+        return redirect('/issue')->with('message', 'The Issue Place is Inactive Successfully');
+    }
+    
+    public function active(Request $request, $id)
+    {
+
+        $issue_active = Issue::findOrFail($id);
+
+        $issue_active->issuePlace  = $request->issuePlace;
+        $issue_active->status      = 1;
+        $issue_active->update();              
+
+        return redirect('/issue')->with('message', 'The Issue Place is Active Successfully');
     }
 
     protected function getDetails($id){

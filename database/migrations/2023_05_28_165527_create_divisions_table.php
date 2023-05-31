@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('divisionname')->nullable();
             $table->integer('countryId')->nullable();
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

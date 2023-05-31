@@ -31,6 +31,7 @@
                               <th>District Name</th>
                               <th>Division Name</th>
                               <th>Country Name</th>
+                              <th>Status</th>
                               <th>Action</th>
                           </tr>
                       </thead>
@@ -45,10 +46,24 @@
                             <td>{{ $district->divisionname }}</td>
                             <td>{{ $district->countryname }}</td>
                             <td>
+                              @if($district->status == 1)
+                                {{ __('Active') }}
+                                @elseif($district->status == 0)
+                                {{ __('Inactive') }}
+                              @endif
+                            </td>
+                            <td>
                               <a class="view_option" href="{{ route('admin.district.show', ['id'=>$district->id]) }}"><i class="fas fa-eye"></i><span>View Details</span></a>
+                            @if($district->status == 1)
+                              <a class="edit_option bg-warning" href="#inActiveId{{ $district->id }}" data-toggle="modal"><i class="fas fa-caret-square-down"></i><span>Set Inctive</span></a>
+                            @elseif($district->status == 0)
+                              <a class="edit_option" href="#activeId{{ $district->id }}" data-toggle="modal"><i class="fas fa-caret-square-up"></i><span>Set Active</span></a>
+                            @endif
                               <a class="delete_option" href="#delDistrict{{ $district->id }}" data-toggle="modal"><i class="fas fa-trash"></i><span>Delete District</span></a>
                             </td>
                 @include('admin.location.district.district_modal')
+                @include('admin.location.district.district_active')
+                @include('admin.location.district.district_inactive')
                         </tr>
                @endforeach
                       </tbody>

@@ -42,6 +42,23 @@
                                     </select>
                                     </div>
                                 </div>
+                                <div class="row mb-2">
+                                    <div class="col-3">
+                                        <h5 class="f-w-500">Status <span class="pull-right">:</span></h5>
+                                    </div>
+                                    <div class="col-9">
+                                        <select id="status" name="status" class="form-control d-inline-block inline_setup">
+                                          <option>Select Type</option>
+                                @if($issue_data_info[0]->status == 1)
+                                          <option selected="selected" value="1">Active</option>
+                                          <option value="0">Inactive</option>
+                                  @elseif($issue_data_info[0]->status == 0)
+                                          <option selected="selected" value="0">Inactive</option>
+                                          <option value="1">Active</option>
+                                  @endif
+                                        </select>
+                                    </div>
+                                </div>
                                 
                                 <div class="row mb-2">
                                     <div class="col-3"></div>

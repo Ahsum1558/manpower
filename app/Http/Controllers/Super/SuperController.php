@@ -17,6 +17,8 @@ use File;
 
 class SuperController extends Controller
 {
+    protected $redirectTo = RouteServiceProvider::SUPER;
+
     public function index(){
         $data = Super::latest() -> get(); // as latest
         return view('super.home.index');
@@ -31,6 +33,7 @@ class SuperController extends Controller
             $user->fullname = 'Abdullah';
             $user->username = 'Super';
             $user->type = 'Super';
+            $user->gender = 1;
             $user->phone = '01815141595';
             $user->email = 'ahsum1558@gmail.com';
             $user->password = Hash::make('12345');

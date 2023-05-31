@@ -22,8 +22,10 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->text('address')->nullable();
-            $table->string('city')->nullable();
+            $table->integer('policestationId')->nullable();
             $table->integer('districtId')->nullable();
+            $table->integer('divisionId')->nullable();
+            $table->integer('cityId')->nullable();
             $table->integer('countryId')->nullable();
             $table->string('zipcode')->nullable();
             $table->string('dateOfBirth')->nullable();

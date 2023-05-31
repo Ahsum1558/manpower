@@ -94,11 +94,4 @@ class AdminController extends Controller
             'password.required' => "Password is required",
         ]);
     }
-
-    
-
-
-
-
-
 }

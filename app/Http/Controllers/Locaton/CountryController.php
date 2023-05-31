@@ -35,6 +35,7 @@ class CountryController extends Controller
         Country::create([
             'countryname'           => $request->countryname,
             'nationality'           => $request->nationality,
+            'status'                => $request->status,
         ]);
         return redirect() -> back() -> with('message', 'Country is added successfully');
     }
@@ -75,7 +76,7 @@ class CountryController extends Controller
         $this->validationName($request);
         $country_data = Country::findOrFail($id);
 
-        $country_data->countryname        = $request->countryname;
+        $country_data->countryname   = $request->countryname;
         $country_data->update();              
 
         return back()->with('message', 'The Country Name is Updated Successfully');
@@ -112,6 +113,30 @@ class CountryController extends Controller
         $data_country -> delete();
 
         return redirect() -> back() -> with('message', 'The Country is deleted successfully');
+    }
+
+    public function inactive(Request $request, $id)
+    {
+
+        $country_inactive = Country::findOrFail($id);
+
+        $country_inactive->countryname = $request->countryname;
+        $country_inactive->status      = 0;
+        $country_inactive->update();              
+
+        return redirect('/country')->with('message', 'The Country is Inactive Successfully');
+    }
+    
+    public function active(Request $request, $id)
+    {
+
+        $country_active = Country::findOrFail($id);
+
+        $country_active->countryname   = $request->countryname;
+        $country_active->status        = 1;
+        $country_active->update();              
+
+        return redirect('/country')->with('message', 'The Country is Active Successfully');
     }
 
     protected function validation($request){

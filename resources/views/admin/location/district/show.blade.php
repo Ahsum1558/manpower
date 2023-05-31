@@ -48,6 +48,19 @@
                                     <div class="col-9"><span>{{ $district_single_data[0]->countryname }}</span>
                                     </div>
                                 </div>
+                                <div class="row mb-2">
+                                    <div class="col-3">
+                                        <h5 class="f-w-500">Status<span class="pull-right">:</span></h5>
+                                    </div>
+                                    <div class="col-9"><span>
+                                        @if($district_single_data[0]->status == 1)
+                                            {{ __('Active') }}
+                                            @elseif($district_single_data[0]->status == 0)
+                                            {{ __('Inactive') }}
+                                        @endif
+                                    </span>
+                                    </div>
+                                </div>
                                
                                 <div class="row mb-2">
                                     <div class="col-3">

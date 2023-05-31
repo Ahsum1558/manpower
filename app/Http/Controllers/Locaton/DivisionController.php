@@ -42,6 +42,7 @@ class DivisionController extends Controller
 
         $division_create->divisionname  = $request->divisionname; 
         $division_create->countryId     = $request->countryId;
+        $division_create->status        = $request->status;
         $division_create->save();
 
         return redirect() -> back() -> with('message', 'Division is added successfully');
@@ -110,7 +111,8 @@ class DivisionController extends Controller
     {
         $division_data_info = Division::findOrFail($id);
 
-        $division_data_info->countryId     = $request->countryId;
+        $division_data_info->countryId  = $request->countryId;
+        $division_data_info->status     = $request->status;
         $division_data_info->update();
 
         return redirect() -> back() -> with('message', 'Division Info is Updated successfully');
@@ -125,6 +127,30 @@ class DivisionController extends Controller
         $data_division -> delete();
 
         return redirect() -> back() -> with('message', 'The Division is deleted successfully');
+    }
+
+    public function inactive(Request $request, $id)
+    {
+
+        $division_inactive = Division::findOrFail($id);
+
+        $division_inactive->divisionname    = $request->divisionname;
+        $division_inactive->status      = 0;
+        $division_inactive->update();              
+
+        return redirect('/division')->with('message', 'The Division is Inactive Successfully');
+    }
+    
+    public function active(Request $request, $id)
+    {
+
+        $division_active = Division::findOrFail($id);
+
+        $division_active->divisionname  = $request->divisionname;
+        $division_active->status    = 1;
+        $division_active->update();              
+
+        return redirect('/division')->with('message', 'The Division is Active Successfully');
     }
 
     protected function getDetails($id){

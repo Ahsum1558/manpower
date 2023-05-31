@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('countryname')->nullable();
             $table->string('nationality')->nullable();
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

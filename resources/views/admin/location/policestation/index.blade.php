@@ -32,6 +32,7 @@
                               <th>District Name</th>
                               <th>Division Name</th>
                               <th>Country Name</th>
+                              <th>Status</th>
                               <th>Action</th>
                           </tr>
                       </thead>
@@ -47,10 +48,24 @@
                             <td>{{ $upzila->divisionname }}</td>
                             <td>{{ $upzila->countryname }}</td>
                             <td>
+                              @if($upzila->status == 1)
+                                {{ __('Active') }}
+                                @elseif($upzila->status == 0)
+                                {{ __('Inactive') }}
+                              @endif
+                            </td>
+                            <td>
                               <a class="view_option" href="{{ route('admin.policestation.show', ['id'=>$upzila->id]) }}"><i class="fas fa-eye"></i><span>View Details</span></a>
-                              <a class="delete_option" href="#delUpzila{{ $upzila->id }}" data-toggle="modal"><i class="fas fa-trash"></i><span>Delete District</span></a>
+                            @if($upzila->status == 1)
+                              <a class="edit_option bg-warning" href="#inActiveId{{ $upzila->id }}" data-toggle="modal"><i class="fas fa-caret-square-down"></i><span>Set Inctive</span></a>
+                            @elseif($upzila->status == 0)
+                              <a class="edit_option" href="#activeId{{ $upzila->id }}" data-toggle="modal"><i class="fas fa-caret-square-up"></i><span>Set Active</span></a>
+                            @endif
+                              <a class="delete_option" href="#delUpzila{{ $upzila->id }}" data-toggle="modal"><i class="fas fa-trash"></i><span>Delete Police Station</span></a>
                             </td>
                 @include('admin.location.policestation.upzila_modal')
+                @include('admin.location.policestation.upzila_active')
+                @include('admin.location.policestation.upzila_inactive')
                         </tr>
                @endforeach
                       </tbody>

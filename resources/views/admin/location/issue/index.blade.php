@@ -30,6 +30,7 @@
                               <th>SL</th>
                               <th>Issue Place Name</th>
                               <th>Country Name</th>
+                              <th>Status</th>
                               <th>Action</th>
                           </tr>
                       </thead>
@@ -43,10 +44,24 @@
                             <td>{{ $issue->issuePlace }}</td>
                             <td>{{ $issue->countryname }}</td>
                             <td>
+                              @if($issue->status == 1)
+                                {{ __('Active') }}
+                                @elseif($issue->status == 0)
+                                {{ __('Inactive') }}
+                              @endif
+                            </td>
+                            <td>
                               <a class="view_option" href="{{ route('admin.issue.show', ['id'=>$issue->id]) }}"><i class="fas fa-eye"></i><span>View Details</span></a>
+                            @if($issue->status == 1)
+                              <a class="edit_option bg-warning" href="#inActiveId{{ $issue->id }}" data-toggle="modal"><i class="fas fa-caret-square-down"></i><span>Set Inctive</span></a>
+                            @elseif($issue->status == 0)
+                              <a class="edit_option" href="#activeId{{ $issue->id }}" data-toggle="modal"><i class="fas fa-caret-square-up"></i><span>Set Active</span></a>
+                            @endif
                               <a class="delete_option" href="#delIssue{{ $issue->id }}" data-toggle="modal"><i class="fas fa-trash"></i><span>Delete Issue Place</span></a>
                             </td>
                 @include('admin.location.issue.issue_modal')
+                @include('admin.location.issue.issue_active')
+                @include('admin.location.issue.issue_inactive')
                         </tr>
                @endforeach
                       </tbody>

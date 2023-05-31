@@ -45,6 +45,8 @@ php artisan make:controller Locaton/PolicestationController --resource
 php artisan make:model Policestation -m
 php artisan make:controller Locaton/IssueController --resource
 php artisan make:model Issue -m
+php artisan make:controller Locaton/CityController --resource
+php artisan make:model City -m
 
 
 

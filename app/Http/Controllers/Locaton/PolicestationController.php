@@ -22,20 +22,6 @@ class PolicestationController extends Controller
         return view('admin.location.policestation.index', compact('all_upzila'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(Request $request)
-    {
-        $upzila_create = Policestation::latest() -> get(); // as latest
-        $all_country = Country::latest() -> get(); // as latest
-
-        return view('admin.location.policestation.create', [
-            'upzila_create'   =>  $upzila_create,
-            'all_country'       =>  $all_country
-        ]);
-    }
-
     public function getDivision(Request $request)
     {
         $all_division = Division::where([
@@ -62,6 +48,20 @@ class PolicestationController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     */
+    public function create(Request $request)
+    {
+        $upzila_create = Policestation::latest() -> get(); // as latest
+        $all_country = Country::latest() -> get(); // as latest
+
+        return view('admin.location.policestation.create', [
+            'upzila_create'   =>  $upzila_create,
+            'all_country'     =>  $all_country
+        ]);
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -74,6 +74,7 @@ class PolicestationController extends Controller
         $upzila_create->districtId    = $request->districtId; 
         $upzila_create->divisionId    = $request->divisionId; 
         $upzila_create->countryId     = $request->countryId; 
+        $upzila_create->status        = $request->status; 
         $upzila_create->save();
 
         return redirect() -> back() -> with('message', 'Police Station is added successfully');
@@ -148,6 +149,7 @@ class PolicestationController extends Controller
         $upzila_data_info->districtId  = $request->districtId;
         $upzila_data_info->divisionId  = $request->divisionId;
         $upzila_data_info->countryId   = $request->countryId;
+        $upzila_data_info->status      = $request->status;
         $upzila_data_info->update();
 
         return redirect() -> back() -> with('message', 'Police Station Info is Updated successfully');
@@ -162,6 +164,30 @@ class PolicestationController extends Controller
         $data_upzila -> delete();
 
         return redirect() -> back() -> with('message', 'The Police Station is deleted successfully');
+    }
+
+    public function inactive(Request $request, $id)
+    {
+
+        $upzila_inactive = Policestation::findOrFail($id);
+
+        $upzila_inactive->policestationname = $request->policestationname;
+        $upzila_inactive->status      = 0;
+        $upzila_inactive->update();              
+
+        return redirect('/upzila')->with('message', 'The Police Station is Inactive Successfully');
+    }
+    
+    public function active(Request $request, $id)
+    {
+
+        $upzila_active = Policestation::findOrFail($id);
+
+        $upzila_active->policestationname = $request->policestationname;
+        $upzila_active->status    = 1;
+        $upzila_active->update();              
+
+        return redirect('/upzila')->with('message', 'The Police Station is Active Successfully');
     }
 
     protected function getInfo(){

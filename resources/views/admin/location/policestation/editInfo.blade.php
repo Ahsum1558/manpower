@@ -7,7 +7,7 @@
     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="javascript:void(0)">Location</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">District</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Police Station</a></li>
             <li class="breadcrumb-item active"><a href="javascript:void(0)">Update Info</a></li>
         </ol>
     </div>
@@ -68,6 +68,23 @@
                                       <option value="{{ $district->id }}" {{ $upzila_data_info[0]->districtId == $district->id ? 'selected' : '' }}>{{ $district->districtname }}</option>
                                     @endforeach
 
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-3">
+                                        <h5 class="f-w-500">Status <span class="pull-right">:</span></h5>
+                                    </div>
+                                    <div class="col-9">
+                                        <select id="status" name="status" class="form-control d-inline-block inline_setup">
+                                          <option>Select Type</option>
+                                @if($upzila_data_info[0]->status == 1)
+                                          <option selected="selected" value="1">Active</option>
+                                          <option value="0">Inactive</option>
+                                  @elseif($upzila_data_info[0]->status == 0)
+                                          <option selected="selected" value="0">Inactive</option>
+                                          <option value="1">Active</option>
+                                  @endif
                                         </select>
                                     </div>
                                 </div>

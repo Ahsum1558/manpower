@@ -21,6 +21,17 @@ class DistrictController extends Controller
         return view('admin.location.district.index', compact('all_district'));
     }
 
+    public function getDivision(Request $request)
+    {
+        $all_division = Division::where([
+            'countryId'=>$request->country_id
+        ])->get();
+
+        return view('admin.location.district.ajax',[
+            'all_division'=>$all_division,
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -32,17 +43,6 @@ class DistrictController extends Controller
         return view('admin.location.district.create', [
             'district_create'   =>  $district_create,
             'all_country'       =>  $all_country
-        ]);
-    }
-
-    public function getDivision(Request $request)
-    {
-        $all_division = Division::where([
-            'countryId'=>$request->country_id
-        ])->get();
-
-        return view('admin.location.district.ajax',[
-            'all_division'=>$all_division,
         ]);
     }
 
@@ -58,6 +58,7 @@ class DistrictController extends Controller
         $district_create->districtname  = $request->districtname; 
         $district_create->divisionId    = $request->divisionId; 
         $district_create->countryId     = $request->countryId; 
+        $district_create->status        = $request->status; 
         $district_create->save();
 
         return redirect() -> back() -> with('message', 'District is added successfully');
@@ -129,6 +130,7 @@ class DistrictController extends Controller
 
         $district_data_info->divisionId  = $request->divisionId;
         $district_data_info->countryId   = $request->countryId;
+        $district_data_info->status      = $request->status;
         $district_data_info->update();
 
         return redirect() -> back() -> with('message', 'District Info is Updated successfully');
@@ -143,6 +145,30 @@ class DistrictController extends Controller
         $data_district -> delete();
 
         return redirect() -> back() -> with('message', 'The District is deleted successfully');
+    }
+
+    public function inactive(Request $request, $id)
+    {
+
+        $district_inactive = District::findOrFail($id);
+
+        $district_inactive->districtname    = $request->districtname;
+        $district_inactive->status      = 0;
+        $district_inactive->update();              
+
+        return redirect('/district')->with('message', 'The District is Inactive Successfully');
+    }
+    
+    public function active(Request $request, $id)
+    {
+
+        $district_active = District::findOrFail($id);
+
+        $district_active->districtname  = $request->districtname;
+        $district_active->status    = 1;
+        $district_active->update();              
+
+        return redirect('/district')->with('message', 'The District is Active Successfully');
     }
 
     protected function getInfo(){

@@ -30,6 +30,7 @@
                               <th>SL</th>
                               <th>Country Name</th>
                               <th>Nationality</th>
+                              <th>Status</th>
                               <th>Action</th>
                           </tr>
                       </thead>
@@ -43,10 +44,24 @@
                             <td>{{ $country->countryname }}</td>
                             <td>{{ $country->nationality }}</td>
                             <td>
+                              @if($country->status == 1)
+                                {{ __('Active') }}
+                                @elseif($country->status == 0)
+                                {{ __('Inactive') }}
+                              @endif
+                            </td>
+                            <td>
                               <a class="view_option" href="{{ route('admin.country.show', ['id'=>$country->id]) }}"><i class="fas fa-eye"></i><span>View Details</span></a>
+                            @if($country->status == 1)
+                              <a class="edit_option bg-warning" href="#inActiveId{{ $country->id }}" data-toggle="modal"><i class="fas fa-caret-square-down"></i><span>Set Inctive</span></a>
+                            @elseif($country->status == 0)
+                              <a class="edit_option" href="#activeId{{ $country->id }}" data-toggle="modal"><i class="fas fa-caret-square-up"></i><span>Set Active</span></a>
+                            @endif
                               <a class="delete_option" href="#delCountry{{ $country->id }}" data-toggle="modal"><i class="fas fa-trash"></i><span>Delete Country</span></a>
                             </td>
                 @include('admin.location.country.country_modal')
+                @include('admin.location.country.country_active')
+                @include('admin.location.country.country_inactive')
                         </tr>
                @endforeach
                       </tbody>
