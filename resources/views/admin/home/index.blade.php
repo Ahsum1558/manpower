@@ -13,7 +13,7 @@
       <div class="das_headeing">Welcome To Admin Panel</div>
       <div class="deposit_sum page-titles p-0 m-0">
         <div class="welcome-text welcome_area">
-            <h4>(<strong><?php// echo Session::get('adminUser'); ?></strong>) Welcome back !</h4>
+            <h4>(<strong>{{ Auth::user()->name }}</strong>) Welcome back !</h4>
         </div>
         <div class="row welcome_content mr-1 ml-1">
           <p>Congratulations on being part of the team ! The whole company welcomes you and we look forward to a successful journey with you !</p>

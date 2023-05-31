@@ -30,11 +30,10 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/super')->group(function () {
 
     Route::namespace('Auth')->middleware('guest:super')->group(function(){
-        Route::match(['get', 'post'], 'login', [SuperController::class, 'login'])->name('super.users.login');
+        Route::match(['get', 'post'], 'login/store', [SuperController::class, 'superStore'])->name('super.users.login');
         Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('super.home.login');
         Route::post('/store', [AuthenticatedSessionController::class, 'store'])->name('super.home.store');
     });
-    
     
     Route::group(['middleware' => 'super'], function() {
         Route::get('/', [SuperController::class, 'index'])->name('super.home.index');
@@ -202,8 +201,6 @@ Route::group(['middleware' => 'super'], function() {
      // Header and Footer Setting Create
     Route::get('/super/setting/create', [HeaderfooterController::class, 'create'])->name('super.setting.create');
     Route::post('/super/setting/store', [HeaderfooterController::class, 'store'])->name('super.setting.store');
-
-    Route::get('/super', [HeaderfooterController::class, 'infoSuper'])->name('super.header');
 
     Route::get('/super/setting/show/{id}', [HeaderfooterController::class, 'show'])->name('super.setting.show');
 

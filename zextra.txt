@@ -35,3 +35,92 @@ php artisan make:provider Custom/SuperServiceProvider
 php artisan make:provider Custom/AdminServiceProvider
 php artisan make:controller Super/SuperuserController --resource
 php artisan make:middleware CheckAuth
+php artisan make:controller Locaton/CountryController --resource
+php artisan make:model Country -m
+php artisan make:controller Locaton/DivisionController --resource
+php artisan make:model Division -m
+php artisan make:controller Locaton/DistrictController --resource
+php artisan make:model District -m
+php artisan make:controller Locaton/PolicestationController --resource
+php artisan make:model Policestation -m
+php artisan make:controller Locaton/IssueController --resource
+php artisan make:model Issue -m
+
+
+
+
+
+
+
+In the User model:
+
+php
+Copy code
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class User extends Model
+{
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+}
+
+
+
+
+In the Profile model:
+
+php
+Copy code
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Profile extends Model
+{
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+}
+
+
+
+
+In your controller, you can retrieve the user and their associated profile data using eager loading.
+
+php
+Copy code
+namespace App\Http\Controllers;
+
+use App\Models\User;
+
+class ProfileController extends Controller
+{
+    public function show($userId)
+    {
+        $user = User::with('profile')->findOrFail($userId);
+
+        // Access the profile data associated with the user
+        $profile = $user->profile;
+
+        // Pass the user and profile data to the view
+        return view('profile.show', compact('user', 'profile'));
+    }
+}
+
+
+
+Display the profile data in your view.
+In your view (profile/show.blade.php), you can access the user and profile data as follows:
+
+html
+Copy code
+<h1>User Profile</h1>
+<p>Name: {{ $user->name }}</p>
+<p>Email: {{ $user->email }}</p>
+<p>Profile Bio: {{ $profile->bio }}</p>
+<!-- Display other profile fields as needed -->

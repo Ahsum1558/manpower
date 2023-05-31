@@ -13,9 +13,6 @@
     @include('admin.includes.meta')
     <link href="{{ asset('public/admin/assets/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('public/admin/assets/css/main.css') }}" rel="stylesheet">
-    
-    <?php //include 'inc/scripts/css.php'; ?>
-
 </head>
 
 <body class="h-100">
@@ -36,8 +33,9 @@
                             <div class="col-xl-12">
                                 <div class="auth-form">
                                     <h4 class="text-center mb-4">Sign in your account</h4>
+                                    @include('admin.includes.alert')
     
-                                    <form action="{{ url('/login') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ url('login/store') }}" method="POST" enctype="multipart/form-data">
                                          @csrf
                                         <div class="form-group">
                                             <label class="mb-1"><strong>Username</strong></label>

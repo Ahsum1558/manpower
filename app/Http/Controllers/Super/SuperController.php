@@ -22,33 +22,7 @@ class SuperController extends Controller
         return view('super.home.index');
     }
 
-    public function login(Request $request)
-    {
-        if($request->isMethod('post')){
-            $data = $request->all();
-
-            $rules = [
-                'username' => 'required|max:255',
-                'password' => 'required|max:30'
-            ];
-
-            $customMessage = [
-                'username.required' => "Username is required",
-                'password.required' => "Password is required",
-            ];
-
-            $this->validate($request, $rules, $customMessage);
-
-            if(Auth::guard('super')->attempt([
-                'username' => $data['username'],
-                'password' => $data['password']
-            ])){
-                return redirect('/super');
-            }else{
-                return redirect()->back()->with("error_message", "Invalid Username or Password");
-            }
-        }
-
+    public function login(){
         $users = Super::latest() -> get();
         if (count($users) > 0) {
             return view('super.users.login');
@@ -64,7 +38,25 @@ class SuperController extends Controller
 
             return view('super.users.login');
         }
-        
+
+    }
+
+    public function superStore(Request $request)
+    {
+        if($request->isMethod('post')){
+            $data = $request->all();
+
+            $this->validation($request);
+
+            if(Auth::guard('super')->attempt([
+                'username' => $data['username'],
+                'password' => $data['password']
+            ])){
+                return redirect('/super');
+            }else{
+                return redirect()->back()->with("error_message", "Invalid Username or Password");
+            }
+        }
     }
 
     public function superProfile(){
@@ -86,20 +78,7 @@ class SuperController extends Controller
         $id = Auth::guard('super')->user()->id;
         $data = Super::find($id);
 
-        $rules = [
-                'fullname' => 'required|max:255',
-                'designation' => 'required|max:255',
-                'phone' => 'required|numeric',
-            ];
-
-            $customMessage = [
-                'fullname.required' => "Name Field must not be empty !!",
-                'designation.required' => "Designation Field must not be empty !!",
-                'phone.required' => "Phone Field must not be empty !!",
-                'phone.numeric' => "Phone number is not valid !!",
-            ];
-
-            $this->validate($request, $rules, $customMessage);
+        $this->validationInfo($request);
         
         $data->fullname        = $request->fullname;
         $data->designation     = $request->designation;
@@ -209,19 +188,7 @@ class SuperController extends Controller
         $id = Auth::guard('super')->user()->id;
         $data = Super::find($id);
 
-        $rules = [
-            'old_password' => 'required',
-            'new_password' => 'required|confirmed|different:old_password',
-            'new_password_confirmation' => 'required',
-        ];
-
-        $customMessage = [
-            'old_password.required' => "Old Password Field must not be empty !!",
-            'new_password.required' => "New Password Field must not be empty !!",
-            'new_password.different' => "New Password should be different old password !!",
-            'new_password_confirmation.required' => "Confirm New Password Field must not be empty !!",
-        ];
-        $this->validate($request, $rules, $customMessage);
+        $this->validationPassword($request);
 
         $oldPassword = $request->old_password;
         if (!Hash::check($oldPassword, $data->password)) {
@@ -269,5 +236,44 @@ class SuperController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('super/login');
+    }
+
+     protected function validation($request){
+        $this -> validate($request, [
+            'username' => 'required|max:255',
+            'password' => 'required|max:30'
+        ],
+        [
+            'username.required' => "Username is required",
+            'password.required' => "Password is required",
+        ]);
+    }
+
+    protected function validationInfo($request){
+        $this -> validate($request, [
+            'fullname' => 'required|max:255',
+            'designation' => 'required|max:255',
+            'phone' => 'required|numeric',
+        ],
+        [
+            'fullname.required' => "Name Field must not be empty !!",
+            'designation.required' => "Designation Field must not be empty !!",
+            'phone.required' => "Phone Field must not be empty !!",
+            'phone.numeric' => "Phone number is not valid !!",
+        ]);
+    }
+
+    protected function validationPassword($request){
+        $this -> validate($request, [
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed|different:old_password',
+            'new_password_confirmation' => 'required',
+        ],
+        [
+            'old_password.required' => "Old Password Field must not be empty !!",
+            'new_password.required' => "New Password Field must not be empty !!",
+            'new_password.different' => "New Password should be different old password !!",
+            'new_password_confirmation.required' => "Confirm New Password Field must not be empty !!",
+        ]);
     }
 }

@@ -36,7 +36,7 @@
 
                                     @include('super.includes.alert')
     
-                                    <form action="{{ url('/super/login') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ url('/super/login/store') }}" method="POST" enctype="multipart/form-data">
                                          @csrf
                                         <div class="form-group">
                                             <label class="mb-1"><strong>Username</strong></label>
