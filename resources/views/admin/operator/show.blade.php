@@ -1,6 +1,6 @@
-@extends('super.home')
+@extends('admin.master')
 
-@section('super-content')
+@section('main-content')
 
 <div class="row page-titles mx-0">
     <div class="col-sm-6 p-md-0"></div>
@@ -152,8 +152,10 @@
                     </div>
                 </div>
                 <div class="mybtn">
-                    <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('super.operator.edit', ['id'=>$single_user->id]) }}">Update Info</a>
-                    <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase pull-right" href="{{ route('super.operator') }}">Back</a>
+                @if(Auth::user()->role == 'admin' && Auth::user()->id !== $single_user->id)
+                    <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.operator.edit', ['id'=>$single_user->id]) }}">Update Info</a>
+                @endif
+                    <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase pull-right" href="{{ route('admin.operator') }}">Back</a>
                 </div>
             </div>
         </div>

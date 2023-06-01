@@ -23,14 +23,14 @@
             <div class="profile-head">
                 <div class="profile-info">
                     <div class="profile-photo">
-                        <img class="img-fluid img_user rounded-circle" src="{{ (!empty($profile_data->photo)) ? url('public/admin/uploads/user/'.$profile_data->photo) : url('public/admin/assets/images/avatar.png') }}" alt="">
+                        <img class="img-fluid img_user rounded-circle" src="{{ (!empty($profile_data[0]->photo)) ? url('public/admin/uploads/user/'.$profile_data[0]->photo) : url('public/admin/assets/images/avatar.png') }}" alt="">
                     </div>
                     <div class="profile-details">
                         <div class="profile-name px-3 pt-2">
-                            <h4 class="mb-0">{{ $profile_data->name }}</h4>
+                            <h4 class="mb-0">{{ $profile_data[0]->name }}</h4>
                         </div>
                         <div class="profile-email px-2 pt-2">
-                            <h4 class="text-muted text-lowercase mb-0">{{ $profile_data->email }}</h4>
+                            <h4 class="text-muted text-lowercase mb-0">{{ $profile_data[0]->email }}</h4>
                         </div>
                         
                     </div>
@@ -54,7 +54,7 @@
                         <!-- Tab panes -->
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade show active" id="first">
-                                    <img class="img-fluid img_user rounded-circle" src="{{ (!empty($profile_data->photo)) ? url('public/admin/uploads/user/'.$profile_data->photo) : url('public/admin/assets/images/avatar.png') }}" alt="">  
+                                    <img class="img-fluid img_user rounded-circle" src="{{ (!empty($profile_data[0]->photo)) ? url('public/admin/uploads/user/'.$profile_data[0]->photo) : url('public/admin/assets/images/avatar.png') }}" alt="">  
                                 </div>
                             </div>
                         </div>
@@ -65,21 +65,21 @@
                                     <div class="col-3">
                                         <h5 class="f-w-500">Full Name <span class="pull-right">:</span></h5>
                                     </div>
-                                    <div class="col-9"><span>{{ $profile_data->name }}</span>
+                                    <div class="col-9"><span>{{ $profile_data[0]->name }}</span>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-3">
                                         <h5 class="f-w-500">Username <span class="pull-right">:</span></h5>
                                     </div>
-                                    <div class="col-9"><span>{{ $profile_data->username }}</span>
+                                    <div class="col-9"><span>{{ $profile_data[0]->username }}</span>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-3">
                                         <h5 class="f-w-500">Designation <span class="pull-right">:</span></h5>
                                     </div>
-                                    <div class="col-9"><span>{{ $profile_data->designation }}</span>
+                                    <div class="col-9"><span>{{ $profile_data[0]->designation }}</span>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
@@ -87,15 +87,15 @@
                                         <h5 class="f-w-500">Level<span class="pull-right">:</span></h5>
                                     </div>
                                     <div class="col-9"><span>
-                                        @if($profile_data->role == 'admin')
+                                        @if($profile_data[0]->role == 'admin')
                                             {{ __('Admin') }}
-                                            @elseif($profile_data->role == 'author')
+                                            @elseif($profile_data[0]->role == 'author')
                                             {{ __('Author') }}
-                                            @elseif($profile_data->role == 'editor')
+                                            @elseif($profile_data[0]->role == 'editor')
                                             {{ __('Editor') }}
-                                            @elseif($profile_data->role == 'contributor')
+                                            @elseif($profile_data[0]->role == 'contributor')
                                             {{ __('Contributor') }}
-                                            @elseif($profile_data->role == 'user')
+                                            @elseif($profile_data[0]->role == 'user')
                                             {{ __('User') }}
                                           @endif
                                     </span>
@@ -105,21 +105,21 @@
                                     <div class="col-3">
                                         <h5 class="f-w-500">E-Mail <span class="pull-right">:</span></h5>
                                     </div>
-                                    <div class="col-9"><span>{{ $profile_data->email }}</span>
+                                    <div class="col-9"><span>{{ $profile_data[0]->email }}</span>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-3">
                                         <h5 class="f-w-500">Phone <span class="pull-right">:</span></h5>
                                     </div>
-                                    <div class="col-9"><span>{{ $profile_data->phone }}</span>
+                                    <div class="col-9"><span>{{ $profile_data[0]->phone }}</span>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-3">
                                         <h5 class="f-w-500">Date Of Birth <span class="pull-right">:</span></h5>
                                     </div>
-                                    <div class="col-9"><span>{{ date('d-M-Y', strtotime($profile_data->dateOfBirth)) }}</span>
+                                    <div class="col-9"><span>{{ date('d-M-Y', strtotime($profile_data[0]->dateOfBirth)) }}</span>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
@@ -127,9 +127,9 @@
                                         <h5 class="f-w-500">Gender <span class="pull-right">:</span></h5>
                                     </div>
                                     <div class="col-9"><span>
-                                        @if($profile_data->gender == 1)
+                                        @if($profile_data[0]->gender == 1)
                                         {{ __('Male') }}
-                                        @elseif($profile_data->gender == 2)
+                                        @elseif($profile_data[0]->gender == 2)
                                         {{ __('Female') }}
                                         @else
                                         {{ __('Other') }}
@@ -139,30 +139,79 @@
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-3">
-                                        <h5 class="f-w-500">Super Level <span class="pull-right">:</span></h5>
+                                        <h5 class="f-w-500">Address <span class="pull-right">:</span></h5>
                                     </div>
-                                    <div class="col-9"><span>{{ $profile_data->type }}</span>
+                                    <div class="col-9"><span>{{ $profile_data[0]->address }}</span>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-3">
-                                        <h5 class="f-w-500">Address <span class="pull-right">:</span></h5>
+                                        <h5 class="f-w-500">Upzila <span class="pull-right">:</span></h5>
                                     </div>
-                                    <div class="col-9"><span>{{ $profile_data->address }}</span>
+                                    <div class="col-9"><span>{{ $profile_data[0]->policestationname }}</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-3">
+                                        <h5 class="f-w-500">District <span class="pull-right">:</span></h5>
+                                    </div>
+                                    <div class="col-9"><span>{{ $profile_data[0]->districtname }}</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-3">
+                                        <h5 class="f-w-500">City <span class="pull-right">:</span></h5>
+                                    </div>
+                                    <div class="col-9"><span>{{ $profile_data[0]->cityname }}</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-3">
+                                        <h5 class="f-w-500">Division <span class="pull-right">:</span></h5>
+                                    </div>
+                                    <div class="col-9"><span>{{ $profile_data[0]->divisionname }}</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-3">
+                                        <h5 class="f-w-500">Country <span class="pull-right">:</span></h5>
+                                    </div>
+                                    <div class="col-9"><span>{{ $profile_data[0]->countryname }}</span>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-3">
                                         <h5 class="f-w-500">Zipcode <span class="pull-right">:</span></h5>
                                     </div>
-                                    <div class="col-9"><span>{{ $profile_data->zipcode }}</span>
+                                    <div class="col-9"><span>{{ $profile_data[0]->zipcode }}</span>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-3">
                                         <h5 class="f-w-500">Description <span class="pull-right">:</span></h5>
                                     </div>
-                                    <div class="col-9"><span>{{ $profile_data->description }}</span>
+                                    <div class="col-9"><span>{{ $profile_data[0]->description }}</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-3">
+                                        <h5 class="f-w-500">Status<span class="pull-right">:</span></h5>
+                                    </div>
+                                    <div class="col-9"><span>
+                                        @if($profile_data[0]->status == 'active')
+                                            {{ __('Active') }}
+                                            @elseif($profile_data[0]->status == 'inactive')
+                                            {{ __('Inactive') }}
+                                        @endif
+                                    </span>
+                                    </div>
+                                </div>
+                               
+                                <div class="row mb-2">
+                                    <div class="col-3">
+                                        <h5 class="f-w-500">Created At<span class="pull-right">:</span></h5>
+                                    </div>
+                                    <div class="col-9"><span>{{ date('d-M-Y', strtotime($profile_data[0]->created_at)) }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -170,11 +219,11 @@
                     </div>
                 </div>
                 <div class="mybtn">
-                    {{-- <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.profile.info') }}">Update Info</a>
+                    <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.profile.info') }}">Update Info</a>
                     <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.profile.username') }}">Update Username</a>
                     <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.profile.email') }}">Update E-Mail</a>
                     <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.profile.image') }}">Update Image</a>
-                    <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.profile.password') }}">Update Password</a> --}}
+                    <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.profile.password') }}">Update Password</a>
                 </div>
             </div>
         </div>

@@ -106,6 +106,10 @@ class SuperuserController extends Controller
         $data_user = User::find($id);
         $data_user -> delete();
 
+        if(file_exists('public/admin/uploads/user/' .$data_user->photo)){
+                unlink('public/admin/uploads/user/' .$data_user->photo);
+            }
+
         return redirect() -> back() -> with('message', 'The User is deleted successfully');
     }
 

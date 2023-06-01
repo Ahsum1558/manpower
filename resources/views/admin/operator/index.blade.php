@@ -1,6 +1,6 @@
-@extends('super.home')
+@extends('admin.master')
 
-@section('super-content')
+@section('main-content')
 
 <div class="row page-titles mx-0">
     <div class="col-sm-6 p-md-0"></div>
@@ -11,15 +11,15 @@
         </ol>
     </div>
 </div>
-@include('super.includes.alert')
+@include('admin.includes.alert')
 <div class="mybtn">
-  <a href="{{ route('super.operator.create') }}" class="btn submitbtn mb-2 form-control inline_setup text-uppercase">Add New Operator</a>
+  <a href="{{ route('admin.operator.create') }}" class="btn submitbtn mb-2 form-control inline_setup text-uppercase">Add New Operator</a>
 </div>
 <div class="row">
     <div class="col-xl-12 col-lg-12">
         <div class="card card_line">
             <div class="card-header card_headline">
-               <h4 class="card-title headline">Operators For Admin Panel</h4>
+               <h4 class="card-title headline">Operators For Users</h4>
             </div>
             <div class="card-body">
               <h4 class="mb-4 basic_headline">All Operator</h4>
@@ -40,44 +40,46 @@
                         @php
                           $i=1;
                         @endphp
-                      @foreach($all_superuser as $super_user)
+                      @foreach($all_adminuser as $admin_user)
                         <tr>
                             <td>{{ $i++ }}</td>
-                            <td>{{ $super_user->name }}</td>
-                            <td>{{ $super_user->username }}</td>
-                            <td>{{ $super_user->email }}</td>
+                            <td>{{ $admin_user->name }}</td>
+                            <td>{{ $admin_user->username }}</td>
+                            <td>{{ $admin_user->email }}</td>
                             <td>
-                              @if($super_user->role == 'admin')
+                              @if($admin_user->role == 'admin')
                                 {{ __('Admin') }}
-                                @elseif($super_user->role == 'author')
+                                @elseif($admin_user->role == 'author')
                                 {{ __('Author') }}
-                                @elseif($super_user->role == 'editor')
+                                @elseif($admin_user->role == 'editor')
                                 {{ __('Editor') }}
-                                @elseif($super_user->role == 'contributor')
+                                @elseif($admin_user->role == 'contributor')
                                 {{ __('Contributor') }}
-                                @elseif($super_user->role == 'user')
+                                @elseif($admin_user->role == 'user')
                                 {{ __('User') }}
                               @endif
                             </td>
                             <td>
-                              @if($super_user->status == 'active')
+                              @if($admin_user->status == 'active')
                                 {{ __('Active') }}
-                                @elseif($super_user->status == 'inactive')
+                                @elseif($admin_user->status == 'inactive')
                                 {{ __('Inactive') }}
                               @endif
                             </td>
                             <td>
-                              <a class="view_option" href="{{ route('super.operator.show', ['id'=>$super_user->id]) }}"><i class="fas fa-eye"></i><span>View Operator</span></a>
-                            @if($super_user->status == 'active')
-                              <a class="edit_option bg-warning" href="#inActiveId{{ $super_user->id }}" data-toggle="modal"><i class="fas fa-caret-square-down"></i><span>Set Inctive</span></a>
-                            @elseif($super_user->status == 'inactive')
-                              <a class="edit_option bg-success" href="#activeId{{ $super_user->id }}" data-toggle="modal"><i class="fas fa-caret-square-up"></i><span>Set Active</span></a>
+                              <a class="view_option" href="{{ route('admin.operator.show', ['id'=>$admin_user->id]) }}"><i class="fas fa-eye"></i><span>View Operator</span></a>
+                          @if(Auth::user()->role == 'admin' && Auth::user()->id !== $admin_user->id)
+                            @if($admin_user->status == 'active')
+                              <a class="edit_option bg-warning" href="#inActiveId{{ $admin_user->id }}" data-toggle="modal"><i class="fas fa-caret-square-down"></i><span>Set Inctive</span></a>
+                            @elseif($admin_user->status == 'inactive')
+                              <a class="edit_option bg-success" href="#activeId{{ $admin_user->id }}" data-toggle="modal"><i class="fas fa-caret-square-up"></i><span>Set Active</span></a>
                             @endif
-                              <a class="delete_option" href="#delOperator{{ $super_user->id }}" data-toggle="modal"><i class="fas fa-trash"></i><span>Delete Operator</span></a>
+                              <a class="delete_option" href="#delOperator{{ $admin_user->id }}" data-toggle="modal"><i class="fas fa-trash"></i><span>Delete Operator</span></a>
+                          @endif
                             </td>
-                @include('super.operator.users_modal')
-                @include('super.operator.users_inactive')
-                @include('super.operator.users_active')
+                @include('admin.operator.users_modal')
+                @include('admin.operator.users_inactive')
+                @include('admin.operator.users_active')
                         </tr>
                 @endforeach
                       </tbody>

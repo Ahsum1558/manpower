@@ -9,6 +9,19 @@
                     <span class="nav-text">Dashboard</span>
                 </a>
             </li>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                <i class="fa fa-user"></i>
+                    <span class="nav-text">Users</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('admin.profile') }}">Profile</a></li>
+                    <li><a href="{{ route('admin.theme') }}">Theme Option</a></li>
+                    <li><a href="customerRef.php">Customer Ref</a></li>
+                @if(Auth::user()->role == 'admin')                    
+                    <li><a href="{{ route('admin.operator') }}">All Operator</a></li>
+                @endif                    
+                </ul>
+            </li>
 <?php //if (Session::get('userRole') == '1') { ?>
             <li><a href="summary.php" class="ai-icon" aria-expanded="false">
                     <i class="flaticon-381-internet"></i>
@@ -24,7 +37,6 @@
                 <ul aria-expanded="false">
                     <li><a href="aide.php">Sister Concern</a></li>
                     <li><a href="asset.php">Assets</a></li>
-                    <li><a href="{{ route('admin.theme') }}">Theme Option</a></li>
                     <li><a href="request.php">Request Option</a></li>
                 </ul>
             </li>
@@ -37,7 +49,7 @@
                     <li><a href="{{ route('admin.country') }}">Country</a></li>
                     <li><a href="{{ route('admin.division') }}">Division</a></li>
                     <li><a href="{{ route('admin.district') }}">District</a></li>
-                    <li><a href="{{ route('admin.policestation') }}">Upzila</a></li>
+                    <li><a href="{{ route('admin.policestation') }}">Police Station</a></li>
                     <li><a href="{{ route('admin.city') }}">City</a></li>
                     <li><a href="{{ route('admin.issue') }}">Issue Place</a></li>
                 </ul>
@@ -53,18 +65,7 @@
                 </ul>
             </li>
 
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                <i class="fa fa-user"></i>
-                    <span class="nav-text">Users</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="{{ route('admin.profile') }}">Profile</a></li>
-                    <li><a href="customerRef.php">Customer Ref</a></li>
-<?php //if (Session::get('userRole') == '1') { ?>                    
-                    <li><a href="user.php">All User</a></li>
-<?php// } ?>                    
-                </ul>
-            </li>
+            
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-381-controls-3"></i>
                     <span class="nav-text">Agents</span>

@@ -1,6 +1,6 @@
-@extends('super.home')
+@extends('admin.master')
 
-@section('super-content')
+@section('main-content')
 
 <div class="row page-titles mx-0">
     <div class="col-sm-6 p-md-0"></div>
@@ -19,8 +19,8 @@
                 <h4 class="card-title headline">Update Operator Info</h4>
             </div>
             <div class="card-body">
-@include('super.includes.alert')
-                <form action="{{ route('super.operator.update', ['id'=>$user_info->id]) }}" class="form-group" method="POST" enctype="multipart/form-data">
+@include('admin.includes.alert')
+                <form action="{{ route('admin.operator.update', ['id'=>$user_info->id]) }}" class="form-group" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                     <!--Tab slider End-->
@@ -91,7 +91,7 @@
                                     <div class="col-3"></div>
                                     <div class="col-9 mybtn">
                                         <button type="submit" name="updateOperator" class="form-control inline_setup btn submitbtn text-uppercase">Update</button>
-                                        <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase pull-right" href="{{ route('super.operator.show', ['id'=>$user_info->id]) }}">Back</a>
+                                        <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase pull-right" href="{{ route('admin.operator.show', ['id'=>$user_info->id]) }}">Back</a>
                                     </div>
                                 </div>
                             </div>

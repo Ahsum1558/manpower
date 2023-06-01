@@ -1,6 +1,6 @@
-@extends('super.home')
+@extends('admin.master')
 
-@section('super-content')
+@section('main-content')
 
 <div class="row page-titles mx-0">
     <div class="col-sm-6 p-md-0"></div>
@@ -19,8 +19,8 @@
                 <h4 class="card-title headline">Create New Operator</h4>
             </div>
             <div class="card-body">
-@include('super.includes.alert')
-                <form action="{{ route('super.operator.store') }}" class="form-group" method="POST" enctype="multipart/form-data">
+@include('admin.includes.alert')
+                <form action="{{ route('admin.operator.store') }}" class="form-group" method="POST" enctype="multipart/form-data">
                      @csrf
                     <div class="profile-personal-info">
                         <div class="row mb-2">
@@ -118,7 +118,7 @@
                         <div class="col-3"></div>
                         <div class="col-9 mybtn">
                             <button type="submit" name="addUser" class="form-control inline_setup btn submitbtn text-uppercase">Add</button>
-                            <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase pull-right" href="{{ route('super.operator') }}">Back</a>
+                            <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase pull-right" href="{{ route('admin.operator') }}">Back</a>
                         </div>
                     </div>
                 </form>

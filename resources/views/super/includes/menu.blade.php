@@ -25,7 +25,6 @@
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="{{ route('super.meta') }}">Meta</a></li>
-                    <li><a href="{{ route('super.theme') }}">Theme Option</a></li>
                     <li><a href="{{ route('super.setting') }}">Header and Footer</a></li>
                 </ul>
             </li>
@@ -35,6 +34,7 @@
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="{{ route('super.profile') }}">Profile</a></li>
+                    <li><a href="{{ route('super.theme') }}">Theme Option</a></li>
                     <li><a href="{{ route('super.operator') }}">All Operator</a></li>
                 </ul>
             </li>

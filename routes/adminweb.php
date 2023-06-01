@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminuserController;
 use App\Http\Controllers\Super\SuperController;
 use App\Http\Controllers\Super\CmspageController;
 use App\Http\Controllers\Super\FieldarController;
@@ -30,8 +31,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Admin Area Start
-// User Area Start
-
+// Home Page and Login Area Start
 Route::middleware(['guest'])->group(function () {
 	Route::match(['get', 'post'], 'login/store', [AdminController::class, 'userStore'])->name('admin.users.login');
 	Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
@@ -39,20 +39,79 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-	Route::get('/', [AdminController::class, 'index'])->name('admin.home.index');
+    Route::get('/', [AdminController::class, 'index'])->name('admin.home.index');
 
-	// Logout Option
+    // Logout Option
     Route::get('/logout', [AdminController::class, 'destroy'])->name('admin.logout');
+});
+// Home Page and Login Area End
 
+// User Profile Area Start
+Route::middleware(['auth'])->group(function () {
     // User Profile
     Route::get('/profile', [AdminController::class, 'userProfile'])->name('admin.profile');
+
+    // Profile Info Update
+    Route::get('/profile/info', [AdminController::class, 'profileInfoEdit'])->name('admin.profile.info');
+    Route::post('/profile/infoUpdate', [AdminController::class, 'profileInfoUpdate'])->name('admin.profile.infoUpdate');
+
+    // Get Division
+    Route::get('/profile/get', [AdminController::class, 'getDivision'])->name('admin.profile.get');
+    // Get District
+    Route::get('/profile/getDistrict', [AdminController::class, 'getDistrict'])->name('admin.profile.getDistrict');
+    // Get City
+    Route::get('/profile/getCity', [AdminController::class, 'getCity'])->name('admin.profile.getCity');
+    // Get Upzila
+    Route::get('/profile/getUpzila', [AdminController::class, 'getUpzila'])->name('admin.profile.getUpzila');
+
+    // Username Update
+    Route::get('/profile/username', [AdminController::class, 'profileUsername'])->name('admin.profile.username');
+    Route::post('/profile/usernameUpdate', [AdminController::class, 'profileUsernameUpdate'])->name('admin.profile.usernameUpdate');
+
+    // Email Update
+    Route::get('/profile/email', [AdminController::class, 'profileEmail'])->name('admin.profile.email');
+    Route::post('/profile/emailUpdate', [AdminController::class, 'profileEmailUpdate'])->name('admin.profile.emailUpdate');
+
+    // Photo Update
+    Route::get('/profile/image', [AdminController::class, 'profileImage'])->name('admin.profile.image');
+    Route::post('/profile/imageUpdate', [AdminController::class, 'profileImageUpdate'])->name('admin.profile.imageUpdate');
+
+    // Password Update
+    Route::get('/profile/password', [AdminController::class, 'profilePassword'])->name('admin.profile.password');
+    Route::post('/profile/passwordUpdate', [AdminController::class, 'profilePasswordUpdate'])->name('admin.profile.passwordUpdate');
 
     // Theme Update
     Route::get('/theme', [AdminController::class, 'userProfileTheme'])->name('admin.theme');
     Route::post('/themeUpdate', [AdminController::class, 'userProfileThemeUpdate'])->name('admin.themeUpdate');
 });
 
-// User Area End
+// User Profile Area End
+
+// User Operator Area Start
+Route::middleware(['auth'])->group(function () {
+    // User Operator Home Page
+    Route::get('/operator', [AdminuserController::class, 'index'])->name('admin.operator');
+
+     // User Operator Create
+    Route::get('/operator/create', [AdminuserController::class, 'create'])->name('admin.operator.create');
+    Route::post('/operator/store', [AdminuserController::class, 'store'])->name('admin.operator.store');
+
+    Route::get('/operator/show/{id}', [AdminuserController::class, 'show'])->name('admin.operator.show');
+
+    // User Operator Info Update
+    Route::get('/operator/edit/{id}', [AdminuserController::class, 'edit'])->name('admin.operator.edit');
+    Route::post('/operator/update/{id}', [AdminuserController::class, 'update'])->name('admin.operator.update');
+
+    // User Operator Delete
+    Route::get('/operator/destroy/{id}', [AdminuserController::class, 'destroy'])->name('admin.operator.destroy');
+
+    // User Operator Inactive
+    Route::post('/operator/inactive/{id}', [AdminuserController::class, 'inactive'])->name('admin.operator.inactive');
+
+    // User Operator Active
+    Route::post('/operator/active/{id}', [AdminuserController::class, 'active'])->name('admin.operator.active');
+});
+// User Operator Area End
 
 // Location Page Area Start
 // Country Area Start
