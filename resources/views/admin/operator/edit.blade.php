@@ -16,7 +16,7 @@
     <div class="col-12">
         <div class="card card_line">
             <div class="card-header card_headline">
-                <h4 class="card-title headline">Update Operator Info</h4>
+                <h4 class="card-title headline">Update Operator Info of <strong>{{ $user_info->name }}</strong></h4>
             </div>
             <div class="card-body">
 @include('admin.includes.alert')

@@ -28,11 +28,11 @@ class AdminController extends Controller
 
     public function index(){
         $data = User::latest() -> get(); // as latest
-        if (Auth::check() && Auth::user()->status !== 'active') {
+        if (Auth::check() && Auth::user()->status === 'active') {
+            return view('admin.home.index');
+        }elseif(Auth::check() && Auth::user()->status !== 'active') {
             Auth::logout();
             return redirect('/login')->with(['error_message' => 'Your account is inactive. Please contact the administrator.']);
-        }else{
-            return view('admin.home.index');
         }
         
     }

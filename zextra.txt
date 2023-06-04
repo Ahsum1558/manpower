@@ -48,7 +48,20 @@ php artisan make:model Issue -m
 php artisan make:controller Locaton/CityController --resource
 php artisan make:model City -m
 php artisan make:controller Admin/AdminuserController --resource
+php artisan make:controller Visa/VisaController --resource
+php artisan make:controller Visa/VisatypeController --resource
+php artisan make:controller Visa/VisatradeController --resource
+php artisan make:controller Visa/VisapdfController
+php artisan make:model Visa -m
+php artisan make:model Visatype -m
+php artisan make:model Visatrade -m
 
+
+
+php artisan make:model Delegate -m
+php artisan make:model Customer -m
+php artisan make:controller Client/CustomerController --resource
+php artisan make:controller Client/DelegateController --resource
 
 
 

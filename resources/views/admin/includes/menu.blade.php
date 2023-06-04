@@ -16,10 +16,33 @@
                 <ul aria-expanded="false">
                     <li><a href="{{ route('admin.profile') }}">Profile</a></li>
                     <li><a href="{{ route('admin.theme') }}">Theme Option</a></li>
-                    <li><a href="customerRef.php">Customer Ref</a></li>
+                    {{-- <li><a href="customerRef.php">Customer Ref</a></li> --}}
                 @if(Auth::user()->role == 'admin')                    
                     <li><a href="{{ route('admin.operator') }}">All Operator</a></li>
                 @endif                    
+                </ul>
+            </li>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-map-marker"></i>
+                    <span class="nav-text">Location</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('admin.country') }}">Country</a></li>
+                    <li><a href="{{ route('admin.division') }}">Division</a></li>
+                    <li><a href="{{ route('admin.district') }}">District</a></li>
+                    <li><a href="{{ route('admin.policestation') }}">Police Station</a></li>
+                    <li><a href="{{ route('admin.city') }}">City</a></li>
+                    <li><a href="{{ route('admin.issue') }}">Issue Place</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-address-card-o"></i>
+                    <span class="nav-text">Visa</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('admin.visa') }}">Visa Info</a></li>
+                    <li><a href="{{ route('admin.visaTrade') }}">Visa Trade</a></li>
+                    <li><a href="{{ route('admin.visaType') }}">Visa Type</a></li>
                 </ul>
             </li>
 <?php //if (Session::get('userRole') == '1') { ?>
@@ -41,29 +64,8 @@
                 </ul>
             </li>
 <?php// } ?>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="fa fa-map-marker"></i>
-                    <span class="nav-text">Location</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="{{ route('admin.country') }}">Country</a></li>
-                    <li><a href="{{ route('admin.division') }}">Division</a></li>
-                    <li><a href="{{ route('admin.district') }}">District</a></li>
-                    <li><a href="{{ route('admin.policestation') }}">Police Station</a></li>
-                    <li><a href="{{ route('admin.city') }}">City</a></li>
-                    <li><a href="{{ route('admin.issue') }}">Issue Place</a></li>
-                </ul>
-            </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="fa fa-address-card-o"></i>
-                    <span class="nav-text">Visa</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="visa.php">Visa Info</a></li>
-                    <li><a href="visaCat.php">Visa Category</a></li>
-                    <li><a href="visaType.php">Visa Type</a></li>
-                </ul>
-            </li>
+            
+            
 
             
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">

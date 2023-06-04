@@ -66,9 +66,6 @@ class SuperController extends Controller
         $id = Auth::guard('super')->user()->id;
         $superData = Super::find($id);
         return view('super.users.super_profile', compact('superData'));
-        // return view('super.users.super_profile', [
-        //     'super_info' => $superData
-        // ]);
     }
 
     public function superProfileInfo(){

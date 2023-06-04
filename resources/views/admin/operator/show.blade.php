@@ -12,12 +12,11 @@
         </ol>
     </div>
 </div>
-
 <div class="row">
     <div class="col-xl-12 col-lg-12">
         <div class="card card_line">
             <div class="card-header card_headline">
-               <h4 class="card-title headline">Operator Info Details</h4>
+               <h4 class="card-title headline">Operator Info Details of <strong>{{ $single_user->name }}</strong></h4>
             </div>
             <div class="card-body">
                 <h4 class="mb-4 basic_headline">Operator Info</h4>
