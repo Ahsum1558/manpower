@@ -45,6 +45,21 @@
                     <li><a href="{{ route('admin.visaType') }}">Visa Type</a></li>
                 </ul>
             </li>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-link"></i>
+                    <span class="nav-text">Important Links</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('admin.link') }}">Links</a></li>
+                </ul>
+            </li>
+            <li><a href="{{ url('logout') }}" class="ai-icon" aria-expanded="false">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-text">Logout</span>
+                </a>
+            </li>
+
+            
 <?php //if (Session::get('userRole') == '1') { ?>
             <li><a href="summary.php" class="ai-icon" aria-expanded="false">
                     <i class="flaticon-381-internet"></i>
@@ -301,19 +316,9 @@
                 </ul>
             </li>
 <?php //} ?>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="fa fa-link"></i>
-                    <span class="nav-text">Important Links</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="link.php">Links</a></li>
-                </ul>
-            </li>
-            <li><a href="?action=logout" class="ai-icon" aria-expanded="false">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span class="nav-text">Logout</span>
-                </a>
-            </li>
+            
+
+
         </ul>
 
     </div>

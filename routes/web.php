@@ -14,7 +14,9 @@ use App\Http\Controllers\Visa\VisaController;
 use App\Http\Controllers\Visa\VisatradeController;
 use App\Http\Controllers\Visa\VisatypeController;
 use App\Http\Controllers\Visa\VisapdfController;
+use App\Http\Controllers\Visa\LinkController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -112,6 +114,35 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/visa/pdf', [VisapdfController::class, 'getpdf'])->name('admin.visa.pdf');
 });
 // Visa Area End
+
+// Important Links Area Start
+Route::middleware(['auth'])->group(function () {
+    // Link Home Page
+    Route::get('/link', [LinkController::class, 'index'])->name('admin.link');
+
+    // Link Create
+    Route::post('/link/store', [LinkController::class, 'store'])->name('admin.link.store');
+
+    Route::get('/link/show/{id}', [LinkController::class, 'show'])->name('admin.link.show');
+
+    // Link Info Update
+    Route::get('/link/edit/{id}', [LinkController::class, 'edit'])->name('admin.link.edit');
+    Route::post('/link/update/{id}', [LinkController::class, 'update'])->name('admin.link.update');
+
+    // Link Url Update
+    Route::get('/link/editUrl/{id}', [LinkController::class, 'editUrl'])->name('admin.link.editUrl');
+    Route::post('/link/updateUrl/{id}', [LinkController::class, 'updateUrl'])->name('admin.link.updateUrl');
+
+    // Link Delete
+    Route::get('/link/destroy/{id}', [LinkController::class, 'destroy'])->name('admin.link.destroy');
+
+    // Link Inactive
+    Route::post('/link/inactive/{id}', [LinkController::class, 'inactive'])->name('admin.link.inactive');
+
+    // Link Active
+    Route::post('/link/active/{id}', [LinkController::class, 'active'])->name('admin.link.active');
+});
+// Important Links Area End
 
 
 

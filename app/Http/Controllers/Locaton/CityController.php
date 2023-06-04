@@ -26,7 +26,7 @@ class CityController extends Controller
     {
         $all_division = Division::where([
             'countryId'=>$request->country_id
-        ])->get();
+        ])->where('status','=',1)->get();
 
         return view('admin.location.city.ajax',[
             'all_division'=>$all_division,
@@ -38,7 +38,7 @@ class CityController extends Controller
         $all_district = District::where([
             'divisionId'=>$request->division_id,
             'countryId'=>$request->country_id
-        ])->get();
+        ])->where('status','=',1)->get();
 
         if (count($all_district)>0) {
             return view('admin.location.city.ajax_district',[
@@ -53,7 +53,7 @@ class CityController extends Controller
     public function create(Request $request)
     {
         $city_create = City::latest() -> get(); // as latest
-        $all_country = Country::latest() -> get(); // as latest
+        $all_country = Country::latest()->where('status','=',1) -> get(); // as latest
 
         return view('admin.location.city.create', [
             'city_create'   =>  $city_create,
@@ -126,9 +126,9 @@ class CityController extends Controller
     public function editInfo($id)
     {
         $city_data_info = $this->getDetails($id);
-        $all_country = Country::latest() -> get();
-        $all_division = Division::latest() -> get();
-        $all_district = District::latest() -> get();
+        $all_country = Country::latest()->where('status','=',1) -> get();
+        $all_division = Division::latest()->where('status','=',1) -> get();
+        $all_district = District::latest()->where('status','=',1) -> get();
         
         if($city_data_info->count() > 0){
             return view('admin.location.city.editInfo', [

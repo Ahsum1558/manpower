@@ -72,7 +72,7 @@ class AdminController extends Controller
     {
         $all_division = Division::where([
             'countryId'=>$request->country_id
-        ])->get();
+        ])->where('status','=',1)->get();
 
         return view('admin.users.ajax',[
             'all_division'=>$all_division,
@@ -84,7 +84,7 @@ class AdminController extends Controller
         $all_district = District::where([
             'divisionId'=>$request->division_id,
             'countryId'=>$request->country_id
-        ])->get();
+        ])->where('status','=',1)->get();
 
         if (count($all_district)>0) {
             return view('admin.users.ajax_district',[
@@ -99,7 +99,7 @@ class AdminController extends Controller
             'districtId'=>$request->district_id,
             'divisionId'=>$request->division_id,
             'countryId'=>$request->country_id
-        ])->get();
+        ])->where('status','=',1)->get();
 
         if (count($all_city)>0) {
             return view('admin.users.ajax_city',[
@@ -114,7 +114,7 @@ class AdminController extends Controller
             'districtId'=>$request->district_id,
             'divisionId'=>$request->division_id,
             'countryId'=>$request->country_id
-        ])->get();
+        ])->where('status','=',1)->get();
 
         if (count($all_upzila)>0) {
             return view('admin.users.ajax_upzila',[
@@ -126,11 +126,11 @@ class AdminController extends Controller
     public function profileInfoEdit(){
         $id = Auth::user()->id;
         $user_info = $this->getDetails($id);
-        $all_country = Country::latest() -> get();
-        $all_division = Division::latest() -> get();
-        $all_district = District::latest() -> get();
-        $all_city = City::latest() -> get();
-        $all_upzila = Policestation::latest() -> get();
+        $all_country = Country::latest()->where('status','=',1) -> get();
+        $all_division = Division::latest()->where('status','=',1) -> get();
+        $all_district = District::latest()->where('status','=',1) -> get();
+        $all_city = City::latest()->where('status','=',1) -> get();
+        $all_upzila = Policestation::latest()->where('status','=',1) -> get();
         
         return view('admin.users.profile_info', [
             'user_info'=>$user_info,
@@ -296,7 +296,6 @@ class AdminController extends Controller
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
         return redirect('/login');

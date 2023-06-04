@@ -24,7 +24,7 @@ class DivisionController extends Controller
     public function create()
     {
         $division_create = Division::latest() -> get(); // as latest
-        $all_country = Country::latest() -> get(); // as latest
+        $all_country = Country::latest()->where('status','=',1) -> get(); // as latest
 
         return view('admin.location.division.create', [
             'division_create'=>$division_create,
@@ -95,7 +95,7 @@ class DivisionController extends Controller
     public function editInfo($id)
     {
         $division_data_info = $this->getDetails($id);
-        $all_country = Country::latest() -> get();
+        $all_country = Country::latest()->where('status','=',1) -> get();
         
         if($division_data_info->count() > 0){
             return view('admin.location.division.editInfo', [

@@ -24,7 +24,7 @@ class IssueController extends Controller
     public function create()
     {
         $issue_create = Issue::latest() -> get(); // as latest
-        $all_country = Country::latest() -> get(); // as latest
+        $all_country = Country::latest()->where('status','=',1) -> get(); // as latest
 
         return view('admin.location.issue.create', [
             'issue_create'=>$issue_create,
@@ -94,7 +94,7 @@ class IssueController extends Controller
     public function editInfo($id)
     {
         $issue_data_info = $this->getDetails($id);
-        $all_country = Country::latest() -> get();
+        $all_country = Country::latest()->where('status','=',1) -> get();
         
         if($issue_data_info->count() > 0){
             return view('admin.location.issue.editInfo', [
@@ -130,7 +130,6 @@ class IssueController extends Controller
 
     public function inactive(Request $request, $id)
     {
-
         $issue_inactive = Issue::findOrFail($id);
 
         $issue_inactive->issuePlace  = $request->issuePlace;

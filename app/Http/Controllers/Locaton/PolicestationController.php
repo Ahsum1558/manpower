@@ -26,7 +26,7 @@ class PolicestationController extends Controller
     {
         $all_division = Division::where([
             'countryId'=>$request->country_id
-        ])->get();
+        ])->where('status','=',1)->get();
 
         return view('admin.location.policestation.ajax',[
             'all_division'=>$all_division,
@@ -38,7 +38,7 @@ class PolicestationController extends Controller
         $all_district = District::where([
             'divisionId'=>$request->division_id,
             'countryId'=>$request->country_id
-        ])->get();
+        ])->where('status','=',1)->get();
 
         if (count($all_district)>0) {
             return view('admin.location.policestation.ajax_district',[
@@ -53,7 +53,7 @@ class PolicestationController extends Controller
     public function create(Request $request)
     {
         $upzila_create = Policestation::latest() -> get(); // as latest
-        $all_country = Country::latest() -> get(); // as latest
+        $all_country = Country::latest()->where('status','=',1) -> get(); // as latest
 
         return view('admin.location.policestation.create', [
             'upzila_create'   =>  $upzila_create,
@@ -126,9 +126,9 @@ class PolicestationController extends Controller
     public function editInfo($id)
     {
         $upzila_data_info = $this->getDetails($id);
-        $all_country = Country::latest() -> get();
-        $all_division = Division::latest() -> get();
-        $all_district = District::latest() -> get();
+        $all_country = Country::latest()->where('status','=',1) -> get();
+        $all_division = Division::latest()->where('status','=',1) -> get();
+        $all_district = District::latest()->where('status','=',1) -> get();
         
         if($upzila_data_info->count() > 0){
             return view('admin.location.policestation.editInfo', [

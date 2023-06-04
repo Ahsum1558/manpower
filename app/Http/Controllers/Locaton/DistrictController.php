@@ -25,7 +25,7 @@ class DistrictController extends Controller
     {
         $all_division = Division::where([
             'countryId'=>$request->country_id
-        ])->get();
+        ])->where('status','=',1)->get();
 
         return view('admin.location.district.ajax',[
             'all_division'=>$all_division,
@@ -38,7 +38,7 @@ class DistrictController extends Controller
     public function create(Request $request)
     {
         $district_create = District::latest() -> get(); // as latest
-        $all_country = Country::latest() -> get(); // as latest
+        $all_country = Country::latest()->where('status','=',1) -> get(); // as latest
 
         return view('admin.location.district.create', [
             'district_create'   =>  $district_create,
@@ -110,8 +110,8 @@ class DistrictController extends Controller
     public function editInfo($id)
     {
         $district_data_info = $this->getDetails($id);
-        $all_country = Country::latest() -> get();
-        $all_division = Division::latest() -> get();
+        $all_country = Country::latest()->where('status','=',1) -> get();
+        $all_division = Division::latest()->where('status','=',1) -> get();
         
         if($district_data_info->count() > 0){
             return view('admin.location.district.editInfo', [

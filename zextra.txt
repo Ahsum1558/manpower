@@ -55,13 +55,17 @@ php artisan make:controller Visa/VisapdfController
 php artisan make:model Visa -m
 php artisan make:model Visatype -m
 php artisan make:model Visatrade -m
-
-
-
 php artisan make:model Delegate -m
+php artisan make:controller Client/DelegateController --resource
+php artisan make:model Link -m
+php artisan make:controller Visa/LinkController --resource
+
+
+
+
 php artisan make:model Customer -m
 php artisan make:controller Client/CustomerController --resource
-php artisan make:controller Client/DelegateController --resource
+
 
 
 
