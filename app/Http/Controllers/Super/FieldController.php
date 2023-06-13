@@ -119,9 +119,9 @@ class FieldController extends Controller
         $data = Field::find($id);
         $data -> delete();
 
-        if(file_exists('public/admin/uploads/field/' .$data->logo)){
-                unlink('public/admin/uploads/field/' .$data->logo);
-            }
+        if(File::exists('public/admin/uploads/field/' .$data->logo)) {
+            File::delete('public/admin/uploads/field/' .$data->logo);
+        }
 
         return redirect() -> back() -> with('message', 'The English Site Option data is deleted successfully');
     }

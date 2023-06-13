@@ -31,7 +31,7 @@
                               <th>SL</th>
                               <th>Visa No.</th>
                               <th>Sponsor Id No.</th>
-                              <th>Sponsor Name</th>
+                              <th width="30%">Sponsor Name</th>
                               <th>Location</th>
                               <th>Visa Date</th>
                               <th>Status</th>

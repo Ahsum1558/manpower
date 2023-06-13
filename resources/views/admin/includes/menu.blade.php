@@ -46,6 +46,22 @@
                 </ul>
             </li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-381-controls-3"></i>
+                    <span class="nav-text">Delegate</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('admin.delegate') }}">Delegate Info</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-address-book" aria-hidden="true"></i>
+                    <span class="nav-text">Customer</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('admin.customer') }}">Customer Info</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="fa fa-link"></i>
                     <span class="nav-text">Important Links</span>
                 </a>
@@ -83,28 +99,8 @@
             
 
             
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-381-controls-3"></i>
-                    <span class="nav-text">Agents</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="agent.php">Agent Info</a></li>
-                </ul>
-            </li> 
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="fa fa-address-book" aria-hidden="true"></i>
-                    <span class="nav-text">Customers</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="customer.php">Customer Info</a></li>
-                    <li><a href="custMedical.php">Medical Info</a></li>
-                    <li><a href="custEmbassy.php">Embassy Info</a></li>
-                    <li><a href="custStamped.php">Stamped Customer</a></li>
-<?php// if (Session::get('userRole') == '1' || Session::get('userRole') == '2') { ?>
-                    <li><a href="customerTran.php">Customer Transaction</a></li>
-<?php// } ?>
-                </ul>
-            </li>
+             
+            
 <?php// if (Session::get('userRole') == '1' || Session::get('userRole') == '2') { ?>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="fa fa-suitcase" aria-hidden="true"></i>

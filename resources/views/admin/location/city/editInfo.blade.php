@@ -34,7 +34,7 @@
                                         <h5 class="f-w-500">Country Name<span class="pull-right">:</span></h5>
                                     </div>
                                     <div class="col-9">
-                                    <select id="select" name="countryId" class="form-control d-inline-block inline_setup">
+                                    <select id="select" name="countryId" class="form-control d-inline-block inline_setup disabling-options">
                                       <option>Select Country</option>
                                     @foreach($all_country as $country)
                                       <option value="{{ $country->id }}" {{ $city_data_info[0]->countryId == $country->id ? 'selected' : '' }}>{{ $country->countryname }}</option>

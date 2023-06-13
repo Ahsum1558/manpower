@@ -59,88 +59,16 @@ php artisan make:model Delegate -m
 php artisan make:controller Client/DelegateController --resource
 php artisan make:model Link -m
 php artisan make:controller Visa/LinkController --resource
-
-
-
-
 php artisan make:model Customer -m
 php artisan make:controller Client/CustomerController --resource
-
-
-
-
-
-
-
-In the User model:
-
-php
-Copy code
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Model;
-
-class User extends Model
-{
-    public function profile()
-    {
-        return $this->hasOne(Profile::class);
-    }
-}
-
-
-
-
-In the Profile model:
-
-php
-Copy code
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Model;
-
-class Profile extends Model
-{
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-}
-
-
-
-
-In your controller, you can retrieve the user and their associated profile data using eager loading.
-
-php
-Copy code
-namespace App\Http\Controllers;
-
-use App\Models\User;
-
-class ProfileController extends Controller
-{
-    public function show($userId)
-    {
-        $user = User::with('profile')->findOrFail($userId);
-
-        // Access the profile data associated with the user
-        $profile = $user->profile;
-
-        // Pass the user and profile data to the view
-        return view('profile.show', compact('user', 'profile'));
-    }
-}
-
-
-
-Display the profile data in your view.
-In your view (profile/show.blade.php), you can access the user and profile data as follows:
-
-html
-Copy code
-<h1>User Profile</h1>
-<p>Name: {{ $user->name }}</p>
-<p>Email: {{ $user->email }}</p>
-<p>Profile Bio: {{ $profile->bio }}</p>
-<!-- Display other profile fields as needed -->
+php artisan make:model CustomerDocoment -m
+php artisan make:controller Client/CustomerDocomentController --resource
+php artisan make:model CustomerPassport -m
+php artisan make:controller Client/CustomerPassportController --resource
+php artisan make:model CustomerEmbassy -m
+php artisan make:controller Client/CustomerEmbassyController --resource
+php artisan make:model CustomerRate -m
+php artisan make:controller Client/CustomerRateController --resource
+php artisan make:model CustomerVisa -m
+php artisan make:controller Client/CustomerVisaController --resource
+php artisan make:controller Client/CustomerPdfController
