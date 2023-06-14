@@ -79,14 +79,21 @@
                             @elseif($customer->status == 0)
                               <a class="edit_option" href="#activeId{{ $customer->id }}" data-toggle="modal"><i class="fas fa-caret-square-up"></i><span>Set Active</span></a>
                             @endif
+                            @if($customer->value == 0)
+                              <a class="edit_option bg-success" href="{{ route('admin.customer.document', ['id'=>$customer->id]) }}"><i class="fas fa-pencil"></i><span>Add Documents</span></a>
+                            @elseif($customer->value == 1)
+                              <a class="edit_option bg-info" href="{{ route('admin.customer.passport', ['id'=>$customer->id]) }}"><i class="fas fa-pencil"></i><span>Add Passport Info</span></a>
+                            @elseif($customer->value == 2)
+                              <a class="edit_option bg-danger" href="{{ route('admin.customer.embassy', ['id'=>$customer->id]) }}"><i class="fas fa-pencil"></i><span>Add Embassy Info</span></a>
+                            @endif
                             @if($customer->value == 3)
                               <a class="view_option" target="_blank" href="{{ route('admin.customer.print', ['id'=>$customer->id]) }}"><i class="fa fa-print"></i><span>Print</span></a>
                             @endif
                               <a class="delete_option" href="#delCustomer{{ $customer->id }}" data-toggle="modal"><i class="fas fa-trash"></i><span>Delete</span></a>
                             </td>
-                @include('admin.client.customer.customer_modal')
-                @include('admin.client.customer.customer_active')
-                @include('admin.client.customer.customer_inactive')
+                @include('admin.client.customer.primary.customer_modal')
+                @include('admin.client.customer.primary.customer_active')
+                @include('admin.client.customer.primary.customer_inactive')
                         </tr>
                @endforeach
                       </tbody>

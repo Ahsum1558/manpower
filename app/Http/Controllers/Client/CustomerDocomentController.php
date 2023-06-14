@@ -32,13 +32,13 @@ class CustomerDocomentController extends Controller
      * Display a listing of the resource.
      */
 
-    public function documentAdd($id)
+    public function document($id)
     {
         $customer_docs = Customer::find($id);
         $customer_documents = CustomerDocoment::latest()-> get();
         
         if($customer_docs !== null && $customer_docs->value == 0){
-            return view('admin.client.customer.documentAdd', [
+            return view('admin.client.customer.document.document', [
             'customer_docs'=>$customer_docs,
             'customer_documents'=>$customer_documents,
         ]);

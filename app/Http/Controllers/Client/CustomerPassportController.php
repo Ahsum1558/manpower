@@ -39,7 +39,7 @@ class CustomerPassportController extends Controller
             'countryId'=>$request->country_id
         ])->where('status','=',1)->get();
 
-        return view('admin.client.customer.ajax',[
+        return view('admin.client.customer.passport.ajax',[
             'all_division'=>$all_division,
         ]);
     }
@@ -52,7 +52,7 @@ class CustomerPassportController extends Controller
         ])->where('status','=',1)->get();
 
         if (count($all_district)>0) {
-            return view('admin.client.customer.ajax_district',[
+            return view('admin.client.customer.passport.ajax_district',[
                 'all_district'=>$all_district,
             ]);
         }
@@ -67,13 +67,13 @@ class CustomerPassportController extends Controller
         ])->where('status','=',1)->get();
 
         if (count($all_upzila)>0) {
-            return view('admin.client.customer.ajax_upzila',[
+            return view('admin.client.customer.passport.ajax_upzila',[
                 'all_upzila'=>$all_upzila,
             ]);
         }
     }
 
-    public function passortAdd($id)
+    public function passport($id)
     {
         $customer_info = Customer::find($id);
         $customer_passports = CustomerPassport::latest()-> get();
@@ -84,7 +84,7 @@ class CustomerPassportController extends Controller
         $all_issue = Issue::latest()->where('status','=',1) -> get();
         
         if($customer_info !== null && $customer_info->value == 1){
-            return view('admin.client.customer.passortAdd', [
+            return view('admin.client.customer.passport.passport', [
             'customer_info'=>$customer_info,
             'customer_passports'=>$customer_passports,
             'all_country'=>$all_country,

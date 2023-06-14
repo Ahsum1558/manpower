@@ -28,13 +28,13 @@ use File;
 
 class CustomerRateController extends Controller
 {
-    public function rateAdd($id)
+    public function rate($id)
     {
         $customer_rate_info = Customer::find($id);
         $customer_rate = CustomerRate::latest()-> get();
         if (Auth::check() && (Auth::user()->role == 'admin' || Auth::user()->role == 'author')) {
             if($customer_rate_info !== null && $customer_rate_info->rateValue == 0){
-            return view('admin.client.customer.rateAdd', [
+            return view('admin.client.customer.rate.rate', [
             'customer_rate_info'=>$customer_rate_info,
             'customer_rate'=>$customer_rate,
             ]);

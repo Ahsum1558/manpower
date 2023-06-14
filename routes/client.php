@@ -99,23 +99,25 @@ Route::middleware(['auth'])->group(function () {
     // Customer Personal Data
     Route::get('/customer/show/{id}', [CustomerController::class, 'show'])->name('admin.customer.show');
 
-    
-
     // Customer Update
-    // Route::get('/customer/edit/{id}', [CustomerController::class, 'edit'])->name('admin.customer.edit');
-    // Route::post('/customer/update/{id}', [CustomerController::class, 'update'])->name('admin.customer.update');
+    Route::get('/customer/edit/{id}', [CustomerController::class, 'edit'])->name('admin.customer.edit');
+    Route::post('/customer/update/{id}', [CustomerController::class, 'update'])->name('admin.customer.update');
 
     // Customer Update Book Referance
-    // Route::get('/customer/editBook/{id}', [CustomerController::class, 'editBook'])->name('admin.customer.editBook');
-    // Route::post('/customer/updateBook/{id}', [CustomerController::class, 'updateBook'])->name('admin.customer.updateBook');
+    Route::get('/customer/editBook/{id}', [CustomerController::class, 'editBook'])->name('admin.customer.editBook');
+    Route::post('/customer/updateBook/{id}', [CustomerController::class, 'updateBook'])->name('admin.customer.updateBook');
 
-    // Customer Update E-Mail Address
-    // Route::get('/customer/editEmail/{id}', [CustomerController::class, 'editEmail'])->name('admin.customer.editEmail');
-    // Route::post('/customer/updateEmail/{id}', [CustomerController::class, 'updateEmail'])->name('admin.customer.updateEmail');
+    // Customer Update Passport Number
+    Route::get('/customer/editPassportNo/{id}', [CustomerController::class, 'editPassportNo'])->name('admin.customer.editPassportNo');
+    Route::post('/customer/updatePassportNo/{id}', [CustomerController::class, 'updatePassportNo'])->name('admin.customer.updatePassportNo');
 
     // Customer Update Image
-    // Route::get('/customer/editImage/{id}', [CustomerController::class, 'editImage'])->name('admin.customer.editImage');
-    // Route::post('/customer/updateImage/{id}', [CustomerController::class, 'updateImage'])->name('admin.customer.updateImage');
+    Route::get('/customer/editImage/{id}', [CustomerController::class, 'editImage'])->name('admin.customer.editImage');
+    Route::post('/customer/updateImage/{id}', [CustomerController::class, 'updateImage'])->name('admin.customer.updateImage');
+
+    // Customer Update Passport Copy
+    Route::get('/customer/editPassportCopy/{id}', [CustomerController::class, 'editPassportCopy'])->name('admin.customer.editPassportCopy');
+    Route::post('/customer/updatePassportCopy/{id}', [CustomerController::class, 'updatePassportCopy'])->name('admin.customer.updatePassportCopy');
 
     // Customer Delete
     Route::get('/customer/destroy/{id}', [CustomerController::class, 'destroy'])->name('admin.customer.destroy');
@@ -134,7 +136,7 @@ Route::middleware(['auth'])->group(function () {
 // Customer Documents Area Start
 Route::middleware(['auth'])->group(function () {
     // Customer Documents
-    Route::get('/customer/documentAdd/{id}', [CustomerDocomentController::class, 'documentAdd'])->name('admin.customer.documentAdd');
+    Route::get('/customer/document/{id}', [CustomerDocomentController::class, 'document'])->name('admin.customer.document');
     Route::post('/customer/storeDocuments/{id}', [CustomerDocomentController::class, 'storeDocuments'])->name('admin.customer.storeDocuments');
 });
 // Customer Documents Area End
@@ -149,7 +151,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/customer/getUpzila', [CustomerPassportController::class, 'getUpzila'])->name('admin.customer.getUpzila');
 
     // Customer Passport Info
-    Route::get('/customer/passortAdd/{id}', [CustomerPassportController::class, 'passortAdd'])->name('admin.customer.passortAdd');
+    Route::get('/customer/passport/{id}', [CustomerPassportController::class, 'passport'])->name('admin.customer.passport');
     Route::post('/customer/storePassports/{id}', [CustomerPassportController::class, 'storePassports'])->name('admin.customer.storePassports');
 });
 // Customer Passport Area End
@@ -157,7 +159,7 @@ Route::middleware(['auth'])->group(function () {
 // Customer Embassy Area Start
 Route::middleware(['auth'])->group(function () {
     // Customer Embassy Info
-    Route::get('/customer/embassyAdd/{id}', [CustomerEmbassyController::class, 'embassyAdd'])->name('admin.customer.embassyAdd');
+    Route::get('/customer/embassy/{id}', [CustomerEmbassyController::class, 'embassy'])->name('admin.customer.embassy');
     Route::post('/customer/storeEmbassy/{id}', [CustomerEmbassyController::class, 'storeEmbassy'])->name('admin.customer.storeEmbassy');
 });
 // Customer Embassy Area End
@@ -173,7 +175,7 @@ Route::middleware(['auth'])->group(function () {
 // Customer Working Rate Area Start
 Route::middleware(['auth'])->group(function () {
     // Customer Working Rate Info
-    Route::get('/customer/rateAdd/{id}', [CustomerRateController::class, 'rateAdd'])->name('admin.customer.rateAdd');
+    Route::get('/customer/rate/{id}', [CustomerRateController::class, 'rate'])->name('admin.customer.rate');
     Route::post('/customer/storeRate/{id}', [CustomerRateController::class, 'storeRate'])->name('admin.customer.storeRate');
 });
 // Customer Working Rate Area End

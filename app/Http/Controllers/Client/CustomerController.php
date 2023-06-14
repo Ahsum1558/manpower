@@ -52,7 +52,7 @@ class CustomerController extends Controller
         $all_visa_trade = Visatrade::latest()->where('status','=',1) -> get();
         $all_delegate = Delegate::latest()->where('status','=',1) -> get();
         $all_district = District::latest()->where('status','=',1) -> get();
-        return view('admin.client.customer.create', [
+        return view('admin.client.customer.primary.create', [
             'customer_data'=>$customer_data,
             'all_visa_trade'=>$all_visa_trade,
             'all_delegate'=>$all_delegate,
@@ -111,28 +111,6 @@ class CustomerController extends Controller
         }
     }
 
-    protected function validation($request){
-        $this -> validate($request, [
-            'bookRef'       => 'required|unique:customers',
-            'cusFname'      => 'required',
-            'phone'         => 'required',
-            'passportNo'    => 'required|unique:customers',
-            'birthPlace'    => 'required|exists:districts,id',
-            'received'      => 'required|date',
-        ],
-        [
-            'bookRef.required'          => 'Book Ref No. Field must not be Empty',
-            'bookRef.unique'            => "Book Ref No. is Already Exist !!",
-            'cusFname.required'         => 'Customer First Name Field is required',
-            'phone.required'            => 'Phone Number Field must not be Empty',
-            'passportNo.required'       => "Passport Number Field must not be empty !!",
-            'passportNo.unique'         => "Passport Number is Already Exist !!",
-            'birthPlace.required'       => "Place of Birth Field must not be empty !!",
-            'received.required'         => "Passport Receive Date Field must not be empty !!",
-
-        ]);
-    }
-
     /**
      * Display the specified resource.
      */
@@ -146,7 +124,7 @@ class CustomerController extends Controller
         $rate_single_docs = CustomerRate::where('customerId', $id)->get();
 
         if($customer_single_data->count() > 0){
-            return view('admin.client.customer.show', [
+            return view('admin.client.customer.primary.show', [
             'customer_single_data'=>$customer_single_data,
             'customer_single_docs'=>$customer_single_docs,
             'passport_single_data'=>$passport_single_data,
@@ -160,14 +138,26 @@ class CustomerController extends Controller
         }
     }
 
-    
-
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $customer_data_info = $this->getDetails($id);
+        $all_visa_trade = Visatrade::latest()->where('status','=',1) -> get();
+        $all_delegate = Delegate::latest()->where('status','=',1) -> get();
+        $all_district = District::latest()->where('status','=',1) -> get();
+        
+        if($customer_data_info->count() > 0){
+            return view('admin.client.customer.primary.edit', [
+            'customer_data_info'=>$customer_data_info,
+            'all_visa_trade'=>$all_visa_trade,
+            'all_delegate'=>$all_delegate,
+            'all_district'=>$all_district,
+        ]);
+        }else{
+            return redirect('/customer');
+        }
     }
 
     /**
@@ -175,7 +165,146 @@ class CustomerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $customer_data_info = Customer::findOrFail($id);
+        $this->validationInfo($request);
+
+        $customer_data_info->cusFname    = $request->cusFname;
+        $customer_data_info->cusLname    = $request->cusLname;
+        $customer_data_info->gender      = $request->gender;
+        $customer_data_info->phone       = $request->phone;
+        $customer_data_info->agentId     = $request->agentId;
+        $customer_data_info->birthPlace  = $request->birthPlace;
+        $customer_data_info->medical     = $request->medical;
+        $customer_data_info->tradeId     = $request->tradeId;
+        $customer_data_info->status      = $request->status;
+        $customer_data_info->update();
+
+        return redirect() -> back() -> with('message', 'Customer Info is Updated successfully');
+    }
+
+    public function editBook($id)
+    {
+        $customer_book_ref = Customer::find($id);
+        
+        if ($customer_book_ref !== null) {
+            return view('admin.client.customer.primary.editBook', compact('customer_book_ref'));
+        }else{
+            return redirect('/customer');
+        }
+    }
+
+    public function updateBook(Request $request, $id)
+    {
+        $this -> validate($request, [
+            'bookRef'       => 'required|unique:customers',
+        ],
+        [
+            'bookRef.required'          => 'Book Ref No. Field must not be Empty',
+            'bookRef.unique'            => "Book Ref No. is Already Exist !!",
+
+        ]);
+
+        $customer_book_ref = Customer::findOrFail($id);
+
+        $customer_book_ref->bookRef    = $request->bookRef;
+        $customer_book_ref->update();
+
+        return redirect() -> back() -> with('message', 'Customer Book Referance Number is Updated successfully');
+    }
+
+    public function editPassportNo($id)
+    {
+        $customer_passport_no = Customer::find($id);
+        
+        if ($customer_passport_no !== null) {
+            return view('admin.client.customer.primary.editPassportNo', compact('customer_passport_no'));
+        }else{
+            return redirect('/customer');
+        }
+    }
+
+    public function updatePassportNo(Request $request, $id)
+    {
+        $this -> validate($request, [
+            'passportNo'    => 'required|unique:customers',
+        ],
+        [
+            'passportNo.required'       => "Passport Number Field must not be empty !!",
+            'passportNo.unique'         => "Passport Number is Already Exist !!",
+        ]);
+
+        $customer_passport_no = Customer::findOrFail($id);
+
+        $customer_passport_no->passportNo    = $request->passportNo;
+        $customer_passport_no->update();
+
+        return redirect() -> back() -> with('message', 'Customer Passport Number is Updated successfully');
+    }
+
+    public function editImage($id)
+    {
+        $customer_image_data = Customer::find($id);
+        
+        if ($customer_image_data !== null) {
+            return view('admin.client.customer.primary.editImage', compact('customer_image_data'));
+        }else{
+            return redirect('/customer');
+        }
+    }
+
+    public function updateImage(Request $request, $id)
+    {
+        $customer_image_data = Customer::findOrFail($id);
+
+        if ($request->hasFile('new_photo')) {
+            $img = $request -> file('new_photo');
+            $unique_file_name = md5(time().rand()) . '.' . $img -> getClientOriginalExtension();
+            $img->move(public_path('admin/uploads/customer/'), $unique_file_name);
+            
+            if(File::exists('public/admin/uploads/customer/' .$request->old_photo)) {
+                File::delete('public/admin/uploads/customer/' .$request->old_photo);
+              }
+        }else{
+            $unique_file_name = $request->old_photo;
+        }
+
+        $customer_image_data->photo     = $unique_file_name;
+        $customer_image_data->update();
+        
+        return back()->with('message', 'Customer Image is Updated Successfully');
+    }
+
+    public function editPassportCopy($id)
+    {
+        $passport_copy_data = Customer::find($id);
+        
+        if ($passport_copy_data !== null) {
+            return view('admin.client.customer.primary.editPassportCopy', compact('passport_copy_data'));
+        }else{
+            return redirect('/customer');
+        }
+    }
+
+    public function updatePassportCopy(Request $request, $id)
+    {
+        $passport_copy_data = Customer::findOrFail($id);
+
+        if ($request->hasFile('new_passport_copy')) {
+            $img = $request -> file('new_passport_copy');
+            $unique_file_name = md5(time().rand()) . '.' . $img -> getClientOriginalExtension();
+            $img->move(public_path('admin/uploads/customer/'), $unique_file_name);
+            
+            if(File::exists('public/admin/uploads/customer/' .$request->old_passport_copy)) {
+                File::delete('public/admin/uploads/customer/' .$request->old_passport_copy);
+              }
+        }else{
+            $unique_file_name = $request->old_passport_copy;
+        }
+
+        $passport_copy_data->passportCopy     = $unique_file_name;
+        $passport_copy_data->update();
+        
+        return back()->with('message', 'Customer Passport Copy is Updated Successfully');
     }
 
     /**
@@ -231,6 +360,42 @@ class CustomerController extends Controller
         $customer_active->update();              
 
         return redirect('/customer')->with('message', 'The Customer is Active Successfully');
+    }
+
+    protected function validation($request){
+        $this -> validate($request, [
+            'bookRef'       => 'required|unique:customers',
+            'cusFname'      => 'required',
+            'phone'         => 'required',
+            'passportNo'    => 'required|unique:customers',
+            'birthPlace'    => 'required|exists:districts,id',
+            'received'      => 'required|date',
+        ],
+        [
+            'bookRef.required'          => 'Book Ref No. Field must not be Empty',
+            'bookRef.unique'            => "Book Ref No. is Already Exist !!",
+            'cusFname.required'         => 'Customer First Name Field is required',
+            'phone.required'            => 'Phone Number Field must not be Empty',
+            'passportNo.required'       => "Passport Number Field must not be empty !!",
+            'passportNo.unique'         => "Passport Number is Already Exist !!",
+            'birthPlace.required'       => "Place of Birth Field must not be empty !!",
+            'received.required'         => "Passport Receive Date Field must not be empty !!",
+
+        ]);
+    }
+
+    protected function validationInfo($request){
+        $this -> validate($request, [
+            'cusFname'      => 'required',
+            'phone'         => 'required',
+            'birthPlace'    => 'required|exists:districts,id',
+        ],
+        [
+            'cusFname.required'         => 'Customer First Name Field is required',
+            'phone.required'            => 'Phone Number Field must not be Empty',
+            'birthPlace.required'       => "Place of Birth Field must not be empty !!",
+
+        ]);
     }
 
     protected function getInfo(){

@@ -104,7 +104,7 @@
             <div class="mybtn">
             
             @if($customer_single_data[0]->value == 1)
-                <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.customer.passortAdd', ['id'=>$customer_single_data[0]->id]) }}">Add Passport Info</a>
+                <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.customer.passport', ['id'=>$customer_single_data[0]->id]) }}">Add Passport Info</a>
             @else
                 {{-- <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.customer.edit', ['id'=>$customer_single_data[0]->id]) }}">Update</a>
                 <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.customer.editBook', ['id'=>$customer_single_data[0]->id]) }}">Update Book Referance</a>

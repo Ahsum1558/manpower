@@ -16,22 +16,25 @@
 <div class="row">
 
 {{-- Primary Information --}}  
-@include('admin.client.customer.show_primary')
+@include('admin.client.customer.primary.show_primary')
 
 {{-- Working Rate Information --}}
-@include('admin.client.customer.show_rate')
+@include('admin.client.customer.primary.show_rate')
 
 {{-- Documents Information --}}
-@include('admin.client.customer.show_documents')
+@include('admin.client.customer.primary.show_documents')
 
 {{-- Passport Information --}}
-@include('admin.client.customer.show_passport')
+@include('admin.client.customer.primary.show_passport')
 
 {{-- Embassy Information --}}
-@include('admin.client.customer.show_embassy')
+@include('admin.client.customer.primary.show_embassy')
 
 {{-- Stamping Information --}}
-@include('admin.client.customer.show_stamping')
+@include('admin.client.customer.primary.show_stamping')
+
+{{-- Stamping Information --}}
+@include('admin.client.customer.primary.show_passport_copy')
 
 </div>
 @endsection

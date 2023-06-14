@@ -35,18 +35,6 @@ use File;
 
 class CustomerPdfController extends Controller
 {
-    public function getpdf()
-    {
-        $mpdf = $this->getMpdfHeader();
-
-        $all_visa = Visa::latest() -> get(); // as latest
-        $output = view('admin.visa.visainfo.pdf', compact('all_visa'))->render();
-
-        $mpdf->WriteHTML($output);
-        $filename = 'Visa List.pdf';
-        $mpdf->Output($filename, 'I');
-    }
-
     public function print($id)
     {
         $mpdf = $this->getMpdfHeader();
@@ -59,7 +47,7 @@ class CustomerPdfController extends Controller
         $rate_single_docs = CustomerRate::where('customerId', $id)->get();
 
         if($customer_single_data->count() > 0){
-            $output = view('admin.client.customer.print', [
+            $output = view('admin.client.customer.pdf.print', [
             'customer_single_data'=>$customer_single_data,
             'customer_single_docs'=>$customer_single_docs,
             'passport_single_data'=>$passport_single_data,

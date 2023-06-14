@@ -40,7 +40,7 @@ class CustomerVisaController extends Controller
         $customer_stamping = CustomerVisa::latest()-> get();
         
         if($data_stamped_customer !== null && $data_stamped_customer->value == 3){
-            return view('admin.client.customer.stampingVisa', [
+            return view('admin.client.customer.stamping.stampingVisa', [
             'data_stamped_customer'=>$data_stamped_customer,
             'customer_stamping'=>$customer_stamping,
         ]);

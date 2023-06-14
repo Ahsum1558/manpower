@@ -34,7 +34,7 @@ use File;
 
 class CustomerEmbassyController extends Controller
 {
-    public function embassyAdd($id)
+    public function embassy($id)
     {
         $data_customer = Customer::find($id);
         $customer_embassy = CustomerEmbassy::latest()-> get();
@@ -45,7 +45,7 @@ class CustomerEmbassyController extends Controller
         $all_visa_type = Visatype::latest()->where('status','=',1)->get();
         
         if($data_customer !== null && $data_customer->value == 2){
-            return view('admin.client.customer.embassyAdd', [
+            return view('admin.client.customer.embassy.embassy', [
             'data_customer'=>$data_customer,
             'customer_embassy'=>$customer_embassy,
             'all_field'=>$all_field,
