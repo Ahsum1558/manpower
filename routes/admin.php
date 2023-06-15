@@ -110,6 +110,9 @@ Route::middleware(['auth'])->group(function () {
 
     // User Operator Active
     Route::post('/operator/active/{id}', [AdminuserController::class, 'active'])->name('admin.operator.active');
+
+    // User Referance
+    Route::get('/customerRef', [AdminuserController::class, 'customerRef'])->name('admin.customerRef');
 });
 // User Operator Area End
 

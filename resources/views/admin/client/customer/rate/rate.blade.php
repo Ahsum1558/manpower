@@ -16,7 +16,7 @@
     <div class="col-12">
         <div class="card card_line">
             <div class="card-header card_headline">
-                <h4 class="card-title headline">Add Working Rate Info for <strong>{{ $customer_rate_info->cusFname .' '. $customer_rate_info->cusLname }}</h4>
+                <h4 class="card-title headline">Add Working Rate Info for <strong>{{ $customer_rate_info->cusFname .' '. $customer_rate_info->cusLname }}</strong></h4>
             </div>
             <div class="card-body">
 @include('admin.includes.alert')

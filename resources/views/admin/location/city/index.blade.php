@@ -61,7 +61,9 @@
                             @elseif($city->status == 0)
                               <a class="edit_option" href="#activeId{{ $city->id }}" data-toggle="modal"><i class="fas fa-caret-square-up"></i><span>Set Active</span></a>
                             @endif
+                            @if(Auth::check() && (Auth::user()->role == 'admin'))
                               <a class="delete_option" href="#delCity{{ $city->id }}" data-toggle="modal"><i class="fas fa-trash"></i><span>Delete City</span></a>
+                            @endif
                             </td>
                 @include('admin.location.city.city_modal')
                 @include('admin.location.city.city_active')

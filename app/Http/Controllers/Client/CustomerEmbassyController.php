@@ -87,9 +87,83 @@ class CustomerEmbassyController extends Controller
         }
     }
 
+    public function editEmbassy($id)
+    {
+        $data_customer_edit = Customer::find($id);
+        $embassy_edit = CustomerEmbassy::where('customerId', $id)->get();
+        $all_field = Field::latest()->where('status','=',1) -> get();
+        $all_fieldar = Fieldar::latest()->where('status','=',1)->get();
+        $all_fieldbn = Fieldbn::latest()->where('status','=',1)->get();
+        $all_visa = Visa::latest()->where('status','=',1) -> get();
+        $all_visa_type = Visatype::latest()->where('status','=',1)->get();
+        
+        if ($data_customer_edit !== null) {
+            return view('admin.client.customer.embassy.editEmbassy', [
+            'data_customer_edit'=>$data_customer_edit,
+            'embassy_edit'=>$embassy_edit,
+            'all_field'=>$all_field,
+            'all_fieldar'=>$all_fieldar,
+            'all_fieldbn'=>$all_fieldbn,
+            'all_visa'=>$all_visa,
+            'all_visa_type'=>$all_visa_type,
+            ]);
+        }else{
+            return redirect('/customer');
+        }
+    }
+
+    public function updateEmbassy(Request $request, $id)
+    {
+        $embassy_edit = CustomerEmbassy::where('customerId', $id)->first();
+        $this->validationInfo($request);
+
+        $embassy_edit->visaTypeId       = $request->visaTypeId;
+        $embassy_edit->visaId           = $request->visaId;
+        $embassy_edit->fieldId          = $request->fieldId;
+        $embassy_edit->fieldarId        = $request->fieldarId;
+        $embassy_edit->fieldbnId        = $request->fieldbnId;
+        $embassy_edit->religion         = $request->religion;
+        $embassy_edit->age              = $request->age;
+        $embassy_edit->submissionDate   = $request->submissionDate;
+        $embassy_edit->update();
+
+        return redirect() -> back() -> with('message', 'Customer Embassy Info is Updated successfully');
+    }
+
+    public function editMofa($id)
+    {
+        $data_customer_mofa = Customer::find($id);
+        $mofa_edit = CustomerEmbassy::where('customerId', $id)->get();        
+        if ($data_customer_mofa !== null) {
+            return view('admin.client.customer.embassy.editMofa', [
+            'data_customer_mofa'=>$data_customer_mofa,
+            'mofa_edit'=>$mofa_edit,
+            ]);
+        }else{
+            return redirect('/customer');
+        }
+    }
+
+    public function updateMofa(Request $request, $id)
+    {
+        $mofa_edit = CustomerEmbassy::where('customerId', $id)->first();
+        $this -> validate($request, [
+            'mofa'              => 'required|unique:customer_embassies',
+        ],
+        [
+            'mofa.unique'               => 'Mofa Number is already exist',
+            'mofa.required'             => 'Mofa Number Field must not be Empty',
+        ]);
+
+        $mofa_edit->mofa             = $request->mofa;
+        $mofa_edit->update();
+
+        return redirect() -> back() -> with('message', 'Customer Mofa Number is Updated successfully');
+    }
+
     protected function validation($request){
         $this -> validate($request, [
-            'customerId'        => 'unique:customer_passports',
+            'customerId'        => 'unique:customer_embassies',
             'mofa'              => 'required|unique:customer_embassies',
             'visaTypeId'        => 'required|exists:visatypes,id',
             'visaId'            => 'required|exists:visas,id',
@@ -115,59 +189,26 @@ class CustomerEmbassyController extends Controller
         ]);
     }
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+    protected function validationInfo($request){
+        $this -> validate($request, [
+            'visaTypeId'        => 'required|exists:visatypes,id',
+            'visaId'            => 'required|exists:visas,id',
+            'fieldId'           => 'required|exists:fields,id',
+            'fieldarId'         => 'required|exists:fieldars,id',
+            'fieldbnId'         => 'required|exists:fieldbns,id',
+            'religion'          => 'required',
+            'age'               => 'required',
+            'submissionDate'    => 'required|date',
+        ],
+        [
+            'visaTypeId.required'       => 'Visa Type Field is required',
+            'visaId.required'           => 'Visa Info Field is required',
+            'fieldId.required'          => "Office Name Field is required !!",
+            'fieldarId.required'        => "Office Name Arabic Field is required !!",
+            'fieldbnId.required'        => "Office Name Bengali Field is required !!",
+            'religion.required'         => "Religion Field must not be empty !!",
+            'age.required'              => "Age Field is required !!",
+            'submissionDate.required'   => "Embassy Submission Field is required !!",
+        ]);
     }
 }

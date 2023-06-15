@@ -7,24 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Customer;
 use App\Models\CustomerDocoment;
-use App\Models\CustomerEmbassy;
-use App\Models\CustomerPassport;
-use App\Models\CustomerRate;
-use App\Models\CustomerVisa;
-use App\Models\Delegate;
-use App\Models\Visatrade;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
-use App\Models\Country;
-use App\Models\Division;
-use App\Models\District;
-use App\Models\Policestation;
-use App\Models\City;
-use App\Models\User;
-use File;
 
 class CustomerDocomentController extends Controller
 {
@@ -67,8 +49,39 @@ class CustomerDocomentController extends Controller
         if($customer_documents){
             $customer_docs->value        = 1;
             $customer_docs->update();
-            return redirect() -> back() -> with('message', 'Customer Document is added successfully');
+            return redirect() -> back() -> with('message', 'Customer Document Info is added successfully');
         }
+    }
+
+    public function editDocs($id)
+    {
+        $customer_edit_docs = Customer::find($id);
+        $docs_edit = CustomerDocoment::where('customerId', $id)->get();
+        
+        if ($customer_edit_docs !== null) {
+            return view('admin.client.customer.document.editDocs', [
+            'customer_edit_docs'=>$customer_edit_docs,
+            'docs_edit'=>$docs_edit,
+            ]);
+        }else{
+            return redirect('/customer');
+        }
+    }
+
+    public function updateDocs(Request $request, $id)
+    {
+        $docs_edit = CustomerDocoment::where('customerId', $id)->first();
+        $this->validation($request);
+
+        $docs_edit->tc             = $request->tc;
+        $docs_edit->pc             = $request->pc;
+        $docs_edit->license        = $request->license;
+        $docs_edit->certificate    = $request->certificate;
+        $docs_edit->finger         = $request->finger;
+        $docs_edit->musaned        = $request->musaned;
+        $docs_edit->update();
+
+        return redirect() -> back() -> with('message', 'Customer Document Info is Updated successfully');
     }
 
     protected function validation($request){
@@ -90,58 +103,5 @@ class CustomerDocomentController extends Controller
             'finger.required'       => "Finger Print Field must not be empty !!",
             'musaned.required'      => "Musaned Field must not be empty !!",
         ]);
-    }
-
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

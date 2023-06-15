@@ -271,12 +271,9 @@
             
             @if($customer_single_data[0]->value == 3)
                 <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.customer.stampingVisa', ['id'=>$customer_single_data[0]->id]) }}">Add Visa Stamping Info</a>
-            @else
-                {{-- <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.customer.edit', ['id'=>$customer_single_data[0]->id]) }}">Update</a>
-                <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.customer.editBook', ['id'=>$customer_single_data[0]->id]) }}">Update Book Referance</a>
-                <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.customer.editEmail', ['id'=>$customer_single_data[0]->id]) }}">Update E-Mail</a>
-                <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.customer.editImage', ['id'=>$customer_single_data[0]->id]) }}">Update Image</a> --}}
-             @endif
+            @endif
+                <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.customer.editEmbassy', ['id'=>$customer_single_data[0]->id]) }}">Update Embassy Info</a>
+                <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.customer.editMofa', ['id'=>$customer_single_data[0]->id]) }}">Update Mofa Number</a>
                 <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase pull-right" href="{{ route('admin.customer') }}">Back</a>
             </div>
 

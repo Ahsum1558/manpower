@@ -57,7 +57,9 @@
                             @elseif($country->status == 0)
                               <a class="edit_option" href="#activeId{{ $country->id }}" data-toggle="modal"><i class="fas fa-caret-square-up"></i><span>Set Active</span></a>
                             @endif
+                            @if(Auth::check() && (Auth::user()->role == 'admin'))
                               <a class="delete_option" href="#delCountry{{ $country->id }}" data-toggle="modal"><i class="fas fa-trash"></i><span>Delete Country</span></a>
+                            @endif
                             </td>
                 @include('admin.location.country.country_modal')
                 @include('admin.location.country.country_active')

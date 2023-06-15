@@ -38,11 +38,11 @@ class CustomerRateController extends Controller
             'customer_rate_info'=>$customer_rate_info,
             'customer_rate'=>$customer_rate,
             ]);
+                }else{
+                    return redirect('/customer');
+                }
             }else{
-                return redirect('/customer');
-            }
-        }else{
-            return redirect('/');
+                return redirect('/');
         }        
     }
 
@@ -69,9 +69,45 @@ class CustomerRateController extends Controller
         }
     }
 
+    public function editRate($id)
+    {
+        $customer_edit_rate = Customer::find($id);
+        $rate_edit = CustomerRate::where('customerId', $id)->get();
+        
+        if (Auth::check() && (Auth::user()->role == 'admin' || Auth::user()->role == 'author')) {
+            if ($customer_edit_rate !== null) {
+                return view('admin.client.customer.rate.editRate', [
+                'customer_edit_rate'=>$customer_edit_rate,
+                'rate_edit'=>$rate_edit,
+                ]);
+                }else{
+                    return redirect('/customer');
+                }
+            }else{
+                return redirect('/');
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function updateRate(Request $request, $id)
+    {
+        $rate_edit = CustomerRate::where('customerId', $id)->first();
+        $this->validation($request);
+
+        $rate_edit->workingRate     = $request->workingRate;
+        $rate_edit->extraCharge     = $request->extraCharge;
+        $rate_edit->rateDescription = $request->rateDescription;
+        $rate_edit->discount        = $request->discount;
+        $rate_edit->update();
+
+        return redirect() -> back() -> with('message', 'Customer Working Rate is Updated successfully');
+    }
+
     protected function validation($request){
         $this -> validate($request, [
-            'customerId'     => 'unique:customer_docoments',
+            'customerId'     => 'unique:customer_rates',
             'workingRate'    => 'required',
             'extraCharge'    => 'required',
             'discount'       => 'required',
@@ -80,63 +116,7 @@ class CustomerRateController extends Controller
             'customerId.unique'     => 'Customer is already exist',
             'workingRate.required'  => 'Working Rate Field must not be Empty',
             'extraCharge.required'  => 'Extra Charge Field is required',
-            'discount.required'      => 'Discount Field must not be Empty',
+            'discount.required'     => 'Discount Field must not be Empty',
         ]);
-    }
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

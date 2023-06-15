@@ -23,6 +23,7 @@ use App\Http\Controllers\Client\CustomerEmbassyController;
 use App\Http\Controllers\Client\CustomerVisaController;
 use App\Http\Controllers\Client\CustomerRateController;
 use App\Http\Controllers\Client\CustomerPdfController;
+use App\Http\Controllers\Client\CustomerMedicalController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -138,6 +139,10 @@ Route::middleware(['auth'])->group(function () {
     // Customer Documents
     Route::get('/customer/document/{id}', [CustomerDocomentController::class, 'document'])->name('admin.customer.document');
     Route::post('/customer/storeDocuments/{id}', [CustomerDocomentController::class, 'storeDocuments'])->name('admin.customer.storeDocuments');
+
+    // Customer Documents Update
+    Route::get('/customer/editDocs/{id}', [CustomerDocomentController::class, 'editDocs'])->name('admin.customer.editDocs');
+    Route::post('/customer/updateDocs/{id}', [CustomerDocomentController::class, 'updateDocs'])->name('admin.customer.updateDocs');
 });
 // Customer Documents Area End
 
@@ -153,6 +158,10 @@ Route::middleware(['auth'])->group(function () {
     // Customer Passport Info
     Route::get('/customer/passport/{id}', [CustomerPassportController::class, 'passport'])->name('admin.customer.passport');
     Route::post('/customer/storePassports/{id}', [CustomerPassportController::class, 'storePassports'])->name('admin.customer.storePassports');
+
+    // Customer Passport Info Update
+    Route::get('/customer/editPassport/{id}', [CustomerPassportController::class, 'editPassport'])->name('admin.customer.editPassport');
+    Route::post('/customer/updatePassport/{id}', [CustomerPassportController::class, 'updatePassport'])->name('admin.customer.updatePassport');
 });
 // Customer Passport Area End
 
@@ -161,6 +170,14 @@ Route::middleware(['auth'])->group(function () {
     // Customer Embassy Info
     Route::get('/customer/embassy/{id}', [CustomerEmbassyController::class, 'embassy'])->name('admin.customer.embassy');
     Route::post('/customer/storeEmbassy/{id}', [CustomerEmbassyController::class, 'storeEmbassy'])->name('admin.customer.storeEmbassy');
+
+    // Customer Embassy Info Update
+    Route::get('/customer/editEmbassy/{id}', [CustomerEmbassyController::class, 'editEmbassy'])->name('admin.customer.editEmbassy');
+    Route::post('/customer/updateEmbassy/{id}', [CustomerEmbassyController::class, 'updateEmbassy'])->name('admin.customer.updateEmbassy');
+
+    // Customer Mofa Number Update
+    Route::get('/customer/editMofa/{id}', [CustomerEmbassyController::class, 'editMofa'])->name('admin.customer.editMofa');
+    Route::post('/customer/updateMofa/{id}', [CustomerEmbassyController::class, 'updateMofa'])->name('admin.customer.updateMofa');
 });
 // Customer Embassy Area End
 
@@ -169,6 +186,14 @@ Route::middleware(['auth'])->group(function () {
     // Customer Stamped Visa Info
     Route::get('/customer/stampingVisa/{id}', [CustomerVisaController::class, 'stampingVisa'])->name('admin.customer.stampingVisa');
     Route::post('/customer/storeStampingVisa/{id}', [CustomerVisaController::class, 'storeStampingVisa'])->name('admin.customer.storeStampingVisa');
+
+    // Customer Stamped Visa Info Update
+    Route::get('/customer/editStamping/{id}', [CustomerVisaController::class, 'editStamping'])->name('admin.customer.editStamping');
+    Route::post('/customer/updateStamping/{id}', [CustomerVisaController::class, 'updateStamping'])->name('admin.customer.updateStamping');
+
+    // Customer Stamped Visa Number Update
+    Route::get('/customer/editVisano/{id}', [CustomerVisaController::class, 'editVisano'])->name('admin.customer.editVisano');
+    Route::post('/customer/updateVisano/{id}', [CustomerVisaController::class, 'updateVisano'])->name('admin.customer.updateVisano');
 });
 // Customer Stamped Visa Area End
 
@@ -177,7 +202,22 @@ Route::middleware(['auth'])->group(function () {
     // Customer Working Rate Info
     Route::get('/customer/rate/{id}', [CustomerRateController::class, 'rate'])->name('admin.customer.rate');
     Route::post('/customer/storeRate/{id}', [CustomerRateController::class, 'storeRate'])->name('admin.customer.storeRate');
+
+    // Customer Working Rate Update
+    Route::get('/customer/editRate/{id}', [CustomerRateController::class, 'editRate'])->name('admin.customer.editRate');
+    Route::post('/customer/updateRate/{id}', [CustomerRateController::class, 'updateRate'])->name('admin.customer.updateRate');
 });
 // Customer Working Rate Area End
+
+// Customer Medical Area Start
+Route::middleware(['auth'])->group(function () {
+    // Customer Medical Info
+    Route::get('/customer/medical', [CustomerMedicalController::class, 'medical'])->name('admin.customer.medical');
+
+    // Customer Medical Update
+    Route::get('/customer/editMedical/{id}', [CustomerMedicalController::class, 'editMedical'])->name('admin.customer.editMedical');
+    Route::post('/customer/updateMedical/{id}', [CustomerMedicalController::class, 'updateMedical'])->name('admin.customer.updateMedical');
+});
+// Customer Medical Area End
 
 // Customer Page Area End

@@ -16,7 +16,7 @@
     <div class="col-12">
         <div class="card card_line">
             <div class="card-header card_headline">
-                <h4 class="card-title headline">Add Embassy Info for <strong>{{ $data_customer->cusFname .' '. $data_customer->cusLname }}</h4>
+                <h4 class="card-title headline">Add Embassy Info for <strong>{{ $data_customer->cusFname .' '. $data_customer->cusLname }}</strong></h4>
             </div>
             <div class="card-body">
 @include('admin.includes.alert')

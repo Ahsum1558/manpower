@@ -55,7 +55,9 @@
                             @elseif($visa_type->status == 0)
                               <a class="edit_option" href="#activeId{{ $visa_type->id }}" data-toggle="modal"><i class="fas fa-caret-square-up"></i><span>Set Active</span></a>
                             @endif
+                            @if(Auth::check() && (Auth::user()->role == 'admin'))
                               <a class="delete_option" href="#delVisaType{{ $visa_type->id }}" data-toggle="modal"><i class="fas fa-trash"></i><span>Delete</span></a>
+                            @endif
                             </td>
                 @include('admin.visa.visatype.visa_type_modal')
                 @include('admin.visa.visatype.visa_type_active')

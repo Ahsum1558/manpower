@@ -7,13 +7,21 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Super;
 use App\Models\User;
+use App\Models\Customer;
+use App\Models\CustomerDocoment;
+use App\Models\CustomerEmbassy;
+use App\Models\CustomerPassport;
+use App\Models\CustomerRate;
+use App\Models\CustomerVisa;
+use App\Models\Delegate;
+use App\Models\Visatrade;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\RedirectResponse;
 use File;
-use DB;
 
 class AdminuserController extends Controller
 {
@@ -156,6 +164,12 @@ class AdminuserController extends Controller
         }
     }
 
+    public function customerRef(){
+        $id = Auth::user()->id;
+        $customer_ref = $this->getUserDetails($id);
+        return view('admin.users.customerRef', compact('customer_ref'));
+    }
+
     protected function validation($request){
         $this -> validate($request, [
             'name' => 'required',
@@ -179,5 +193,16 @@ class AdminuserController extends Controller
             'password.required' => "Password Field must not be empty !!",
             'password_confirmation.required' => "Confirm Password Field must not be empty !!",
         ]);
+    }
+
+    protected function getUserDetails($id){
+        $data_details = DB::table('users')
+            ->leftJoin('customers', 'users.id', '=', 'customers.userId')
+            ->where('users.id', $id)
+            ->leftJoin('delegates', 'customers.agentId', '=', 'delegates.id')
+            ->leftJoin('visatrades', 'customers.tradeId', '=', 'visatrades.id')
+            ->select('users.*', 'customers.customersl', 'customers.bookRef', 'customers.cusFname', 'customers.cusLname', 'customers.gender', 'customers.value', 'customers.status', 'customers.passportNo', 'customers.medical', 'customers.received', 'delegates.agentsl', 'delegates.agentname', 'customers.passportNo', 'visatrades.visatrade_name')
+            ->get();
+        return $data_details;
     }
 }

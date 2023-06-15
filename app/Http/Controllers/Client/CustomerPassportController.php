@@ -130,6 +130,55 @@ class CustomerPassportController extends Controller
         }
     }
 
+    public function editPassport($id)
+    {
+        $customer_info_edit = Customer::find($id);
+        $passport_edit = CustomerPassport::where('customerId', $id)->get();
+        $all_country = Country::latest()->where('status','=',1) -> get();
+        $all_division = Division::latest()->where('status','=',1) -> get();
+        $all_district = District::latest()->where('status','=',1) -> get();
+        $all_upzila = Policestation::latest()->where('status','=',1) -> get();
+        $all_issue = Issue::latest()->where('status','=',1) -> get();
+        
+        if ($customer_info_edit !== null) {
+            return view('admin.client.customer.passport.editPassport', [
+            'customer_info_edit'=>$customer_info_edit,
+            'passport_edit'=>$passport_edit,
+            'all_country'=>$all_country,
+            'all_division'=>$all_division,
+            'all_district'=>$all_district,
+            'all_upzila'=>$all_upzila,
+            'all_issue'=>$all_issue,
+            ]);
+        }else{
+            return redirect('/customer');
+        }
+    }
+
+    public function updatePassport(Request $request, $id)
+    {
+        $passport_edit = CustomerPassport::where('customerId', $id)->first();
+        $this->validation($request);
+
+        $passport_edit->father         = $request->father;
+        $passport_edit->mother         = $request->mother;
+        $passport_edit->spouse         = $request->spouse;
+        $passport_edit->passportIssue  = $request->passportIssue;
+        $passport_edit->passportExpiry = $request->passportExpiry;
+        $passport_edit->nid            = $request->nid;
+        $passport_edit->dateOfBirth    = $request->dateOfBirth;
+        $passport_edit->maritalStatus  = $request->maritalStatus;
+        $passport_edit->address        = $request->address;
+        $passport_edit->issuePlaceId   = $request->issuePlaceId;
+        $passport_edit->policestationId = $request->policestationId;
+        $passport_edit->districtId     = $request->districtId;
+        $passport_edit->divisionId     = $request->divisionId;
+        $passport_edit->countryId      = $request->countryId;
+        $passport_edit->update();
+
+        return redirect() -> back() -> with('message', 'Customer Passport Info is Updated successfully');
+    }
+
     protected function validation($request){
         $this -> validate($request, [
             'customerId'        => 'unique:customer_passports',
@@ -165,58 +214,5 @@ class CustomerPassportController extends Controller
             'divisionId.required'       => "Division Field is required !!",
             'countryId.required'        => "Country Field is required !!",
         ]);
-    }
-
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

@@ -1,3 +1,6 @@
+@php
+    $data = app('App\Http\Controllers\Client\CustomerPdfController');
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -358,7 +361,6 @@
     </div>
 </div>
 
-
 {{-- Contract Area --}}
     <div class="contract_area clear">
 
@@ -506,7 +508,6 @@
 
     </div>
 
-
 {{-- Consular Letter Area --}}
     <div class="consular_area">
 
@@ -567,9 +568,6 @@
                     </tbody>
                 </table>
             </div>
-@php
-    $data = app('App\Http\Controllers\Client\CustomerPdfController');
-@endphp
 @foreach ($embassy_single_data as $embassy)
             <div class="body_bottom">We do hereby confirm and declare that religion stated in the visa form and forwarding letter is fully correct we also undertake the responsibility to cancel the visa and to stop functioning with our office if the statement is found incorrect.</div>
             <div class="body_footer">We therefore request your Excellency to kindly issue work visa out of <b>{{ $embassy->delegated_visa }} ({{ $data->convertNumberEmbassy($embassy->delegated_visa) }})</b> visa and oblige thereby.</div>
@@ -746,32 +744,14 @@
                         <td class="td_bn">যোগ্যতা এবং অভিজ্ঞতা সার্টিফিকেট</td>
                         <td></td>
                         <td></td>
-@if($documents->certificate == 1)
-                        <td class="td_data">Done</td>
-@elseif($documents->certificate == 2)
-                        <td class="td_data">Received</td>
-@elseif($documents->certificate == 3)
-                        <td class="td_data">N/A</td>
-@elseif($documents->certificate == 4)
-                        <td class="td_data">Return Back</td>
-@elseif($documents->certificate == 5)
-                        <td class="td_data">Problem</td>
-@endif
+                        <td class="td_data">{{ $documents->certificate }}</td>
                         <td class="td_ar">المؤهل وشهادة الخبرة</td>
                     </tr>
                     <tr>
                         <td class="td_bn">ফিঙ্গারপ্রিন্ট</td>
                         <td></td>
                         <td></td>
-@if($documents->finger == 1)
-                        <td class="td_data">Done</td>
-@elseif($documents->finger == 2)
-                        <td class="td_data">Completed</td>
-@elseif($documents->finger == 3)
-                        <td class="td_data">N/A</td>
-@elseif($documents->finger == 4)
-                        <td class="td_data">Problem</td>
-@endif
+                        <td class="td_data">{{ $documents->finger }}</td>
                         <td class="td_ar">البصمة</td>
                     </tr>
 @endforeach

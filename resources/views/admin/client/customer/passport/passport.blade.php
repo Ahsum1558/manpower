@@ -90,10 +90,10 @@
                                 <h5 class="f-w-500">Place of Issue<span class="pull-right">:</span></h5>
                             </div>
                             <div class="col-9">
-                                <select id="cityselect" class="form-control d-inline-block inline_setup select2-width-50" name="issuePlaceId">
+                                <select id="issueselect" class="form-control d-inline-block inline_setup select2-width-50" name="issuePlaceId">
                                     <option>Select Place of Issue</option>
                                     @foreach($all_issue as $issue)
-                                  <option value="{{ $issue->id }}">{{ $issue->issuePlace }}</option>
+                                    <option value="{{ $issue->id }}">{{ $issue->issuePlace }}</option>
                                 @endforeach
                                 </select>                        
                             </div>

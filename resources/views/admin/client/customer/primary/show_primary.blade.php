@@ -159,13 +159,12 @@
         @endif
             @if($customer_single_data[0]->value == 0)
                 <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.customer.document', ['id'=>$customer_single_data[0]->id]) }}">Add Documents</a>
-            @else
+            @endif
                 <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.customer.edit', ['id'=>$customer_single_data[0]->id]) }}">Update</a>
                 <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.customer.editBook', ['id'=>$customer_single_data[0]->id]) }}">Update Book Referance</a>
                 <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.customer.editPassportNo', ['id'=>$customer_single_data[0]->id]) }}">Update Passport No.</a>
                 <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.customer.editImage', ['id'=>$customer_single_data[0]->id]) }}">Update Image</a>
                 <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.customer.editPassportCopy', ['id'=>$customer_single_data[0]->id]) }}">Update Passport Copy</a>
-            @endif
                 <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase pull-right" href="{{ route('admin.customer') }}">Back</a>
             </div>
             

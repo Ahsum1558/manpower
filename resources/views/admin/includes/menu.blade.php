@@ -16,7 +16,7 @@
                 <ul aria-expanded="false">
                     <li><a href="{{ route('admin.profile') }}">Profile</a></li>
                     <li><a href="{{ route('admin.theme') }}">Theme Option</a></li>
-                    {{-- <li><a href="customerRef.php">Customer Ref</a></li> --}}
+                    <li><a href="{{ route('admin.customerRef') }}">Customer Ref</a></li>
                 @if(Auth::user()->role == 'admin')                    
                     <li><a href="{{ route('admin.operator') }}">All Operator</a></li>
                 @endif                    
@@ -59,6 +59,7 @@
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="{{ route('admin.customer') }}">Customer Info</a></li>
+                    <li><a href="{{ route('admin.customer.medical') }}">Medical Info</a></li>
                 </ul>
             </li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">

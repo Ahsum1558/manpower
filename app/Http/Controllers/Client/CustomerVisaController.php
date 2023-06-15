@@ -71,21 +71,95 @@ class CustomerVisaController extends Controller
         }
     }
 
-    protected function validation($request){
+    public function editStamping($id)
+    {
+        $customer_stamping_info = Customer::find($id);
+        $stamping_edit = CustomerVisa::where('customerId', $id)->get();
+        
+        if ($customer_stamping_info !== null) {
+            return view('admin.client.customer.stamping.editStamping', [
+            'customer_stamping_info'=>$customer_stamping_info,
+            'stamping_edit'=>$stamping_edit,
+            ]);
+        }else{
+            return redirect('/customer');
+        }
+    }
+
+    public function updateStamping(Request $request, $id)
+    {
+        $stamping_edit = CustomerVisa::where('customerId', $id)->first();
+        $this->validationInfo($request);
+
+        $stamping_edit->visa_issue      = $request->visa_issue;
+        $stamping_edit->visa_expiry     = $request->visa_expiry;
+        $stamping_edit->stay_duration   = $request->stay_duration;
+        $stamping_edit->update();
+
+        return redirect() -> back() -> with('message', 'Customer Visa Stamping Info is Updated successfully');
+    }
+
+    public function editVisano($id)
+    {
+        $customer_stamping_visa = Customer::find($id);
+        $stamped_visano_edit = CustomerVisa::where('customerId', $id)->get();
+        
+        if ($customer_stamping_visa !== null) {
+            return view('admin.client.customer.stamping.editVisano', [
+            'customer_stamping_visa'=>$customer_stamping_visa,
+            'stamped_visano_edit'=>$stamped_visano_edit,
+            ]);
+        }else{
+            return redirect('/customer');
+        }
+    }
+
+    public function updateVisano(Request $request, $id)
+    {
         $this -> validate($request, [
-            'customerId'        => 'unique:customer_passports',
             'stamped_visano'    => 'required|unique:customer_visas',
-            'stay_duration'          => 'required',
-            'visa_issue'    => 'required|date',
-            'visa_expiry'    => 'required|date',
         ],
         [
-            'customerId.unique'         => 'Customer is already exist',
-            'stamped_visano.unique'               => 'Stamped Visa Number is already exist',
-            'stamped_visano.required'             => 'Stamped Visa Number Field must not be Empty',
-            'stay_duration.required'       => 'Stay Duration Field is required',
-            'visa_issue.required'           => 'Visa Issue Date Field is required',
-            'visa_expiry.required'   => "Visa Expiry Date Field is required !!",
+            'stamped_visano.unique'   => 'Stamped Visa Number is already exist',
+            'stamped_visano.required' => 'Stamped Visa Number Field must not be Empty',
+        ]);
+
+        $stamped_visano_edit = CustomerVisa::where('customerId', $id)->first();
+
+        $stamped_visano_edit->stamped_visano = $request->stamped_visano;
+        $stamped_visano_edit->update();
+
+        return redirect() -> back() -> with('message', 'Customer Stamped Visa Number is Updated successfully');
+    }
+
+    protected function validation($request){
+        $this -> validate($request, [
+            'customerId'        => 'unique:customer_visas',
+            'stamped_visano'    => 'required|unique:customer_visas',
+            'stay_duration'     => 'required',
+            'visa_issue'        => 'required|date',
+            'visa_expiry'       => 'required|date',
+        ],
+        [
+            'customerId.unique'       => 'Customer is already exist',
+            'stamped_visano.unique'   => 'Stamped Visa Number is already exist',
+            'stamped_visano.required' => 'Stamped Visa Number Field must not be Empty',
+            'stay_duration.required'  => 'Stay Duration Field is required',
+            'visa_issue.required'     => 'Visa Issue Date Field is required',
+            'visa_expiry.required'    => "Visa Expiry Date Field is required !!",
+        ]);
+    }
+
+    protected function validationInfo($request){
+        $this -> validate($request, [
+            'stay_duration'     => 'required',
+            'visa_issue'        => 'required|date',
+            'visa_expiry'       => 'required|date',
+        ],
+        [
+            'stay_duration.required'  => 'Stay Duration Field is required',
+            'visa_issue.required'     => 'Visa Issue Date Field is required',
+            'visa_expiry.required'    => "Visa Expiry Date Field is required !!",
         ]);
     }
 

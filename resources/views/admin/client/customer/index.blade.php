@@ -89,7 +89,9 @@
                             @if($customer->value == 3)
                               <a class="view_option" target="_blank" href="{{ route('admin.customer.print', ['id'=>$customer->id]) }}"><i class="fa fa-print"></i><span>Print</span></a>
                             @endif
+                            @if(Auth::check() && (Auth::user()->role == 'admin'))
                               <a class="delete_option" href="#delCustomer{{ $customer->id }}" data-toggle="modal"><i class="fas fa-trash"></i><span>Delete</span></a>
+                            @endif
                             </td>
                 @include('admin.client.customer.primary.customer_modal')
                 @include('admin.client.customer.primary.customer_active')

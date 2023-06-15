@@ -143,7 +143,7 @@
                                       <option value="2">Fit</option>
                                       <option value="3">Unfit</option>
                                       <option value="5">Problem</option>
-                            @elseif($customer_data_info[0]->medical == 5)
+                            @else
                                       <option selected="selected" value="5">Problem</option>
                                       <option value="1">Done</option>
                                       <option value="2">Fit</option>

@@ -20,7 +20,7 @@ use App\Models\Division;
 use App\Models\District;
 use App\Models\Policestation;
 use App\Models\City;
-use DB;
+use Illuminate\Support\Facades\DB;
 use File;
 
 class AdminController extends Controller
