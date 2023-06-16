@@ -73,3 +73,7 @@ php artisan make:model CustomerVisa -m
 php artisan make:controller Client/CustomerVisaController --resource
 php artisan make:controller Client/CustomerPdfController
 php artisan make:controller Client/CustomerMedicalController --resource
+php artisan make:model Submission -m
+php artisan make:controller Client/SubmissionController --resource
+php artisan make:model SubmissionCustomer -m
+php artisan make:controller Client/SubmissionCustomerController --resource

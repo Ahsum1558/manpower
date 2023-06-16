@@ -149,12 +149,15 @@ class LinkController extends Controller
             'linkname'  => 'required',
             'linkurl'   => 'required|unique:links',
             'linktype'  => 'required',
+            'status'    => 'required|in:1,2',
         ],
         [
             'linkname.required' => 'Link Name Field must not be Empty',
             'linktype.required' => 'Url Link Type Field is required',
             'linkurl.required'  => 'Url Link Field must not be Empty',
             'linkurl.unique'    => 'The Url Link is already exist',
+            'status.in'         => 'Invalid status option selected',
+            'status.required'   => 'Status Field is required',
         ]);
     }
 
@@ -162,10 +165,13 @@ class LinkController extends Controller
         $this -> validate($request, [
             'linkname'  => 'required',
             'linktype'  => 'required',
+            'status'    => 'required|in:1,2',
         ],
         [
             'linkname.required' => 'Link Name Field must not be Empty',
             'linktype.required' => 'Url Link Type Field is required',
+            'status.required'   => 'Status Field is required',
+            'status.in'         => 'Invalid status option selected',
         ]);
     }
 

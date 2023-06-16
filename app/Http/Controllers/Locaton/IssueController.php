@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Country;
 use App\Models\Issue;
+use Illuminate\Support\Facades\DB;
 
 class IssueController extends Controller
 {
@@ -81,7 +82,13 @@ class IssueController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validation($request);
+        $this -> validate($request, [
+            'issuePlace'       => 'required|unique:issues',
+        ],
+        [
+            'issuePlace.required' => 'Issue Place Name Field must not be Empty',
+            'issuePlace.unique'   => 'The Issue Place Name is already exist',
+        ]);
 
         $issue_data = Issue::findOrFail($id);
 
@@ -108,6 +115,7 @@ class IssueController extends Controller
 
     public function updateInfo(Request $request, $id)
     {
+        $this->validationInfo($request);
         $issue_data_info = Issue::findOrFail($id);
 
         $issue_data_info->countryId     = $request->countryId;
@@ -128,23 +136,21 @@ class IssueController extends Controller
         return redirect() -> back() -> with('message', 'The Issue Place is deleted successfully');
     }
 
-    public function inactive(Request $request, $id)
+    public function inactive($id)
     {
         $issue_inactive = Issue::findOrFail($id);
 
-        $issue_inactive->issuePlace  = $request->issuePlace;
         $issue_inactive->status      = 0;
         $issue_inactive->update();              
 
         return redirect('/issue')->with('message', 'The Issue Place is Inactive Successfully');
     }
     
-    public function active(Request $request, $id)
+    public function active($id)
     {
 
         $issue_active = Issue::findOrFail($id);
 
-        $issue_active->issuePlace  = $request->issuePlace;
         $issue_active->status      = 1;
         $issue_active->update();              
 
@@ -169,11 +175,30 @@ class IssueController extends Controller
 
     protected function validation($request){
         $this -> validate($request, [
-            'issuePlace'       => 'required|unique:issues',
+            'issuePlace'      => 'required|unique:issues',
+            'countryId'       => 'required|exists:countries,id',
+            'status'          => 'required|in:1,2',
         ],
         [
             'issuePlace.required' => 'Issue Place Name Field must not be Empty',
             'issuePlace.unique'   => 'The Issue Place Name is already exist',
+            'countryId.required'  => "Country Field is required !!",
+            'countryId.exists'    => "Invalid Country Field !!",
+            'status.required'     => 'Status Field is required',
+            'status.in'           => 'Invalid status option selected',
+        ]);
+    }
+
+    protected function validationInfo($request){
+        $this -> validate($request, [
+            'countryId'       => 'required|exists:countries,id',
+            'status'          => 'required|in:1,2',
+        ],
+        [
+            'countryId.required'  => "Country Field is required !!",
+            'countryId.exists'    => "Invalid Country Field !!",
+            'status.required'     => 'Status Field is required',
+            'status.in'           => 'Invalid status option selected',
         ]);
     }
 }

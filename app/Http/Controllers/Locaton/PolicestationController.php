@@ -9,7 +9,7 @@ use App\Models\Country;
 use App\Models\Division;
 use App\Models\District;
 use App\Models\Policestation;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class PolicestationController extends Controller
 {
@@ -113,7 +113,13 @@ class PolicestationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validation($request);
+        $this -> validate($request, [
+            'policestationname'   => 'required|unique:policestations',
+        ],
+        [
+            'policestationname.required' => 'Police Station Name Field must not be Empty',
+            'policestationname.unique'   => 'The Police Station Name is already exist',
+        ]);
 
         $upzila_data = Policestation::findOrFail($id);
 
@@ -144,6 +150,7 @@ class PolicestationController extends Controller
 
     public function updateInfo(Request $request, $id)
     {
+        $this->validationInfo($request);
         $upzila_data_info = Policestation::findOrFail($id);
 
         $upzila_data_info->districtId  = $request->districtId;
@@ -166,24 +173,22 @@ class PolicestationController extends Controller
         return redirect() -> back() -> with('message', 'The Police Station is deleted successfully');
     }
 
-    public function inactive(Request $request, $id)
+    public function inactive($id)
     {
 
         $upzila_inactive = Policestation::findOrFail($id);
 
-        $upzila_inactive->policestationname = $request->policestationname;
         $upzila_inactive->status      = 0;
         $upzila_inactive->update();              
 
         return redirect('/upzila')->with('message', 'The Police Station is Inactive Successfully');
     }
     
-    public function active(Request $request, $id)
+    public function active($id)
     {
 
         $upzila_active = Policestation::findOrFail($id);
 
-        $upzila_active->policestationname = $request->policestationname;
         $upzila_active->status    = 1;
         $upzila_active->update();              
 
@@ -218,10 +223,41 @@ class PolicestationController extends Controller
     protected function validation($request){
         $this -> validate($request, [
             'policestationname'   => 'required|unique:policestations',
+            'districtId'      => 'required|exists:districts,id',
+            'divisionId'      => 'required|exists:divisions,id',
+            'countryId'       => 'required|exists:countries,id',
+            'status'          => 'required|in:1,2',
         ],
         [
             'policestationname.required' => 'Police Station Name Field must not be Empty',
             'policestationname.unique'   => 'The Police Station Name is already exist',
+            'districtId.required'    => "District Field is required !!",
+            'districtId.exists'      => "Invalid District Field !!",
+            'divisionId.required'    => "Division Field is required !!",
+            'divisionId.exists'      => "Invalid Division Field !!",
+            'countryId.required'     => "Country Field is required !!",
+            'countryId.exists'       => "Invalid Country Field !!",
+            'status.required'        => 'Status Field is required',
+            'status.in'              => 'Invalid status option selected',
+        ]);
+    }
+
+    protected function validationInfo($request){
+        $this -> validate($request, [
+            'districtId'      => 'required|exists:districts,id',
+            'divisionId'      => 'required|exists:divisions,id',
+            'countryId'       => 'required|exists:countries,id',
+            'status'          => 'required|in:1,2',
+        ],
+        [
+            'districtId.required'    => "District Field is required !!",
+            'districtId.exists'      => "Invalid District Field !!",
+            'divisionId.required'    => "Division Field is required !!",
+            'divisionId.exists'      => "Invalid Division Field !!",
+            'countryId.required'     => "Country Field is required !!",
+            'countryId.exists'       => "Invalid Country Field !!",
+            'status.required'        => 'Status Field is required',
+            'status.in'              => 'Invalid status option selected',
         ]);
     }
 }

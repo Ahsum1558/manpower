@@ -14,7 +14,6 @@
                     <h2 class="text-center">{{ $header_footer->title }}</h2>
                     <h4 class="text-center">{{ $header_footer->license }}</h4>
                     
-                    <input type="hidden" name="footer_title" value="{{ $header_footer->footer_title }}">
                     <input type="hidden" name="status" value="1">
                 </div>
                 <div class="modal-footer mybtn">

@@ -14,7 +14,6 @@
                     <h2 class="text-center">{{ $issue->issuePlace }}</h2>
                     <h4 class="text-center">{{ $issue->countryname }}</h4>
                     
-                    <input type="hidden" name="issuePlace" value="{{ $issue->issuePlace }}">
                     <input type="hidden" name="status" value="0">
                 </div>
                 <div class="modal-footer mybtn">

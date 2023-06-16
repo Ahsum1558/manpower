@@ -14,7 +14,6 @@
                     <h2 class="text-center">{{ $district->districtname }}</h2>
                     <h4 class="text-center">{{ $district->countryname }}</h4>
                     
-                    <input type="hidden" name="districtname" value="{{ $district->districtname }}">
                     <input type="hidden" name="status" value="0">
                 </div>
                 <div class="modal-footer mybtn">

@@ -34,7 +34,7 @@ class VisatradeController extends Controller
         $this->validation($request);
 
         Visatrade::create([
-            'visatrade_name'   => $request->visatrade_name,
+            'visatrade_name'  => $request->visatrade_name,
             'status'          => $request->status,
         ]);
         return redirect() -> back() -> with('message', 'Visa Trade is added successfully');
@@ -73,7 +73,13 @@ class VisatradeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $this->validation($request);
+        $this -> validate($request, [
+            'visatrade_name'  => 'required|unique:visatrades',
+        ],
+        [
+            'visatrade_name.required' => 'Visa Trade Field must not be Empty',
+            'visatrade_name.unique'   => 'The Visa Trade is already exist',
+        ]);
         $visaTrade_data = Visatrade::findOrFail($id);
 
         $visaTrade_data->visatrade_name   = $request->visatrade_name;
@@ -117,11 +123,14 @@ class VisatradeController extends Controller
 
     protected function validation($request){
         $this -> validate($request, [
-            'visatrade_name'       => 'required|unique:visatrades',
+            'visatrade_name'  => 'required|unique:visatrades',
+            'status'          => 'required|in:1,2',
         ],
         [
             'visatrade_name.required' => 'Visa Trade Field must not be Empty',
             'visatrade_name.unique'   => 'The Visa Trade is already exist',
+            'status.required'         => 'Status Field is required',
+            'status.in'               => 'Invalid status option selected',
         ]);
     }
 }

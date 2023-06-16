@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Http;
 use App\Models\Country;
 use App\Models\Division;
 use App\Models\District;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class DistrictController extends Controller
 {
@@ -97,7 +97,13 @@ class DistrictController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validation($request);
+        $this -> validate($request, [
+            'districtname'   => 'required|unique:districts',
+        ],
+        [
+            'districtname.required' => 'District Name Field must not be Empty',
+            'districtname.unique'   => 'The District Name is already exist',
+        ]);
 
         $district_data = District::findOrFail($id);
 
@@ -126,6 +132,7 @@ class DistrictController extends Controller
 
     public function updateInfo(Request $request, $id)
     {
+        $this->validationInfo($request);
         $district_data_info = District::findOrFail($id);
 
         $district_data_info->divisionId  = $request->divisionId;
@@ -147,24 +154,22 @@ class DistrictController extends Controller
         return redirect() -> back() -> with('message', 'The District is deleted successfully');
     }
 
-    public function inactive(Request $request, $id)
+    public function inactive($id)
     {
 
         $district_inactive = District::findOrFail($id);
 
-        $district_inactive->districtname    = $request->districtname;
-        $district_inactive->status      = 0;
+        $district_inactive->status       = 0;
         $district_inactive->update();              
 
         return redirect('/district')->with('message', 'The District is Inactive Successfully');
     }
     
-    public function active(Request $request, $id)
+    public function active($id)
     {
 
         $district_active = District::findOrFail($id);
 
-        $district_active->districtname  = $request->districtname;
         $district_active->status    = 1;
         $district_active->update();              
 
@@ -195,11 +200,36 @@ class DistrictController extends Controller
 
     protected function validation($request){
         $this -> validate($request, [
-            'districtname'   => 'required|unique:districts',
+            'districtname'    => 'required|unique:districts',
+            'divisionId'      => 'required|exists:divisions,id',
+            'countryId'       => 'required|exists:countries,id',
+            'status'          => 'required|in:1,2',
         ],
         [
             'districtname.required' => 'District Name Field must not be Empty',
             'districtname.unique'   => 'The District Name is already exist',
+            'divisionId.required'    => "Division Field is required !!",
+            'divisionId.exists'      => "Invalid Division Field !!",
+            'countryId.required'     => "Country Field is required !!",
+            'countryId.exists'       => "Invalid Country Field !!",
+            'status.required'        => 'Status Field is required',
+            'status.in'              => 'Invalid status option selected',
+        ]);
+    }
+
+    protected function validationInfo($request){
+        $this -> validate($request, [
+            'divisionId'      => 'required|exists:divisions,id',
+            'countryId'       => 'required|exists:countries,id',
+            'status'          => 'required|in:1,2',
+        ],
+        [
+            'divisionId.required'    => "Division Field is required !!",
+            'divisionId.exists'      => "Invalid Division Field !!",
+            'countryId.required'     => "Country Field is required !!",
+            'countryId.exists'       => "Invalid Country Field !!",
+            'status.required'        => 'Status Field is required',
+            'status.in'              => 'Invalid status option selected',
         ]);
     }
 }

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Super;
 use App\Models\Cmspage;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class CmspageController extends Controller
 {
@@ -37,12 +37,15 @@ class CmspageController extends Controller
             'description'   => 'required',
             'url'           => 'required',
             'meta_keywords' => 'required',
+            'status'        => 'required|in:1,2',
         ],
         [
-            'title.required'            => 'Title Field must not be Empty',
-            'description.required'      => 'Description Field must not be Empty',
-            'url.required'              => 'URL Field is required',
-            'meta_keywords.required'    => 'Meta Keywords Field is required',
+            'title.required'         => 'Title Field must not be Empty',
+            'description.required'   => 'Description Field must not be Empty',
+            'url.required'           => 'URL Field is required',
+            'meta_keywords.required' => 'Meta Keywords Field is required',
+            'status.required'        => 'Status Field is required',
+            'status.in'              => 'Invalid status option selected',
         ]);
 
         Cmspage::create([
@@ -86,12 +89,15 @@ class CmspageController extends Controller
             'description'   => 'required',
             'url'           => 'required',
             'meta_keywords' => 'required',
+            'status'        => 'required|in:1,2',
         ],
         [
-            'title.required'            => 'Title Field must not be Empty',
-            'description.required'      => 'Description Field must not be Empty',
-            'url.required'              => 'URL Field is required',
-            'meta_keywords.required'    => 'Meta Keywords Field is required',
+            'title.required'         => 'Title Field must not be Empty',
+            'description.required'   => 'Description Field must not be Empty',
+            'url.required'           => 'URL Field is required',
+            'meta_keywords.required' => 'Meta Keywords Field is required',
+            'status.required'        => 'Status Field is required',
+            'status.in'              => 'Invalid status option selected',
         ]);
 
         $meta_data = Cmspage::findOrFail($id);
@@ -119,24 +125,22 @@ class CmspageController extends Controller
         return redirect() -> back() -> with('message', 'Meta data deleted successfully');
     }
 
-    public function inactive(Request $request, $id)
+    public function inactive($id)
     {
 
         $meta_inactive = Cmspage::findOrFail($id);
 
-        $meta_inactive->title     = $request->title;
         $meta_inactive->status       = 0;
         $meta_inactive->update();              
 
         return redirect('/super/meta')->with('message', 'The Meta Info is Inactive Successfully');
     }
     
-    public function active(Request $request, $id)
+    public function active($id)
     {
 
         $meta_active = Cmspage::findOrFail($id);
 
-        $meta_active->title     = $request->title;
         $meta_active->status       = 1;
         $meta_active->update();              
 

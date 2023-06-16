@@ -14,7 +14,6 @@
                     <h2 class="text-center">{{ $fieldar->title_ar }}</h2>
                     <h4 class="text-center">{{ $fieldar->license_ar }}</h4>
                     
-                    <input type="hidden" name="title_ar" value="{{ $fieldar->title_ar }}">
                     <input type="hidden" name="status" value="1">
                 </div>
                 <div class="modal-footer mybtn">

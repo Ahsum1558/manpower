@@ -14,7 +14,6 @@
                     <h2 class="text-center">{{ $meta_data->title }}</h2>
                     <h4 class="text-center">{{ $meta_data->license }}</h4>
                     
-                    <input type="hidden" name="title" value="{{ $meta_data->title }}">
                     <input type="hidden" name="status" value="0">
                 </div>
                 <div class="modal-footer mybtn">

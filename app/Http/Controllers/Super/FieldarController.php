@@ -29,26 +29,10 @@ class FieldarController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
-        $this -> validate($request, [
-            'title_ar'         => 'required|unique:fieldars',
-            'license_ar'       => 'required|unique:fieldars',
-            'description_ar'   => 'required',
-            'proprietor_ar'    => 'required',
-            'address_ar'       => 'required',
-            'cellphone_ar'     => 'required',
-        ],
-        [
-            'title_ar.required'        => 'Title Field must not be Empty',
-            'title_ar.unique'          => 'The Title is already exist',
-            'description_ar.required'  => 'Description Field must not be Empty',
-            'license_ar.required'      => 'License Field is required',
-            'license_ar.unique'        => 'The License Number is already exist',
-            'proprietor_ar.required'   => 'Proprietor Name Field must not be Empty',
-            'address_ar.required'      => 'Address Field must not be Empty',
-            'cellphone_ar.required'    => 'Cellphone Field must not be Empty',
-        ]);
+        $this->validation($request);
 
         Fieldar::create([
             'title_ar'             => $request->title_ar,
@@ -98,18 +82,7 @@ class FieldarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this -> validate($request, [
-            'description_ar'   => 'required',
-            'proprietor_ar'    => 'required',
-            'address_ar'       => 'required',
-            'cellphone_ar'     => 'required',
-        ],
-        [
-            'description_ar.required'  => 'Description Field must not be Empty',
-            'proprietor_ar.required'   => 'Proprietor Name Field must not be Empty',
-            'address_ar.required'      => 'Address Field must not be Empty',
-            'cellphone_ar.required'    => 'Cellphone Field must not be Empty',
-        ]);
+        $this->validationInfo($request);
 
         $fieldar_data = Fieldar::findOrFail($id);
 
@@ -197,27 +170,66 @@ class FieldarController extends Controller
         return back()->with('message', 'The Arabic Site Option License Number is Updated Successfully');
     }
 
-    public function inactive(Request $request, $id)
+    public function inactive($id)
     {
-
         $fieldar_inactive = Fieldar::findOrFail($id);
 
-        $fieldar_inactive->title_ar     = $request->title_ar;
         $fieldar_inactive->status       = 0;
         $fieldar_inactive->update();              
 
         return redirect('/super/fieldar')->with('message', 'The Arabic Site Option is Inactive Successfully');
     }
     
-    public function active(Request $request, $id)
+    public function active($id)
     {
 
         $fieldar_active = Fieldar::findOrFail($id);
 
-        $fieldar_active->title_ar     = $request->title_ar;
         $fieldar_active->status       = 1;
         $fieldar_active->update();              
 
         return redirect('/super/fieldar')->with('message', 'The Arabic Site Option is Active Successfully');
+    }
+
+    protected function validation($request){
+        $this -> validate($request, [
+            'title_ar'         => 'required|unique:fieldars',
+            'license_ar'       => 'required|unique:fieldars',
+            'description_ar'   => 'required',
+            'proprietor_ar'    => 'required',
+            'address_ar'       => 'required',
+            'cellphone_ar'     => 'required',
+            'status'           => 'required|in:1,2',
+        ],
+        [
+            'title_ar.required'      => 'Title Field must not be Empty',
+            'title_ar.unique'        => 'The Title is already exist',
+            'description_ar.required' => 'Description Field must not be Empty',
+            'license_ar.required'    => 'License Field is required',
+            'license_ar.unique'      => 'The License Number is already exist',
+            'proprietor_ar.required' => 'Proprietor Name Field must not be Empty',
+            'address_ar.required'    => 'Address Field must not be Empty',
+            'cellphone_ar.required'  => 'Cellphone Field must not be Empty',
+            'status.required'        => 'Status Field is required',
+            'status.in'              => 'Invalid status option selected',
+        ]);
+    }
+
+    protected function validationInfo($request){
+        $this -> validate($request, [
+            'description_ar'   => 'required',
+            'proprietor_ar'    => 'required',
+            'address_ar'       => 'required',
+            'cellphone_ar'     => 'required',
+            'status'           => 'required|in:1,2',
+        ],
+        [
+            'description_ar.required' => 'Description Field must not be Empty',
+            'proprietor_ar.required' => 'Proprietor Name Field must not be Empty',
+            'address_ar.required'    => 'Address Field must not be Empty',
+            'cellphone_ar.required'  => 'Cellphone Field must not be Empty',
+            'status.required'        => 'Status Field is required',
+            'status.in'              => 'Invalid status option selected',
+        ]);
     }
 }

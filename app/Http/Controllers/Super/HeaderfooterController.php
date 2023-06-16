@@ -9,7 +9,7 @@ use App\Models\Super;
 use App\Models\Field;
 use App\Models\Headerfooter;
 use File;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class HeaderfooterController extends Controller
 {
@@ -141,24 +141,22 @@ class HeaderfooterController extends Controller
         return view('super.home.index');
     }
 
-    public function inactive(Request $request, $id)
+    public function inactive($id)
     {
 
         $setting_inactive = Headerfooter::findOrFail($id);
 
-        $setting_inactive->footer_title    = $request->footer_title;
         $setting_inactive->status          = 0;
         $setting_inactive->update();              
 
         return redirect('/super/setting')->with('message', 'The Header and Footer Option is Inactive Successfully');
     }
     
-    public function active(Request $request, $id)
+    public function active($id)
     {
 
         $setting_active = Headerfooter::findOrFail($id);
 
-        $setting_active->footer_title  = $request->footer_title;
         $setting_active->status        = 1;
         $setting_active->update();              
 
@@ -181,16 +179,22 @@ class HeaderfooterController extends Controller
 
     protected function validation($request){
         $this -> validate($request, [
+            'field_id'      => 'required|exists:fields,id',
             'footer_title'  => 'required',
             'contact_info'  => 'required',
             'content'       => 'required',
             'links'         => 'required',
+            'status'        => 'required|in:1,2',
         ],
         [
             'footer_title.required' => 'Footer Title Field must not be Empty',
             'contact_info.required' => 'Contact Info Field must not be Empty',
             'content.required'      => 'Content Field must not be Empty',
             'links.required'        => 'Links Field must not be Empty',
+            'field_id.required'     => "Office Field is required !!",
+            'field_id.exists'       => "Invalid Office Field !!",
+            'status.required'       => 'Status Field is required',
+            'status.in'             => 'Invalid status option selected',
         ]);
     }
 }

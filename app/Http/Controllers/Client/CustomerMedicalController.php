@@ -58,6 +58,14 @@ class CustomerMedicalController extends Controller
 
     public function updateMedical(Request $request, $id)
     {
+        $this -> validate($request, [
+            'medical'       => 'required|in:1,2,3,4,5',
+        ],
+        [
+            'medical.required'    => 'Medical Field is required',
+            'medical.in'          => 'Invalid Medical option selected',
+
+        ]);
         $customer_medical = Customer::findOrFail($id);
 
         $customer_medical->medical    = $request->medical;

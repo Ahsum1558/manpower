@@ -14,7 +14,6 @@
                     <h2 class="text-center">{{ $super_user->name }}</h2>
                     <h4 class="text-center">{{ $super_user->username }}</h4>
                     
-                    <input type="hidden" name="username" value="{{ $super_user->username }}">
                     <input type="hidden" name="status" value="inactive">
                 </div>
                 <div class="modal-footer mybtn">

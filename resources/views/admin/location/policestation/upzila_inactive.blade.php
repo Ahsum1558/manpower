@@ -14,7 +14,6 @@
                     <h2 class="text-center">{{ $upzila->policestationname }}</h2>
                     <h4 class="text-center">{{ $upzila->countryname }}</h4>
                     
-                    <input type="hidden" name="policestationname" value="{{ $upzila->policestationname }}">
                     <input type="hidden" name="status" value="0">
                 </div>
                 <div class="modal-footer mybtn">

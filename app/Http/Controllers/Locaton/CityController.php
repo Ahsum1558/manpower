@@ -9,7 +9,7 @@ use App\Models\Country;
 use App\Models\Division;
 use App\Models\District;
 use App\Models\City;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class CityController extends Controller
 {
@@ -113,7 +113,13 @@ class CityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validation($request);
+        $this -> validate($request, [
+            'cityname'   => 'required|unique:cities',
+        ],
+        [
+            'cityname.required' => 'City Name Field must not be Empty',
+            'cityname.unique'   => 'The City Name is already exist',
+        ]);
 
         $city_data = City::findOrFail($id);
 
@@ -144,6 +150,7 @@ class CityController extends Controller
 
     public function updateInfo(Request $request, $id)
     {
+        $this->validationInfo($request);
         $city_data_info = City::findOrFail($id);
 
         $city_data_info->districtId  = $request->districtId;
@@ -166,24 +173,22 @@ class CityController extends Controller
         return redirect() -> back() -> with('message', 'The City is deleted successfully');
     }
 
-    public function inactive(Request $request, $id)
+    public function inactive($id)
     {
 
         $city_inactive = City::findOrFail($id);
 
-        $city_inactive->cityname    = $request->cityname;
         $city_inactive->status      = 0;
         $city_inactive->update();              
 
         return redirect('/city')->with('message', 'The City is Inactive Successfully');
     }
     
-    public function active(Request $request, $id)
+    public function active($id)
     {
 
         $city_active = City::findOrFail($id);
 
-        $city_active->cityname  = $request->cityname;
         $city_active->status    = 1;
         $city_active->update();              
 
@@ -218,10 +223,41 @@ class CityController extends Controller
     protected function validation($request){
         $this -> validate($request, [
             'cityname'   => 'required|unique:cities',
+            'districtId'      => 'required|exists:districts,id',
+            'divisionId'      => 'required|exists:divisions,id',
+            'countryId'       => 'required|exists:countries,id',
+            'status'          => 'required|in:1,2',
         ],
         [
             'cityname.required' => 'City Name Field must not be Empty',
             'cityname.unique'   => 'The City Name is already exist',
+            'districtId.required'    => "District Field is required !!",
+            'districtId.exists'      => "Invalid District Field !!",
+            'divisionId.required'    => "Division Field is required !!",
+            'divisionId.exists'      => "Invalid Division Field !!",
+            'countryId.required'     => "Country Field is required !!",
+            'countryId.exists'       => "Invalid Country Field !!",
+            'status.required'        => 'Status Field is required',
+            'status.in'              => 'Invalid status option selected',
+        ]);
+    }
+
+    protected function validationInfo($request){
+        $this -> validate($request, [
+            'districtId'      => 'required|exists:districts,id',
+            'divisionId'      => 'required|exists:divisions,id',
+            'countryId'       => 'required|exists:countries,id',
+            'status'          => 'required|in:1,2',
+        ],
+        [
+            'districtId.required'    => "District Field is required !!",
+            'districtId.exists'      => "Invalid District Field !!",
+            'divisionId.required'    => "Division Field is required !!",
+            'divisionId.exists'      => "Invalid Division Field !!",
+            'countryId.required'     => "Country Field is required !!",
+            'countryId.exists'       => "Invalid Country Field !!",
+            'status.required'        => 'Status Field is required',
+            'status.in'              => 'Invalid status option selected',
         ]);
     }
 }

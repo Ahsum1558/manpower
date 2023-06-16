@@ -14,7 +14,6 @@
                     <h2 class="text-center">{{ $fieldbn->title_bn }}</h2>
                     <h4 class="text-center">{{ $fieldbn->license_bn }}</h4>
                     
-                    <input type="hidden" name="title_bn" value="{{ $fieldbn->title_bn }}">
                     <input type="hidden" name="status" value="1">
                 </div>
                 <div class="modal-footer mybtn">

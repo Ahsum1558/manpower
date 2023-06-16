@@ -251,15 +251,20 @@ class SuperController extends Controller
 
     protected function validationInfo($request){
         $this -> validate($request, [
-            'fullname' => 'required|max:255',
-            'designation' => 'required|max:255',
-            'phone' => 'required|numeric',
+            'fullname'      => 'required|max:255',
+            'designation'   => 'required|max:255',
+            'phone'         => 'required|numeric',
+            'dateOfBirth'   => 'required|date',
+            'gender'        => 'required|in:1,2,3',
         ],
         [
-            'fullname.required' => "Name Field must not be empty !!",
+            'fullname.required'    => "Name Field must not be empty !!",
             'designation.required' => "Designation Field must not be empty !!",
-            'phone.required' => "Phone Field must not be empty !!",
-            'phone.numeric' => "Phone number is not valid !!",
+            'phone.required'       => "Phone Field must not be empty !!",
+            'phone.numeric'        => "Phone number is not valid !!",
+            'dateOfBirth.required' => 'Date of Birth Field is required',
+            'gender.required'     => 'Gender Field is required',
+            'gender.in'           => 'Invalid Gender option selected',
         ]);
     }
 

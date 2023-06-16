@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Delegate;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\RedirectResponse;
@@ -359,14 +359,22 @@ class DelegateController extends Controller
 
     protected function validation($request){
         $this -> validate($request, [
-            'agentbook'         => 'required|unique:delegates',
-            'agentname'         => 'required',
-            'father'            => 'required',
-            'phone'             => 'required',
-            'email'             => 'required|email|unique:delegates',
-            'address'           => 'required',
-            'office'            => 'required',
-            'officeLocation'    => 'required',
+            'agentbook'       => 'required|unique:delegates',
+            'agentname'       => 'required',
+            'father'          => 'required',
+            'phone'           => 'required|numeric',
+            'email'           => 'required|email|unique:delegates',
+            'address'         => 'required',
+            'office'          => 'required',
+            'officeLocation'  => 'required',
+            'dateOfBirth'     => 'required|date',
+            'gender'          => 'required|in:1,2,3',
+            'policestationId' => 'required|exists:policestations,id',
+            'districtId'      => 'required|exists:districts,id',
+            'divisionId'      => 'required|exists:divisions,id',
+            'countryId'       => 'required|exists:countries,id',
+            'cityId'          => 'required|exists:cities,id',
+            'status'          => 'required|in:1,2',
         ],
         [
             'agentbook.required'        => 'Book Ref No. Field must not be Empty',
@@ -374,31 +382,71 @@ class DelegateController extends Controller
             'agentname.required'        => 'Delegate Name Field is required',
             'father.required'           => 'Care Of Field must not be Empty',
             'phone.required'            => 'Phone Number Field must not be Empty',
+            'phone.numeric'             => "Phone number is not valid !!",
             'email.required'            => "E-Mail Field must not be empty !!",
             'email.unique'              => "E-Mail is Already Exist !!",
             'email.email'               => "E-Mail Address is not valid !!",
             'address.required'          => 'Delegate Address Field must not be Empty',
             'office.required'           => 'Delegate Office Name Field is required',
             'officeLocation.required'   => 'Delegate Office Address Field must not be Empty',
+            'dateOfBirth.required'      => 'Date of Birth Field is required',
+            'gender.required'           => 'Gender Field is required',
+            'gender.in'                 => 'Invalid Gender option',
+            'policestationId.required'  => "Police Station Field is required !!",
+            'policestationId.exists'    => "Invalid Police Station Field !!",
+            'districtId.required'       => "District Field is required !!",
+            'districtId.exists'         => "Invalid District Field !!",
+            'divisionId.required'       => "Division Field is required !!",
+            'divisionId.exists'      => "Invalid Division Field !!",
+            'countryId.required'     => "Country Field is required !!",
+            'countryId.exists'       => "Invalid Country Field !!",
+            'cityId.required'        => "City Field is required !!",
+            'cityId.exists'          => "Invalid City Field !!",
+            'status.required'        => 'Status Field is required',
+            'status.in'              => 'Invalid status option selected',
         ]);
     }
 
     protected function validationInfo($request){
         $this -> validate($request, [
-            'agentname'         => 'required',
-            'father'            => 'required',
-            'phone'             => 'required',
-            'address'           => 'required',
-            'office'            => 'required',
-            'officeLocation'    => 'required',
+            'agentname'       => 'required',
+            'father'          => 'required',
+            'phone'           => 'required|numeric',
+            'address'         => 'required',
+            'office'          => 'required',
+            'officeLocation'  => 'required',
+            'dateOfBirth'     => 'required|date',
+            'gender'          => 'required|in:1,2,3',
+            'policestationId' => 'required|exists:policestations,id',
+            'districtId'      => 'required|exists:districts,id',
+            'divisionId'      => 'required|exists:divisions,id',
+            'countryId'       => 'required|exists:countries,id',
+            'cityId'          => 'required|exists:cities,id',
+            'status'          => 'required|in:1,2',
         ],
         [
             'agentname.required'        => 'Delegate Name Field is required',
             'father.required'           => 'Care Of Field must not be Empty',
             'phone.required'            => 'Phone Number Field must not be Empty',
+            'phone.numeric'             => "Phone number is not valid !!",
             'address.required'          => 'Delegate Address Field must not be Empty',
             'office.required'           => 'Delegate Office Name Field is required',
             'officeLocation.required'   => 'Delegate Office Address Field must not be Empty',
+            'dateOfBirth.required'      => 'Date of Birth Field is required',
+            'gender.required'           => 'Gender Field is required',
+            'gender.in'                 => 'Invalid Gender option selected',
+            'policestationId.required'  => "Police Station Field is required !!",
+            'policestationId.exists'    => "Invalid Police Station Field !!",
+            'districtId.required'       => "District Field is required !!",
+            'districtId.exists'         => "Invalid District Field !!",
+            'divisionId.required'       => "Division Field is required !!",
+            'divisionId.exists'      => "Invalid Division Field !!",
+            'countryId.required'     => "Country Field is required !!",
+            'countryId.exists'       => "Invalid Country Field !!",
+            'cityId.required'        => "City Field is required !!",
+            'cityId.exists'          => "Invalid City Field !!",
+            'status.required'        => 'Status Field is required',
+            'status.in'              => 'Invalid status option selected',
         ]);
     }
 
@@ -407,8 +455,8 @@ class DelegateController extends Controller
             'agentbook'         => 'required|unique:delegates',
         ],
         [
-            'agentbook.required'        => 'Book Ref No. Field must not be Empty',
-            'agentbook.unique'          => "Book Ref No. is Already Exist !!",
+            'agentbook.required' => 'Book Ref No. Field must not be Empty',
+            'agentbook.unique'   => "Book Ref No. is Already Exist !!",
         ]);
     }
 
@@ -417,9 +465,9 @@ class DelegateController extends Controller
             'email'             => 'required|email|unique:delegates',
         ],
         [
-            'email.required'            => "E-Mail Field must not be empty !!",
-            'email.unique'              => "E-Mail is Already Exist !!",
-            'email.email'               => "E-Mail Address is not valid !!",
+            'email.required'    => "E-Mail Field must not be empty !!",
+            'email.unique'      => "E-Mail is Already Exist !!",
+            'email.email'       => "E-Mail Address is not valid !!",
         ]);
     }
 

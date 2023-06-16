@@ -31,25 +31,7 @@ class FieldbnController extends Controller
      */
     public function store(Request $request)
     {
-        $this -> validate($request, [
-            'title_bn'         => 'required|unique:fieldbns',
-            'license_bn'       => 'required|unique:fieldbns',
-            'description_bn'   => 'required',
-            'proprietor_bn'    => 'required',
-            'address_bn'       => 'required',
-            'cellphone_bn'     => 'required',
-        ],
-        [
-            'title_bn.required'        => 'Title Field must not be Empty',
-            'title_bn.unique'          => 'The Title is already exist',
-            'description_bn.required'  => 'Description Field must not be Empty',
-            'license_bn.required'      => 'License Field is required',
-            'license_bn.unique'        => 'The License Number is already exist',
-            'proprietor_bn.required'   => 'Proprietor Name Field must not be Empty',
-            'address_bn.required'      => 'Address Field must not be Empty',
-            'cellphone_bn.required'    => 'Cellphone Field must not be Empty',
-        ]);
-
+        $this->validation($request);
 
         Fieldbn::create([
             'title_bn'             => $request->title_bn,
@@ -97,18 +79,7 @@ class FieldbnController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this -> validate($request, [
-            'description_bn'   => 'required',
-            'proprietor_bn'    => 'required',
-            'address_bn'       => 'required',
-            'cellphone_bn'     => 'required',
-        ],
-        [
-            'description_bn.required'  => 'Description Field must not be Empty',
-            'proprietor_bn.required'   => 'Proprietor Name Field must not be Empty',
-            'address_bn.required'      => 'Address Field must not be Empty',
-            'cellphone_bn.required'    => 'Cellphone Field must not be Empty',
-        ]);
+        $this->validationInfo($request);
 
         $fieldbn_data = Fieldbn::findOrFail($id);
 
@@ -194,27 +165,66 @@ class FieldbnController extends Controller
         return back()->with('message', 'The Bengali Site Option License Number is Updated Successfully');
     }
 
-    public function inactive(Request $request, $id)
+    public function inactive($id)
     {
 
         $fieldbn_inactive = Fieldbn::findOrFail($id);
 
-        $fieldbn_inactive->title_bn     = $request->title_bn;
         $fieldbn_inactive->status       = 0;
         $fieldbn_inactive->update();              
 
         return redirect('/super/fieldbn')->with('message', 'The Bengali Site Option is Inactive Successfully');
     }
     
-    public function active(Request $request, $id)
+    public function active($id)
     {
 
         $fieldbn_active = Fieldbn::findOrFail($id);
 
-        $fieldbn_active->title_bn     = $request->title_bn;
         $fieldbn_active->status       = 1;
         $fieldbn_active->update();              
 
         return redirect('/super/fieldbn')->with('message', 'The Bengali Site Option is Active Successfully');
+    }
+
+    protected function validation($request){
+        $this -> validate($request, [
+            'title_bn'         => 'required|unique:fieldbns',
+            'license_bn'       => 'required|unique:fieldbns',
+            'description_bn'   => 'required',
+            'proprietor_bn'    => 'required',
+            'address_bn'       => 'required',
+            'cellphone_bn'     => 'required',
+            'status'          => 'required|in:1,2',
+        ],
+        [
+            'title_bn.required'        => 'Title Field must not be Empty',
+            'title_bn.unique'          => 'The Title is already exist',
+            'description_bn.required'  => 'Description Field must not be Empty',
+            'license_bn.required'      => 'License Field is required',
+            'license_bn.unique'        => 'The License Number is already exist',
+            'proprietor_bn.required'   => 'Proprietor Name Field must not be Empty',
+            'address_bn.required'      => 'Address Field must not be Empty',
+            'cellphone_bn.required'    => 'Cellphone Field must not be Empty',
+            'status.required'        => 'Status Field is required',
+            'status.in'              => 'Invalid status option selected',
+        ]);
+    }
+    protected function validationInfo($request){
+        $this -> validate($request, [
+            'description_bn'   => 'required',
+            'proprietor_bn'    => 'required',
+            'address_bn'       => 'required',
+            'cellphone_bn'     => 'required',
+            'status'          => 'required|in:1,2',
+        ],
+        [
+            'description_bn.required'  => 'Description Field must not be Empty',
+            'proprietor_bn.required'   => 'Proprietor Name Field must not be Empty',
+            'address_bn.required'      => 'Address Field must not be Empty',
+            'cellphone_bn.required'    => 'Cellphone Field must not be Empty',
+            'status.required'        => 'Status Field is required',
+            'status.in'              => 'Invalid status option selected',
+        ]);
     }
 }

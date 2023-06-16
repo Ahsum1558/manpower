@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Country;
 use App\Models\Division;
+use Illuminate\Support\Facades\DB;
 
 class DivisionController extends Controller
 {
@@ -82,7 +83,13 @@ class DivisionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validation($request);
+        $this -> validate($request, [
+            'divisionname'       => 'required|unique:divisions',
+        ],
+        [
+            'divisionname.required' => 'Division Name Field must not be Empty',
+            'divisionname.unique'   => 'The Division Name is already exist',
+        ]);
 
         $division_data = Division::findOrFail($id);
 
@@ -109,6 +116,7 @@ class DivisionController extends Controller
 
     public function updateInfo(Request $request, $id)
     {
+        $this->validationInfo($request);
         $division_data_info = Division::findOrFail($id);
 
         $division_data_info->countryId  = $request->countryId;
@@ -129,24 +137,22 @@ class DivisionController extends Controller
         return redirect() -> back() -> with('message', 'The Division is deleted successfully');
     }
 
-    public function inactive(Request $request, $id)
+    public function inactive($id)
     {
 
         $division_inactive = Division::findOrFail($id);
 
-        $division_inactive->divisionname    = $request->divisionname;
         $division_inactive->status      = 0;
         $division_inactive->update();              
 
         return redirect('/division')->with('message', 'The Division is Inactive Successfully');
     }
     
-    public function active(Request $request, $id)
+    public function active($id)
     {
 
         $division_active = Division::findOrFail($id);
 
-        $division_active->divisionname  = $request->divisionname;
         $division_active->status    = 1;
         $division_active->update();              
 
@@ -171,11 +177,30 @@ class DivisionController extends Controller
 
     protected function validation($request){
         $this -> validate($request, [
-            'divisionname'       => 'required|unique:divisions',
+            'divisionname'    => 'required|unique:divisions',
+            'countryId'       => 'required|exists:countries,id',
+            'status'          => 'required|in:1,2',
         ],
         [
             'divisionname.required' => 'Division Name Field must not be Empty',
             'divisionname.unique'   => 'The Division Name is already exist',
+            'countryId.required'    => "Country Field is required !!",
+            'countryId.exists'      => "Invalid Country Field !!",
+            'status.required'       => 'Status Field is required',
+            'status.in'             => 'Invalid status option selected',
+        ]);
+    }
+
+    protected function validationInfo($request){
+        $this -> validate($request, [
+            'countryId'       => 'required|exists:countries,id',
+            'status'          => 'required|in:1,2',
+        ],
+        [
+            'countryId.required' => "Country Field is required !!",
+            'countryId.exists'   => "Invalid Country Field !!",
+            'status.required'    => 'Status Field is required',
+            'status.in'          => 'Invalid status option selected',
         ]);
     }
 }

@@ -73,7 +73,13 @@ class VisatypeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $this->validation($request);
+        $this -> validate($request, [
+            'visatype_name'  => 'required|unique:visatypes',
+        ],
+        [
+            'visatype_name.required' => 'Visa Type Field must not be Empty',
+            'visatype_name.unique'   => 'The Visa Type is already exist',
+        ]);
         $visaType_data = Visatype::findOrFail($id);
 
         $visaType_data->visatype_name   = $request->visatype_name;
@@ -117,11 +123,14 @@ class VisatypeController extends Controller
 
     protected function validation($request){
         $this -> validate($request, [
-            'visatype_name'       => 'required|unique:visatypes',
+            'visatype_name'  => 'required|unique:visatypes',
+            'status'         => 'required|in:1,2',
         ],
         [
             'visatype_name.required' => 'Visa Type Field must not be Empty',
             'visatype_name.unique'   => 'The Visa Type is already exist',
+            'status.required'        => 'Status Field is required',
+            'status.in'              => 'Invalid status option selected',
         ]);
     }
 }

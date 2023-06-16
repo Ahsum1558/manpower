@@ -89,6 +89,17 @@ class SuperuserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this -> validate($request, [
+            'status' => 'required|in:active,inactive',
+            'role' => 'required|in:admin,author,editor,contributor,user',
+        ],
+        [
+            'status.required'   => 'Status Field is required',
+            'status.in'         => 'Invalid status option selected',
+            'role.required'     => 'User Role Field is required',
+            'role.in'           => 'Invalid User Role option selected',
+        ]);
+
         $user_info = User::findOrFail($id);
 
         $user_info->role       = $request->role;
@@ -113,20 +124,18 @@ class SuperuserController extends Controller
         return redirect() -> back() -> with('message', 'The User is deleted successfully');
     }
 
-    public function inactive(Request $request, $id)
+    public function inactive($id)
     {
         $user_inactive = User::findOrFail($id);
-        $user_inactive->username     = $request->username;
         $user_inactive->status       = 'inactive';
         $user_inactive->update();              
 
         return redirect('/super/operator')->with('message', 'The User is Inactive Successfully');
     }
     
-    public function active(Request $request, $id)
+    public function active($id)
     {
         $user_active = User::findOrFail($id);
-        $user_active->username     = $request->username;
         $user_active->status       = 'active';
         $user_active->update();              
 
@@ -135,26 +144,35 @@ class SuperuserController extends Controller
 
     protected function validation($request){
         $this -> validate($request, [
-            'name' => 'required',
-            'username' => 'required|unique:users',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed|min:4',
+            'name'                  => 'required',
+            'username'              => 'required|unique:users',
+            'email'                 => 'required|email|unique:users',
+            'password'              => 'required|confirmed|min:4',
             'password_confirmation' => 'required_with:password|same:password|min:4',
-            'designation' => 'required|max:255',
-            'phone' => 'required|numeric',
+            'designation'           => 'required|max:255',
+            'phone'                 => 'required|numeric',
+            'gender'                => 'required|in:1,2,3',
+            'status'                => 'required|in:active,inactive',
+            'role' => 'required|in:admin,author,editor,contributor,user',
         ],
         [
-            'name.required' => "Name Field must not be empty !!",
+            'name.required'     => "Name Field must not be empty !!",
             'username.required' => "Field must not be empty !!",
-            'username.unique' => "Username is Already Exist !!",
-            'email.required' => "Field must not be empty !!",
-            'email.unique' => "E-Mail is Already Exist !!",
-            'email.email' => "E-Mail Address is not valid !!",
+            'username.unique'   => "Username is Already Exist !!",
+            'email.required'    => "Field must not be empty !!",
+            'email.unique'      => "E-Mail is Already Exist !!",
+            'email.email'       => "E-Mail Address is not valid !!",
             'designation.required' => "Designation Field must not be empty !!",
-            'phone.required' => "Phone Field must not be empty !!",
-            'phone.numeric' => "Phone number is not valid !!",
+            'phone.required'    => "Phone Field must not be empty !!",
+            'phone.numeric'     => "Phone number is not valid !!",
             'password.required' => "Password Field must not be empty !!",
             'password_confirmation.required' => "Confirm Password Field must not be empty !!",
+            'gender.required'       => 'Gender Field is required',
+            'gender.in'             => 'Invalid Gender option selected',
+            'status.required'     => 'Status Field is required',
+            'status.in'           => 'Invalid status option selected',
+            'role.required'     => 'User Role Field is required',
+            'role.in'           => 'Invalid User Role option selected',
         ]);
     }
 }

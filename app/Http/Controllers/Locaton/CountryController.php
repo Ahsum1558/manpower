@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Locaton;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Country;
+use Illuminate\Support\Facades\DB;
 
 class CountryController extends Controller
 {
@@ -115,24 +116,22 @@ class CountryController extends Controller
         return redirect() -> back() -> with('message', 'The Country is deleted successfully');
     }
 
-    public function inactive(Request $request, $id)
+    public function inactive($id)
     {
 
         $country_inactive = Country::findOrFail($id);
 
-        $country_inactive->countryname = $request->countryname;
         $country_inactive->status      = 0;
         $country_inactive->update();              
 
         return redirect('/country')->with('message', 'The Country is Inactive Successfully');
     }
     
-    public function active(Request $request, $id)
+    public function active($id)
     {
 
         $country_active = Country::findOrFail($id);
 
-        $country_active->countryname   = $request->countryname;
         $country_active->status        = 1;
         $country_active->update();              
 
@@ -143,12 +142,15 @@ class CountryController extends Controller
         $this -> validate($request, [
             'countryname'       => 'required|unique:countries',
             'nationality'       => 'required|unique:countries',
+            'status'            => 'required|in:1,2',
         ],
         [
             'countryname.required' => 'Country Name Field must not be Empty',
             'countryname.unique'   => 'The Country Name is already exist',
             'nationality.required' => 'Nationality Field is required',
             'nationality.unique'   => 'The Nationality is already exist',
+            'status.required'      => 'Status Field is required',
+            'status.in'            => 'Invalid status option selected',
         ]);
     }
 

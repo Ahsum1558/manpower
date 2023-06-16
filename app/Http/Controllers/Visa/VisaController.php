@@ -212,9 +212,10 @@ class VisaController extends Controller
             'occupation_en'     => 'required',
             'occupation_ar'     => 'required',
             'delegation_no'     => 'required',
-            'delegation_date'   => 'required',
+            'delegation_date'   => 'required|date',
             'delegated_visa'    => 'required',
             'visa_duration'     => 'required',
+            'status'            => 'required|in:1,2',
         ],
         [
             'visano_en.required' => 'Visa No. Field must not be Empty',
@@ -231,6 +232,8 @@ class VisaController extends Controller
             'delegation_date.required'  => 'Visa Delegation Date Field is required',
             'delegated_visa.required'   => 'Total Delegated visa count Field must not be Empty',
             'visa_duration.required'    => 'Visa Duration Field is required',
+            'status.required'           => 'Status Field is required',
+            'status.in'                 => 'Invalid status option selected',
         ]);
     }
 
@@ -244,9 +247,10 @@ class VisaController extends Controller
             'visa_address'      => 'required',
             'occupation_en'     => 'required',
             'occupation_ar'     => 'required',
-            'delegation_date'   => 'required',
+            'delegation_date'   => 'required|date',
             'delegated_visa'    => 'required',
             'visa_duration'     => 'required',
+            'status'            => 'required|in:1,2',
         ],
         [
             'sponsorid_en.required'     => 'Sponsor Id No. Field must not be Empty',
@@ -260,6 +264,8 @@ class VisaController extends Controller
             'delegation_date.required'  => 'Visa Delegation Date Field is required',
             'delegated_visa.required'   => 'Total Delegated visa count Field must not be Empty',
             'visa_duration.required'    => 'Visa Duration Field is required',
+            'status.required'           => 'Status Field is required',
+            'status.in'                 => 'Invalid status option selected',
         ]);
     }
 
