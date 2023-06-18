@@ -124,7 +124,7 @@ class VisatypeController extends Controller
     protected function validation($request){
         $this -> validate($request, [
             'visatype_name'  => 'required|unique:visatypes',
-            'status'         => 'required|in:1,2',
+            'status'         => 'required|in:1,0',
         ],
         [
             'visatype_name.required' => 'Visa Type Field must not be Empty',

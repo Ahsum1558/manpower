@@ -31,6 +31,8 @@ use App\Models\Fieldbn;
 use App\Models\Visa;
 use App\Models\Visatype;
 use Mpdf\Utils\FontMetrics;
+use Mpdf\Mpdf;
+use App\Helpers\BarcodeHelper;
 use File;
 
 class CustomerPdfController extends Controller
@@ -63,6 +65,11 @@ class CustomerPdfController extends Controller
         }else{
             return redirect('/customer');
         }
+    }
+
+    public function SubmissionList($id)
+    {
+        //
     }
 
     protected function getMpdfHeader(){

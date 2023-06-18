@@ -262,6 +262,7 @@ class FieldController extends Controller
             'proprietor'    => 'required',
             'address'       => 'required',
             'cellphone'     => 'required',
+            'status'        => 'required|in:1,0',
         ],
         [
             'title.required'        => 'Title Field must not be Empty',
@@ -276,6 +277,8 @@ class FieldController extends Controller
             'proprietor.required'   => 'Proprietor Name Field must not be Empty',
             'address.required'      => 'Address Field must not be Empty',
             'cellphone.required'    => 'Cellphone Field must not be Empty',
+            'status.required'       => 'Status Field is required',
+            'status.in'             => 'Invalid status option selected',
         ]);
     }
 
@@ -286,6 +289,7 @@ class FieldController extends Controller
             'proprietor'    => 'required',
             'address'       => 'required',
             'cellphone'     => 'required',
+            'status'        => 'required|in:1,0',
         ],
         [
             'email.required'        => 'E-Mail Field must not be Empty',
@@ -294,6 +298,8 @@ class FieldController extends Controller
             'proprietor.required'   => 'Proprietor Name Field must not be Empty',
             'address.required'      => 'Address Field must not be Empty',
             'cellphone.required'    => 'Cellphone Field must not be Empty',
+            'status.required'       => 'Status Field is required',
+            'status.in'             => 'Invalid status option selected',
         ]);
     }
 

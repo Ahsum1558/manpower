@@ -215,7 +215,7 @@ class VisaController extends Controller
             'delegation_date'   => 'required|date',
             'delegated_visa'    => 'required',
             'visa_duration'     => 'required',
-            'status'            => 'required|in:1,2',
+            'status'            => 'required|in:1,0',
         ],
         [
             'visano_en.required' => 'Visa No. Field must not be Empty',
@@ -250,7 +250,7 @@ class VisaController extends Controller
             'delegation_date'   => 'required|date',
             'delegated_visa'    => 'required',
             'visa_duration'     => 'required',
-            'status'            => 'required|in:1,2',
+            'status'            => 'required|in:1,0',
         ],
         [
             'sponsorid_en.required'     => 'Sponsor Id No. Field must not be Empty',

@@ -149,7 +149,7 @@ class LinkController extends Controller
             'linkname'  => 'required',
             'linkurl'   => 'required|unique:links',
             'linktype'  => 'required',
-            'status'    => 'required|in:1,2',
+            'status'    => 'required|in:1,0',
         ],
         [
             'linkname.required' => 'Link Name Field must not be Empty',
@@ -165,7 +165,7 @@ class LinkController extends Controller
         $this -> validate($request, [
             'linkname'  => 'required',
             'linktype'  => 'required',
-            'status'    => 'required|in:1,2',
+            'status'    => 'required|in:1,0',
         ],
         [
             'linkname.required' => 'Link Name Field must not be Empty',

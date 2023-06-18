@@ -30,7 +30,7 @@
                               <th>SL</th>
                               <th>Link Name</th>
                               <th>Type</th>
-                              <th>Link Url</th>
+                              <th width="30%">Link Url</th>
                               <th>Status</th>
                               <th>Action</th>
                           </tr>

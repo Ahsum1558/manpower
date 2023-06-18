@@ -142,7 +142,7 @@ class CountryController extends Controller
         $this -> validate($request, [
             'countryname'       => 'required|unique:countries',
             'nationality'       => 'required|unique:countries',
-            'status'            => 'required|in:1,2',
+            'status'            => 'required|in:1,0',
         ],
         [
             'countryname.required' => 'Country Name Field must not be Empty',

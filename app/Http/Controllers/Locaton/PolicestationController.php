@@ -226,7 +226,7 @@ class PolicestationController extends Controller
             'districtId'      => 'required|exists:districts,id',
             'divisionId'      => 'required|exists:divisions,id',
             'countryId'       => 'required|exists:countries,id',
-            'status'          => 'required|in:1,2',
+            'status'          => 'required|in:1,0',
         ],
         [
             'policestationname.required' => 'Police Station Name Field must not be Empty',
@@ -247,7 +247,7 @@ class PolicestationController extends Controller
             'districtId'      => 'required|exists:districts,id',
             'divisionId'      => 'required|exists:divisions,id',
             'countryId'       => 'required|exists:countries,id',
-            'status'          => 'required|in:1,2',
+            'status'          => 'required|in:1,0',
         ],
         [
             'districtId.required'    => "District Field is required !!",

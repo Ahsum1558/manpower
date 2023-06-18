@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('submissions', function (Blueprint $table) {
             $table->id();
+            $table->integer('fieldId')->nullable();
             $table->integer('fieldarId')->nullable();
+            $table->integer('fieldbnId')->nullable();
             $table->string('submissionDate')->nullable();
             $table->integer('userId')->nullable();
             $table->tinyInteger('status')->default(1);

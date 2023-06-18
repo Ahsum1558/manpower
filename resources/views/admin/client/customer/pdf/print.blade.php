@@ -49,7 +49,7 @@
             <div class="cust_fullarabic">:الاسم الكامل</div>
         </div>
         <div class="mother_description clear">
-            <div class="mother_full">Mother\'s name:</div>
+            <div class="mother_full">Mother's name:</div>
             <div class="mother_name">{{ $passport_data->mother }}</div>
             <div class="mother_fullarabic">:إسم الأم</div>
         </div>

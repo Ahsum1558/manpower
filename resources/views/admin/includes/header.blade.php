@@ -20,6 +20,7 @@
     <link href="{{ asset('public/admin/assets/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('public/admin/assets/css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('public/admin/assets/css/LineIcons.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/admin/assets/vendor/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">    
     <script src="{{ asset('public/admin/assets/js/jquery.min.js') }}"></script>
 
     @include('admin.includes.css')

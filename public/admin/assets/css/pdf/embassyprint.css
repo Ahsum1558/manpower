@@ -135,6 +135,7 @@ body{
 	font-size: 14px;
 	font-weight: bold;
 	text-transform: uppercase;
+	font-family: "playfair";
 }
 
 .app_wrapper .main_content{
@@ -538,7 +539,7 @@ body{
 .app_wrapper .main_content .business_address .business_location{
 	text-transform: uppercase;
 	font-weight: bold;
-	font-size: 13px;
+	font-size: 12px;
 	text-align: center;
 	font-family: "roboto";
 }
@@ -1485,12 +1486,15 @@ body{
 	text-transform: uppercase;
 	width: 34%;
 	float: left;
+	font-size: 15px;
+	font-weight: bold;
 }
 .form_chart .office_info .name_info .office_namearabic{
 	font-family: "arial";
 	width: 34%;
 	float: left;
 	text-align: right;
+	font-weight: bold;
 }
 .form_chart .office_info .name_info .office_arabic{
 	font-family: "arial";
@@ -1510,12 +1514,15 @@ body{
 	text-transform: uppercase;
 	width: 34%;
 	float: left;
+	font-size: 15px;
+	font-weight: bold;
 }
 .form_chart .license_info .rl_noarabic{
 	font-family: "arial";
 	width: 34%;
 	float: left;
 	text-align: right;
+	font-weight: bold;
 }
 .form_chart .license_info .rl_arabic{
 	font-family: "arial";

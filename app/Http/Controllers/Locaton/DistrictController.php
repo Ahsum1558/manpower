@@ -203,7 +203,7 @@ class DistrictController extends Controller
             'districtname'    => 'required|unique:districts',
             'divisionId'      => 'required|exists:divisions,id',
             'countryId'       => 'required|exists:countries,id',
-            'status'          => 'required|in:1,2',
+            'status'          => 'required|in:1,0',
         ],
         [
             'districtname.required' => 'District Name Field must not be Empty',
@@ -221,7 +221,7 @@ class DistrictController extends Controller
         $this -> validate($request, [
             'divisionId'      => 'required|exists:divisions,id',
             'countryId'       => 'required|exists:countries,id',
-            'status'          => 'required|in:1,2',
+            'status'          => 'required|in:1,0',
         ],
         [
             'divisionId.required'    => "Division Field is required !!",

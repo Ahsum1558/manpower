@@ -195,7 +195,7 @@ class FieldbnController extends Controller
             'proprietor_bn'    => 'required',
             'address_bn'       => 'required',
             'cellphone_bn'     => 'required',
-            'status'          => 'required|in:1,2',
+            'status'          => 'required|in:1,0',
         ],
         [
             'title_bn.required'        => 'Title Field must not be Empty',
@@ -216,7 +216,7 @@ class FieldbnController extends Controller
             'proprietor_bn'    => 'required',
             'address_bn'       => 'required',
             'cellphone_bn'     => 'required',
-            'status'          => 'required|in:1,2',
+            'status'           => 'required|in:1,0',
         ],
         [
             'description_bn.required'  => 'Description Field must not be Empty',

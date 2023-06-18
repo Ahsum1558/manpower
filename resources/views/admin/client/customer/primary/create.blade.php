@@ -129,7 +129,7 @@
                             <div class="col-3">
                                 <h5 class="f-w-500">Passport Receive Date<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="date" name="received" class="form-control d-inline-block inline_setup" placeholder="Enter Passport Receive Date">
+                            <div class="col-9"><input type="date" name="received" class="form-control d-inline-block inline_setup">
                             </div>
                         </div>
                         <div class="row mb-2">

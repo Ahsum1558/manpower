@@ -31,9 +31,12 @@ class ComposerStaticInit303a0207f6fdfd94de52ed78f959ecfe
         'c7a3c339e7e14b60e06a2d7fcce9476b' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Events/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        'c72349b1fe8d0deeedd3a52e8aa814d8' => __DIR__ . '/..' . '/mockery/mockery/library/helpers.php',
+        'ce9671a430e4846b44e1c68c7611f9f5' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'a1cfe24d14977df6878b9bf804af2d1c' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Phpunit/Autoload.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
         '320163ac6b93aebe3dc25b60a0533d56' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/helpers.php',
+        'bdf4fb1bf704cf96227be8cb0dc6de05' => __DIR__ . '/../..' . '/app/Helpers/BarcodeHelper.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -117,6 +120,7 @@ class ComposerStaticInit303a0207f6fdfd94de52ed78f959ecfe
             'Mpdf\\PsrLogAwareTrait\\' => 22,
             'Mpdf\\' => 5,
             'Monolog\\' => 8,
+            'Mockery\\' => 8,
         ),
         'L' => 
         array (
@@ -396,6 +400,10 @@ class ComposerStaticInit303a0207f6fdfd94de52ed78f959ecfe
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'Mockery\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mockery/mockery/library/Mockery',
+        ),
         'League\\MimeTypeDetection\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/mime-type-detection/src',
@@ -530,9 +538,9 @@ class ComposerStaticInit303a0207f6fdfd94de52ed78f959ecfe
     public static $prefixesPsr0 = array (
         'M' => 
         array (
-            'Mockery' => 
+            'Milon\\Barcode' => 
             array (
-                0 => __DIR__ . '/..' . '/mockery/mockery/library',
+                0 => __DIR__ . '/..' . '/milon/barcode/src',
             ),
         ),
     );
@@ -540,6 +548,7 @@ class ComposerStaticInit303a0207f6fdfd94de52ed78f959ecfe
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Helpers\\BarcodeHelper' => __DIR__ . '/../..' . '/app/Helpers/BarcodeHelper.php',
         'App\\Http\\Controllers\\Admin\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminController.php',
         'App\\Http\\Controllers\\Admin\\AdminuserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminuserController.php',
         'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
@@ -551,6 +560,17 @@ class ComposerStaticInit303a0207f6fdfd94de52ed78f959ecfe
         'App\\Http\\Controllers\\Auth\\PasswordResetLinkController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/PasswordResetLinkController.php',
         'App\\Http\\Controllers\\Auth\\RegisteredUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisteredUserController.php',
         'App\\Http\\Controllers\\Auth\\VerifyEmailController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerifyEmailController.php',
+        'App\\Http\\Controllers\\Client\\CustomerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/CustomerController.php',
+        'App\\Http\\Controllers\\Client\\CustomerDocomentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/CustomerDocomentController.php',
+        'App\\Http\\Controllers\\Client\\CustomerEmbassyController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/CustomerEmbassyController.php',
+        'App\\Http\\Controllers\\Client\\CustomerMedicalController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/CustomerMedicalController.php',
+        'App\\Http\\Controllers\\Client\\CustomerPassportController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/CustomerPassportController.php',
+        'App\\Http\\Controllers\\Client\\CustomerPdfController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/CustomerPdfController.php',
+        'App\\Http\\Controllers\\Client\\CustomerRateController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/CustomerRateController.php',
+        'App\\Http\\Controllers\\Client\\CustomerVisaController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/CustomerVisaController.php',
+        'App\\Http\\Controllers\\Client\\DelegateController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/DelegateController.php',
+        'App\\Http\\Controllers\\Client\\SubmissionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/SubmissionController.php',
+        'App\\Http\\Controllers\\Client\\SubmissionCustomerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/SubmissionCustomerController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\Locaton\\CityController' => __DIR__ . '/../..' . '/app/Http/Controllers/Locaton/CityController.php',
         'App\\Http\\Controllers\\Locaton\\CountryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Locaton/CountryController.php',
@@ -567,6 +587,7 @@ class ComposerStaticInit303a0207f6fdfd94de52ed78f959ecfe
         'App\\Http\\Controllers\\Super\\HeaderfooterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Super/HeaderfooterController.php',
         'App\\Http\\Controllers\\Super\\SuperController' => __DIR__ . '/../..' . '/app/Http/Controllers/Super/SuperController.php',
         'App\\Http\\Controllers\\Super\\SuperuserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Super/SuperuserController.php',
+        'App\\Http\\Controllers\\Visa\\LinkController' => __DIR__ . '/../..' . '/app/Http/Controllers/Visa/LinkController.php',
         'App\\Http\\Controllers\\Visa\\VisaController' => __DIR__ . '/../..' . '/app/Http/Controllers/Visa/VisaController.php',
         'App\\Http\\Controllers\\Visa\\VisapdfController' => __DIR__ . '/../..' . '/app/Http/Controllers/Visa/VisapdfController.php',
         'App\\Http\\Controllers\\Visa\\VisatradeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Visa/VisatradeController.php',
@@ -591,6 +612,13 @@ class ComposerStaticInit303a0207f6fdfd94de52ed78f959ecfe
         'App\\Models\\City' => __DIR__ . '/../..' . '/app/Models/City.php',
         'App\\Models\\Cmspage' => __DIR__ . '/../..' . '/app/Models/Cmspage.php',
         'App\\Models\\Country' => __DIR__ . '/../..' . '/app/Models/Country.php',
+        'App\\Models\\Customer' => __DIR__ . '/../..' . '/app/Models/Customer.php',
+        'App\\Models\\CustomerDocoment' => __DIR__ . '/../..' . '/app/Models/CustomerDocoment.php',
+        'App\\Models\\CustomerEmbassy' => __DIR__ . '/../..' . '/app/Models/CustomerEmbassy.php',
+        'App\\Models\\CustomerPassport' => __DIR__ . '/../..' . '/app/Models/CustomerPassport.php',
+        'App\\Models\\CustomerRate' => __DIR__ . '/../..' . '/app/Models/CustomerRate.php',
+        'App\\Models\\CustomerVisa' => __DIR__ . '/../..' . '/app/Models/CustomerVisa.php',
+        'App\\Models\\Delegate' => __DIR__ . '/../..' . '/app/Models/Delegate.php',
         'App\\Models\\District' => __DIR__ . '/../..' . '/app/Models/District.php',
         'App\\Models\\Division' => __DIR__ . '/../..' . '/app/Models/Division.php',
         'App\\Models\\Field' => __DIR__ . '/../..' . '/app/Models/Field.php',
@@ -598,7 +626,10 @@ class ComposerStaticInit303a0207f6fdfd94de52ed78f959ecfe
         'App\\Models\\Fieldbn' => __DIR__ . '/../..' . '/app/Models/Fieldbn.php',
         'App\\Models\\Headerfooter' => __DIR__ . '/../..' . '/app/Models/Headerfooter.php',
         'App\\Models\\Issue' => __DIR__ . '/../..' . '/app/Models/Issue.php',
+        'App\\Models\\Link' => __DIR__ . '/../..' . '/app/Models/Link.php',
         'App\\Models\\Policestation' => __DIR__ . '/../..' . '/app/Models/Policestation.php',
+        'App\\Models\\Submission' => __DIR__ . '/../..' . '/app/Models/Submission.php',
+        'App\\Models\\SubmissionCustomer' => __DIR__ . '/../..' . '/app/Models/SubmissionCustomer.php',
         'App\\Models\\Super' => __DIR__ . '/../..' . '/app/Models/Super.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\Visa' => __DIR__ . '/../..' . '/app/Models/Visa.php',
@@ -1325,6 +1356,7 @@ class ComposerStaticInit303a0207f6fdfd94de52ed78f959ecfe
         'Faker\\Provider\\nl_NL\\PhoneNumber' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_NL/PhoneNumber.php',
         'Faker\\Provider\\nl_NL\\Text' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_NL/Text.php',
         'Faker\\Provider\\pl_PL\\Address' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/pl_PL/Address.php',
+        'Faker\\Provider\\pl_PL\\Color' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/pl_PL/Color.php',
         'Faker\\Provider\\pl_PL\\Company' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/pl_PL/Company.php',
         'Faker\\Provider\\pl_PL\\Internet' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/pl_PL/Internet.php',
         'Faker\\Provider\\pl_PL\\LicensePlate' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/pl_PL/LicensePlate.php',
@@ -3209,7 +3241,15 @@ class ComposerStaticInit303a0207f6fdfd94de52ed78f959ecfe
         'League\\MimeTypeDetection\\GeneratedExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/GeneratedExtensionToMimeTypeMap.php',
         'League\\MimeTypeDetection\\MimeTypeDetector' => __DIR__ . '/..' . '/league/mime-type-detection/src/MimeTypeDetector.php',
         'League\\MimeTypeDetection\\OverridingExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/OverridingExtensionToMimeTypeMap.php',
-        'Mockery' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
+        'Milon\\Barcode\\BarcodeServiceProvider' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/BarcodeServiceProvider.php',
+        'Milon\\Barcode\\DNS1D' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/DNS1D.php',
+        'Milon\\Barcode\\DNS2D' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/DNS2D.php',
+        'Milon\\Barcode\\Datamatrix' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/Datamatrix.php',
+        'Milon\\Barcode\\Facades\\DNS1DFacade' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/Facades/DNS1DFacade.php',
+        'Milon\\Barcode\\Facades\\DNS2DFacade' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/Facades/DNS2DFacade.php',
+        'Milon\\Barcode\\PDF417' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/PDF417.php',
+        'Milon\\Barcode\\QRcode' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/QRcode.php',
+        'Milon\\Barcode\\WrongCheckDigitException' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/WrongCheckDigitException.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegration' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegration.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegrationAssertPostConditions' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegrationAssertPostConditions.php',
         'Mockery\\Adapter\\Phpunit\\MockeryTestCase' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryTestCase.php',
@@ -3230,6 +3270,7 @@ class ComposerStaticInit303a0207f6fdfd94de52ed78f959ecfe
         'Mockery\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Exception/InvalidArgumentException.php',
         'Mockery\\Exception\\InvalidCountException' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Exception/InvalidCountException.php',
         'Mockery\\Exception\\InvalidOrderException' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Exception/InvalidOrderException.php',
+        'Mockery\\Exception\\MockeryExceptionInterface' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Exception/MockeryExceptionInterface.php',
         'Mockery\\Exception\\NoMatchingExpectationException' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Exception/NoMatchingExpectationException.php',
         'Mockery\\Exception\\RuntimeException' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Exception/RuntimeException.php',
         'Mockery\\Expectation' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Expectation.php',
@@ -3248,6 +3289,7 @@ class ComposerStaticInit303a0207f6fdfd94de52ed78f959ecfe
         'Mockery\\Generator\\StringManipulationGenerator' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/StringManipulationGenerator.php',
         'Mockery\\Generator\\StringManipulation\\Pass\\AvoidMethodClashPass' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/StringManipulation/Pass/AvoidMethodClashPass.php',
         'Mockery\\Generator\\StringManipulation\\Pass\\CallTypeHintPass' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/StringManipulation/Pass/CallTypeHintPass.php',
+        'Mockery\\Generator\\StringManipulation\\Pass\\ClassAttributesPass' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/StringManipulation/Pass/ClassAttributesPass.php',
         'Mockery\\Generator\\StringManipulation\\Pass\\ClassNamePass' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/StringManipulation/Pass/ClassNamePass.php',
         'Mockery\\Generator\\StringManipulation\\Pass\\ClassPass' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/StringManipulation/Pass/ClassPass.php',
         'Mockery\\Generator\\StringManipulation\\Pass\\ConstantsPass' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Generator/StringManipulation/Pass/ConstantsPass.php',
@@ -3278,6 +3320,8 @@ class ComposerStaticInit303a0207f6fdfd94de52ed78f959ecfe
         'Mockery\\Matcher\\Ducktype' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Matcher/Ducktype.php',
         'Mockery\\Matcher\\HasKey' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Matcher/HasKey.php',
         'Mockery\\Matcher\\HasValue' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Matcher/HasValue.php',
+        'Mockery\\Matcher\\IsEqual' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Matcher/IsEqual.php',
+        'Mockery\\Matcher\\IsSame' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Matcher/IsSame.php',
         'Mockery\\Matcher\\MatcherAbstract' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Matcher/MatcherAbstract.php',
         'Mockery\\Matcher\\MultiArgumentClosure' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Matcher/MultiArgumentClosure.php',
         'Mockery\\Matcher\\MustBe' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Matcher/MustBe.php',
@@ -4516,8 +4560,8 @@ class ComposerStaticInit303a0207f6fdfd94de52ed78f959ecfe
         'PHPUnit\\TextUI\\XmlConfiguration\\MoveAttributesFromFilterWhitelistToCoverage' => __DIR__ . '/..' . '/phpunit/phpunit/src/TextUI/Configuration/Xml/Migration/Migrations/MoveAttributesFromFilterWhitelistToCoverage.php',
         'PHPUnit\\TextUI\\XmlConfiguration\\MoveAttributesFromRootToCoverage' => __DIR__ . '/..' . '/phpunit/phpunit/src/TextUI/Configuration/Xml/Migration/Migrations/MoveAttributesFromRootToCoverage.php',
         'PHPUnit\\TextUI\\XmlConfiguration\\MoveCoverageDirectoriesToSource' => __DIR__ . '/..' . '/phpunit/phpunit/src/TextUI/Configuration/Xml/Migration/Migrations/MoveCoverageDirectoriesToSource.php',
-        'PHPUnit\\TextUI\\XmlConfiguration\\MoveWhitelistDirectoriesToCoverage' => __DIR__ . '/..' . '/phpunit/phpunit/src/TextUI/Configuration/Xml/Migration/Migrations/MoveWhitelistDirectoriesToCoverage.php',
         'PHPUnit\\TextUI\\XmlConfiguration\\MoveWhitelistExcludesToCoverage' => __DIR__ . '/..' . '/phpunit/phpunit/src/TextUI/Configuration/Xml/Migration/Migrations/MoveWhitelistExcludesToCoverage.php',
+        'PHPUnit\\TextUI\\XmlConfiguration\\MoveWhitelistIncludesToCoverage' => __DIR__ . '/..' . '/phpunit/phpunit/src/TextUI/Configuration/Xml/Migration/Migrations/MoveWhitelistIncludesToCoverage.php',
         'PHPUnit\\TextUI\\XmlConfiguration\\PHPUnit' => __DIR__ . '/..' . '/phpunit/phpunit/src/TextUI/Configuration/Xml/PHPUnit.php',
         'PHPUnit\\TextUI\\XmlConfiguration\\RemoveBeStrictAboutResourceUsageDuringSmallTestsAttribute' => __DIR__ . '/..' . '/phpunit/phpunit/src/TextUI/Configuration/Xml/Migration/Migrations/RemoveBeStrictAboutResourceUsageDuringSmallTestsAttribute.php',
         'PHPUnit\\TextUI\\XmlConfiguration\\RemoveBeStrictAboutTodoAnnotatedTestsAttribute' => __DIR__ . '/..' . '/phpunit/phpunit/src/TextUI/Configuration/Xml/Migration/Migrations/RemoveBeStrictAboutTodoAnnotatedTestsAttribute.php',

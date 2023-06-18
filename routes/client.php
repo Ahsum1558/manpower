@@ -24,6 +24,7 @@ use App\Http\Controllers\Client\CustomerVisaController;
 use App\Http\Controllers\Client\CustomerRateController;
 use App\Http\Controllers\Client\CustomerPdfController;
 use App\Http\Controllers\Client\CustomerMedicalController;
+use App\Http\Controllers\Client\SubmissionController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -219,5 +220,39 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/customer/updateMedical/{id}', [CustomerMedicalController::class, 'updateMedical'])->name('admin.customer.updateMedical');
 });
 // Customer Medical Area End
+
+// Embassy Submission Area Start
+Route::middleware(['auth'])->group(function () {
+    // Embassy Submission Home Page
+    Route::get('/submission', [SubmissionController::class, 'index'])->name('admin.submission');
+
+    // Embassy Submission Create
+    Route::get('/submission/create', [SubmissionController::class, 'create'])->name('admin.submission.create');
+    Route::post('/submission/store', [SubmissionController::class, 'store'])->name('admin.submission.store');
+
+    // Embassy Submission Data Details
+    Route::get('/submission/show/{id}', [SubmissionController::class, 'show'])->name('admin.submission.show');
+
+    // Embassy Submission Update Info
+    Route::get('/submission/edit/{id}', [SubmissionController::class, 'edit'])->name('admin.submission.edit');
+    Route::post('/submission/update/{id}', [SubmissionController::class, 'update'])->name('admin.submission.update');
+
+    // Embassy Submission Update Date
+    Route::get('/submission/editDate/{id}', [SubmissionController::class, 'editDate'])->name('admin.submission.editDate');
+    Route::post('/submission/updateDate/{id}', [SubmissionController::class, 'updateDate'])->name('admin.submission.updateDate');
+
+    // Embassy Submission Delete
+    Route::get('/submission/destroy/{id}', [SubmissionController::class, 'destroy'])->name('admin.submission.destroy');
+
+    // Embassy Submission Inactive
+    Route::post('/submission/inactive/{id}', [SubmissionController::class, 'inactive'])->name('admin.submission.inactive');
+
+    // Embassy Submission Active
+    Route::post('/submission/active/{id}', [SubmissionController::class, 'active'])->name('admin.submission.active');
+
+    // Fille Print
+    Route::get('/submission/print/{id}', [CustomerPdfController::class, 'SubmissionList'])->name('admin.submission.print');
+});
+// Embassy Submission Area End
 
 // Customer Page Area End

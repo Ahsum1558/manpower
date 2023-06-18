@@ -1,3 +1,7 @@
+Corn job in cPanel
+mysqldump -u bsrainfo_minar -p'xU1XB@eh]q*~' bsrainfo_minar | gzip > /home6/bsrainfo/minar.bsra.info/backups_minar/bsrainfo_minar_$(date +\%Y-\%m-\%d).sql.gz
+
+
 php artisan make:controller Super/SuperController
 php artisan make:controller Admin/AdminController
 php artisan make:model Admin -m

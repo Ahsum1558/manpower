@@ -199,7 +199,7 @@ class FieldarController extends Controller
             'proprietor_ar'    => 'required',
             'address_ar'       => 'required',
             'cellphone_ar'     => 'required',
-            'status'           => 'required|in:1,2',
+            'status'           => 'required|in:1,0',
         ],
         [
             'title_ar.required'      => 'Title Field must not be Empty',
@@ -221,7 +221,7 @@ class FieldarController extends Controller
             'proprietor_ar'    => 'required',
             'address_ar'       => 'required',
             'cellphone_ar'     => 'required',
-            'status'           => 'required|in:1,2',
+            'status'           => 'required|in:1,0',
         ],
         [
             'description_ar.required' => 'Description Field must not be Empty',

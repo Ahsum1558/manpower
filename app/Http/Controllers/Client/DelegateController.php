@@ -374,7 +374,7 @@ class DelegateController extends Controller
             'divisionId'      => 'required|exists:divisions,id',
             'countryId'       => 'required|exists:countries,id',
             'cityId'          => 'required|exists:cities,id',
-            'status'          => 'required|in:1,2',
+            'status'          => 'required|in:1,0',
         ],
         [
             'agentbook.required'        => 'Book Ref No. Field must not be Empty',
@@ -422,7 +422,7 @@ class DelegateController extends Controller
             'divisionId'      => 'required|exists:divisions,id',
             'countryId'       => 'required|exists:countries,id',
             'cityId'          => 'required|exists:cities,id',
-            'status'          => 'required|in:1,2',
+            'status'          => 'required|in:1,0',
         ],
         [
             'agentname.required'        => 'Delegate Name Field is required',

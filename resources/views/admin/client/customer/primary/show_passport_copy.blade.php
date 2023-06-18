@@ -11,7 +11,7 @@
                     <!-- Tab panes -->
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade show active" id="first">
-                                <img class="img-fluid img_user rounded-circle" src="{{ (!empty($customer_single_data[0]->passportCopy)) ? url('public/admin/uploads/customer/'.$customer_single_data[0]->passportCopy) : url('public/admin/assets/images/avatar.png') }}" alt="">  
+                                <img class="img-fluid" src="{{ (!empty($customer_single_data[0]->passportCopy)) ? url('public/admin/uploads/customer/'.$customer_single_data[0]->passportCopy) : url('public/admin/assets/images/avatar.png') }}" alt="">  
                             </div>
                         </div>
                     </div>

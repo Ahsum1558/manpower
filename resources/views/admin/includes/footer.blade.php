@@ -40,6 +40,8 @@
     <script src="{{ asset('public/admin/assets/js/main.js') }}"></script>
     <script src="{{ asset('public/admin/assets/js/script.js') }}"></script>
     <script src="{{ asset('public/admin/assets/vendor/summernote/js/summernote.min.js') }}"></script>
+    <script src="{{ asset('public/admin/assets/vendor/sweetalert2/dist/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('public/admin/assets/js/plugins-init/sweetalert.init.js') }}"></script>
     <script src="{{ asset('public/admin/assets/js/plugins-init/summernote-init.js') }}"></script>
     <script src="{{ asset('public/admin/assets/js/scrolltotop.js') }}"></script>
     

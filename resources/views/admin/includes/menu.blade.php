@@ -60,6 +60,7 @@
                 <ul aria-expanded="false">
                     <li><a href="{{ route('admin.customer') }}">Customer Info</a></li>
                     <li><a href="{{ route('admin.customer.medical') }}">Medical Info</a></li>
+                    <li><a href="{{ route('admin.submission') }}">Submission Info</a></li>
                 </ul>
             </li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">

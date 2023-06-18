@@ -124,7 +124,7 @@ class VisatradeController extends Controller
     protected function validation($request){
         $this -> validate($request, [
             'visatrade_name'  => 'required|unique:visatrades',
-            'status'          => 'required|in:1,2',
+            'status'          => 'required|in:1,0',
         ],
         [
             'visatrade_name.required' => 'Visa Trade Field must not be Empty',

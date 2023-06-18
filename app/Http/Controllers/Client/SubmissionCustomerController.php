@@ -18,6 +18,8 @@ use App\Models\Field;
 use App\Models\Fieldar;
 use App\Models\Fieldbn;
 use App\Models\Visa;
+use App\Models\Submission;
+use App\Models\SubmissionCustomer;
 
 class SubmissionCustomerController extends Controller
 {

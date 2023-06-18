@@ -30,6 +30,7 @@ use App\Models\Fieldar;
 use App\Models\Fieldbn;
 use App\Models\Visa;
 use App\Models\Visatype;
+use App\Models\SubmissionCustomer;
 use File;
 
 class CustomerController extends Controller
@@ -324,6 +325,7 @@ class CustomerController extends Controller
             CustomerEmbassy::where('customerId', $id)->delete();
             CustomerVisa::where('customerId', $id)->delete();
             CustomerRate::where('customerId', $id)->delete();
+            SubmissionCustomer::where('customerId', $id)->delete();
 
             // Commit the transaction if all queries succeeded
             DB::commit();
@@ -372,7 +374,7 @@ class CustomerController extends Controller
             'agentId'       => 'required|exists:delegates,id',
             'tradeId'       => 'required|exists:visatrades,id',
             'received'      => 'required|date',
-            'status'        => 'required|in:1,2',
+            'status'        => 'required|in:1,0',
             'gender'        => 'required|in:1,2,3',
             'medical'       => 'required|in:1,2,3,4,5',
         ],
@@ -407,7 +409,7 @@ class CustomerController extends Controller
             'phone'         => 'required|numeric',
             'birthPlace'    => 'required|exists:districts,id',
             'agentId'       => 'required|exists:delegates,id',
-            'status'        => 'required|in:1,2',
+            'status'        => 'required|in:1,0',
             'gender'        => 'required|in:1,2,3',
             'medical'       => 'required|in:1,2,3,4,5',
             'tradeId'       => 'required|exists:visatrades,id',

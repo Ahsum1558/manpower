@@ -177,7 +177,7 @@ class IssueController extends Controller
         $this -> validate($request, [
             'issuePlace'      => 'required|unique:issues',
             'countryId'       => 'required|exists:countries,id',
-            'status'          => 'required|in:1,2',
+            'status'          => 'required|in:1,0',
         ],
         [
             'issuePlace.required' => 'Issue Place Name Field must not be Empty',
@@ -192,7 +192,7 @@ class IssueController extends Controller
     protected function validationInfo($request){
         $this -> validate($request, [
             'countryId'       => 'required|exists:countries,id',
-            'status'          => 'required|in:1,2',
+            'status'          => 'required|in:1,0',
         ],
         [
             'countryId.required'  => "Country Field is required !!",

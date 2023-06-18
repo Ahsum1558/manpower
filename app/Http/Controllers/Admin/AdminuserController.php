@@ -94,15 +94,16 @@ class AdminuserController extends Controller
     public function edit(string $id)
     {
         $user_info = User::find($id);
-        if (Auth::user()->role == 'admin' && Auth::user()->id !== $user_info->id) {
-            if ($user_info !== null) {
+
+        if ($user_info !== null) {
+            if (Auth::user()->role == 'admin' && Auth::user()->id !== $user_info->id) {
                 return view('admin.operator.edit', compact('user_info'));
+                }else{
+                    return redirect('/');
+                }
             }else{
                 return redirect('/operator');
-            }
-        }else{
-            return redirect('/');
-        }
+        } 
     }
 
     /**

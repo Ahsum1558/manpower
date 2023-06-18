@@ -37,7 +37,7 @@ class CmspageController extends Controller
             'description'   => 'required',
             'url'           => 'required',
             'meta_keywords' => 'required',
-            'status'        => 'required|in:1,2',
+            'status'        => 'required|in:1,0',
         ],
         [
             'title.required'         => 'Title Field must not be Empty',
@@ -89,7 +89,7 @@ class CmspageController extends Controller
             'description'   => 'required',
             'url'           => 'required',
             'meta_keywords' => 'required',
-            'status'        => 'required|in:1,2',
+            'status'        => 'required|in:1,0',
         ],
         [
             'title.required'         => 'Title Field must not be Empty',

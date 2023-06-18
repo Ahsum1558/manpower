@@ -170,6 +170,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\Custom\SuperServiceProvider::class,
         App\Providers\Custom\AdminServiceProvider::class,
+        Milon\Barcode\BarcodeServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -185,6 +186,9 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'Barcode' => Milon\Barcode\Facades\Barcode::class,
+        'DNS1D' => 'Milon\Barcode\Facades\DNS1DFacade',
+        'DNS2D' => 'Milon\Barcode\Facades\DNS2DFacade',
     ])->toArray(),
 
 ];

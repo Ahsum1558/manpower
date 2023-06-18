@@ -184,7 +184,7 @@ class HeaderfooterController extends Controller
             'contact_info'  => 'required',
             'content'       => 'required',
             'links'         => 'required',
-            'status'        => 'required|in:1,2',
+            'status'        => 'required|in:1,0',
         ],
         [
             'footer_title.required' => 'Footer Title Field must not be Empty',
