@@ -110,6 +110,7 @@ body{
 	vertical-align: middle;
 	float: left;
 	text-align: center;
+	padding-top: 15px;
 }
 .app_wrapper .header_area .middle_header .center_middle img{
 	vertical-align: middle;
@@ -483,7 +484,7 @@ body{
 	float: left;
 	text-transform: uppercase;
 	font-weight: bold;
-	font-size: 14px;
+	font-size: 12px;
 	text-align: center;
 }
 .app_wrapper .main_content .address_area .address_arabic{
@@ -501,7 +502,7 @@ body{
 .app_wrapper .main_content .district_area .address_district{
 	text-transform: uppercase;
 	font-weight: bold;
-	font-size: 14px;
+	font-size: 12px;
 	text-align: center;
 	font-family: "roboto";
 }

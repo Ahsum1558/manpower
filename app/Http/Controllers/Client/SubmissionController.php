@@ -167,13 +167,7 @@ class SubmissionController extends Controller
             $submission->delete();
         }
         SubmissionCustomer::where('submissionId', $id)->delete();
-
-        // Update emblist to 0 in customers table
-        $submissionCustomers = SubmissionCustomer::where('submissionId', $id)->get();
-        $customerIds = $submissionCustomers->pluck('customerId');
         
-        Customer::whereIn('id', $customerIds)->update(['emblist' => 0]);
-
         return redirect()->back()->with('message', 'Submission and related records have been deleted.');
     }
 
@@ -290,7 +284,7 @@ class SubmissionController extends Controller
             ->select('customers.*', 'delegates.agentname', 'delegates.agentsl', 'delegates.agentbook', 'districts.districtname', 'visatrades.visatrade_name', 'users.name as receiver', 'visas.visano_en', 'visas.visano_ar', 'visas.sponsorid_en', 'visas.sponsorid_ar', 'visas.sponsorname_en', 'visas.sponsorname_ar', 'visas.visa_date', 'visas.visa_address', 'visas.occupation_en', 'visas.occupation_ar', 'visas.delegation_no', 'visas.delegation_date', 'visas.delegated_visa', 'visas.visa_duration', 'submission_customers.submissionType', 'submission_customers.ordinal', 'submission_customers.visaYear', 'submissions.submissionDate',)
             ->where('submissions.id', $id)
             ->where('customers.value','=',3)
-            ->orderBy('customers.customersl', 'desc')
+            ->orderBy('submission_customers.ordinal')
             ->get();
         return $data_customerDetails;
     }

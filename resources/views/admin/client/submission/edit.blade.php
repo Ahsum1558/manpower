@@ -8,7 +8,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="javascript:void(0)">Customers</a></li>
             <li class="breadcrumb-item"><a href="javascript:void(0)">Submission Info</a></li>
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Update Submission Info</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Update Info</a></li>
         </ol>
     </div>
 </div>
@@ -16,7 +16,7 @@
     <div class="col-12">
         <div class="card card_line">
             <div class="card-header card_headline">
-                <h4 class="card-title headline">Update Submission Info of <strong>{{ date('d-M-Y', strtotime($submission_info->submissionDate)) }}</strong></h4>
+                <h4 class="card-title headline">Update Info of <strong>{{ date('d-M-Y', strtotime($submission_info->submissionDate)) }}</strong></h4>
             </div>
             <div class="card-body">
 @include('admin.includes.alert')

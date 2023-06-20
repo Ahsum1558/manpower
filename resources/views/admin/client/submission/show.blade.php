@@ -74,6 +74,7 @@
                                     <th>Ordinal No.</th>
                                     <th>Type</th>
                                     <th>Agent</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -83,6 +84,7 @@
                     @endphp
                     @foreach ($submission_customers as $customer)
                                 <tr>
+                                    <td>{{ $i++ }}</td>
                                     <td>{{ $customer->customersl }}</td>
                                     <td>{{ $customer->cusFname .' '. $customer->cusLname }}</td>
                                     <td>{{ $customer->passportNo }}</td>
@@ -116,10 +118,15 @@
                                     </td>
                                     <td>
                                         <a class="view_option" href="#customerView{{ $customer->id }}" data-toggle="modal"><i class="fas fa-eye"></i><span>View Details</span></a>
-                                        <a class="edit_option" href=""><i class="fas fa-edit"></i><span>Update Customer List</span></a>
-                                        <a class="delete_option" href="#delSubmissionCustomer{{ $customer->id }}" data-toggle="modal"><i class="fas fa-trash"></i><span>Delete Submission Customer</span></a>
+                                        <a class="edit_option" href="{{ route('admin.submission.editStatement', ['id'=>$customer->id]) }}"><i class="fas fa-edit"></i><span>Update Customer List</span></a>
+                                @if($customer->emblist == 1)
+                                    @if(Auth::check() && (Auth::user()->role == 'admin'))
+                                      <a class="delete_option" href="#removeSubmission{{ $customer->id }}" data-toggle="modal"><i class="fas fa-trash"></i><span>Remove From List</span></a>
+                                    @endif
+                                @endif
                                     </td>
                             @include('admin.client.submission.submission_view')
+                            @include('admin.client.submission.submission_remove')
                                 </tr>
                     @endforeach
                             </tbody>

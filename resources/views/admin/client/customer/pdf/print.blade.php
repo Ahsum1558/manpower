@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="center_middle">
-                <img src="{{ asset('public/admin/assets/images/ksa_logo.png') }}" width="80" alt="">
+                <img src="{{ asset('public/admin/assets/images/ksa_logo.png') }}" width="60" alt="">
             </div>
             <div class="right_middle">
                 <div class="right_arabic">سفارة المملكة العربية السعودية القسم القنصلي</div>
@@ -299,7 +299,11 @@
 
         <div class="signature clear">
             <div class="signature_datefull">Date:</div>
-            <div class="signature_date">{{ date('d/m/Y', strtotime($embassy->submissionDate)) }}</div>
+@if(isset($embassy->embassy_submission))
+            <div class="signature_date">{{ date('d/m/Y', strtotime($embassy->embassy_submission)) }}</div>
+@else
+<div class="signature_date">{{ date('d/m/Y', strtotime($embassy->submissionDate)) }}</div>
+@endif
             <div class="signature_datearabic">:التاريخ</div>
             <div class="signature_full">Signature:</div>
             <div class="signature_fullarabic">:التوقيع</div>

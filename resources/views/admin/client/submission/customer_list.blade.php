@@ -67,14 +67,17 @@
               @endif
             </td>
             <td>
-              <a class="view_option" href="{{ route('admin.customer.show', ['id'=>$customer->id]) }}"><i class="fas fa-eye"></i><span>View Details</span></a>
+              <a class="view_option" href="{{ route('admin.submission.display', ['id'=>$customer->id]) }}"><i class="fas fa-eye"></i><span>View Details</span></a>
             @if($customer->emblist == 0)
-              <a class="edit_option bg-success" href=""><i class="fas fa-pencil"></i><span>Add To Embassy List</span></a>
+              <a class="edit_option" href="{{ route('admin.submission.statement', ['id'=>$customer->id]) }}"><i class="fas fa-pencil"></i><span>Add To Embassy List</span></a>
             @else
-              <a class="edit_option" href=""><i class="fas fa-edit"></i><span>Update Submission Customer</span></a>
+              <a class="edit_option" href="{{ route('admin.submission.editStatement', ['id'=>$customer->id]) }}"><i class="fas fa-edit"></i><span>Update Submission Info</span></a>
             @endif
-              <a class="view_option" target="_blank" href="{{ route('admin.customer.print', ['id'=>$customer->id]) }}"><i class="fa fa-print"></i><span>Print</span></a>
-            
+          @if($customer->emblist == 1)
+            @if(Auth::check() && (Auth::user()->role == 'admin'))
+              <a class="delete_option" onclick="return confirm('Are you sure to delete !')" href="{{ route('admin.submission.remove', ['id'=>$customer->id]) }}"><i class="fas fa-trash"></i><span>Remove From List</span></a>
+            @endif
+          @endif
             </td>
         </tr>
 @endforeach

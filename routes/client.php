@@ -25,6 +25,7 @@ use App\Http\Controllers\Client\CustomerRateController;
 use App\Http\Controllers\Client\CustomerPdfController;
 use App\Http\Controllers\Client\CustomerMedicalController;
 use App\Http\Controllers\Client\SubmissionController;
+use App\Http\Controllers\Client\SubmissionCustomerController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -254,5 +255,23 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/submission/print/{id}', [CustomerPdfController::class, 'SubmissionList'])->name('admin.submission.print');
 });
 // Embassy Submission Area End
+
+// Customer Submission Area Start
+Route::middleware(['auth'])->group(function () {
+    // Customer Submission
+    Route::get('/submission/statement/{id}', [SubmissionCustomerController::class, 'statement'])->name('admin.submission.statement');
+    Route::post('/submission/storeStatement/{id}', [SubmissionCustomerController::class, 'storeStatement'])->name('admin.submission.storeStatement');
+
+    // Customer Submission Update
+    Route::get('/submission/editStatement/{id}', [SubmissionCustomerController::class, 'editStatement'])->name('admin.submission.editStatement');
+    Route::post('/submission/updateStatement/{id}', [SubmissionCustomerController::class, 'updateStatement'])->name('admin.submission.updateStatement');
+
+    // Customer Submission Display
+    Route::get('/submission/display/{id}', [SubmissionCustomerController::class, 'display'])->name('admin.submission.display');
+
+    // Remove Customer From Embassy Submission List
+    Route::get('/submission/remove/{id}', [SubmissionCustomerController::class, 'remove'])->name('admin.submission.remove');
+});
+// Customer Submission Area End
 
 // Customer Page Area End
