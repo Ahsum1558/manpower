@@ -38,11 +38,13 @@ class CustomerVisaController extends Controller
     {
         $data_stamped_customer = Customer::find($id);
         $customer_stamping = CustomerVisa::latest()-> get();
+        $all_country = Country::latest()->where('status','=',1) -> get();
         
         if($data_stamped_customer !== null && $data_stamped_customer->value == 3){
             return view('admin.client.customer.stamping.stampingVisa', [
             'data_stamped_customer'=>$data_stamped_customer,
             'customer_stamping'=>$customer_stamping,
+            'all_country'=>$all_country,
         ]);
         }else{
             return redirect('/customer');
@@ -57,11 +59,12 @@ class CustomerVisaController extends Controller
         $customer_id = $data_stamped_customer->id;
 
         $customer_stamping = new CustomerVisa();
-        $customer_stamping->customerId      = $customer_id;
-        $customer_stamping->stamped_visano  = $request->stamped_visano;
-        $customer_stamping->visa_issue      = $request->visa_issue;
-        $customer_stamping->visa_expiry     = $request->visa_expiry;
-        $customer_stamping->stay_duration   = $request->stay_duration;
+        $customer_stamping->customerId     = $customer_id;
+        $customer_stamping->stamped_visano = $request->stamped_visano;
+        $customer_stamping->visa_issue     = $request->visa_issue;
+        $customer_stamping->visa_expiry    = $request->visa_expiry;
+        $customer_stamping->stay_duration  = $request->stay_duration;
+        $customer_stamping->countryId      = $request->countryId;
         $customer_stamping->save();
 
         if($customer_stamping){
@@ -75,11 +78,13 @@ class CustomerVisaController extends Controller
     {
         $customer_stamping_info = Customer::find($id);
         $stamping_edit = CustomerVisa::where('customerId', $id)->get();
+        $all_country = Country::latest()->where('status','=',1) -> get();
         
         if ($customer_stamping_info !== null) {
             return view('admin.client.customer.stamping.editStamping', [
             'customer_stamping_info'=>$customer_stamping_info,
             'stamping_edit'=>$stamping_edit,
+            'all_country'=>$all_country,
             ]);
         }else{
             return redirect('/customer');
@@ -94,6 +99,7 @@ class CustomerVisaController extends Controller
         $stamping_edit->visa_issue      = $request->visa_issue;
         $stamping_edit->visa_expiry     = $request->visa_expiry;
         $stamping_edit->stay_duration   = $request->stay_duration;
+        $stamping_edit->countryId       = $request->countryId;
         $stamping_edit->update();
 
         return redirect() -> back() -> with('message', 'Customer Visa Stamping Info is Updated successfully');
@@ -139,6 +145,7 @@ class CustomerVisaController extends Controller
             'stay_duration'     => 'required',
             'visa_issue'        => 'required|date',
             'visa_expiry'       => 'required|date',
+            'countryId'         => 'required|exists:countries,id',
         ],
         [
             'customerId.unique'       => 'Customer is already exist',
@@ -147,6 +154,8 @@ class CustomerVisaController extends Controller
             'stay_duration.required'  => 'Stay Duration Field is required',
             'visa_issue.required'     => 'Visa Issue Date Field is required',
             'visa_expiry.required'    => "Visa Expiry Date Field is required !!",
+            'countryId.required'      => "Country Field is required !!",
+            'countryId.exists'        => "Invalid Country Field !!",
         ]);
     }
 
@@ -155,68 +164,14 @@ class CustomerVisaController extends Controller
             'stay_duration'     => 'required',
             'visa_issue'        => 'required|date',
             'visa_expiry'       => 'required|date',
+            'countryId'         => 'required|exists:countries,id',
         ],
         [
-            'stay_duration.required'  => 'Stay Duration Field is required',
-            'visa_issue.required'     => 'Visa Issue Date Field is required',
-            'visa_expiry.required'    => "Visa Expiry Date Field is required !!",
+            'stay_duration.required' => 'Stay Duration Field is required',
+            'visa_issue.required'    => 'Visa Issue Date Field is required',
+            'visa_expiry.required'   => "Visa Expiry Date Field is required !!",
+            'countryId.required'     => "Country Field is required !!",
+            'countryId.exists'       => "Invalid Country Field !!",
         ]);
-    }
-
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

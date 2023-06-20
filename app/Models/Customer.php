@@ -34,4 +34,9 @@ class Customer extends Model
     {
         return $this->hasOne(CustomerRate::class);
     }
+
+    public function customerManpower()
+    {
+        return $this->hasOne(CustomerManpower::class);
+    }
 }

@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('received')->nullable();
             $table->integer('tradeId')->nullable();
             $table->tinyInteger('emblist')->default(0);
-            $table->string('manpower')->nullable();
+            $table->tinyInteger('manpowerlist')->default(0);
             $table->string('delivered')->nullable();
             $table->string('flight')->nullable();
             $table->tinyInteger('value')->default(0);

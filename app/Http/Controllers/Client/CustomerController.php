@@ -11,6 +11,7 @@ use App\Models\CustomerEmbassy;
 use App\Models\CustomerPassport;
 use App\Models\CustomerRate;
 use App\Models\CustomerVisa;
+use App\Models\CustomerManpower;
 use App\Models\Delegate;
 use App\Models\Visatrade;
 use Illuminate\Support\Facades\DB;
@@ -121,7 +122,7 @@ class CustomerController extends Controller
         $customer_single_docs = CustomerDocoment::where('customerId', $id)->get();
         $passport_single_data = $this->getPassportDetails($id);
         $embassy_single_data = $this->getEmbassyDetails($id);
-        $stamping_single_docs = CustomerVisa::where('customerId', $id)->get();
+        $stamping_single_docs = $this->getStampingDetails($id);
         $rate_single_docs = CustomerRate::where('customerId', $id)->get();
 
         if($customer_single_data->count() > 0){
@@ -326,6 +327,7 @@ class CustomerController extends Controller
             CustomerVisa::where('customerId', $id)->delete();
             CustomerRate::where('customerId', $id)->delete();
             SubmissionCustomer::where('customerId', $id)->delete();
+            CustomerManpower::where('customerId', $id)->delete();
 
             // Commit the transaction if all queries succeeded
             DB::commit();
@@ -479,8 +481,17 @@ class CustomerController extends Controller
             ->leftJoin('fields', 'customer_embassies.fieldId', '=', 'fields.id')
             ->leftJoin('fieldars', 'customer_embassies.fieldarId', '=', 'fieldars.id')
             ->leftJoin('fieldbns', 'customer_embassies.fieldbnId', '=', 'fieldbns.id')
-            ->select('customer_embassies.*', 'visatypes.visatype_name', 'visas.visano_en', 'visas.visano_ar', 'visas.sponsorid_en', 'visas.sponsorid_ar', 'visas.sponsorname_en', 'visas.sponsorname_ar', 'visas.visa_date', 'visas.visa_address', 'visas.occupation_en', 'visas.occupation_ar', 'visas.delegation_no', 'visas.delegation_date', 'visas.delegated_visa', 'visas.visa_duration', 'fields.title', 'fields.license', 'fields.address', 'fields.proprietor', 'fields.proprietortitle', 'fieldars.title_ar', 'fieldars.license_ar', 'fieldars.address_ar', 'fieldars.proprietor_ar', 'fieldars.proprietortitle_ar', 'fieldbns.title_bn', 'fieldbns.license_bn', 'fieldbns.address_bn', 'fieldbns.proprietor_bn', 'fieldbns.proprietortitle_bn', 'fieldbns.description_bn')
+            ->select('customer_embassies.*', 'visatypes.visatype_name', 'visas.visano_en', 'visas.visano_ar', 'visas.sponsorid_en', 'visas.sponsorid_ar', 'visas.sponsorname_en', 'visas.sponsorname_ar', 'visas.visa_date', 'visas.visa_address', 'visas.occupation_en', 'visas.occupation_ar', 'visas.delegation_no', 'visas.delegation_date', 'visas.delegated_visa', 'visas.visa_duration', 'fields.title', 'fields.license', 'fields.licenseExpiry', 'fields.address', 'fields.proprietor', 'fields.proprietortitle', 'fieldars.title_ar', 'fieldars.license_ar', 'fieldars.address_ar', 'fieldars.proprietor_ar', 'fieldars.proprietortitle_ar', 'fieldbns.title_bn', 'fieldbns.license_bn', 'fieldbns.address_bn', 'fieldbns.proprietor_bn', 'fieldbns.proprietortitle_bn', 'fieldbns.description_bn')
             ->get();
         return $data_embassy;
+    }
+
+    protected function getStampingDetails($id){
+        $data_stamping = DB::table('customer_visas')
+            ->leftJoin('countries', 'customer_visas.countryId', '=', 'countries.id')
+            ->where('customer_visas.customerId', $id)
+            ->select('customer_visas.*', 'countries.countryname as foreign_country', 'countries.nationality as foreign_national')
+            ->get();
+        return $data_stamping;
     }
 }

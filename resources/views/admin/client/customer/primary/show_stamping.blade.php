@@ -38,6 +38,13 @@
                                 <div class="col-9"><span>{{ $stamping->stay_duration }}</span>
                                 </div>
                             </div>
+                            <div class="row mb-2">
+                                <div class="col-3">
+                                    <h5 class="f-w-500">Visa Issuing Country<span class="pull-right">:</span></h5>
+                                </div>
+                                <div class="col-9"><span>{{ $stamping->foreign_country }}</span>
+                                </div>
+                            </div>
                             
                             <div class="row mb-2">
                                 <div class="col-3">

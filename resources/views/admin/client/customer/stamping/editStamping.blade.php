@@ -53,6 +53,19 @@
                                         </div>
                                     </div>
                                     <div class="row mb-2">
+                                        <div class="col-3">
+                                            <h5 class="f-w-500">Issuing Country Name<span class="pull-right">:</span></h5>
+                                        </div>
+                                        <div class="col-9">
+                                            <select id="select" name="countryId" class="form-control d-inline-block inline_setup disabling-options">
+                                              <option selected="selected">Select Issuing Country</option>
+                                            @foreach($all_country as $country)
+                                                <option value="{{ $country->id }}" {{ $stamping_info->countryId == $country->id ? 'selected' : '' }}>{{ $country->countryname }}</option>
+                                            @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
                                         <div class="col-3"></div>
                                         <div class="col-9 mybtn">
                                             <button type="submit" name="update" class="form-control inline_setup btn submitbtn text-uppercase">Update</button>

@@ -57,6 +57,13 @@
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-3">
+                                        <h5 class="f-w-500">License Expiry Date<span class="pull-right">:</span></h5>
+                                    </div>
+                                    <div class="col-9"><span>{{ date('d-M-Y', strtotime($single_field_data->licenseExpiry)) }}</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-3">
                                         <h5 class="f-w-500">Description<span class="pull-right">:</span></h5>
                                     </div>
                                     <div class="col-9"><span>{{ $single_field_data->description }}</span>

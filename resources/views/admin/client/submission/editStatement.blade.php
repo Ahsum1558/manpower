@@ -146,7 +146,7 @@
                                     <div class="col-3"></div>
                                     <div class="col-9 mybtn">
                                         <button type="submit" name="update" class="form-control inline_setup btn submitbtn text-uppercase">Update</button>
-                                        <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase pull-right" href="{{ route('admin.submission') }}">Back</a>
+                                        <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase pull-right" href="{{ route('admin.submission.show', ['id'=>$statment->submissionId]) }}">Back</a>
                                     </div>
                                 </div>
                             </div>

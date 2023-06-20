@@ -52,6 +52,19 @@
                             <div class="col-9"><input type="text" name="stay_duration" class="form-control d-inline-block inline_setup" placeholder="Enter Stay Duration">
                             </div>
                         </div>
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <h5 class="f-w-500">Visa Issuing Country<span class="pull-right">:</span></h5>
+                            </div>
+                            <div class="col-9">
+                                <select id="select" name="countryId" class="form-control d-inline-block inline_setup disabling-options">
+                                  <option selected="selected">Select Country</option>
+                                @foreach($all_country as $country)
+                                  <option value="{{ $country->id }}">{{ $country->countryname }}</option>
+                                @endforeach
+                                </select>
+                            </div>
+                        </div>
                         
                     </div>
                     <div class="row mb-2">

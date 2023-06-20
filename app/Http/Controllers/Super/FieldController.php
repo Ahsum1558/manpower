@@ -32,19 +32,18 @@ class FieldController extends Controller
      */
     public function store(Request $request)
     {
-        
         if ($request->hasFile('logo')) {
             $img = $request -> file('logo');
             $unique_file_name = md5(time().rand()) . '.' . $img -> getClientOriginalExtension();
             $img->move(public_path('admin/uploads/field/'), $unique_file_name);
-        }
 
-        $this->validation($request);
+            $this->validation($request);
 
         Field::create([
             'title'             => $request->title,
             'smalltitle'        => $request->smalltitle,
             'license'           => $request->license,
+            'licenseExpiry'     => $request->licenseExpiry,
             'description'       => $request->description,
             'address'           => $request->address,
             'proprietor'        => $request->proprietor,
@@ -58,6 +57,27 @@ class FieldController extends Controller
             'logo'              => $unique_file_name,
         ]);
         return redirect() -> back() -> with('message', 'Field Option in English is added successfully');
+        }else{
+            $this->validation($request);
+
+        Field::create([
+            'title'             => $request->title,
+            'smalltitle'        => $request->smalltitle,
+            'license'           => $request->license,
+            'licenseExpiry'     => $request->licenseExpiry,
+            'description'       => $request->description,
+            'address'           => $request->address,
+            'proprietor'        => $request->proprietor,
+            'proprietortitle'   => $request->proprietortitle,
+            'telephone'         => $request->telephone,
+            'cellphone'         => $request->cellphone,
+            'helpline'          => $request->helpline,
+            'web'               => $request->web,
+            'email'             => $request->email,
+            'status'            => $request->status,
+        ]);
+        return redirect() -> back() -> with('message', 'Field Option in English is added successfully');
+        }
     }
 
     /**
@@ -96,6 +116,7 @@ class FieldController extends Controller
 
         $field_data = Field::findOrFail($id);
 
+        $field_data->licenseExpiry      = $request->licenseExpiry;
         $field_data->description        = $request->description;
         $field_data->address            = $request->address;
         $field_data->proprietor         = $request->proprietor;
@@ -258,6 +279,7 @@ class FieldController extends Controller
             'smalltitle'    => 'required|unique:fields',
             'license'       => 'required|unique:fields',
             'email'         => 'required|email|max:255',
+            'licenseExpiry' => 'required|date',
             'description'   => 'required',
             'proprietor'    => 'required',
             'address'       => 'required',
@@ -271,6 +293,7 @@ class FieldController extends Controller
             'smalltitle.unique'     => 'The Small Title is already exist',
             'email.required'        => 'E-Mail Field must not be Empty',
             'email.email'           => "E-Mail Address is not valid !!",
+            'licenseExpiry.required' => 'License Expiry Date Field must not be Empty',
             'description.required'  => 'Description Field must not be Empty',
             'license.required'      => 'License Field is required',
             'license.unique'        => 'The License Number is already exist',
@@ -285,6 +308,7 @@ class FieldController extends Controller
     protected function validationInfo($request){
         $this -> validate($request, [
             'email'         => 'required|email|max:255',
+            'licenseExpiry' => 'required|date',
             'description'   => 'required',
             'proprietor'    => 'required',
             'address'       => 'required',
@@ -294,6 +318,7 @@ class FieldController extends Controller
         [
             'email.required'        => 'E-Mail Field must not be Empty',
             'email.email'           => "E-Mail Address is not valid !!",
+            'licenseExpiry.required' => 'License Expiry Date Field must not be Empty',
             'description.required'  => 'Description Field must not be Empty',
             'proprietor.required'   => 'Proprietor Name Field must not be Empty',
             'address.required'      => 'Address Field must not be Empty',

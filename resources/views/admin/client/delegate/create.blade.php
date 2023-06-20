@@ -97,7 +97,7 @@
                             <div class="col-3">
                                 <h5 class="f-w-500">Delegate Date Of Birth<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="date" name="dateOfBirth" class="form-control d-inline-block inline_setup" placeholder="Enter Delegate Date Of Birth">
+                            <div class="col-9"><input type="date" name="dateOfBirth" class="form-control d-inline-block inline_setup">
                             </div>
                         </div>
                         <div class="row mb-2">

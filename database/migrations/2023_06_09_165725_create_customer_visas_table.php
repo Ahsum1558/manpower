@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('visa_issue')->nullable();
             $table->string('visa_expiry')->nullable();
             $table->string('stay_duration')->nullable();
+            $table->integer('countryId')->nullable();
             $table->timestamps();
         });
     }

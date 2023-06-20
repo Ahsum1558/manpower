@@ -166,13 +166,13 @@ class HeaderfooterController extends Controller
     protected function getDetails($id){
         $header_footer_single_data_info = Headerfooter::leftJoin('fields','headerfooters.field_id','=','fields.id')
         ->where('headerfooters.id', $id)
-        ->select('headerfooters.*', 'fields.title', 'fields.smalltitle', 'fields.license', 'fields.address', 'fields.proprietor', 'fields.proprietortitle', 'fields.telephone', 'fields.cellphone', 'fields.helpline','fields.email', 'fields.web', 'fields.logo')->get();
+        ->select('headerfooters.*', 'fields.title', 'fields.smalltitle', 'fields.license','fields.licenseExpiry', 'fields.address', 'fields.proprietor', 'fields.proprietortitle', 'fields.telephone', 'fields.cellphone', 'fields.helpline','fields.email', 'fields.web', 'fields.logo')->get();
         return $header_footer_single_data_info;
     }
 
     protected function getInfo(){
         $data_info = Headerfooter::leftJoin('fields','headerfooters.field_id','=','fields.id')
-        ->select('headerfooters.*', 'fields.title', 'fields.smalltitle', 'fields.license', 'fields.address', 'fields.logo')
+        ->select('headerfooters.*', 'fields.title', 'fields.smalltitle', 'fields.license', 'fields.licenseExpiry', 'fields.address', 'fields.logo')
         ->limit(1)->get();
         return $data_info;
     }

@@ -30,6 +30,7 @@
                               <th>SL</th>
                               <th>Title</th>
                               <th>License</th>
+                              <th>License Expiry</th>
                               <th>Proprietor</th>
                               <th>Address</th>
                               <th>Status</th>
@@ -45,6 +46,7 @@
                             <td>{{ $i++ }}</td>
                             <td>{{ $field->title }}</td>
                             <td>{{ $field->license }}</td>
+                            <td>{{ date('d-M-Y', strtotime($field->licenseExpiry)) }}</td>
                             <td>{{ $field->proprietor }}</td>
                             <td>{{ $field->address }}</td>
                             <td>

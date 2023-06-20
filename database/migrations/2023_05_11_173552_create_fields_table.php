@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('smalltitle')->nullable();
             $table->string('license');
+            $table->string('licenseExpiry')->nullable();
             $table->text('description')->nullable();
             $table->text('address')->nullable();
             $table->string('proprietor');
