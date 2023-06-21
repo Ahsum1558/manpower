@@ -28,7 +28,7 @@ class HeaderfooterController extends Controller
     public function create()
     {
         $header_footer_data = Headerfooter::latest() -> get(); // as latest
-        $field_data = Field::latest() -> get(); // as latest
+        $field_data = Field::latest()->where('status','=',1) -> get(); // as latest
 
         return view('super.setting.create', [
             'header_footer_data'=>$header_footer_data,
@@ -87,7 +87,7 @@ class HeaderfooterController extends Controller
     public function edit($id)
     {
         $header_footer_info = $this->getDetails($id);
-        $field_data_info = Field::all(); 
+        $field_data_info = Field::all()->where('status','=',1); 
 
         if($header_footer_info->count() > 0){
                 return view('super.setting.edit', [

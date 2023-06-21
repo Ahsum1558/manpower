@@ -81,7 +81,6 @@ php artisan make:model Submission -m
 php artisan make:controller Client/SubmissionController --resource
 php artisan make:model SubmissionCustomer -m
 php artisan make:controller Client/SubmissionCustomerController --resource
-
 php artisan make:model BmetPayment -m
 php artisan make:controller Manpower/BmetPaymentController --resource
 php artisan make:model ManpowerSubmission -m
