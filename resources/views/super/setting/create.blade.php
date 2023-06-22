@@ -31,7 +31,7 @@
                                 <select id="select" name="field_id" class="form-control d-inline-block inline_setup">
                                   <option selected="selected">Select Office Option</option>
                                 @foreach($field_data as $field)
-                                  <option value="{{ $field->id }}">{{ $field->title }}</option>
+                                  <option value="{{ $field->id }}" {{ old('field_id') == $field->id ? 'selected' : '' }}>{{ $field->title }}</option>
                                 @endforeach
                                 </select>
                             </div>
@@ -40,35 +40,35 @@
                             <div class="col-3">
                                 <h5 class="f-w-500">Footer Title<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="footer_title" class="form-control d-inline-block inline_setup" placeholder="Enter Footer Title">
+                            <div class="col-9"><input type="text" name="footer_title" class="form-control d-inline-block inline_setup" placeholder="Enter Footer Title" value="{{ old('footer_title') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Content<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="content" class="form-control d-inline-block inline_setup" placeholder="Enter Content">
+                            <div class="col-9"><input type="text" name="content" class="form-control d-inline-block inline_setup" placeholder="Enter Content" value="{{ old('content') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Type<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="type" class="form-control d-inline-block inline_setup" placeholder="Enter Type">
+                            <div class="col-9"><input type="text" name="type" class="form-control d-inline-block inline_setup" placeholder="Enter Type" value="{{ old('type') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Menu<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="menu" class="form-control d-inline-block inline_setup" placeholder="Enter Menu">
+                            <div class="col-9"><input type="text" name="menu" class="form-control d-inline-block inline_setup" placeholder="Enter Menu" value="{{ old('menu') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Contact Info<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="contact_info" class="form-control d-inline-block inline_setup" placeholder="Enter Contact Info">
+                            <div class="col-9"><input type="text" name="contact_info" class="form-control d-inline-block inline_setup" placeholder="Enter Contact Info" value="{{ old('contact_info') }}">
                             </div>
                         </div>
                         
@@ -76,7 +76,7 @@
                             <div class="col-3">
                                 <h5 class="f-w-500">Web Links<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="links" class="form-control d-inline-block inline_setup" placeholder="Enter Web Links">
+                            <div class="col-9"><input type="text" name="links" class="form-control d-inline-block inline_setup" placeholder="Enter Web Links" value="{{ old('links') }}">
                             </div>
                         </div>
                         <div class="row mb-2">

@@ -28,28 +28,28 @@
                             <div class="col-3">
                                 <h5 class="f-w-500">Stamped Visa Number<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="stamped_visano" class="form-control d-inline-block inline_setup" placeholder="Enter Stamped Visa Number">
+                            <div class="col-9"><input type="text" name="stamped_visano" class="form-control d-inline-block inline_setup" placeholder="Enter Stamped Visa Number" value="{{ old('stamped_visano') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Visa Issue Date<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="date" name="visa_issue" class="form-control d-inline-block inline_setup">
+                            <div class="col-9"><input type="date" name="visa_issue" class="form-control d-inline-block inline_setup" value="{{ old('visa_issue') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Visa Expiry Date<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="date" name="visa_expiry" class="form-control d-inline-block inline_setup">
+                            <div class="col-9"><input type="date" name="visa_expiry" class="form-control d-inline-block inline_setup" value="{{ old('visa_expiry') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Stay Duration<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="stay_duration" class="form-control d-inline-block inline_setup" placeholder="Enter Stay Duration">
+                            <div class="col-9"><input type="text" name="stay_duration" class="form-control d-inline-block inline_setup" placeholder="Enter Stay Duration" value="{{ old('stay_duration') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -60,7 +60,7 @@
                                 <select id="select" name="countryId" class="form-control d-inline-block inline_setup disabling-options">
                                   <option selected="selected">Select Country</option>
                                 @foreach($all_country as $country)
-                                  <option value="{{ $country->id }}">{{ $country->countryname }}</option>
+                                  <option value="{{ $country->id }}" {{ old('countryId') == $country->id ? 'selected' : '' }}>{{ $country->countryname }}</option>
                                 @endforeach
                                 </select>
                             </div>

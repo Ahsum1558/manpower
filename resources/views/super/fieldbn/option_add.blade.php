@@ -21,7 +21,7 @@
                                         <div class="col-3">
                                             <h5 class="f-w-500">Title<span class="pull-right">:</span></h5>
                                         </div>
-                                        <div class="col-9"><input type="text" name="title_bn" class="form-control d-inline-block inline_setup" placeholder="Enter Title">
+                                        <div class="col-9"><input type="text" name="title_bn" class="form-control d-inline-block inline_setup" placeholder="Enter Title" value="{{ old('title_bn') }}">
                                         </div>
                                     </div>
                                     
@@ -29,21 +29,21 @@
                                         <div class="col-3">
                                             <h5 class="f-w-500">License Number <span class="pull-right">:</span></h5>
                                         </div>
-                                        <div class="col-9"><input type="text" name="license_bn" class="form-control d-inline-block inline_setup" placeholder="Enter License Number">
+                                        <div class="col-9"><input type="text" name="license_bn" class="form-control d-inline-block inline_setup" placeholder="Enter License Number" value="{{ old('license_bn') }}">
                                         </div>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-3">
                                             <h5 class="f-w-500">Description <span class="pull-right">:</span></h5>
                                         </div>
-                                        <div class="col-9"><input type="text" name="description_bn" class="form-control d-inline-block inline_setup" placeholder="Enter Description">
+                                        <div class="col-9"><input type="text" name="description_bn" class="form-control d-inline-block inline_setup" placeholder="Enter Description" value="{{ old('description_bn') }}">
                                         </div>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-3">
                                             <h5 class="f-w-500">Office Address <span class="pull-right">:</span></h5>
                                         </div>
-                                        <div class="col-9"><input type="text" name="address_bn" class="form-control d-inline-block inline_setup" placeholder="Enter Office Address">
+                                        <div class="col-9"><input type="text" name="address_bn" class="form-control d-inline-block inline_setup" placeholder="Enter Office Address" value="{{ old('address_bn') }}">
                                         </div>
                                     </div>
                                     
@@ -51,35 +51,35 @@
                                         <div class="col-3">
                                             <h5 class="f-w-500">Proprietor Name <span class="pull-right">:</span></h5>
                                         </div>
-                                        <div class="col-9"><input type="text" name="proprietor_bn" class="form-control d-inline-block inline_setup" placeholder="Enter Proprietor Name">
+                                        <div class="col-9"><input type="text" name="proprietor_bn" class="form-control d-inline-block inline_setup" placeholder="Enter Proprietor Name" value="{{ old('proprietor_bn') }}">
                                         </div>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-3">
                                             <h5 class="f-w-500">Proprietor Title <span class="pull-right">:</span></h5>
                                         </div>
-                                        <div class="col-9"><input type="text" name="proprietortitle_bn" class="form-control d-inline-block inline_setup" placeholder="Enter Proprietor Title">
+                                        <div class="col-9"><input type="text" name="proprietortitle_bn" class="form-control d-inline-block inline_setup" placeholder="Enter Proprietor Title" value="{{ old('proprietortitle_bn') }}">
                                         </div>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-3">
                                             <h5 class="f-w-500">Telephone Number <span class="pull-right">:</span></h5>
                                         </div>
-                                        <div class="col-9"><input type="text" name="telephone_bn" class="form-control d-inline-block inline_setup" placeholder="Enter Telephone Number">
+                                        <div class="col-9"><input type="text" name="telephone_bn" class="form-control d-inline-block inline_setup" placeholder="Enter Telephone Number" value="{{ old('telephone_bn') }}">
                                         </div>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-3">
                                             <h5 class="f-w-500">Cellphone Number <span class="pull-right">:</span></h5>
                                         </div>
-                                        <div class="col-9"><input type="text" name="cellphone_bn" class="form-control d-inline-block inline_setup" placeholder="Enter Cellphone Number">
+                                        <div class="col-9"><input type="text" name="cellphone_bn" class="form-control d-inline-block inline_setup" placeholder="Enter Cellphone Number" value="{{ old('cellphone_bn') }}">
                                         </div>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-3">
                                             <h5 class="f-w-500">Helpline Number <span class="pull-right">:</span></h5>
                                         </div>
-                                        <div class="col-9"><input type="text" name="helpline_bn" class="form-control d-inline-block inline_setup" placeholder="Enter Helpline Number">
+                                        <div class="col-9"><input type="text" name="helpline_bn" class="form-control d-inline-block inline_setup" placeholder="Enter Helpline Number" value="{{ old('helpline_bn') }}">
                                         </div>
                                     </div>
                                     <div class="row mb-2">

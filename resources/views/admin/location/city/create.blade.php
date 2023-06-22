@@ -28,7 +28,7 @@
                             <div class="col-3">
                                 <h5 class="f-w-500">City Name<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="cityname" class="form-control d-inline-block inline_setup" placeholder="Enter City Name">
+                            <div class="col-9"><input type="text" name="cityname" class="form-control d-inline-block inline_setup" placeholder="Enter City Name" value="{{ old('cityname') }}">
                             </div>
                         </div>
                                     
@@ -40,7 +40,7 @@
                                 <select id="select" name="countryId" class="form-control d-inline-block inline_setup disabling-options">
                                   <option selected="selected">Select Country</option>
                                 @foreach($all_country as $country)
-                                  <option value="{{ $country->id }}">{{ $country->countryname }}</option>
+                                  <option value="{{ $country->id }}" {{ old('countryId') == $country->id ? 'selected' : '' }}>{{ $country->countryname }}</option>
                                 @endforeach
                                 </select>
                             </div>

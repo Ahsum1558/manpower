@@ -40,21 +40,21 @@
                             <div class="col-3">
                                 <h5 class="f-w-500">Customer Book Ref.<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="bookRef" class="form-control d-inline-block inline_setup" placeholder="Enter Customer Book Ref.">
+                            <div class="col-9"><input type="text" name="bookRef" class="form-control d-inline-block inline_setup" placeholder="Enter Customer Book Ref." value="{{ old('bookRef') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">First Name<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="cusFname" class="form-control d-inline-block inline_setup" placeholder="Enter First Name">
+                            <div class="col-9"><input type="text" name="cusFname" class="form-control d-inline-block inline_setup" placeholder="Enter First Name" value="{{ old('cusFname') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Last Name<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="cusLname" class="form-control d-inline-block inline_setup" placeholder="Enter Last Name">
+                            <div class="col-9"><input type="text" name="cusLname" class="form-control d-inline-block inline_setup" placeholder="Enter Last Name" value="{{ old('cusLname') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -64,9 +64,9 @@
                             <div class="col-9">
                                 <select id="gender" name="gender" class="form-control d-inline-block inline_setup">
                                   <option selected="selected">Select Gender</option>
-                                  <option value="1">Male</option>
-                                  <option value="2">Female</option>
-                                  <option value="3">Other</option>
+                                  <option value="1" {{ old('gender') == 1 ? 'selected' : '' }}>Male</option>
+                                  <option value="2" {{ old('gender') == 2 ? 'selected' : '' }}>Female</option>
+                                  <option value="3" {{ old('gender') == 3 ? 'selected' : '' }}>Other</option>
                             </select>
                             </div>
                         </div>
@@ -74,14 +74,14 @@
                             <div class="col-3">
                                 <h5 class="f-w-500">Passport Number<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="passportNo" class="form-control d-inline-block inline_setup" placeholder="Enter Passport Number">
+                            <div class="col-9"><input type="text" name="passportNo" class="form-control d-inline-block inline_setup" placeholder="Enter Passport Number" value="{{ old('passportNo') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Customer Phone No.<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="phone" class="form-control d-inline-block inline_setup" placeholder="Enter Customer Phone No.">
+                            <div class="col-9"><input type="text" name="phone" class="form-control d-inline-block inline_setup" placeholder="Enter Customer Phone No." value="{{ old('phone') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -92,7 +92,7 @@
                                 <select id="select" name="agentId" class="form-control d-inline-block inline_setup disabling-options">
                                   <option selected="selected">Select Delegate</option>
                                 @foreach($all_delegate as $delegate)
-                                  <option value="{{ $delegate->id }}">{{ $delegate->agentname .' - '. $delegate->agentsl }}</option>
+                                  <option value="{{ $delegate->id }}" {{ old('agentId') == $delegate->id ? 'selected' : '' }}>{{ $delegate->agentname .' - '. $delegate->agentsl }}</option>
                                 @endforeach
                                 </select>
                             </div>
@@ -105,7 +105,7 @@
                                 <select id="id_label_single" name="birthPlace" class="form-control d-inline-block inline_setup select2-with-label-single js-states">
                                   <option selected="selected">Select Birth of Place</option>
                                   @foreach($all_district as $district)
-                                  <option value="{{ $district->id }}">{{ $district->districtname }}</option>
+                                  <option value="{{ $district->id }}" {{ old('birthPlace') == $district->id ? 'selected' : '' }}>{{ $district->districtname }}</option>
                                 @endforeach
                                 </select>
                             </div>
@@ -117,11 +117,11 @@
                             <div class="col-9">
                                 <select id="medical" name="medical" class="form-control d-inline-block inline_setup">
                                   <option selected="selected">Select Medical</option>
-                                  <option value="1">Done</option>
-                                  <option value="2">Fit</option>
-                                  <option value="3">Unfit</option>
-                                  <option value="4">N/A</option>
-                                  <option value="5">Problem</option>
+                                  <option value="1" {{ old('medical') == 1 ? 'selected' : '' }}>Done</option>
+                                  <option value="2" {{ old('medical') == 2 ? 'selected' : '' }}>Fit</option>
+                                  <option value="3" {{ old('medical') == 3 ? 'selected' : '' }}>Unfit</option>
+                                  <option value="4" {{ old('medical') == 4 ? 'selected' : '' }}>N/A</option>
+                                  <option value="5" {{ old('medical') == 5 ? 'selected' : '' }}>Problem</option>
                             </select>
                             </div>
                         </div>
@@ -129,7 +129,7 @@
                             <div class="col-3">
                                 <h5 class="f-w-500">Passport Receive Date<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="date" name="received" class="form-control d-inline-block inline_setup">
+                            <div class="col-9"><input type="date" name="received" class="form-control d-inline-block inline_setup" value="{{ old('received') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -140,7 +140,7 @@
                                 <select id="single-select" name="tradeId" class="form-control d-inline-block inline_setup">
                                   <option selected="selected">Select Trade</option>
                                   @foreach($all_visa_trade as $trade)
-                                  <option value="{{ $trade->id }}">{{ $trade->visatrade_name }}</option>
+                                  <option value="{{ $trade->id }}" {{ old('tradeId') == $trade->id ? 'selected' : '' }}>{{ $trade->visatrade_name }}</option>
                                 @endforeach
                                 </select>
                             </div>

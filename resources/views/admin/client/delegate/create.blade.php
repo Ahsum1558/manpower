@@ -40,49 +40,49 @@
                             <div class="col-3">
                                 <h5 class="f-w-500">Delegate Book Ref.<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="agentbook" class="form-control d-inline-block inline_setup" placeholder="Enter Delegate Book Ref.">
+                            <div class="col-9"><input type="text" name="agentbook" class="form-control d-inline-block inline_setup" placeholder="Enter Delegate Book Ref." value="{{ old('agentbook') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Delegate Name<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="agentname" class="form-control d-inline-block inline_setup" placeholder="Enter Delegate Name">
+                            <div class="col-9"><input type="text" name="agentname" class="form-control d-inline-block inline_setup" placeholder="Enter Delegate Name" value="{{ old('agentname') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Delegate Referance Name<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="father" class="form-control d-inline-block inline_setup" placeholder="Enter Delegate Referance Name">
+                            <div class="col-9"><input type="text" name="father" class="form-control d-inline-block inline_setup" placeholder="Enter Delegate Referance Name" value="{{ old('father') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Delegate NID No.<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="nid" class="form-control d-inline-block inline_setup" placeholder="Enter Delegate NID No.">
+                            <div class="col-9"><input type="text" name="nid" class="form-control d-inline-block inline_setup" placeholder="Enter Delegate NID No." value="{{ old('nid') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Delegate Office Name<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="office" class="form-control d-inline-block inline_setup" placeholder="Enter Delegate Office Name">
+                            <div class="col-9"><input type="text" name="office" class="form-control d-inline-block inline_setup" placeholder="Enter Delegate Office Name" value="{{ old('office') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Delegate Office Address<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="officeLocation" class="form-control d-inline-block inline_setup" placeholder="Enter Delegate Office Address">
+                            <div class="col-9"><input type="text" name="officeLocation" class="form-control d-inline-block inline_setup" placeholder="Enter Delegate Office Address" value="{{ old('officeLocation') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Delegate Phone No.<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="phone" class="form-control d-inline-block inline_setup" placeholder="Enter Delegate Phone No.">
+                            <div class="col-9"><input type="text" name="phone" class="form-control d-inline-block inline_setup" placeholder="Enter Delegate Phone No." value="{{ old('phone') }}">
                             </div>
                         </div>
 
@@ -90,14 +90,14 @@
                             <div class="col-3">
                                 <h5 class="f-w-500">Delegate E-Mail Address<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="email" class="form-control d-inline-block inline_setup" placeholder="Enter Delegate E-Mail Address">
+                            <div class="col-9"><input type="text" name="email" class="form-control d-inline-block inline_setup" placeholder="Enter Delegate E-Mail Address" value="{{ old('email') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Delegate Date Of Birth<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="date" name="dateOfBirth" class="form-control d-inline-block inline_setup">
+                            <div class="col-9"><input type="date" name="dateOfBirth" class="form-control d-inline-block inline_setup" value="{{ old('dateOfBirth') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -107,9 +107,10 @@
                             <div class="col-9">
                                 <select id="gender" name="gender" class="form-control d-inline-block inline_setup">
                                   <option selected="selected">Select Gender</option>
-                                  <option value="1">Male</option>
-                                  <option value="2">Female</option>
-                                  <option value="3">Other</option>
+                                  <option selected="selected">Select Gender</option>
+                                  <option value="1" {{ old('gender') == 1 ? 'selected' : '' }}>Male</option>
+                                  <option value="2" {{ old('gender') == 2 ? 'selected' : '' }}>Female</option>
+                                  <option value="3" {{ old('gender') == 3 ? 'selected' : '' }}>Other</option>
                             </select>
                             </div>
                         </div>
@@ -117,28 +118,28 @@
                             <div class="col-3">
                                 <h5 class="f-w-500">Account No. <span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="accountNo" class="form-control d-inline-block inline_setup" placeholder="Enter Account No.">
+                            <div class="col-9"><input type="text" name="accountNo" class="form-control d-inline-block inline_setup" placeholder="Enter Account No." value="{{ old('accountNo') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Bank Name<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="bankname" class="form-control d-inline-block inline_setup" placeholder="Enter Bank Name">
+                            <div class="col-9"><input type="text" name="bankname" class="form-control d-inline-block inline_setup" placeholder="Enter Bank Name" value="{{ old('bankname') }}">
                             </div>
                         </div>
                          <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Branch Location<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="bankbranch" class="form-control d-inline-block inline_setup" placeholder="Enter Bank Branch Location">
+                            <div class="col-9"><input type="text" name="bankbranch" class="form-control d-inline-block inline_setup" placeholder="Enter Bank Branch Location" value="{{ old('bankbranch') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Address<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="address" class="form-control d-inline-block inline_setup" placeholder="Enter Address">
+                            <div class="col-9"><input type="text" name="address" class="form-control d-inline-block inline_setup" placeholder="Enter Address" value="{{ old('address') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -149,7 +150,7 @@
                                 <select id="select" name="countryId" class="form-control d-inline-block inline_setup disabling-options">
                                   <option selected="selected">Select Country</option>
                                 @foreach($all_country as $country)
-                                  <option value="{{ $country->id }}">{{ $country->countryname }}</option>
+                                  <option value="{{ $country->id }}" {{ old('countryId') == $country->id ? 'selected' : '' }}>{{ $country->countryname }}</option>
                                 @endforeach
                                 </select>
                             </div>
@@ -199,14 +200,14 @@
                             <div class="col-3">
                                 <h5 class="f-w-500">Zipcode<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="zipcode" class="form-control d-inline-block inline_setup" placeholder="Enter Zipcode">
+                            <div class="col-9"><input type="text" name="zipcode" class="form-control d-inline-block inline_setup" placeholder="Enter Zipcode" value="{{ old('zipcode') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Description<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="description" class="form-control d-inline-block inline_setup" placeholder="Enter Description">
+                            <div class="col-9"><input type="text" name="description" class="form-control d-inline-block inline_setup" placeholder="Enter Description" value="{{ old('description') }}">
                             </div>
                         </div>
                         <div class="row mb-2">

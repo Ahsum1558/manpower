@@ -33,7 +33,7 @@
                                 <select id="select" name="fieldId" class="form-control d-inline-block inline_setup disabling-options">
                                   <option selected="selected">Select Office Name</option>
                                 @foreach($all_field as $field)
-                                  <option value="{{ $field->id }}">{{ $field->title.' - '.$field->license }}</option>
+                                  <option value="{{ $field->id }}" {{ old('fieldId') == $field->id ? 'selected' : '' }}>{{ $field->title.' - '.$field->license }}</option>
                                 @endforeach
                                 </select>
                             </div>
@@ -46,7 +46,7 @@
                                 <select id="id_label_single" name="fieldarId" class="form-control d-inline-block inline_setup select2-with-label-single js-states">
                                   <option selected="selected">Select Office Name Arabic</option>
                                   @foreach($all_fieldar as $fieldar)
-                                  <option value="{{ $fieldar->id }}">{{ $fieldar->title_ar.' - '.$fieldar->license_ar }}</option>
+                                  <option value="{{ $fieldar->id }}" {{ old('fieldarId') == $fieldar->id ? 'selected' : '' }}>{{ $fieldar->title_ar.' - '.$fieldar->license_ar }}</option>
                                 @endforeach
                                 </select>
                             </div>
@@ -60,7 +60,7 @@
                                 <select id="single-select" name="fieldbnId" class="form-control d-inline-block inline_setup">
                                   <option selected="selected">Select Office Name Bengali</option>
                                 @foreach($all_fieldbn as $fieldbn)
-                                  <option value="{{ $fieldbn->id }}">{{ $fieldbn->title_bn.' - '.$fieldbn->license_bn }}</option>
+                                  <option value="{{ $fieldbn->id }}" {{ old('fieldbnId') == $fieldbn->id ? 'selected' : '' }}>{{ $fieldbn->title_bn.' - '.$fieldbn->license_bn }}</option>
                                 @endforeach
                                 </select>
                             </div>
@@ -70,7 +70,7 @@
                             <div class="col-3">
                                 <h5 class="f-w-500">Submission Date<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="date" name="submissionDate" class="form-control d-inline-block inline_setup">
+                            <div class="col-9"><input type="date" name="submissionDate" class="form-control d-inline-block inline_setup" value="{{ old('submissionDate') }}">
                             </div>
                         </div>
                         
@@ -81,8 +81,8 @@
                             <div class="col-9">
                                 <select id="status" name="status" class="form-control d-inline-block inline_setup">
                                   <option selected="selected">Select Type</option>
-                                  <option value="1">Active</option>
-                                  <option value="0">Inactive</option>
+                                  <option>Active</option>
+                                  <option>Inactive</option>
                                 </select>
                             </div>
                         </div>

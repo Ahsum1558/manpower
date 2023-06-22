@@ -27,35 +27,35 @@
                             <div class="col-3">
                                 <h5 class="f-w-500">Username<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="username" class="form-control d-inline-block inline_setup" placeholder="Enter Username">
+                            <div class="col-9"><input type="text" name="username" class="form-control d-inline-block inline_setup" placeholder="Enter Username" value="{{ old('username') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Full Name<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="name" class="form-control d-inline-block inline_setup" placeholder="Enter Full Name">
+                            <div class="col-9"><input type="text" name="name" class="form-control d-inline-block inline_setup" placeholder="Enter Full Name" value="{{ old('name') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Designation<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="designation" class="form-control d-inline-block inline_setup" placeholder="Enter Designation">
+                            <div class="col-9"><input type="text" name="designation" class="form-control d-inline-block inline_setup" placeholder="Enter Designation" value="{{ old('designation') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">E-Mail Address<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="email" class="form-control d-inline-block inline_setup" placeholder="Enter E-Mail Address">
+                            <div class="col-9"><input type="text" name="email" class="form-control d-inline-block inline_setup" placeholder="Enter E-Mail Address" value="{{ old('email') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Contact Number<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="phone" class="form-control d-inline-block inline_setup" placeholder="Enter Contact Number">
+                            <div class="col-9"><input type="text" name="phone" class="form-control d-inline-block inline_setup" placeholder="Enter Contact Number" value="{{ old('phone') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -65,9 +65,9 @@
                             <div class="col-9">
                                 <select id="select" name="gender" class="form-control d-inline-block inline_setup">
                                   <option selected="selected">Select Gender</option>
-                                  <option value="1">Male</option>
-                                  <option value="2">Female</option>
-                                  <option value="3">Other</option>
+                                  <option value="1" {{ old('gender') == 1 ? 'selected' : '' }}>Male</option>
+                                  <option value="2" {{ old('gender') == 2 ? 'selected' : '' }}>Female</option>
+                                  <option value="3" {{ old('gender') == 3 ? 'selected' : '' }}>Other</option>
                             </select>
                             </div>
                         </div>
@@ -76,14 +76,14 @@
                             <div class="col-3">
                                 <h5 class="f-w-500">Password<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="password" class="form-control d-inline-block inline_setup" placeholder="Enter Password">
+                            <div class="col-9"><input type="text" name="password" class="form-control d-inline-block inline_setup" placeholder="Enter Password" value="{{ old('password') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Confirm Password<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="password_confirmation" class="form-control d-inline-block inline_setup" placeholder="Enter Confirm Password">
+                            <div class="col-9"><input type="text" name="password_confirmation" class="form-control d-inline-block inline_setup" placeholder="Enter Confirm Password" value="{{ old('password_confirmation') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -93,11 +93,11 @@
                             <div class="col-9">
                                 <select id="select" name="role" class="form-control d-inline-block inline_setup">
                                   <option selected="selected">Select Role</option>
-                                  <option value="admin">Admin</option>
-                                  <option value="author">Author</option>
-                                  <option value="editor">Editor</option>
-                                  <option value="contributor">Contributor</option>
-                                  <option value="user">User</option>
+                                  <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+                                  <option value="author" {{ old('role') == 'author' ? 'selected' : '' }}>Author</option>
+                                  <option value="editor" {{ old('role') == 'editor' ? 'selected' : '' }}>Editor</option>
+                                  <option value="contributor" {{ old('role') == 'contributor' ? 'selected' : '' }}>Contributor</option>
+                                  <option value="user" {{ old('role') == 'user' ? 'selected' : '' }}>User</option>
                                 </select>
                             </div>
                         </div>

@@ -28,28 +28,28 @@
                             <div class="col-3">
                                 <h5 class="f-w-500">Working Rate<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="workingRate" class="form-control d-inline-block inline_setup" placeholder="Enter Working Rate Info">
+                            <div class="col-9"><input type="text" name="workingRate" class="form-control d-inline-block inline_setup" placeholder="Enter Working Rate Info" value="{{ old('workingRate') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Extra Charge<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="extraCharge" class="form-control d-inline-block inline_setup" placeholder="Enter Extra Charge">
+                            <div class="col-9"><input type="text" name="extraCharge" class="form-control d-inline-block inline_setup" placeholder="Enter Extra Charge" value="{{ old('extraCharge') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Rate Description<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="rateDescription" class="form-control d-inline-block inline_setup" placeholder="Enter Rate Description">
+                            <div class="col-9"><input type="text" name="rateDescription" class="form-control d-inline-block inline_setup" placeholder="Enter Rate Description" value="{{ old('rateDescription') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Discount<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="discount" class="form-control d-inline-block inline_setup" placeholder="Enter Discount">
+                            <div class="col-9"><input type="text" name="discount" class="form-control d-inline-block inline_setup" placeholder="Enter Discount" value="{{ old('discount') }}">
                             </div>
                         </div>
 

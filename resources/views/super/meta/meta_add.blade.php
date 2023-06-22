@@ -21,28 +21,28 @@
                                     <div class="col-3">
                                         <h5 class="f-w-500">Title<span class="pull-right">:</span></h5>
                                     </div>
-                                    <div class="col-9"><input type="text" name="title" class="form-control d-inline-block inline_setup" placeholder="Enter Title">
+                                    <div class="col-9"><input type="text" name="title" class="form-control d-inline-block inline_setup" placeholder="Enter Title" value="{{ old('title') }}">
                                     </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-3">
                                         <h5 class="f-w-500">Meta Title <span class="pull-right">:</span></h5>
                                     </div>
-                                    <div class="col-9"><input type="text" name="meta_title" class="form-control d-inline-block inline_setup" placeholder="Enter Meta Title">
+                                    <div class="col-9"><input type="text" name="meta_title" class="form-control d-inline-block inline_setup" placeholder="Enter Meta Title" value="{{ old('meta_title') }}">
                                     </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-3">
                                         <h5 class="f-w-500">Description <span class="pull-right">:</span></h5>
                                     </div>
-                                    <div class="col-9"><input type="text" name="description" class="form-control d-inline-block inline_setup" placeholder="Enter Description">
+                                    <div class="col-9"><input type="text" name="description" class="form-control d-inline-block inline_setup" placeholder="Enter Description" value="{{ old('description') }}">
                                     </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-3">
                                         <h5 class="f-w-500">Meta Description <span class="pull-right">:</span></h5>
                                     </div>
-                                    <div class="col-9"><input type="text" name="meta_description" class="form-control d-inline-block inline_setup" placeholder="Enter Meta Description">
+                                    <div class="col-9"><input type="text" name="meta_description" class="form-control d-inline-block inline_setup" placeholder="Enter Meta Description" value="{{ old('meta_description') }}">
                                     </div>
                                 </div>
                                 
@@ -50,14 +50,14 @@
                                     <div class="col-3">
                                         <h5 class="f-w-500">URL <span class="pull-right">:</span></h5>
                                     </div>
-                                    <div class="col-9"><input type="text" name="url" class="form-control d-inline-block inline_setup" placeholder="Enter URL">
+                                    <div class="col-9"><input type="text" name="url" class="form-control d-inline-block inline_setup" placeholder="Enter URL" value="{{ old('url') }}">
                                     </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-3">
                                         <h5 class="f-w-500">Meta Keywords <span class="pull-right">:</span></h5>
                                     </div>
-                                    <div class="col-9"><input type="text" name="meta_keywords" class="form-control d-inline-block inline_setup" placeholder="Enter Meta Keywords">
+                                    <div class="col-9"><input type="text" name="meta_keywords" class="form-control d-inline-block inline_setup" placeholder="Enter Meta Keywords" value="{{ old('meta_keywords') }}">
                                     </div>
                                 </div>
                                 <div class="row mb-2">

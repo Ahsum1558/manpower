@@ -21,7 +21,7 @@
                                         <div class="col-3">
                                             <h5 class="f-w-500">Country Name<span class="pull-right">:</span></h5>
                                         </div>
-                                        <div class="col-9"><input type="text" name="countryname" class="form-control d-inline-block inline_setup" placeholder="Enter Country Name">
+                                        <div class="col-9"><input type="text" name="countryname" class="form-control d-inline-block inline_setup" placeholder="Enter Country Name" value="{{ old('countryname') }}">
                                         </div>
                                     </div>
                                     
@@ -29,7 +29,7 @@
                                         <div class="col-3">
                                             <h5 class="f-w-500">Nationality<span class="pull-right">:</span></h5>
                                         </div>
-                                        <div class="col-9"><input type="text" name="nationality" class="form-control d-inline-block inline_setup" placeholder="Enter Nationality">
+                                        <div class="col-9"><input type="text" name="nationality" class="form-control d-inline-block inline_setup" placeholder="Enter Nationality" value="{{ old('nationality') }}">
                                         </div>
                                     </div>
                                     <div class="row mb-2">

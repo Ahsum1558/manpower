@@ -21,21 +21,21 @@
                                         <div class="col-3">
                                             <h5 class="f-w-500">Link Name<span class="pull-right">:</span></h5>
                                         </div>
-                                        <div class="col-9"><input type="text" name="linkname" class="form-control d-inline-block inline_setup" placeholder="Enter Link Name">
+                                        <div class="col-9"><input type="text" name="linkname" class="form-control d-inline-block inline_setup" placeholder="Enter Link Name" value="{{ old('linkname') }}">
                                         </div>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-3">
                                             <h5 class="f-w-500">Link Type<span class="pull-right">:</span></h5>
                                         </div>
-                                        <div class="col-9"><input type="text" name="linktype" class="form-control d-inline-block inline_setup" placeholder="Enter Link Type">
+                                        <div class="col-9"><input type="text" name="linktype" class="form-control d-inline-block inline_setup" placeholder="Enter Link Type" value="{{ old('linktype') }}">
                                         </div>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-3">
                                             <h5 class="f-w-500">Link Url<span class="pull-right">:</span></h5>
                                         </div>
-                                        <div class="col-9"><input type="text" name="linkurl" class="form-control d-inline-block inline_setup" placeholder="Enter Link Url">
+                                        <div class="col-9"><input type="text" name="linkurl" class="form-control d-inline-block inline_setup" placeholder="Enter Link Url" value="{{ old('linkurl') }}">
                                         </div>
                                     </div>
                                     

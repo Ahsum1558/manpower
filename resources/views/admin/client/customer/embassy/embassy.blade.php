@@ -28,21 +28,21 @@
                             <div class="col-3">
                                 <h5 class="f-w-500">Mofa Number<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="mofa" class="form-control d-inline-block inline_setup" placeholder="Enter Mofa Number">
+                            <div class="col-9"><input type="text" name="mofa" class="form-control d-inline-block inline_setup" placeholder="Enter Mofa Number" value="{{ old('mofa') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Customer Religion<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="religion" class="form-control d-inline-block inline_setup" placeholder="Enter Customer Religion">
+                            <div class="col-9"><input type="text" name="religion" class="form-control d-inline-block inline_setup" placeholder="Enter Customer Religion" value="{{ old('religion') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Customer Age<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="age" class="form-control d-inline-block inline_setup" placeholder="Enter Customer Age">
+                            <div class="col-9"><input type="text" name="age" class="form-control d-inline-block inline_setup" placeholder="Enter Customer Age" value="{{ old('age') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -53,7 +53,7 @@
                                 <select id="visatype" class="form-control d-inline-block inline_setup select2-width-50" name="visaTypeId">
                                     <option>Select Visa Type</option>
                                     @foreach($all_visa_type as $visa_type)
-                                  <option value="{{ $visa_type->id }}">{{ $visa_type->visatype_name }}</option>
+                                  <option value="{{ $visa_type->id }}" {{ old('visaTypeId') == $visa_type->id ? 'selected' : '' }}>{{ $visa_type->visatype_name }}</option>
                                 @endforeach
                                 </select>                        
                             </div>
@@ -66,7 +66,7 @@
                                 <select id="select" name="visaId" class="form-control d-inline-block inline_setup disabling-options">
                                   <option selected="selected">Select Visa No</option>
                                 @foreach($all_visa as $visa)
-                                  <option value="{{ $visa->id }}">{{ $visa->visano_en }}</option>
+                                  <option value="{{ $visa->id }}" {{ old('visaId') == $visa->id ? 'selected' : '' }}>{{ $visa->visano_en }}</option>
                                 @endforeach
                                 </select>
                             </div>
@@ -79,7 +79,7 @@
                                 <select id="id_label_single" name="fieldId" class="form-control d-inline-block inline_setup select2-with-label-single js-states">
                                   <option selected="selected">Select Office Name</option>
                                 @foreach($all_field as $field)
-                                  <option value="{{ $field->id }}">{{ $field->title.' - '.$field->license }}</option>
+                                  <option value="{{ $field->id }}" {{ old('fieldId') == $field->id ? 'selected' : '' }}>{{ $field->title.' - '.$field->license }}</option>
                                 @endforeach
                                 </select>
                             </div>
@@ -92,7 +92,7 @@
                                 <select id="fieldar" class="form-control d-inline-block inline_setup default-placeholder" name="fieldarId">
                                     <option>Select Office Name Arabic</option>
                                 @foreach($all_fieldar as $fieldar)
-                                  <option value="{{ $fieldar->id }}">{{ $fieldar->title_ar.' - '.$fieldar->license_ar }}</option>
+                                  <option value="{{ $fieldar->id }}" {{ old('fieldarId') == $fieldar->id ? 'selected' : '' }}>{{ $fieldar->title_ar.' - '.$fieldar->license_ar }}</option>
                                 @endforeach
                                 </select>                        
                             </div>
@@ -105,7 +105,7 @@
                                 <select id="fieldbn" class="form-control d-inline-block inline_setup dropdown-groups" name="fieldbnId">
                                     <option>Select Office Name Bengali</option>
                                     @foreach($all_fieldbn as $fieldbn)
-                                  <option value="{{ $fieldbn->id }}">{{ $fieldbn->title_bn.' - '.$fieldbn->license_bn }}</option>
+                                  <option value="{{ $fieldbn->id }}" {{ old('fieldbnId') == $fieldbn->id ? 'selected' : '' }}>{{ $fieldbn->title_bn.' - '.$fieldbn->license_bn }}</option>
                                 @endforeach
                                 </select>                        
                             </div>
@@ -115,7 +115,7 @@
                             <div class="col-3">
                                 <h5 class="f-w-500">Embassy Submission Date<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="date" name="submissionDate" class="form-control d-inline-block inline_setup">
+                            <div class="col-9"><input type="date" name="submissionDate" class="form-control d-inline-block inline_setup" value="{{ old('submissionDate') }}">
                             </div>
                         </div>
                     </div>

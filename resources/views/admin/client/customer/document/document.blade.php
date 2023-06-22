@@ -28,7 +28,7 @@
                                 <h5 class="f-w-500">Police Clearance Certificate<span class="pull-right">:</span></h5>
                             </div>
                             <div class="col-9">
-                                <input type="text" name="pc" class="form-control d-inline-block inline_setup" placeholder="Enter Police Clearance Certificate Info">
+                                <input type="text" name="pc" class="form-control d-inline-block inline_setup" placeholder="Enter Police Clearance Certificate Info" value="{{ old('pc') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -36,7 +36,7 @@
                                 <h5 class="f-w-500">License<span class="pull-right">:</span></h5>
                             </div>
                             <div class="col-9">
-                                <input type="text" name="license" class="form-control d-inline-block inline_setup" placeholder="Enter Driving License">
+                                <input type="text" name="license" class="form-control d-inline-block inline_setup" placeholder="Enter Driving License" value="{{ old('license') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -44,7 +44,7 @@
                                 <h5 class="f-w-500">Training Certificate<span class="pull-right">:</span></h5>
                             </div>
                             <div class="col-9">
-                                <input type="text" name="tc" class="form-control d-inline-block inline_setup" placeholder="Enter Training Certificate Info">
+                                <input type="text" name="tc" class="form-control d-inline-block inline_setup" placeholder="Enter Training Certificate Info" value="{{ old('tc') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -52,7 +52,7 @@
                                 <h5 class="f-w-500">Certificate<span class="pull-right">:</span></h5>
                             </div>
                             <div class="col-9">
-                                <input type="text" name="certificate" class="form-control d-inline-block inline_setup" placeholder="Enter Certificate Info">
+                                <input type="text" name="certificate" class="form-control d-inline-block inline_setup" placeholder="Enter Certificate Info" value="{{ old('certificate') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -60,7 +60,7 @@
                                 <h5 class="f-w-500">Musaned<span class="pull-right">:</span></h5>
                             </div>
                             <div class="col-9">
-                                <input type="text" name="musaned" class="form-control d-inline-block inline_setup" placeholder="Enter Musaned Info">
+                                <input type="text" name="musaned" class="form-control d-inline-block inline_setup" placeholder="Enter Musaned Info" value="{{ old('musaned') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -68,7 +68,7 @@
                                 <h5 class="f-w-500">Finger<span class="pull-right">:</span></h5>
                             </div>
                             <div class="col-9">
-                                <input type="text" name="finger" class="form-control d-inline-block inline_setup" placeholder="Enter Finger Info">
+                                <input type="text" name="finger" class="form-control d-inline-block inline_setup" placeholder="Enter Finger Info" value="{{ old('finger') }}">
                             </div>
                         </div>
                     </div>

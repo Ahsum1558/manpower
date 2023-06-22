@@ -21,7 +21,7 @@
                                         <div class="col-3">
                                             <h5 class="f-w-500">Visa Type<span class="pull-right">:</span></h5>
                                         </div>
-                                        <div class="col-9"><input type="text" name="visatype_name" class="form-control d-inline-block inline_setup" placeholder="Enter Visa Type">
+                                        <div class="col-9"><input type="text" name="visatype_name" class="form-control d-inline-block inline_setup" placeholder="Enter Visa Type" value="{{ old('visatype_name') }}">
                                         </div>
                                     </div>
                                     

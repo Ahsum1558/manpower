@@ -28,49 +28,49 @@
                             <div class="col-3">
                                 <h5 class="f-w-500">Father Name<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="father" class="form-control d-inline-block inline_setup" placeholder="Enter Father Name">
+                            <div class="col-9"><input type="text" name="father" class="form-control d-inline-block inline_setup" placeholder="Enter Father Name" value="{{ old('father') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Mother Name<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="mother" class="form-control d-inline-block inline_setup" placeholder="Enter Mother Name">
+                            <div class="col-9"><input type="text" name="mother" class="form-control d-inline-block inline_setup" placeholder="Enter Mother Name" value="{{ old('mother') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Spouse Name<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="spouse" class="form-control d-inline-block inline_setup" placeholder="Enter Spouse Name">
+                            <div class="col-9"><input type="text" name="spouse" class="form-control d-inline-block inline_setup" placeholder="Enter Spouse Name" value="{{ old('spouse') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Passport Issue Date<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="date" name="passportIssue" class="form-control d-inline-block inline_setup" placeholder="Enter Passport Issue Date">
+                            <div class="col-9"><input type="date" name="passportIssue" class="form-control d-inline-block inline_setup" value="{{ old('passportIssue') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Passport Expiry Date<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="date" name="passportExpiry" class="form-control d-inline-block inline_setup" placeholder="Enter Passport Expiry Date">
+                            <div class="col-9"><input type="date" name="passportExpiry" class="form-control d-inline-block inline_setup" value="{{ old('passportExpiry') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">NID Number<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="nid" class="form-control d-inline-block inline_setup" placeholder="Enter NID Number">
+                            <div class="col-9"><input type="text" name="nid" class="form-control d-inline-block inline_setup" placeholder="Enter NID Number" value="{{ old('nid') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Date of Birth<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="date" name="dateOfBirth" class="form-control d-inline-block inline_setup" placeholder="Enter Date of Birth">
+                            <div class="col-9"><input type="date" name="dateOfBirth" class="form-control d-inline-block inline_setup" value="{{ old('dateOfBirth') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -80,8 +80,8 @@
                             <div class="col-9">
                                 <select id="marital" name="maritalStatus" class="form-control d-inline-block inline_setup">
                                   <option selected="selected">Select Type</option>
-                                  <option value="1">Single</option>
-                                  <option value="2">Married</option>
+                                  <option value="1" {{ old('maritalStatus') == 1 ? 'selected' : '' }}>Single</option>
+                                  <option value="2" {{ old('maritalStatus') == 2 ? 'selected' : '' }}>Married</option>
                             </select>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                                 <select id="issueselect" class="form-control d-inline-block inline_setup select2-width-50" name="issuePlaceId">
                                     <option>Select Place of Issue</option>
                                     @foreach($all_issue as $issue)
-                                    <option value="{{ $issue->id }}">{{ $issue->issuePlace }}</option>
+                                    <option value="{{ $issue->id }}" {{ old('issuePlaceId') == $issue->id ? 'selected' : '' }}>{{ $issue->issuePlace }}</option>
                                 @endforeach
                                 </select>                        
                             </div>
@@ -102,7 +102,7 @@
                             <div class="col-3">
                                 <h5 class="f-w-500">Address<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="address" class="form-control d-inline-block inline_setup" placeholder="Enter Address">
+                            <div class="col-9"><input type="text" name="address" class="form-control d-inline-block inline_setup" placeholder="Enter Address" value="{{ old('address') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -113,7 +113,7 @@
                                 <select id="select" name="countryId" class="form-control d-inline-block inline_setup disabling-options">
                                   <option selected="selected">Select Country</option>
                                 @foreach($all_country as $country)
-                                  <option value="{{ $country->id }}">{{ $country->countryname }}</option>
+                                  <option value="{{ $country->id }}" {{ old('countryId') == $country->id ? 'selected' : '' }}>{{ $country->countryname }}</option>
                                 @endforeach
                                 </select>
                             </div>

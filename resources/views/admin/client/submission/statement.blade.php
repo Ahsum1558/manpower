@@ -31,7 +31,7 @@
                                 <select id="id_label_single" name="submissionId" class="form-control d-inline-block inline_setup select2-with-label-single js-states">
                                   <option selected="selected">Select Submission Date</option>
                                   @foreach($all_submission as $submission)
-                                  <option value="{{ $submission->id }}">{{ date('d-M-Y', strtotime($submission->submissionDate)) }}</option>
+                                  <option value="{{ $submission->id }}" {{ old('submissionId') == $submission->id ? 'selected' : '' }}>{{ date('d-M-Y', strtotime($submission->submissionDate)) }}</option>
                                 @endforeach
                                 </select>
                             </div>
@@ -43,13 +43,13 @@
                             <div class="col-9">
                                 <select id="submission" name="submissionType" class="form-control d-inline-block inline_setup">
                                   <option selected="selected">Select Submission Type</option>
-                                  <option value="1">New Submission</option>
-                                  <option value="2">Visa Extension</option>
-                                  <option value="3">Visa Renew</option>
-                                  <option value="4">Visa Reissue</option>
-                                  <option value="5">Replacement</option>
-                                  <option value="6">Cancel</option>
-                                  <option value="7">N/A</option>
+                                  <option value="1" {{ old('submission') == 1 ? 'selected' : '' }}>New Submission</option>
+                                  <option value="2" {{ old('submission') == 2 ? 'selected' : '' }}>Visa Extension</option>
+                                  <option value="3" {{ old('submission') == 3 ? 'selected' : '' }}>Visa Renew</option>
+                                  <option value="4" {{ old('submission') == 4 ? 'selected' : '' }}>Visa Reissue</option>
+                                  <option value="5" {{ old('submission') == 5 ? 'selected' : '' }}>Replacement</option>
+                                  <option value="6" {{ old('submission') == 6 ? 'selected' : '' }}>Cancel</option>
+                                  <option value="7" {{ old('submission') == 7 ? 'selected' : '' }}>N/A</option>
                                 </select>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                                 <h5 class="f-w-500">Ordinal<span class="pull-right">:</span></h5>
                             </div>
                             <div class="col-9">
-                                <input type="text" name="ordinal" class="form-control d-inline-block inline_setup" placeholder="Enter Statment Serial Number">
+                                <input type="text" name="ordinal" class="form-control d-inline-block inline_setup" placeholder="Enter Statment Serial Number" value="{{ old('ordinal') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -66,7 +66,7 @@
                                 <h5 class="f-w-500">Hijri Year in Visa<span class="pull-right">:</span></h5>
                             </div>
                             <div class="col-9">
-                                <input type="text" name="visaYear" class="form-control d-inline-block inline_setup" placeholder="Enter Hijri Year in Visa">
+                                <input type="text" name="visaYear" class="form-control d-inline-block inline_setup" placeholder="Enter Hijri Year in Visa" value="{{ old('visaYear') }}">
                             </div>
                         </div>
                         
