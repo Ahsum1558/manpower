@@ -262,12 +262,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/submission/statement/{id}', [SubmissionCustomerController::class, 'statement'])->name('admin.submission.statement');
     Route::post('/submission/storeStatement/{id}', [SubmissionCustomerController::class, 'storeStatement'])->name('admin.submission.storeStatement');
 
+    // Customer Submission Display
+    Route::get('/submission/display/{id}', [SubmissionCustomerController::class, 'display'])->name('admin.submission.display');
+
     // Customer Submission Update
     Route::get('/submission/editStatement/{id}', [SubmissionCustomerController::class, 'editStatement'])->name('admin.submission.editStatement');
     Route::post('/submission/updateStatement/{id}', [SubmissionCustomerController::class, 'updateStatement'])->name('admin.submission.updateStatement');
-
-    // Customer Submission Display
-    Route::get('/submission/display/{id}', [SubmissionCustomerController::class, 'display'])->name('admin.submission.display');
 
     // Remove Customer From Embassy Submission List
     Route::get('/submission/remove/{id}', [SubmissionCustomerController::class, 'remove'])->name('admin.submission.remove');

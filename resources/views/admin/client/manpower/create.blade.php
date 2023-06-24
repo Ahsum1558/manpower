@@ -7,7 +7,7 @@
     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="javascript:void(0)">Customer</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Submission Info</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Manpower Info</a></li>
             <li class="breadcrumb-item active"><a href="javascript:void(0)">Create</a></li>
         </ol>
     </div>
@@ -16,11 +16,11 @@
     <div class="col-12">
         <div class="card card_line">
             <div class="card-header card_headline">
-                <h4 class="card-title headline">Create New Submission</h4>
+                <h4 class="card-title headline">Create New Manpower</h4>
             </div>
             <div class="card-body">
 @include('admin.includes.alert')
-                <form action="{{ route('admin.submission.store') }}" class="form-group" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.manpower.store') }}" class="form-group" method="POST" enctype="multipart/form-data">
                      @csrf
                     <div class="profile-personal-info">
                
@@ -68,9 +68,16 @@
                         
                         <div class="row mb-2">
                             <div class="col-3">
-                                <h5 class="f-w-500">Submission Date<span class="pull-right">:</span></h5>
+                                <h5 class="f-w-500">Manpower Date<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="date" name="submissionDate" class="form-control d-inline-block inline_setup" value="{{ old('submissionDate') }}">
+                            <div class="col-9"><input type="date" name="manpowerDate" class="form-control d-inline-block inline_setup" value="{{ old('manpowerDate') }}">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <h5 class="f-w-500">Put Up List<span class="pull-right">:</span></h5>
+                            </div>
+                            <div class="col-9"><input type="text" name="putupSl" class="form-control d-inline-block inline_setup" placeholder="Enter Put Up List" value="{{ old('putupSl') }}">
                             </div>
                         </div>
                         
@@ -92,7 +99,7 @@
                         <div class="col-3"></div>
                         <div class="col-9 mybtn">
                             <button type="submit" name="add" class="form-control inline_setup btn submitbtn text-uppercase">Add</button>
-                            <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase pull-right" href="{{ route('admin.submission') }}">Back</a>
+                            <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase pull-right" href="{{ route('admin.manpower') }}">Back</a>
                         </div>
                     </div>
                 </form>
