@@ -148,10 +148,10 @@ class CustomerPdfController extends Controller
            return ($implode_to_Rupees ? $implode_to_Rupees . '' : '') . $get_paise;
     }
     protected function getMpdfHeader(){
-        $data_info = $mpdf = new \Mpdf\Mpdf();
+        $mpdf = new \Mpdf\Mpdf();
         $mpdf->autoScriptToLang = true;
         $mpdf->autoLangToFont = true;
-        return $data_info;
+        return $mpdf;
     }
 
     protected function getDetails($id){

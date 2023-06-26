@@ -45,6 +45,7 @@
                                 <a class="view_option" href="#customerView{{ $customer->id }}" data-toggle="modal"><i class="fas fa-eye"></i><span>View Details</span></a>
                                 <a class="edit_option" href="{{ route('admin.manpower.editStatement', ['id'=>$customer->id]) }}"><i class="fas fa-edit"></i><span>Update Customer Manpower Info</span></a>
                                 <a class="edit_option bg-info" href="{{ route('admin.manpower.editFinger', ['id'=>$customer->id]) }}"><i class="fas fa-edit"></i><span>Update Customer Finger</span></a>
+                                <a class="view_option" target="_blank" href="{{ route('admin.manpower.printContact', ['id'=>$customer->id]) }}"><i class="fa fa-print"></i><span>Print Contract</span></a>
                         @if($customer->manpowerlist == 1)
                             @if(Auth::check() && (Auth::user()->role == 'admin'))
                               <a class="delete_option" href="#removeManpower{{ $customer->id }}" data-toggle="modal"><i class="fas fa-trash"></i><span>Remove From List</span></a>

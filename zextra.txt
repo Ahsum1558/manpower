@@ -87,3 +87,4 @@ php artisan make:model ManpowerSubmission -m
 php artisan make:controller Manpower/ManpowerSubmissionController --resource
 php artisan make:model CustomerManpower -m
 php artisan make:controller Manpower/CustomerManpowerController --resource
+php artisan make:controller Manpower/ManpowerPdfController

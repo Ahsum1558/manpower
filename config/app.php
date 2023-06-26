@@ -171,6 +171,7 @@ return [
         App\Providers\Custom\SuperServiceProvider::class,
         App\Providers\Custom\AdminServiceProvider::class,
         Milon\Barcode\BarcodeServiceProvider::class,
+        Rakibhstu\Banglanumber\NumberToBanglaServiceProvider::class,
     ])->toArray(),
 
     /*

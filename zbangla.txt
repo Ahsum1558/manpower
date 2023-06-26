@@ -1,0 +1,63 @@
+composer require rakibhstu/number-to-bangla
+
+Configuration
+If Laravel > v7.~, no need to add provider
+
+Add the following to your providers array in config/app.php:
+
+'providers' => [
+    // ...
+
+    Rakibhstu\Banglanumber\NumberToBanglaServiceProvider::class,
+],
+Usage
+Here you can see some example of just how simple this package is to use.
+
+use Rakibhstu\Banglanumber\NumberToBangla;
+
+$numto = new NumberToBangla();
+
+// If you want to convert any number (Integer of Float) into Bangla Word
+$text = $numto->bnWord(13459);    // Output:  তেরো হাজার চার শত ঊনষাট
+$text = $numto->bnWord(1345.05);  // Output:  এক হাজার তিন শত পঁয়তাল্লিশ দশমিক শূন্য পাঁচ
+Number to Bangla Word
+Use bnWord() to convert any number into bangla word. Example,
+
+// Integer
+$text = $numto->bnWord(13459);    // Output:  তেরো হাজার চার শত ঊনষাট
+
+// Float
+$text = $numto->bnWord(1345.05);    // Output: এক হাজার তিন শত পঁয়তাল্লিশ দশমিক শূন্য পাঁচ
+$text = $numto->bnWord(345675.105); // Output: তিন লক্ষ পঁয়তাল্লিশ হাজার ছয় শত পঁচাত্তর দশমিক এক শূন্য পাঁচ
+Number to Bangla Money Format
+Use bnMoney() to convert any number into bangla money format with 'টাকা' & 'পয়সা'. Example,
+
+$text = $numto->bnMoney(13459);     // Output:  তেরো হাজার চার শত ঊনষাট টাকা
+$text = $numto->bnMoney(13459.05);  // Output:  তেরো হাজার চার শত ঊনষাট টাকা পাঁচ পয়সা
+$text = $numto->bnMoney(13459.5);   // Output:  তেরো হাজার চার শত ঊনষাট টাকা পঞ্চাশ পয়সা
+Number to Bangla Number
+Use bnNum() to convert any number into bangla number. Example,
+
+$text = $numto->bnNum(13459);    // Output:  ১৩৪৫৯
+$text = $numto->bnNum(2334.768); // Output:  ২৩৩৪.৭৬৮
+Number to Month Name in Bangla
+Use bnMonth() to convert any number into bangla number. Input Limit (1-12) Example,
+
+$text = $numto->bnMonth(1);    // Output:  জানুয়ারি 
+$text = $numto->bnMonth(4);    // Output:  এপ্রিল
+Comma separated number
+Use bnCommaLakh() to convert any number into bangla number. Example,
+
+$text = $numto->bnCommaLakh(12121212);    // Output:  ১,২১,২১,২১২
+
+
+
+
+$mpdf = new Mpdf([
+    'default_font_size' => 0,
+    'mode' => 'utf-8',
+    'default_font' => 'SolaimanLipi',
+    'autoScriptToLang' => true,
+    'autoLangToFont' => true,
+]);
+return $mpdf;

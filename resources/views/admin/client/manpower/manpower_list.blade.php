@@ -36,7 +36,7 @@
             @elseif($manpower->status == 0)
               <a class="edit_option" href="#activeId{{ $manpower->id }}" data-toggle="modal"><i class="fas fa-caret-square-up"></i><span>Set Active</span></a>
             @endif
-              <a class="view_option" target="_blank" href=""><i class="fa fa-print"></i><span>Print</span></a>
+              <a class="view_option" target="_blank" href="{{ route('admin.manpower.printPutup', ['id'=>$manpower->id]) }}"><i class="fa fa-print"></i><span>Print Put Up List</span></a>
             @if(Auth::check() && (Auth::user()->role == 'admin'))
               <a class="delete_option" href="#delManpower{{ $manpower->id }}" data-toggle="modal"><i class="fas fa-trash"></i><span>Delete</span></a>
             @endif

@@ -18,6 +18,7 @@ use App\Http\Controllers\Visa\LinkController;
 use App\Http\Controllers\Manpower\ManpowerSubmissionController;
 use App\Http\Controllers\Manpower\CustomerManpowerController;
 use App\Http\Controllers\Manpower\BmetPaymentController;
+use App\Http\Controllers\Manpower\ManpowerPdfController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -64,9 +65,6 @@ Route::middleware(['auth'])->group(function () {
 
     // Manpower Active
     Route::post('/manpower/active/{id}', [ManpowerSubmissionController::class, 'active'])->name('admin.manpower.active');
-
-    // Fille Print
-    // Route::get('/manpower/print/{id}', [CustomerPdfController::class, 'SubmissionList'])->name('admin.manpower.print');
 });
 // Manpower Area End
 
@@ -131,3 +129,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/manpower/remove/{id}', [CustomerManpowerController::class, 'remove'])->name('admin.manpower.remove');
 });
 // Customer Manpower Area End
+
+// Manpower Print Area Start
+Route::middleware(['auth'])->group(function () {
+    // Put Up List
+    Route::get('/manpower/printPutup/{id}', [ManpowerPdfController::class, 'printPutup'])->name('admin.manpower.printPutup');
+
+    // Customer Contact Paper
+    Route::get('/manpower/printContact/{id}', [ManpowerPdfController::class, 'printContact'])->name('admin.manpower.printContact');
+});
+// Manpower Print Area End
