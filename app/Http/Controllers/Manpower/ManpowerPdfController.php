@@ -92,6 +92,29 @@ class ManpowerPdfController extends Controller
         }
     }
 
+    public function printLetter($id)
+    {
+        $numto = new NumberToBangla();
+        $mpdf = $this->getMpdfHeader();
+        $manpower_data = $this->getDetails($id);
+        $total_customer = CustomerManpower::where('manpowerSubId', $id)->count();
+        $license_expiry = date('d/m/Y', strtotime($manpower_data[0]->licenseExpiry));
+        if($manpower_data->count() > 0 && $manpower_data[0]->status == 1){
+            $output = view('admin.client.manpower.pdf.printLetter', [
+            'manpower_data'=>$manpower_data,
+            'numto'=>$numto,
+            'total_customer'=>$total_customer,
+            'license_expiry'=>$license_expiry,
+        ])->render();
+            $mpdf->WriteHTML($output);
+            $filename = date('d-M-Y', strtotime($manpower_data[0]->manpowerDate)).'-Application.pdf';
+            $mpdf->Output($filename, 'I');
+            exit;
+        }else{
+            return redirect('/manpower');
+        }
+    }
+
     protected function getMpdfHeader(){
         $mpdf = new \Mpdf\Mpdf();
         $mpdf->autoScriptToLang = true;
@@ -105,7 +128,8 @@ class ManpowerPdfController extends Controller
             ->where('manpower_submissions.id', $id)
             ->leftJoin('fieldars', 'manpower_submissions.fieldarId', '=', 'fieldars.id')
             ->leftJoin('fieldbns', 'manpower_submissions.fieldbnId', '=', 'fieldbns.id')
-            ->select('manpower_submissions.*', 'fields.title', 'fields.license', 'fields.licenseExpiry', 'fields.address', 'fields.proprietor', 'fields.proprietortitle', 'fieldars.title_ar', 'fieldars.license_ar', 'fieldars.address_ar', 'fieldars.proprietor_ar', 'fieldars.proprietortitle_ar', 'fieldbns.title_bn', 'fieldbns.license_bn', 'fieldbns.address_bn', 'fieldbns.proprietor_bn', 'fieldbns.proprietortitle_bn', 'fieldbns.description_bn')
+            ->leftJoin('users', 'manpower_submissions.userId', '=', 'users.id')
+            ->select('manpower_submissions.*', 'fields.title', 'fields.license', 'fields.licenseExpiry', 'fields.address', 'fields.proprietor', 'fields.proprietortitle', 'fields.cellphone', 'fields.helpline', 'fieldars.title_ar', 'fieldars.license_ar', 'fieldars.address_ar', 'fieldars.proprietor_ar', 'fieldars.proprietortitle_ar', 'fieldbns.title_bn', 'fieldbns.license_bn', 'fieldbns.address_bn', 'fieldbns.cellphone_bn', 'fieldbns.proprietor_bn', 'fieldbns.proprietortitle_bn', 'fieldbns.description_bn')
             ->get();
         return $data_details;
     }

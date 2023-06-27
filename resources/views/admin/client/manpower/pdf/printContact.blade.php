@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embassy File</title>
+    <title>Contract Page</title>
     <link href="{{ asset('public/admin/assets/css/pdf/embassyprint.css') }}" rel="stylesheet">
     <link href="{{ asset('public/admin/assets/css/fonts.css') }}" rel="stylesheet">
 
