@@ -327,6 +327,8 @@ class ManpowerSubmissionController extends Controller
             ->leftJoin('manpower_submissions', 'customer_manpowers.manpowerSubId', '=', 'manpower_submissions.id')
             ->leftJoin('users', 'customers.userId', '=', 'users.id')
             ->select('customers.*', 'delegates.agentname', 'delegates.agentsl', 'delegates.agentbook', 'districts.districtname', 'visatrades.visatrade_name', 'users.name as receiver', 'visas.visano_en', 'visas.visano_ar', 'visas.sponsorid_en', 'visas.sponsorid_ar', 'visas.sponsorname_en', 'visas.sponsorname_ar', 'visas.visa_date', 'visas.visa_address', 'visas.occupation_en', 'visas.occupation_ar', 'visas.delegation_no', 'visas.delegation_date', 'visas.delegated_visa', 'visas.visa_duration', 'customer_visas.stamped_visano', 'customer_visas.visa_issue', 'customer_visas.visa_expiry', 'customer_visas.stay_duration', 'countries.countryname as foreign_country', 'countries.nationality as foreign_national', 'customer_manpowers.customerPhone', 'customer_manpowers.ordinal', 'customer_manpowers.fatherPhone', 'customer_manpowers.motherPhone', 'customer_manpowers.certificateNo', 'customer_manpowers.batchNo', 'customer_manpowers.rollNo', 'customer_manpowers.ttcname', 'customer_manpowers.accountNo', 'customer_manpowers.bankname', 'customer_manpowers.bankbranch', 'customer_manpowers.medicalCenter', 'customer_manpowers.immigrationCosts', 'customer_manpowers.finger_regno', 'customer_manpowers.salary', 'manpower_submissions.manpowerDate', 'manpower_submissions.putupSl')
+            ->orderBy('manpower_submissions.manpowerDate', 'desc')
+            ->orderBy('customer_manpowers.ordinal', 'desc')
             ->orderBy('customers.customersl', 'desc')
             ->get();
         return $data_customer;

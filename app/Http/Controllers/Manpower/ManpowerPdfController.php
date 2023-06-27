@@ -112,7 +112,6 @@ class ManpowerPdfController extends Controller
 
     protected function getCustomersDetails($id){
         $data_customerDetails = DB::table('customers')
-    ->leftJoin('delegates', 'customers.agentId', '=', 'delegates.id')
     ->leftJoin('districts', 'customers.birthPlace', '=', 'districts.id')
     ->leftJoin('visatrades', 'customers.tradeId', '=', 'visatrades.id')
     ->leftJoin('customer_embassies', 'customers.id', '=', 'customer_embassies.customerId')
@@ -121,11 +120,9 @@ class ManpowerPdfController extends Controller
     ->leftJoin('customer_manpowers', 'customers.id', '=', 'customer_manpowers.customerId')
     ->leftJoin('visas', 'customer_embassies.visaId', '=', 'visas.id')
     ->leftJoin('manpower_submissions', 'customer_manpowers.manpowerSubId', '=', 'manpower_submissions.id')
-    ->leftJoin('users', 'customers.userId', '=', 'users.id')
     ->select(
-        'customers.*', 'delegates.agentname', 'delegates.agentsl',
-        'delegates.agentbook', 'districts.districtname',
-        'visatrades.visatrade_name', 'users.name as receiver',
+        'customers.*', 'districts.districtname',
+        'visatrades.visatrade_name',
         'visas.visano_en', 'visas.visano_ar', 'visas.sponsorid_en',
         'visas.sponsorid_ar', 'visas.sponsorname_en',
         'visas.sponsorname_ar', 'visas.visa_date',
@@ -166,7 +163,6 @@ class ManpowerPdfController extends Controller
 
     protected function getCustomersInfo($id){
         $data_customerDetails = DB::table('customers')
-    ->leftJoin('delegates', 'customers.agentId', '=', 'delegates.id')
     ->leftJoin('districts', 'customers.birthPlace', '=', 'districts.id')
     ->leftJoin('visatrades', 'customers.tradeId', '=', 'visatrades.id')
     ->leftJoin('customer_embassies', 'customers.id', '=', 'customer_embassies.customerId')
@@ -174,12 +170,9 @@ class ManpowerPdfController extends Controller
     ->leftJoin('customer_visas', 'customers.id', '=', 'customer_visas.customerId')
     ->leftJoin('countries', 'customer_passports.countryId', '=', 'countries.id')
     ->leftJoin('visas', 'customer_embassies.visaId', '=', 'visas.id')
-    ->leftJoin('users', 'customers.userId', '=', 'users.id')
     ->select(
-        'customers.*', 'delegates.agentname', 'delegates.agentsl',
-        'delegates.agentbook', 'districts.districtname',
-        'visatrades.visatrade_name', 'users.name as receiver',
-        'visas.visano_en', 'visas.visano_ar', 'visas.sponsorid_en',
+        'customers.*', 'districts.districtname',
+        'visatrades.visatrade_name', 'visas.visano_en', 'visas.visano_ar', 'visas.sponsorid_en',
         'visas.sponsorid_ar', 'visas.sponsorname_en',
         'visas.sponsorname_ar', 'visas.visa_date',
         'visas.visa_address', 'visas.occupation_en',
