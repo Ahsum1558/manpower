@@ -115,6 +115,34 @@ class ManpowerPdfController extends Controller
         }
     }
 
+    public function printAgreement($id)
+    {
+        $numto = new NumberToBangla();
+        $mpdf = $this->getMpdfHeader();
+        $manpower_agreement = $this->getDetails($id);
+        $manpower_customers = $this->getCustomersDetails($id)->where('status','=',1);
+        $manpower_payment = BmetPayment::where('manpowerSubId', $id)->where('status','=',1)->get();
+        $total_customer = CustomerManpower::where('manpowerSubId', $id)->count();
+        $license_expiry = date('d/m/Y', strtotime($manpower_agreement[0]->licenseExpiry));
+
+        if($manpower_agreement->count() > 0 && $manpower_agreement[0]->status == 1){
+            $output = view('admin.client.manpower.pdf.printAgreement', [
+            'manpower_agreement'=>$manpower_agreement,
+            'manpower_customers'=>$manpower_customers,
+            'manpower_payment'=>$manpower_payment,
+            'numto'=>$numto,
+            'total_customer'=>$total_customer,
+            'license_expiry'=>$license_expiry,
+        ])->render();
+            $mpdf->WriteHTML($output);
+            $filename = date('d-M-Y', strtotime($manpower_agreement[0]->manpowerDate)).'-Agreement.pdf';
+            $mpdf->Output($filename, 'I');
+            exit;
+        }else{
+            return redirect('/manpower');
+        }
+    }
+
     protected function getMpdfHeader(){
         $mpdf = new \Mpdf\Mpdf();
         $mpdf->autoScriptToLang = true;
