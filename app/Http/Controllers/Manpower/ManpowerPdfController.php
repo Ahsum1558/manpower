@@ -115,19 +115,19 @@ class ManpowerPdfController extends Controller
         }
     }
 
-    public function printAgreement($id)
+    public function printUndertaking($id)
     {
         $numto = new NumberToBangla();
-        $mpdf = $this->getMpdfHeader();
-        $manpower_agreement = $this->getDetails($id);
+        $mpdf = $this->getMpdfHeaderLegal();
+        $manpower_undertaking = $this->getDetails($id);
         $manpower_customers = $this->getCustomersDetails($id)->where('status','=',1);
         $manpower_payment = BmetPayment::where('manpowerSubId', $id)->where('status','=',1)->get();
         $total_customer = CustomerManpower::where('manpowerSubId', $id)->count();
-        $license_expiry = date('d/m/Y', strtotime($manpower_agreement[0]->licenseExpiry));
+        $license_expiry = date('d/m/Y', strtotime($manpower_undertaking[0]->licenseExpiry));
 
-        if($manpower_agreement->count() > 0 && $manpower_agreement[0]->status == 1){
-            $output = view('admin.client.manpower.pdf.printAgreement', [
-            'manpower_agreement'=>$manpower_agreement,
+        if($manpower_undertaking->count() > 0 && $manpower_undertaking[0]->status == 1){
+            $output = view('admin.client.manpower.pdf.printUndertaking', [
+            'manpower_undertaking'=>$manpower_undertaking,
             'manpower_customers'=>$manpower_customers,
             'manpower_payment'=>$manpower_payment,
             'numto'=>$numto,
@@ -135,7 +135,7 @@ class ManpowerPdfController extends Controller
             'license_expiry'=>$license_expiry,
         ])->render();
             $mpdf->WriteHTML($output);
-            $filename = date('d-M-Y', strtotime($manpower_agreement[0]->manpowerDate)).'-Agreement.pdf';
+            $filename = date('d-M-Y', strtotime($manpower_undertaking[0]->manpowerDate)).'-Undertaking.pdf';
             $mpdf->Output($filename, 'I');
             exit;
         }else{
@@ -145,6 +145,13 @@ class ManpowerPdfController extends Controller
 
     protected function getMpdfHeader(){
         $mpdf = new \Mpdf\Mpdf();
+        $mpdf->autoScriptToLang = true;
+        $mpdf->autoLangToFont = true;
+        return $mpdf;
+    }
+
+    protected function getMpdfHeaderLegal(){
+        $mpdf = new \Mpdf\Mpdf(['format' => 'Legal']);
         $mpdf->autoScriptToLang = true;
         $mpdf->autoLangToFont = true;
         return $mpdf;

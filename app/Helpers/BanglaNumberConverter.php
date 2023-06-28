@@ -25,7 +25,6 @@ class BanglaNumberConverter
         return $convertedNumber;
     }
 
-
     public function convertNumberEmbassy(float $amount){
         $amount_after_decimal = round($amount - ($num = floor($amount)), 2) * 100;
         // Check if there is any number after decimal

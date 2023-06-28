@@ -1,3 +1,6 @@
+@php
+    $data = app('App\Helpers\BanglaNumberConverter');
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +12,6 @@
 <body>
 
 <div class="app_wrapper clear">
-@php
-    $data = app('App\Helpers\BanglaNumberConverter');
-@endphp
     <div class="main_content clear">
         <div class="primary_putup">
             <div class="putup_starting">

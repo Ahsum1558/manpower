@@ -140,5 +140,8 @@ Route::middleware(['auth'])->group(function () {
 
     // Customer Application Letter
     Route::get('/manpower/printLetter/{id}', [ManpowerPdfController::class, 'printLetter'])->name('admin.manpower.printLetter');
+
+    // Customer Undertaking
+    Route::get('/manpower/printUndertaking/{id}', [ManpowerPdfController::class, 'printUndertaking'])->name('admin.manpower.printUndertaking');
 });
 // Manpower Print Area End

@@ -38,6 +38,7 @@
             @endif
               <a class="view_option" target="_blank" href="{{ route('admin.manpower.printPutup', ['id'=>$manpower->id]) }}"><i class="fa fa-print"></i><span>Print Put Up List</span></a>
               <a class="view_option bg-primary" target="_blank" href="{{ route('admin.manpower.printLetter', ['id'=>$manpower->id]) }}"><i class="fa fa-print"></i><span>Print Application Letter</span></a>
+              <a class="view_option bg-info" target="_blank" href="{{ route('admin.manpower.printUndertaking', ['id'=>$manpower->id]) }}"><i class="fa fa-print"></i><span>Print Undertaking</span></a>
             @if(Auth::check() && (Auth::user()->role == 'admin'))
               <a class="delete_option" href="#delManpower{{ $manpower->id }}" data-toggle="modal"><i class="fas fa-trash"></i><span>Delete</span></a>
             @endif
