@@ -92,6 +92,57 @@ class ManpowerPdfController extends Controller
         }
     }
 
+    public function printLetter($id)
+    {
+        $numto = new NumberToBangla();
+        $mpdf = $this->getMpdfHeader();
+        $manpower_data = $this->getDetails($id);
+        $total_customer = CustomerManpower::where('manpowerSubId', $id)->count();
+        $license_expiry = date('d/m/Y', strtotime($manpower_data[0]->licenseExpiry));
+        if($manpower_data->count() > 0 && $manpower_data[0]->status == 1){
+            $output = view('admin.client.manpower.pdf.printLetter', [
+            'manpower_data'=>$manpower_data,
+            'numto'=>$numto,
+            'total_customer'=>$total_customer,
+            'license_expiry'=>$license_expiry,
+        ])->render();
+            $mpdf->WriteHTML($output);
+            $filename = date('d-M-Y', strtotime($manpower_data[0]->manpowerDate)).'-Application.pdf';
+            $mpdf->Output($filename, 'I');
+            exit;
+        }else{
+            return redirect('/manpower');
+        }
+    }
+
+    public function printAgreement($id)
+    {
+        $numto = new NumberToBangla();
+        $mpdf = $this->getMpdfHeader();
+        $manpower_agreement = $this->getDetails($id);
+        $manpower_customers = $this->getCustomersDetails($id)->where('status','=',1);
+        $manpower_payment = BmetPayment::where('manpowerSubId', $id)->where('status','=',1)->get();
+        $total_customer = CustomerManpower::where('manpowerSubId', $id)->count();
+        $license_expiry = date('d/m/Y', strtotime($manpower_agreement[0]->licenseExpiry));
+
+        if($manpower_agreement->count() > 0 && $manpower_agreement[0]->status == 1){
+            $output = view('admin.client.manpower.pdf.printAgreement', [
+            'manpower_agreement'=>$manpower_agreement,
+            'manpower_customers'=>$manpower_customers,
+            'manpower_payment'=>$manpower_payment,
+            'numto'=>$numto,
+            'total_customer'=>$total_customer,
+            'license_expiry'=>$license_expiry,
+        ])->render();
+            $mpdf->WriteHTML($output);
+            $filename = date('d-M-Y', strtotime($manpower_agreement[0]->manpowerDate)).'-Agreement.pdf';
+            $mpdf->Output($filename, 'I');
+            exit;
+        }else{
+            return redirect('/manpower');
+        }
+    }
+
     protected function getMpdfHeader(){
         $mpdf = new \Mpdf\Mpdf();
         $mpdf->autoScriptToLang = true;
@@ -105,14 +156,14 @@ class ManpowerPdfController extends Controller
             ->where('manpower_submissions.id', $id)
             ->leftJoin('fieldars', 'manpower_submissions.fieldarId', '=', 'fieldars.id')
             ->leftJoin('fieldbns', 'manpower_submissions.fieldbnId', '=', 'fieldbns.id')
-            ->select('manpower_submissions.*', 'fields.title', 'fields.license', 'fields.licenseExpiry', 'fields.address', 'fields.proprietor', 'fields.proprietortitle', 'fieldars.title_ar', 'fieldars.license_ar', 'fieldars.address_ar', 'fieldars.proprietor_ar', 'fieldars.proprietortitle_ar', 'fieldbns.title_bn', 'fieldbns.license_bn', 'fieldbns.address_bn', 'fieldbns.proprietor_bn', 'fieldbns.proprietortitle_bn', 'fieldbns.description_bn')
+            ->leftJoin('users', 'manpower_submissions.userId', '=', 'users.id')
+            ->select('manpower_submissions.*', 'fields.title', 'fields.license', 'fields.licenseExpiry', 'fields.address', 'fields.proprietor', 'fields.proprietortitle', 'fields.cellphone', 'fields.helpline', 'fieldars.title_ar', 'fieldars.license_ar', 'fieldars.address_ar', 'fieldars.proprietor_ar', 'fieldars.proprietortitle_ar', 'fieldbns.title_bn', 'fieldbns.license_bn', 'fieldbns.address_bn', 'fieldbns.cellphone_bn', 'fieldbns.proprietor_bn', 'fieldbns.proprietortitle_bn', 'fieldbns.description_bn')
             ->get();
         return $data_details;
     }
 
     protected function getCustomersDetails($id){
         $data_customerDetails = DB::table('customers')
-    ->leftJoin('delegates', 'customers.agentId', '=', 'delegates.id')
     ->leftJoin('districts', 'customers.birthPlace', '=', 'districts.id')
     ->leftJoin('visatrades', 'customers.tradeId', '=', 'visatrades.id')
     ->leftJoin('customer_embassies', 'customers.id', '=', 'customer_embassies.customerId')
@@ -121,11 +172,9 @@ class ManpowerPdfController extends Controller
     ->leftJoin('customer_manpowers', 'customers.id', '=', 'customer_manpowers.customerId')
     ->leftJoin('visas', 'customer_embassies.visaId', '=', 'visas.id')
     ->leftJoin('manpower_submissions', 'customer_manpowers.manpowerSubId', '=', 'manpower_submissions.id')
-    ->leftJoin('users', 'customers.userId', '=', 'users.id')
     ->select(
-        'customers.*', 'delegates.agentname', 'delegates.agentsl',
-        'delegates.agentbook', 'districts.districtname',
-        'visatrades.visatrade_name', 'users.name as receiver',
+        'customers.*', 'districts.districtname',
+        'visatrades.visatrade_name',
         'visas.visano_en', 'visas.visano_ar', 'visas.sponsorid_en',
         'visas.sponsorid_ar', 'visas.sponsorname_en',
         'visas.sponsorname_ar', 'visas.visa_date',
@@ -166,7 +215,6 @@ class ManpowerPdfController extends Controller
 
     protected function getCustomersInfo($id){
         $data_customerDetails = DB::table('customers')
-    ->leftJoin('delegates', 'customers.agentId', '=', 'delegates.id')
     ->leftJoin('districts', 'customers.birthPlace', '=', 'districts.id')
     ->leftJoin('visatrades', 'customers.tradeId', '=', 'visatrades.id')
     ->leftJoin('customer_embassies', 'customers.id', '=', 'customer_embassies.customerId')
@@ -174,12 +222,9 @@ class ManpowerPdfController extends Controller
     ->leftJoin('customer_visas', 'customers.id', '=', 'customer_visas.customerId')
     ->leftJoin('countries', 'customer_passports.countryId', '=', 'countries.id')
     ->leftJoin('visas', 'customer_embassies.visaId', '=', 'visas.id')
-    ->leftJoin('users', 'customers.userId', '=', 'users.id')
     ->select(
-        'customers.*', 'delegates.agentname', 'delegates.agentsl',
-        'delegates.agentbook', 'districts.districtname',
-        'visatrades.visatrade_name', 'users.name as receiver',
-        'visas.visano_en', 'visas.visano_ar', 'visas.sponsorid_en',
+        'customers.*', 'districts.districtname',
+        'visatrades.visatrade_name', 'visas.visano_en', 'visas.visano_ar', 'visas.sponsorid_en',
         'visas.sponsorid_ar', 'visas.sponsorname_en',
         'visas.sponsorname_ar', 'visas.visa_date',
         'visas.visa_address', 'visas.occupation_en',

@@ -215,7 +215,17 @@
             <div class="bellow_serial">{{ $numto->bnNum($manpower_single_data[0]->putupSl+6) }}।</div>
         </div>
 
-        {{-- <pagebreak></pagebreak> --}}
+        <pagebreak></pagebreak>
+
+        <div class="putup_translate">
+            <div class="translate_info">
+                <div class="translate_serial">{{ $numto->bnNum($manpower_single_data[0]->putupSl+5) }}।</div> <div class="translate_content">দাখিলকৃত ভিসার সঠিকতা ধরণ, পেশা, নিষিদ্ধ কোম্পানীর ভিসা ও ইনজাজ কপির ডেলিগেশন ইন এ্যাম্বাসিতে ভিসা <small style="font-family: roboto; font-size: 14px;">ADVICE LIST/LOT</small> এ {{ $numto->bnNum(25) }} এর অধিক ভিসা আছে কিনা মতামতের জন্য অনুবাদকের নিকট প্রেরণ করা হলো।</div>
+            </div>
+        </div>
+        <div class="putup_translator">অনুবাদক</div>
+        <div class="putup_transbellow">
+            <div class="bellow_serial">{{ $numto->bnNum($manpower_single_data[0]->putupSl+6) }}।</div>
+        </div>
 
       
     </div>

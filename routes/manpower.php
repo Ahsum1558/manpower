@@ -137,5 +137,8 @@ Route::middleware(['auth'])->group(function () {
 
     // Customer Contact Paper
     Route::get('/manpower/printContact/{id}', [ManpowerPdfController::class, 'printContact'])->name('admin.manpower.printContact');
+
+    // Customer Application Letter
+    Route::get('/manpower/printLetter/{id}', [ManpowerPdfController::class, 'printLetter'])->name('admin.manpower.printLetter');
 });
 // Manpower Print Area End

@@ -18,11 +18,12 @@ php artisan migrate
 php artisan make:factory SuperFactory
 php artisan make:factory AdminFactory
 php artisan optimize
+php artisan route:cache  
+php artisan config:cache
 php artisan route:clear
 php artisan optimize:clear
-php artisan cache:clear
-php artisan route:cache  
-php artisan config:cache  
+php artisan cache:clear  
+php artisan config:clear  
 php artisan view:clear
 php artisan make:controller Super/FieldController --resource
 php artisan make:controller Super/FieldarController --resource
@@ -88,3 +89,6 @@ php artisan make:controller Manpower/ManpowerSubmissionController --resource
 php artisan make:model CustomerManpower -m
 php artisan make:controller Manpower/CustomerManpowerController --resource
 php artisan make:controller Manpower/ManpowerPdfController
+
+php artisan make:controller Admin/RepresentativeController --resource
+php artisan make:model Representative -m
