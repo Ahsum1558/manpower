@@ -36,4 +36,5 @@ return array(
     'ec07570ca5a812141189b1fa81503674' => $vendorDir . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
     '320163ac6b93aebe3dc25b60a0533d56' => $vendorDir . '/spatie/laravel-ignition/src/helpers.php',
     'bdf4fb1bf704cf96227be8cb0dc6de05' => $baseDir . '/app/Helpers/BarcodeHelper.php',
+    'cf650fc5bee98ff3b025e67f189a255c' => $baseDir . '/app/Http/Controllers/PDF.php',
 );

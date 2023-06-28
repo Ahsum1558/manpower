@@ -37,6 +37,7 @@ class ComposerStaticInit303a0207f6fdfd94de52ed78f959ecfe
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
         '320163ac6b93aebe3dc25b60a0533d56' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/helpers.php',
         'bdf4fb1bf704cf96227be8cb0dc6de05' => __DIR__ . '/../..' . '/app/Helpers/BarcodeHelper.php',
+        'cf650fc5bee98ff3b025e67f189a255c' => __DIR__ . '/../..' . '/app/Http/Controllers/PDF.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -589,6 +590,7 @@ class ComposerStaticInit303a0207f6fdfd94de52ed78f959ecfe
         'App\\Http\\Controllers\\Manpower\\CustomerManpowerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Manpower/CustomerManpowerController.php',
         'App\\Http\\Controllers\\Manpower\\ManpowerPdfController' => __DIR__ . '/../..' . '/app/Http/Controllers/Manpower/ManpowerPdfController.php',
         'App\\Http\\Controllers\\Manpower\\ManpowerSubmissionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Manpower/ManpowerSubmissionController.php',
+        'App\\Http\\Controllers\\PDF' => __DIR__ . '/../..' . '/app/Http/Controllers/PDF.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
         'App\\Http\\Controllers\\Super\\Auth\\AuthenticatedSessionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Super/Auth/AuthenticatedSessionController.php',
         'App\\Http\\Controllers\\Super\\CmspageController' => __DIR__ . '/../..' . '/app/Http/Controllers/Super/CmspageController.php',
@@ -2755,6 +2757,7 @@ class ComposerStaticInit303a0207f6fdfd94de52ed78f959ecfe
         'Illuminate\\Testing\\TestResponse' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Testing/TestResponse.php',
         'Illuminate\\Testing\\TestView' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Testing/TestView.php',
         'Illuminate\\Translation\\ArrayLoader' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Translation/ArrayLoader.php',
+        'Illuminate\\Translation\\CreatesPotentiallyTranslatedStrings' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Translation/CreatesPotentiallyTranslatedStrings.php',
         'Illuminate\\Translation\\FileLoader' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Translation/FileLoader.php',
         'Illuminate\\Translation\\MessageSelector' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Translation/MessageSelector.php',
         'Illuminate\\Translation\\PotentiallyTranslatedString' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Translation/PotentiallyTranslatedString.php',
@@ -2774,6 +2777,7 @@ class ComposerStaticInit303a0207f6fdfd94de52ed78f959ecfe
         'Illuminate\\Validation\\NotPwnedVerifier' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Validation/NotPwnedVerifier.php',
         'Illuminate\\Validation\\PresenceVerifierInterface' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Validation/PresenceVerifierInterface.php',
         'Illuminate\\Validation\\Rule' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Validation/Rule.php',
+        'Illuminate\\Validation\\Rules\\Can' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Validation/Rules/Can.php',
         'Illuminate\\Validation\\Rules\\DatabaseRule' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Validation/Rules/DatabaseRule.php',
         'Illuminate\\Validation\\Rules\\Dimensions' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Validation/Rules/Dimensions.php',
         'Illuminate\\Validation\\Rules\\Enum' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Validation/Rules/Enum.php',
@@ -3456,6 +3460,7 @@ class ComposerStaticInit303a0207f6fdfd94de52ed78f959ecfe
         'Monolog\\Processor\\GitProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/GitProcessor.php',
         'Monolog\\Processor\\HostnameProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/HostnameProcessor.php',
         'Monolog\\Processor\\IntrospectionProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/IntrospectionProcessor.php',
+        'Monolog\\Processor\\LoadAverageProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/LoadAverageProcessor.php',
         'Monolog\\Processor\\MemoryPeakUsageProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/MemoryPeakUsageProcessor.php',
         'Monolog\\Processor\\MemoryProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/MemoryProcessor.php',
         'Monolog\\Processor\\MemoryUsageProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/MemoryUsageProcessor.php',
