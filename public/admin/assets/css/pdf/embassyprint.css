@@ -1369,12 +1369,11 @@ body{
 
 /* Consular Letter Area */
 .consular_area{
-	padding-top: 120px;
+	padding-top: 170px;
 	font-family: "arial";
 	font-size: 14px;
 	text-transform: uppercase;
-	line-height: 2;
-	padding-bottom: 180px;
+	line-height: 2;	
 }
 .consular_area .cosular_header{}
 .consular_area .cosular_header .application_to{}

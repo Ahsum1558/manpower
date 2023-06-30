@@ -53,9 +53,9 @@ class ManpowerPdfController extends Controller
         $manpower_customers = $this->getCustomersDetails($id)->where('status','=',1);
         $manpower_payment = BmetPayment::where('manpowerSubId', $id)->where('status','=',1)->get();
         $total_customer = CustomerManpower::where('manpowerSubId', $id)->count();
-        $license_expiry = date('d/m/Y', strtotime($manpower_single_data[0]->licenseExpiry));
-
-        if($manpower_single_data->count() > 0 && $manpower_single_data[0]->status == 1){
+        
+        if($manpower_single_data->count() > 0 && isset($manpower_single_data[0]) && $manpower_single_data[0]->status == 1){
+            $license_expiry = date('d/m/Y', strtotime($manpower_single_data[0]->licenseExpiry));
             $output = view('admin.client.manpower.pdf.printPutup', [
             'manpower_single_data'=>$manpower_single_data,
             'manpower_customers'=>$manpower_customers,
@@ -78,7 +78,7 @@ class ManpowerPdfController extends Controller
         $numto = new NumberToBangla();
         $mpdf = $this->getMpdfHeader();
         $manpower_customers = $this->getCustomersInfo($id)->where('status','=',1);
-        if($manpower_customers->count() > 0 && $manpower_customers[0]->status == 1){
+        if($manpower_customers->count() > 0 && isset($manpower_customers[0]) && $manpower_customers[0]->status == 1){
             $output = view('admin.client.manpower.pdf.printContact', [
             'manpower_customers'=>$manpower_customers,
             'numto'=>$numto,
@@ -98,8 +98,8 @@ class ManpowerPdfController extends Controller
         $mpdf = $this->getMpdfHeader();
         $manpower_data = $this->getDetails($id);
         $total_customer = CustomerManpower::where('manpowerSubId', $id)->count();
-        $license_expiry = date('d/m/Y', strtotime($manpower_data[0]->licenseExpiry));
-        if($manpower_data->count() > 0 && $manpower_data[0]->status == 1){
+        if($manpower_data->count() > 0 && isset($manpower_data[0]) && $manpower_data[0]->status == 1){
+            $license_expiry = date('d/m/Y', strtotime($manpower_data[0]->licenseExpiry));
             $output = view('admin.client.manpower.pdf.printLetter', [
             'manpower_data'=>$manpower_data,
             'numto'=>$numto,
@@ -123,9 +123,9 @@ class ManpowerPdfController extends Controller
         $manpower_customers = $this->getCustomersDetails($id)->where('status','=',1);
         $manpower_payment = BmetPayment::where('manpowerSubId', $id)->where('status','=',1)->get();
         $total_customer = CustomerManpower::where('manpowerSubId', $id)->count();
-        $license_expiry = date('d/m/Y', strtotime($manpower_undertaking[0]->licenseExpiry));
-
-        if($manpower_undertaking->count() > 0 && $manpower_undertaking[0]->status == 1){
+       
+        if($manpower_undertaking->count() > 0 && isset($manpower_undertaking[0]) && $manpower_undertaking[0]->status == 1){
+             $license_expiry = date('d/m/Y', strtotime($manpower_undertaking[0]->licenseExpiry));
             $output = view('admin.client.manpower.pdf.printUndertaking', [
             'manpower_undertaking'=>$manpower_undertaking,
             'manpower_customers'=>$manpower_customers,
@@ -151,7 +151,7 @@ class ManpowerPdfController extends Controller
         $customer_passports = $this->getPassportDetails($id);
         $customer_stamping = $this->getStampingDetails($id);
          
-        if($customer_data->count() > 0 && $customer_data[0]->status == 1){
+        if($customer_data->count() > 0 && isset($customer_data[0]) && $customer_data[0]->status == 1){
             $output = view('admin.client.manpower.pdf.printData', [
             'customer_data'=>$customer_data,
             'customer_passports'=>$customer_passports,

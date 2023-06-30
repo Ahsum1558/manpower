@@ -365,9 +365,9 @@
     </div>
 </div>
 
+<pagebreak></pagebreak>
 {{-- Contract Area --}}
     <div class="contract_area clear">
-
         <div class="contract_headline clear">
             <div class="contract_headlineleft">Employment Contract</div>
             <div class="contract_headlineright">عـــــقـد عــمـــــــــل</div>
@@ -509,12 +509,11 @@
                 </tfoot>
             </table>
         </div>
-
     </div>
 
+<pagebreak></pagebreak>
 {{-- Consular Letter Area --}}
     <div class="consular_area">
-
         <div class="cosular_header">
             <div class="application_to">To</div>
             <div class="application_consular">His Excellency The Chief Of Consulate Section</div>
@@ -588,11 +587,9 @@
 @endforeach
     </div>
 
-
+<pagebreak></pagebreak>
 {{-- Chart Form --}}
-
     <div class="form_chart">
-
         <div class="arabic_heading">إرفاق الجدول التالي في كل معاملة</div>
         <div class="bangla_heading">প্রতিটি পাসপোর্টের সাথে নিম্নলিখিত ফরমটি সংযুক্ত করুন</div>
 
