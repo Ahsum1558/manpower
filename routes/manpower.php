@@ -143,5 +143,8 @@ Route::middleware(['auth'])->group(function () {
 
     // Customer Undertaking
     Route::get('/manpower/printUndertaking/{id}', [ManpowerPdfController::class, 'printUndertaking'])->name('admin.manpower.printUndertaking');
+
+    // Customer Data Sheet
+    Route::get('/manpower/printData/{id}', [ManpowerPdfController::class, 'printData'])->name('admin.manpower.printData');
 });
 // Manpower Print Area End

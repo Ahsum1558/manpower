@@ -1,4 +1,4 @@
-<h4 class="mb-4 basic_headline">Customers in Manpower</h4>
+<h4 class="mb-4 basic_headline">Print Customers</h4>
 <div class="table-responsive">
   <table id="example5" class="display" style="min-width: 700px">
       <thead>
@@ -9,10 +9,7 @@
               <th>Passport No.</th>
               <th>Visa No.</th>
               <th>Manpower Date</th>
-              <th>Ordinal</th>
-              <th>Delegate</th>
-              <th>Status</th>
-              <th>Action</th>
+              <th width="35%">Action</th>
           </tr>
       </thead>
       <tbody>
@@ -31,21 +28,6 @@
                 {{ date('d-M-Y', strtotime($customer->manpowerDate)) }}
                 @else
                 {{ __('N/A') }}
-              @endif
-            </td>
-            <td>
-              @if($customer->ordinal != NULL)
-                {{ $customer->ordinal }}
-                @else
-                {{ __('N/A') }}
-              @endif
-            </td>
-            <td>{{ $customer->agentname .' '. $customer->agentsl }}</td>
-            <td>
-              @if($customer->status == 1)
-                {{ __('Active') }}
-                @elseif($customer->status == 0)
-                {{ __('Inactive') }}
               @endif
             </td>
             <td>

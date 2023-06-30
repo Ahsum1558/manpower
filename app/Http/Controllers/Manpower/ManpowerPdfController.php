@@ -143,6 +143,30 @@ class ManpowerPdfController extends Controller
         }
     }
 
+    public function printData($id)
+    {
+        $numto = new NumberToBangla();
+        $mpdf = $this->getMpdfHeader();
+        $customer_data = $this->getCustomersInfo($id)->where('status','=',1);
+        $customer_passports = $this->getPassportDetails($id);
+        $customer_stamping = $this->getStampingDetails($id);
+         
+        if($customer_data->count() > 0 && $customer_data[0]->status == 1){
+            $output = view('admin.client.manpower.pdf.printData', [
+            'customer_data'=>$customer_data,
+            'customer_passports'=>$customer_passports,
+            'customer_stamping'=>$customer_stamping,
+            'numto'=>$numto,
+        ])->render();
+            $mpdf->WriteHTML($output);
+            $filename = $customer_data[0]->customersl.'-'.$customer_data[0]->cusFname.' '.$customer_data[0]->cusLname.'.pdf';
+            $mpdf->Output($filename, 'I');
+            exit;
+        }else{
+            return redirect('/manpower');
+        }
+    }
+
     protected function getMpdfHeader(){
         $mpdf = new \Mpdf\Mpdf();
         $mpdf->autoScriptToLang = true;
@@ -227,8 +251,11 @@ class ManpowerPdfController extends Controller
     ->leftJoin('customer_embassies', 'customers.id', '=', 'customer_embassies.customerId')
     ->leftJoin('customer_passports', 'customers.id', '=', 'customer_passports.customerId')
     ->leftJoin('customer_visas', 'customers.id', '=', 'customer_visas.customerId')
+    ->leftJoin('customer_manpowers', 'customers.id', '=', 'customer_manpowers.customerId')
     ->leftJoin('countries', 'customer_passports.countryId', '=', 'countries.id')
     ->leftJoin('visas', 'customer_embassies.visaId', '=', 'visas.id')
+    ->leftJoin('fields', 'customer_embassies.fieldId', '=', 'fields.id')
+    ->leftJoin('visatypes', 'customer_embassies.visaTypeId', '=', 'visatypes.id')
     ->select(
         'customers.*', 'districts.districtname',
         'visatrades.visatrade_name', 'visas.visano_en', 'visas.visano_ar', 'visas.sponsorid_en',
@@ -240,11 +267,34 @@ class ManpowerPdfController extends Controller
         'visas.visa_duration', 'customer_visas.stamped_visano',
         'customer_visas.visa_issue', 'customer_visas.visa_expiry',
         'customer_visas.stay_duration', 'countries.countryname',
-        'countries.nationality'
+        'countries.nationality', 'fields.title', 'fields.license', 'fields.licenseExpiry', 'fields.address', 'fields.proprietor', 'fields.proprietortitle', 'customer_manpowers.finger_regno',
+        'customer_manpowers.salary', 'visatypes.visatype_name'
     )
     ->where('customers.id', $id)
     ->where('customers.value', '=', 4)
     ->get();
     return $data_customerDetails;
+    }
+
+    protected function getPassportDetails($id){
+        $data_passport = DB::table('customer_passports')
+            ->leftJoin('countries', 'customer_passports.countryId', '=', 'countries.id')
+            ->where('customer_passports.customerId', $id)
+            ->leftJoin('divisions', 'customer_passports.divisionId', '=', 'divisions.id')
+            ->leftJoin('districts', 'customer_passports.districtId', '=', 'districts.id')
+            ->leftJoin('policestations', 'customer_passports.policestationId', '=', 'policestations.id')
+            ->leftJoin('issues', 'customer_passports.issuePlaceId', '=', 'issues.id')
+            ->select('customer_passports.*', 'countries.countryname', 'countries.nationality', 'divisions.divisionname', 'districts.districtname', 'policestations.policestationname', 'issues.issuePlace')
+            ->get();
+        return $data_passport;
+    }
+
+    protected function getStampingDetails($id){
+        $data_stamping = DB::table('customer_visas')
+            ->leftJoin('countries', 'customer_visas.countryId', '=', 'countries.id')
+            ->where('customer_visas.customerId', $id)
+            ->select('customer_visas.*', 'countries.countryname as foreign_country', 'countries.nationality as foreign_national')
+            ->get();
+        return $data_stamping;
     }
 }

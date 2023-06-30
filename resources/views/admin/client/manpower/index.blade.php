@@ -70,7 +70,7 @@
 
                         <div class="tab-pane fade" id="contact">
                             <div class="pt-4 content_panel">
-                                {{-- @include('admin.client.manpower.print_file') --}}
+                                @include('admin.client.manpower.print_file')
                             </div>
                         </div>
 
