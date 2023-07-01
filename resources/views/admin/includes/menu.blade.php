@@ -79,14 +79,11 @@
             </li>
 
             
-<?php //if (Session::get('userRole') == '1') { ?>
-            <li><a href="summary.php" class="ai-icon" aria-expanded="false">
+           {{--  <li><a href="summary.php" class="ai-icon" aria-expanded="false">
                     <i class="flaticon-381-internet"></i>
                     <span class="nav-text">Account Summary</span>
                 </a>
             </li>
-<?php// } ?>
-<?php// if (Session::get('userRole') == '1' || Session::get('userRole') == '2') { ?>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="fa fa-wrench" aria-hidden="true"></i>
                     <span class="nav-text">Setting</span>
@@ -96,16 +93,14 @@
                     <li><a href="asset.php">Assets</a></li>
                     <li><a href="request.php">Request Option</a></li>
                 </ul>
-            </li>
-<?php// } ?>
+            </li> --}}
             
             
 
             
              
             
-<?php// if (Session::get('userRole') == '1' || Session::get('userRole') == '2') { ?>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+           {{--  <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="fa fa-suitcase" aria-hidden="true"></i>
                     <span class="nav-text">Payment Party</span>
                 </a>
@@ -313,8 +308,7 @@
                         </ul>
                     </li>
                 </ul>
-            </li>
-<?php //} ?>
+            </li> --}}
             
 
 

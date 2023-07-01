@@ -1,0 +1,84 @@
+php artisan make:model MenuItem
+
+public function children()
+{
+    return $this->hasMany(MenuItem::class, 'parent_id');
+}
+
+php artisan make:migration create_menu_items_table
+
+Schema::create('menu_items', function (Blueprint $table) {
+    $table->id();
+    $table->string('title');
+    $table->string('url');
+    $table->unsignedBigInteger('parent_id')->nullable();
+    $table->integer('order')->default(0);
+    $table->timestamps();
+
+    $table->foreign('parent_id')->references('id')->on('menu_items')->onDelete('cascade');
+});
+
+php artisan make:seeder MenuItemSeeder
+
+use App\Models\MenuItem;
+use Illuminate\Database\Seeder;
+
+class MenuItemSeeder extends Seeder
+{
+    public function run()
+    {
+        // Create a main menu item
+        $dashboard = MenuItem::create([
+            'title' => 'Dashboard',
+            'url' => '/',
+            'order' => 1,
+        ]);
+
+        // Create child menu items
+        $dashboard->children()->createMany([
+            [
+                'title' => 'Profile',
+                'url' => '/profile',
+                'order' => 1,
+            ],
+            [
+                'title' => 'Settings',
+                'url' => '/settings',
+                'order' => 2,
+            ],
+        ]);
+
+        // Add more menu items as needed
+    }
+}
+
+php artisan db:seed --class=MenuItemSeeder
+
+@php
+    $menuItems = \App\Models\MenuItem::with('children')->whereNull('parent_id')->orderBy('order')->get();
+@endphp
+
+<!-- Sidebar start -->
+<div class="deznav" id="nav_menu">
+    <div class="deznav-scroll">
+        <ul class="metismenu" id="menu">
+            @foreach($menuItems as $menuItem)
+                <li>
+                    <a href="{{ $menuItem->url }}" class="ai-icon" aria-expanded="false">
+                        <i class="flaticon-381-networking"></i>
+                        <span class="nav-text">{{ $menuItem->title }}</span>
+                    </a>
+                    @if($menuItem->children->isNotEmpty())
+                        <ul aria-expanded="false">
+                            @foreach($menuItem->children as $child)
+                                <li><a href="{{ $child->url }}">{{ $child->title }}</a></li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </li>
+            @endforeach
+        </ul>
+    </div>
+</div>
+<!-- Sidebar end -->
+

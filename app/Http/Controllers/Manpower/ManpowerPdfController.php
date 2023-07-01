@@ -268,7 +268,7 @@ class ManpowerPdfController extends Controller
         'customer_visas.visa_issue', 'customer_visas.visa_expiry',
         'customer_visas.stay_duration', 'countries.countryname',
         'countries.nationality', 'fields.title', 'fields.license', 'fields.licenseExpiry', 'fields.address', 'fields.proprietor', 'fields.proprietortitle', 'customer_manpowers.finger_regno',
-        'customer_manpowers.salary', 'visatypes.visatype_name'
+        'customer_manpowers.salary', 'customer_embassies.age', 'visatypes.visatype_name'
     )
     ->where('customers.id', $id)
     ->where('customers.value', '=', 4)

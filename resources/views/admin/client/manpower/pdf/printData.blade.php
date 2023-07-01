@@ -319,7 +319,7 @@
                             </tr>
                             <tr>
                                 <td>Contract Duration (Yr)</td>
-                                <td></td>
+                                <td><strong>{{ $customer_data[0]->visa_duration }}</strong></td>
                                 <td></td>
                                 <td></td>
                             </tr>
