@@ -66,8 +66,16 @@
                                 <select id="select" name="visaId" class="form-control d-inline-block inline_setup disabling-options">
                                   <option selected="selected">Select Visa No</option>
                                 @foreach($all_visa as $visa)
-                                  <option value="{{ $visa->id }}" {{ old('visaId') == $visa->id ? 'selected' : '' }}>{{ $visa->visano_en }}</option>
+                                    @php
+                                        $remainingVisa = isset($visaCounts[$visa->id]) ? $visa->delegated_visa - $visaCounts[$visa->id] : 0;
+                                        $remainingVisaText = $remainingVisa >= 0 ? $remainingVisa : 0;
+                                        $isDisabled = $remainingVisa <= 0 ? 'disabled' : '';
+                                    @endphp
+                                    <option value="{{ $visa->id }}" {{ old('visaId') == $visa->id ? 'selected' : '' }} {{ $isDisabled }}>
+                                        {{ $visa->visano_en .' - ('. $remainingVisaText .')' }}
+                                    </option>
                                 @endforeach
+
                                 </select>
                             </div>
                         </div>

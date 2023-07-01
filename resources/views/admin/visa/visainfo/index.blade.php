@@ -30,10 +30,11 @@
                           <tr>
                               <th>SL</th>
                               <th>Visa No.</th>
-                              <th>Sponsor Id No.</th>
+                              <th>Sponsor Id</th>
                               <th width="30%">Sponsor Name</th>
-                              <th>Location</th>
-                              <th>Visa Date</th>
+                              <th>Visa</th>
+                              <th>Used</th>
+                              <th>Remaining</th>
                               <th>Status</th>
                               <th>Action</th>
                           </tr>
@@ -48,8 +49,13 @@
                             <td>{{ $visa->visano_en }}</td>
                             <td>{{ $visa->sponsorid_en }}</td>
                             <td>{{ $visa->sponsorname_en }}</td>
-                            <td>{{ $visa->visa_address }}</td>
-                            <td>{{ $visa->visa_date }}</td>
+                            <td>{{ $visa->delegated_visa }}</td>
+                            <td>{{ isset($visaCounts[$visa->id]) ? $visaCounts[$visa->id] : 0 }}</td>
+                        @if(isset($visaCounts[$visa->id]) && $visa->delegated_visa - $visaCounts[$visa->id] >= 0)
+                            <td>{{ $visa->delegated_visa - $visaCounts[$visa->id] }}</td>
+                        @else
+                            <td>0</td>
+                        @endif
                             <td>
                               @if($visa->status == 1)
                                 {{ __('Active') }}

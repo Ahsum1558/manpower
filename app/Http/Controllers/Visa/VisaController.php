@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Visa;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Visa;
+use App\Models\CustomerEmbassy;
 use DB;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
@@ -18,7 +19,14 @@ class VisaController extends Controller
     public function index()
     {
         $all_visa = Visa::latest() -> get(); // as latest
-        return view('admin.visa.visainfo.index', compact('all_visa'));
+        $visaCounts = [];
+
+        foreach ($all_visa as $visa) {
+            $visaId = $visa->id;
+            $total_customer = CustomerEmbassy::where('visaId', $visaId)->count();
+            $visaCounts[$visaId] = $total_customer;
+        }
+         return view('admin.visa.visainfo.index', compact('all_visa', 'visaCounts'));
     }
 
     /**
@@ -74,10 +82,16 @@ class VisaController extends Controller
     public function show(string $id)
     {
         $single_visa = Visa::find($id);
-        
+
         if ($single_visa !== null) {
-            return view('admin.visa.visainfo.show', compact('single_visa'));
-        }else{
+            $visaCounts = [];
+
+            $visaId = $single_visa->id;
+            $total_customer = CustomerEmbassy::where('visaId', $id)->count();
+            $visaCounts[$visaId] = $total_customer;
+
+            return view('admin.visa.visainfo.show', compact('single_visa', 'visaCounts'));
+        } else {
             return redirect('/visa');
         }
     }

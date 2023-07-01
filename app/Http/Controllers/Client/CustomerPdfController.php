@@ -50,7 +50,7 @@ class CustomerPdfController extends Controller
         $stamping_single_docs = CustomerVisa::where('customerId', $id)->get();
         $rate_single_docs = CustomerRate::where('customerId', $id)->get();
 
-        if($customer_single_data->count() > 0){
+        if($customer_single_data->count() > 0  && isset($customer_single_data[0]) && $customer_single_data[0]->status == 1){
             $output = view('admin.client.customer.pdf.print', [
             'customer_single_data'=>$customer_single_data,
             'customer_single_docs'=>$customer_single_docs,
@@ -87,7 +87,7 @@ class CustomerPdfController extends Controller
         $submission_info = SubmissionCustomer::where('submissionId', $id)->get();
         $total_submission = $submission_info->count('submissionId');
 
-        if($submission_single_data->count() > 0){
+        if($submission_single_data->count() > 0 && isset($submission_single_data[0]) && $submission_single_data[0]->status == 1){
             $output = view('admin.client.submission.printStatement', [
             'submission_single_data'=>$submission_single_data,
             'submission_information'=>$submission_information,

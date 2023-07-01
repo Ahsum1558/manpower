@@ -43,6 +43,14 @@ class CustomerEmbassyController extends Controller
         $all_fieldbn = Fieldbn::latest()->where('status','=',1)->get();
         $all_visa = Visa::latest()->where('status','=',1) -> get();
         $all_visa_type = Visatype::latest()->where('status','=',1)->get();
+
+        $visaCounts = [];
+
+        foreach ($all_visa as $visa) {
+            $visaId = $visa->id;
+            $total_customer = CustomerEmbassy::where('visaId', $visaId)->count();
+            $visaCounts[$visaId] = $total_customer;
+        }
         
         if($data_customer !== null && $data_customer->value == 2){
             return view('admin.client.customer.embassy.embassy', [
@@ -53,6 +61,7 @@ class CustomerEmbassyController extends Controller
             'all_fieldbn'=>$all_fieldbn,
             'all_visa'=>$all_visa,
             'all_visa_type'=>$all_visa_type,
+            'visaCounts'=>$visaCounts,
         ]);
         }else{
             return redirect('/customer');
@@ -96,6 +105,14 @@ class CustomerEmbassyController extends Controller
         $all_fieldbn = Fieldbn::latest()->where('status','=',1)->get();
         $all_visa = Visa::latest()->where('status','=',1) -> get();
         $all_visa_type = Visatype::latest()->where('status','=',1)->get();
+
+        $visaCounts = [];
+
+        foreach ($all_visa as $visa) {
+            $visaId = $visa->id;
+            $total_customer = CustomerEmbassy::where('visaId', $visaId)->count();
+            $visaCounts[$visaId] = $total_customer;
+        }
         
         if ($data_customer_edit !== null) {
             return view('admin.client.customer.embassy.editEmbassy', [
@@ -106,6 +123,7 @@ class CustomerEmbassyController extends Controller
             'all_fieldbn'=>$all_fieldbn,
             'all_visa'=>$all_visa,
             'all_visa_type'=>$all_visa_type,
+            'visaCounts'=>$visaCounts,
             ]);
         }else{
             return redirect('/customer');

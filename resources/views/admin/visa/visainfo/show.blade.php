@@ -120,6 +120,26 @@
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-3">
+                                        <h5 class="f-w-500">Total Used<span class="pull-right">:</span></h5>
+                                    </div>
+                                    <div class="col-9"><span>{{ $visaCounts[$single_visa->id] ?? 0 }}</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-3">
+                                        <h5 class="f-w-500">Total Remaining Visa<span class="pull-right">:</span></h5>
+                                    </div>
+                                    <div class="col-9"><span>
+                                    @if(isset($visaCounts[$single_visa->id]) && $single_visa->delegated_visa - $visaCounts[$single_visa->id] >= 0)
+                                        {{ $single_visa->delegated_visa - $visaCounts[$single_visa->id] }}
+                                    @else
+                                        {{ 0 }}
+                                    @endif
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-3">
                                         <h5 class="f-w-500">Visa Duration<span class="pull-right">:</span></h5>
                                     </div>
                                     <div class="col-9"><span>{{ $single_visa->visa_duration }}</span>
