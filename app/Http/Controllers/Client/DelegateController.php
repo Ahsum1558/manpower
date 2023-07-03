@@ -178,9 +178,14 @@ class DelegateController extends Controller
     public function show(string $id)
     {
         $delegate_single_data = $this->getDetails($id);
+        $delegate_customers = $this->getDelegateCustomers($id);
+
         
         if($delegate_single_data->count() > 0){
-            return view('admin.client.delegate.show', compact('delegate_single_data'));
+            return view('admin.client.delegate.show', [
+            'delegate_single_data'=>$delegate_single_data,
+            'delegate_customers'=>$delegate_customers,
+        ]);
         }else{
             return redirect('/delegate');
         }
@@ -498,5 +503,23 @@ class DelegateController extends Controller
             ->select('delegates.*', 'countries.countryname', 'countries.nationality', 'divisions.divisionname', 'districts.districtname', 'policestations.policestationname', 'cities.cityname')
             ->get();
         return $data_details;
+    }
+
+    protected function getDelegateCustomers($id){
+        $data_customers = DB::table('customers')
+            ->where('customers.agentId', $id)
+            ->leftJoin('delegates', 'customers.agentId', '=', 'delegates.id')
+            ->leftJoin('customer_passports', 'customers.id', '=', 'customer_passports.customerId')
+            ->leftJoin('customer_docoments', 'customers.id', '=', 'customer_docoments.customerId')
+            ->leftJoin('customer_rates', 'customers.id', '=', 'customer_rates.customerId')
+            ->leftJoin('customer_embassies', 'customers.id', '=', 'customer_embassies.customerId')
+            ->leftJoin('visas', 'customer_embassies.visaId', '=', 'visas.id')
+            ->leftJoin('visatypes', 'customer_embassies.visaTypeId', '=', 'visatypes.id')
+            ->leftJoin('customer_visas', 'customers.id', '=', 'customer_visas.customerId')
+            ->leftJoin('visatrades', 'customers.tradeId', '=', 'visatrades.id')
+            ->leftJoin('users', 'customers.userId', '=', 'users.id')
+            ->select('customers.*', 'visatypes.visatype_name', 'visas.visano_en', 'visas.visano_ar', 'visas.sponsorid_en', 'visas.sponsorid_ar', 'visas.sponsorname_en', 'visas.sponsorname_ar', 'visas.visa_date', 'visas.visa_address', 'visas.occupation_en', 'visas.occupation_ar', 'visas.delegation_no', 'visas.delegation_date', 'visas.delegated_visa', 'visas.visa_duration', 'visatrades.visatrade_name', 'users.name as receiver', 'customer_rates.workingRate', 'customer_rates.extraCharge', 'customer_rates.rateDescription', 'customer_rates.discount', 'customer_rates.moneyBack', 'customer_visas.stamped_visano', 'customer_visas.visa_issue', 'customer_visas.visa_expiry', 'customer_passports.father', 'customer_passports.mother', 'customer_passports.spouse', 'customer_passports.passportIssue', 'customer_passports.passportExpiry', 'customer_passports.dateOfBirth', 'customer_passports.address')
+            ->get();
+        return $data_customers;
     }
 }
