@@ -147,6 +147,19 @@
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
+                                <h5 class="f-w-500">Destination Country<span class="pull-right">:</span></h5>
+                            </div>
+                            <div class="col-9">
+                                <select id="countryForWork" class="form-control d-inline-block inline_setup select2-width-50" name="countryFor">
+                                    <option selected="selected">Select Destination Country</option>
+                                @foreach($all_country as $country)
+                                  <option value="{{ $country->id }}" {{ old('countryFor') == $country->id ? 'selected' : '' }}>{{ $country->countryname }}</option>
+                                @endforeach
+                                </select>                        
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3">
                                 <h5 class="f-w-500">Status <span class="pull-right">:</span></h5>
                             </div>
                             <div class="col-9">

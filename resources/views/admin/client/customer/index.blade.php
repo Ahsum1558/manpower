@@ -35,6 +35,7 @@
                               <th>Delegate</th>
                               <th>Trade</th>
                               <th>Medical</th>
+                              <th>Destination</th>
                               <th>Status</th>
                               <th>Action</th>
                           </tr>
@@ -65,6 +66,7 @@
                                 {{ __('Problem') }}
                               @endif
                             </td>
+                            <td>{{ $customer->destination_country }}</td>
                             <td>
                               @if($customer->status == 1)
                                 {{ __('Active') }}

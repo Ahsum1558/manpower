@@ -26,6 +26,7 @@ use App\Http\Controllers\Client\CustomerPdfController;
 use App\Http\Controllers\Client\CustomerMedicalController;
 use App\Http\Controllers\Client\SubmissionController;
 use App\Http\Controllers\Client\SubmissionCustomerController;
+use App\Http\Controllers\Client\FavorAgentController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -88,6 +89,61 @@ Route::middleware(['auth'])->group(function () {
 });
 // Delegate Area End
 
+// Favor Agent Area Start
+Route::middleware(['auth'])->group(function () {
+    // Favor Agent Home Page
+    Route::get('/favor', [FavorAgentController::class, 'index'])->name('admin.favor');
+
+    // Favor Agent Create
+    Route::get('/favor/create', [FavorAgentController::class, 'create'])->name('admin.favor.create');
+    Route::post('/favor/store', [FavorAgentController::class, 'store'])->name('admin.favor.store');
+
+    // Get Division
+    Route::get('/favor/get', [FavorAgentController::class, 'getDivision'])->name('admin.favor.get');
+    // Get District
+    Route::get('/favor/getDistrict', [FavorAgentController::class, 'getDistrict'])->name('admin.favor.getDistrict');
+    // Get City
+    Route::get('/favor/getCity', [FavorAgentController::class, 'getCity'])->name('admin.favor.getCity');
+    // Get Upzila
+    Route::get('/favor/getUpzila', [FavorAgentController::class, 'getUpzila'])->name('admin.favor.getUpzila');
+
+    // Favor Agent Personal Data
+    Route::get('/favor/show/{id}', [FavorAgentController::class, 'show'])->name('admin.favor.show');
+
+    // Favor Agent Update
+    Route::get('/favor/edit/{id}', [FavorAgentController::class, 'edit'])->name('admin.favor.edit');
+    Route::post('/favor/update/{id}', [FavorAgentController::class, 'update'])->name('admin.favor.update');
+
+    // Favor Agent Update Book Referance
+    Route::get('/favor/editBook/{id}', [FavorAgentController::class, 'editBook'])->name('admin.favor.editBook');
+    Route::post('/favor/updateBook/{id}', [FavorAgentController::class, 'updateBook'])->name('admin.favor.updateBook');
+
+    // Favor Agent Update Office Name
+    Route::get('/favor/editOffice/{id}', [FavorAgentController::class, 'editOffice'])->name('admin.favor.editOffice');
+    Route::post('/favor/updateOffice/{id}', [FavorAgentController::class, 'updateOffice'])->name('admin.favor.updateOffice');
+
+    // Favor Agent Update Office License
+    Route::get('/favor/editLicense/{id}', [FavorAgentController::class, 'editLicense'])->name('admin.favor.editLicense');
+    Route::post('/favor/updateLicense/{id}', [FavorAgentController::class, 'updateLicense'])->name('admin.favor.updateLicense');
+
+    // Favor Agent Update E-Mail Address
+    Route::get('/favor/editEmail/{id}', [FavorAgentController::class, 'editEmail'])->name('admin.favor.editEmail');
+    Route::post('/favor/updateEmail/{id}', [FavorAgentController::class, 'updateEmail'])->name('admin.favor.updateEmail');
+
+    // Favor Agent Update Image
+    Route::get('/favor/editImage/{id}', [FavorAgentController::class, 'editImage'])->name('admin.favor.editImage');
+    Route::post('/favor/updateImage/{id}', [FavorAgentController::class, 'updateImage'])->name('admin.favor.updateImage');
+
+    // Favor Agent Delete
+    Route::get('/favor/destroy/{id}', [FavorAgentController::class, 'destroy'])->name('admin.favor.destroy');
+
+    // Favor Agent Inactive
+    Route::post('/favor/inactive/{id}', [FavorAgentController::class, 'inactive'])->name('admin.favor.inactive');
+
+    // Favor Agent Active
+    Route::post('/favor/active/{id}', [FavorAgentController::class, 'active'])->name('admin.favor.active');
+});
+// Favor Agent Area End
 
 // Customer Page Area Start
 // Primary Info Area Start

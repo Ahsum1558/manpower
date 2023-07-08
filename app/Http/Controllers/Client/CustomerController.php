@@ -53,11 +53,13 @@ class CustomerController extends Controller
         $customer_data = Customer::latest() -> get(); // as latest
         $all_visa_trade = Visatrade::latest()->where('status','=',1) -> get();
         $all_delegate = Delegate::latest()->where('status','=',1) -> get();
+        $all_country = Country::latest()->where('status','=',1) -> get();
         $all_district = District::latest()->where('status','=',1) -> get();
         return view('admin.client.customer.primary.create', [
             'customer_data'=>$customer_data,
             'all_visa_trade'=>$all_visa_trade,
             'all_delegate'=>$all_delegate,
+            'all_country'=>$all_country,
             'all_district'=>$all_district,
         ]);
     }
@@ -83,6 +85,7 @@ class CustomerController extends Controller
             'medical'       => $request->medical,
             'received'      => $request->received,
             'tradeId'       => $request->tradeId,
+            'countryFor'    => $request->countryFor,
             'status'        => $request->status,
             'value'         => 0,
             'userId'        => Auth::user()->id,
@@ -104,6 +107,7 @@ class CustomerController extends Controller
             'medical'       => $request->medical,
             'received'      => $request->received,
             'tradeId'       => $request->tradeId,
+            'countryFor'    => $request->countryFor,
             'status'        => $request->status,
             'value'         => 0,
             'userId'        => Auth::user()->id,
@@ -148,6 +152,7 @@ class CustomerController extends Controller
         $customer_data_info = $this->getDetails($id);
         $all_visa_trade = Visatrade::latest()->where('status','=',1) -> get();
         $all_delegate = Delegate::latest()->where('status','=',1) -> get();
+        $all_country = Country::latest()->where('status','=',1) -> get();
         $all_district = District::latest()->where('status','=',1) -> get();
         
         if($customer_data_info->count() > 0){
@@ -155,6 +160,7 @@ class CustomerController extends Controller
             'customer_data_info'=>$customer_data_info,
             'all_visa_trade'=>$all_visa_trade,
             'all_delegate'=>$all_delegate,
+            'all_country'=>$all_country,
             'all_district'=>$all_district,
         ]);
         }else{
@@ -178,6 +184,7 @@ class CustomerController extends Controller
         $customer_data_info->birthPlace  = $request->birthPlace;
         $customer_data_info->medical     = $request->medical;
         $customer_data_info->tradeId     = $request->tradeId;
+        $customer_data_info->countryFor  = $request->countryFor;
         $customer_data_info->status      = $request->status;
         $customer_data_info->update();
 
@@ -375,6 +382,7 @@ class CustomerController extends Controller
             'birthPlace'    => 'required|exists:districts,id',
             'agentId'       => 'required|exists:delegates,id',
             'tradeId'       => 'required|exists:visatrades,id',
+            'countryFor'    => 'required|exists:countries,id',
             'received'      => 'required|date',
             'status'        => 'required|in:1,0',
             'gender'        => 'required|in:1,2,3',
@@ -394,6 +402,8 @@ class CustomerController extends Controller
             'agentId.exists'      => "Invalid Delegate Field !!",
             'tradeId.required'    => "Visa Trade Field must not be empty !!",
             'tradeId.exists'      => "Invalid Visa Trade Field !!",
+            'countryFor.required' => "Country Field is required !!",
+            'countryFor.exists'   => "Invalid Country Field !!",
             'received.required'   => "Passport Receive Date Field must not be empty !!",
             'status.required'     => 'Status Field is required',
             'status.in'           => 'Invalid status option selected',
@@ -415,6 +425,7 @@ class CustomerController extends Controller
             'gender'        => 'required|in:1,2,3',
             'medical'       => 'required|in:1,2,3,4,5',
             'tradeId'       => 'required|exists:visatrades,id',
+            'countryFor'    => 'required|exists:countries,id',
         ],
         [
             'cusFname.required'   => 'Customer First Name Field is required',
@@ -432,6 +443,8 @@ class CustomerController extends Controller
             'medical.in'          => 'Invalid Medical option selected',
             'tradeId.required'    => "Visa Trade Field must not be empty !!",
             'tradeId.exists'      => "Invalid Visa Trade Field !!",
+            'countryFor.required' => "Country Field is required !!",
+            'countryFor.exists'   => "Invalid Country Field !!",
 
         ]);
     }
@@ -439,10 +452,11 @@ class CustomerController extends Controller
     protected function getInfo(){
         $data_info = DB::table('customers')
             ->leftJoin('delegates', 'customers.agentId', '=', 'delegates.id')
+            ->leftJoin('countries', 'customers.countryFor', '=', 'countries.id')
             ->leftJoin('districts', 'customers.birthPlace', '=', 'districts.id')
             ->leftJoin('visatrades', 'customers.tradeId', '=', 'visatrades.id')
             ->leftJoin('users', 'customers.userId', '=', 'users.id')
-            ->select('customers.*', 'delegates.agentname', 'delegates.agentsl', 'delegates.agentbook', 'districts.districtname', 'visatrades.visatrade_name', 'users.name as receiver')
+            ->select('customers.*', 'delegates.agentname', 'delegates.agentsl', 'delegates.agentbook', 'districts.districtname', 'visatrades.visatrade_name', 'users.name as receiver', 'countries.countryname as destination_country')
             ->orderBy('customers.customersl', 'desc')
             ->get();
         return $data_info;
@@ -453,9 +467,10 @@ class CustomerController extends Controller
             ->leftJoin('delegates', 'customers.agentId', '=', 'delegates.id')
             ->where('customers.id', $id)
             ->leftJoin('districts', 'customers.birthPlace', '=', 'districts.id')
+            ->leftJoin('countries', 'customers.countryFor', '=', 'countries.id')
             ->leftJoin('visatrades', 'customers.tradeId', '=', 'visatrades.id')
             ->leftJoin('users', 'customers.userId', '=', 'users.id')
-            ->select('customers.*', 'delegates.agentname', 'delegates.agentsl', 'delegates.agentbook', 'districts.districtname', 'visatrades.visatrade_name', 'users.name as receiver')
+            ->select('customers.*', 'delegates.agentname', 'delegates.agentsl', 'delegates.agentbook', 'districts.districtname', 'visatrades.visatrade_name', 'users.name as receiver', 'countries.countryname as destination_country')
             ->get();
         return $data_details;
     }

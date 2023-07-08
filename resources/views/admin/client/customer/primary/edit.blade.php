@@ -153,6 +153,19 @@
                                     </select>
                                     </div>
                                 </div>
+                                <div class="row mb-2">
+                                    <div class="col-3">
+                                        <h5 class="f-w-500">Destination Country<span class="pull-right">:</span></h5>
+                                    </div>
+                                    <div class="col-9">
+                                        <select id="countryForWork" name="countryFor" class="form-control d-inline-block inline_setup select2-width-50">
+                                          <option selected="selected">Select Destination Country</option>
+                                    @foreach($all_country as $country)
+                                      <option value="{{ $country->id }}" {{ $customer_data_info[0]->countryFor == $country->id ? 'selected' : '' }}>{{ $country->countryname }}</option>
+                                    @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                                 
                                 <div class="row mb-2">
                                     <div class="col-3">

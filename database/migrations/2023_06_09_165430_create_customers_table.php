@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('medical')->nullable();
             $table->string('received')->nullable();
             $table->integer('tradeId')->nullable();
+            $table->integer('countryFor')->nullable();
             $table->tinyInteger('emblist')->default(0);
             $table->tinyInteger('manpowerlist')->default(0);
             $table->string('delivered')->nullable();

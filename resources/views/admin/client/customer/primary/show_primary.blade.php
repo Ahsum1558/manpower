@@ -111,6 +111,13 @@
                             </div>
                             <div class="row mb-2">
                                 <div class="col-3">
+                                    <h5 class="f-w-500">Destination Country<span class="pull-right">:</span></h5>
+                                </div>
+                                <div class="col-9"><span>{{ $customer_single_data[0]->destination_country }}</span>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-3">
                                     <h5 class="f-w-500">Passport Received<span class="pull-right">:</span></h5>
                                 </div>
                                 <div class="col-9"><span>{{ date('d-M-Y', strtotime($customer_single_data[0]->received)) }}</span>

@@ -54,6 +54,14 @@
                 </ul>
             </li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-suitcase" aria-hidden="true"></i>
+                    <span class="nav-text">Support Agent</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('admin.favor') }}">Support Agent Info</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="fa fa-address-book" aria-hidden="true"></i>
                     <span class="nav-text">Customer</span>
                 </a>
@@ -100,16 +108,7 @@
             
              
             
-           {{--  <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="fa fa-suitcase" aria-hidden="true"></i>
-                    <span class="nav-text">Payment Party</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="party.php">Party Info</a></li>
-                </ul>
-            </li>
-
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+           {{-- <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="fa fa-bank"></i>
                     <span class="nav-text">Banking</span>
                 </a>
