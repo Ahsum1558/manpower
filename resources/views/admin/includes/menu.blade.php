@@ -67,6 +67,7 @@
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="{{ route('admin.customer') }}">Customer Info</a></li>
+                    <li><a href="{{ route('admin.customer.insertOnce') }}">Customer Once</a></li>
                     <li><a href="{{ route('admin.customer.medical') }}">Medical Info</a></li>
                     <li><a href="{{ route('admin.submission') }}">Submission Info</a></li>
                     <li><a href="{{ route('admin.manpower') }}">Manpower Info</a></li>

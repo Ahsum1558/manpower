@@ -27,6 +27,7 @@ use App\Http\Controllers\Client\CustomerMedicalController;
 use App\Http\Controllers\Client\SubmissionController;
 use App\Http\Controllers\Client\SubmissionCustomerController;
 use App\Http\Controllers\Client\FavorAgentController;
+use App\Http\Controllers\Client\CustomerOnceController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -329,5 +330,23 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/submission/remove/{id}', [SubmissionCustomerController::class, 'remove'])->name('admin.submission.remove');
 });
 // Customer Submission Area End
+
+// Customer Once Area Start
+Route::middleware(['auth'])->group(function () {
+    // Customer Once Info
+    Route::get('/customer/insertOnce', [CustomerOnceController::class, 'insertOnce'])->name('admin.customer.insertOnce');
+
+    // Get Division
+    Route::get('/customer/getDiv', [CustomerOnceController::class, 'getDiv'])->name('admin.customer.getDiv');
+    // Get District
+    Route::get('/customer/getDist', [CustomerOnceController::class, 'getDist'])->name('admin.customer.getDist');
+    // Get Upzila
+    Route::get('/customer/getPs', [CustomerOnceController::class, 'getPs'])->name('admin.customer.getPs');
+
+    // Customer Once Create
+    Route::get('/customer/createOnce', [CustomerOnceController::class, 'createOnce'])->name('admin.customer.createOnce');
+    Route::post('/customer/storeOnce', [CustomerOnceController::class, 'storeOnce'])->name('admin.customer.storeOnce');
+});
+// Customer Once Area End
 
 // Customer Page Area End

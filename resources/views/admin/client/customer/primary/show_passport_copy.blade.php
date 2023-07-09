@@ -17,6 +17,10 @@
                     </div>
                 </div>
             </div>
+            <div class="mybtn">
+                <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.customer.editPassportCopy', ['id'=>$customer_single_data[0]->id]) }}">Update Passport Copy</a>
+                <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase pull-right" href="{{ route('admin.customer') }}">Back</a>
+            </div>
         </div>
     </div>
 </div>

@@ -21,7 +21,7 @@
             </div>
             <div class="card-body">
 @include('admin.includes.alert')
-                <h4 class="mb-4 basic_headline">Update Customer Passport Copy</h4>
+                <h4 class="mb-4 basic_headline">Update Passport Copy</h4>
                 <div class="settings-form">
                     <form action="{{ route('admin.customer.updatePassportCopy', ['id'=>$passport_copy_data->id]) }}" class="form-group" method="POST" enctype="multipart/form-data">
                         @csrf
