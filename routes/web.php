@@ -112,6 +112,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/visa/active/{id}', [VisaController::class, 'active'])->name('admin.visa.active');
 
     Route::get('/visa/pdf', [VisapdfController::class, 'getpdf'])->name('admin.visa.pdf');
+
+    Route::get('/visa/Details/{id}', [VisapdfController::class, 'getVisaPdf'])->name('admin.visa.Details');
 });
 // Visa Area End
 

@@ -17,7 +17,7 @@
     <div class="header_area clear">
 @foreach ($embassy_single_data as $embassy)
         <div class="top_header clear">
-            <div class="barcodecell top_barcode"><barcode code="{{ $embassy->visano_en }}" type="C93" class="barcode" height="0.8" />
+            <div class="barcodecell top_barcode"><barcode code="{{ $embassy->visano_en }}" type="C128B" class="barcode" text="{{ $embassy->visano_en }}" /> 
                 <div class="barcode_text">{{ $embassy->visano_en }}</div>
                 <div class="barcode_doc">Document Date: {{ $embassy->visa_date }}</div>
             </div>
@@ -358,9 +358,9 @@
             <div class="consular_right">Checked by:</div>
         </div>
 
-        <div class="barcodecell passport_barcode clear"><barcode code="{{ $customer_single_data[0]->passportNo }}" type="C93" class="barcode" height="0.8"/>
-                <div class="barcode_text">{{ $customer_single_data[0]->passportNo }}</div>
-            </div>
+        <div class="barcodecell passport_barcode clear"><barcode code="{{ $customer_single_data[0]->passportNo }}" type="C128B" class="barcode" text="{{ $customer_single_data[0]->passportNo }}" />
+            <div class="barcode_text">{{ $customer_single_data[0]->passportNo }}</div>
+        </div>
 @endforeach
     </div>
 </div>

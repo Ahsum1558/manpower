@@ -118,9 +118,9 @@
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
-                                <h5 class="f-w-500">Visa Duration<span class="pull-right">:</span></h5>
+                                <h5 class="f-w-500">Contract Duration<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="visa_duration" class="form-control d-inline-block inline_setup" placeholder="Enter Visa Duration" value="{{ old('visa_duration') }}">
+                            <div class="col-9"><input type="text" name="visa_duration" class="form-control d-inline-block inline_setup" placeholder="Enter Contract Duration" value="{{ old('visa_duration') }}">
                             </div>
                         </div>
 

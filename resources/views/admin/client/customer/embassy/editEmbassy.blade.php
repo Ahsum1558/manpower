@@ -70,7 +70,7 @@
                                         $isDisabled = $remainingVisa <= 0 ? 'disabled' : '';
                                     @endphp
                                     <option value="{{ $visa->id }}" {{ $isDisabled }} {{ $embassy->visaId == $visa->id ? 'selected' : '' }}>
-                                        {{ $visa->visano_en .' - ('. $remainingVisaText .')' }}
+                                        {{ $visa->visano_en .' - ('. $remainingVisaText .')' .' - '. $visa->occupation_ar }}
                                     </option>
                                 @endforeach
                                             </select>

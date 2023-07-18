@@ -51,7 +51,7 @@ body{
 	text-align: right;
 }
 .app_wrapper .header_area .top_header .top_barcode .barcode_text{
-	width: 45%;
+	width: 50%;
 	float: right;
 	text-align: center;
 	font-size: 14px;
@@ -62,6 +62,7 @@ body{
 	width: 100%;
 	font-size: 14px;
 	text-transform: capitalize;
+	padding-right: 30px;
 }
 .app_wrapper .passport_barcode .barcode_text{
 	padding: 0;

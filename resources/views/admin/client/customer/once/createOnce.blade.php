@@ -408,7 +408,7 @@
                                         $isDisabled = $remainingVisa <= 0 ? 'disabled' : '';
                                     @endphp
                                     <option value="{{ $visa->id }}" {{ old('visaId') == $visa->id ? 'selected' : '' }} {{ $isDisabled }}>
-                                        {{ $visa->visano_en .' - ('. $remainingVisaText .')' }}
+                                        {{ $visa->visano_en .' - ('. $remainingVisaText .')' .' - '. $visa->occupation_ar }}
                                     </option>
                                 @endforeach
 
@@ -480,7 +480,7 @@
                     <div class="row mb-2">
                         <div class="col-3"></div>
                         <div class="col-9 mybtn">
-                            <button type="submit" name="add" class="form-control inline_setup btn submitbtn text-uppercase">Add</button>
+                            <button type="submit" name="add" class="form-control inline_setup btn submitbtn text-uppercase">Add Customer</button>
                             <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase pull-right" href="{{ route('admin.customer.insertOnce') }}">Back</a>
                         </div>
                     </div>

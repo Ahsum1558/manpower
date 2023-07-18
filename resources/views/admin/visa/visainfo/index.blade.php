@@ -32,6 +32,7 @@
                               <th>Visa No.</th>
                               <th>Sponsor Id</th>
                               <th width="30%">Sponsor Name</th>
+                              <th>Occupation</th>
                               <th>Visa</th>
                               <th>Used</th>
                               <th>Remaining</th>
@@ -49,6 +50,7 @@
                             <td>{{ $visa->visano_en }}</td>
                             <td>{{ $visa->sponsorid_en }}</td>
                             <td>{{ $visa->sponsorname_en }}</td>
+                            <td>{{ $visa->occupation_ar }}</td>
                             <td>{{ $visa->delegated_visa }}</td>
                             <td>{{ isset($visaCounts[$visa->id]) ? $visaCounts[$visa->id] : 0 }}</td>
                         @if(isset($visaCounts[$visa->id]) && $visa->delegated_visa - $visaCounts[$visa->id] >= 0)
@@ -70,6 +72,7 @@
                             @elseif($visa->status == 0)
                               <a class="edit_option" href="#activeId{{ $visa->id }}" data-toggle="modal"><i class="fas fa-caret-square-up"></i><span>Set Active</span></a>
                             @endif
+                            <a class="view_option bg-primary" target="_blank" href="{{ route('admin.visa.Details', ['id'=>$visa->id]) }}"><i class="fa fa-print"></i><span>Print Visa Details</span></a>
                             @if(Auth::check() && (Auth::user()->role == 'admin'))
                               <a class="delete_option" href="#delVisa{{ $visa->id }}" data-toggle="modal"><i class="fas fa-trash"></i><span>Delete</span></a>
                             @endif

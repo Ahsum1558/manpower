@@ -5,8 +5,16 @@ namespace App\Http\Controllers\Visa;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Visa;
+use App\Models\Customer;
+use App\Models\CustomerDocoment;
 use App\Models\CustomerEmbassy;
-use DB;
+use App\Models\CustomerPassport;
+use App\Models\CustomerRate;
+use App\Models\CustomerVisa;
+use App\Models\CustomerManpower;
+use App\Models\Delegate;
+use App\Models\Visatrade;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\RedirectResponse;
@@ -82,6 +90,7 @@ class VisaController extends Controller
     public function show(string $id)
     {
         $single_visa = Visa::find($id);
+        $customer_data = $this->getVisaCustomers($id);
 
         if ($single_visa !== null) {
             $visaCounts = [];
@@ -90,7 +99,11 @@ class VisaController extends Controller
             $total_customer = CustomerEmbassy::where('visaId', $id)->count();
             $visaCounts[$visaId] = $total_customer;
 
-            return view('admin.visa.visainfo.show', compact('single_visa', 'visaCounts'));
+            return view('admin.visa.visainfo.show', [
+            'single_visa'=>$single_visa,
+            'visaCounts'=>$visaCounts,
+            'customer_data'=>$customer_data,
+            ]);
         } else {
             return redirect('/visa');
         }
@@ -302,5 +315,21 @@ class VisaController extends Controller
             'delegation_no.required'    => 'Visa Delegation No. Field must not be Empty',
             'delegation_no.unique'      => 'Visa Delegation No. already exist !',
         ]);
+    }
+
+    protected function getVisaCustomers($id){
+        $data_details = DB::table('customers')
+            ->where('customer_embassies.visaId', $id)
+            ->leftJoin('customer_embassies', 'customers.id', '=', 'customer_embassies.customerId')
+            ->leftJoin('submission_customers', 'customers.id', '=', 'submission_customers.customerId')
+            ->leftJoin('visas', 'customer_embassies.visaId', '=', 'visas.id')
+            ->leftJoin('delegates', 'customers.agentId', '=', 'delegates.id')
+            ->leftJoin('districts', 'customers.birthPlace', '=', 'districts.id')
+            ->leftJoin('countries', 'customers.countryFor', '=', 'countries.id')
+            ->leftJoin('visatrades', 'customers.tradeId', '=', 'visatrades.id')
+            ->leftJoin('users', 'customers.userId', '=', 'users.id')
+            ->select('customers.*', 'delegates.agentname', 'delegates.agentsl', 'delegates.agentbook', 'districts.districtname', 'visatrades.visatrade_name', 'users.name as receiver', 'countries.countryname as destination_country')
+            ->get();
+        return $data_details;
     }
 }

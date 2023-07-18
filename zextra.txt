@@ -96,8 +96,23 @@ php artisan make:model FavorAgent -m
 php artisan make:controller Client/CustomerOnceController
 
 
+
+
+
 Customer Activity
 customerId
-activity_date
+reportId
 activity_type
+activity_details
+payment_rate
+payment_info
+status
+
+Customer Report
+favorId
+report_type (send/return)
+report_date
+receiver
+sender
+carrier
 status
