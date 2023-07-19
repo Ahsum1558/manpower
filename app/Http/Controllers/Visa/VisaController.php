@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\RedirectResponse;
+use Milon\Barcode\DNS1D;
+use Illuminate\Support\Facades\File;
+use Picqer\Barcode\BarcodeGeneratorPNG;
 
 class VisaController extends Controller
 {
@@ -60,8 +63,20 @@ class VisaController extends Controller
         if (!$existingRecord){
         $this->validation($request);
 
+        $barcodeData = $request->visano_en;
+        $color = [0, 0, 0];
+        $generator = new BarcodeGeneratorPNG();
+        $barcodeImage = $generator->getBarcode($barcodeData, $generator::TYPE_CODE_128, 3, 50, $color);
+
+        $file_ext = strtolower($request->visano_en);
+
+        $barcodeFilename = substr(md5(time() . rand()), 0, 10) .'.'.$file_ext. '.png';
+        $barcodePath = public_path('admin/uploads/barcode/') . $barcodeFilename;
+        file_put_contents($barcodePath, $barcodeImage);
+
         Visa::create([
             'visano_en'         => $request->visano_en,
+            'visano_img'        => $barcodeFilename,
             'visano_ar'         => $request->visano_ar,
             'sponsorid_en'      => $request->sponsorid_en,
             'sponsorid_ar'      => $request->sponsorid_ar,
@@ -164,8 +179,24 @@ class VisaController extends Controller
         $this->validationVisaNo($request);
         $visaNo_data = Visa::findOrFail($id);
 
-        $visaNo_data->visano_en   = $request->visano_en;
-        $visaNo_data->visano_ar   = $request->visano_ar;
+        if (File::exists(public_path('admin/uploads/barcode/' . $visaNo_data->visano_img))) {
+            File::delete(public_path('admin/uploads/barcode/' . $visaNo_data->visano_img));
+        }
+
+        $barcodeData = $request->visano_en;
+        $color = [0, 0, 0];
+        $generator = new BarcodeGeneratorPNG();
+        $barcodeImage = $generator->getBarcode($barcodeData, $generator::TYPE_CODE_128, 3, 50, $color);
+
+        $file_ext = strtolower($request->visano_en);
+
+        $barcodeFilename = substr(md5(time() . rand()), 0, 10) .'.'.$file_ext. '.png';
+        $barcodePath = public_path('admin/uploads/barcode/') . $barcodeFilename;
+        file_put_contents($barcodePath, $barcodeImage);
+
+        $visaNo_data->visano_img = $barcodeFilename;
+        $visaNo_data->visano_en = $request->visano_en;
+        $visaNo_data->visano_ar = $request->visano_ar;
         $visaNo_data->update();
 
         return back()->with('message', 'The Visa Number is Updated Successfully');
@@ -199,6 +230,9 @@ class VisaController extends Controller
     public function destroy(string $id)
     {
         $data_visa = Visa::find($id);
+        if (File::exists(public_path('admin/uploads/barcode/' . $data_visa->visano_img))) {
+            File::delete(public_path('admin/uploads/barcode/' . $data_visa->visano_img));
+        }
         $data_visa -> delete();
 
         return redirect() -> back() -> with('message', 'The Visa is deleted successfully');

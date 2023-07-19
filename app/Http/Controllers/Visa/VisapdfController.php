@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\RedirectResponse;
+use Mpdf\Mpdf;
 
 class VisapdfController extends Controller
 {

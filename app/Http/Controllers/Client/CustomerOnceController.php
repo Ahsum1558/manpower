@@ -32,7 +32,9 @@ use App\Models\Fieldbn;
 use App\Models\Visa;
 use App\Models\Visatype;
 use App\Models\SubmissionCustomer;
-use File;
+use Milon\Barcode\DNS1D;
+use Illuminate\Support\Facades\File;
+use Picqer\Barcode\BarcodeGeneratorPNG;
 
 class CustomerOnceController extends Controller
 {
@@ -132,6 +134,18 @@ class CustomerOnceController extends Controller
     public function storeOnce(Request $request){
         $this->validation($request);
         $customer_data = Customer::latest()->get();
+
+        $barcodeData = $request->passportNo;
+        $color = [0, 0, 0];
+        $generator = new BarcodeGeneratorPNG();
+        $barcodeImage = $generator->getBarcode($barcodeData, $generator::TYPE_CODE_128, 3, 50, $color);
+
+        $file_ext = strtolower($request->passportNo);
+
+        $barcodeFilename = substr(md5(time() . rand()), 0, 10) .'.'.$file_ext. '.png';
+        $barcodePath = public_path('admin/uploads/passcode/') . $barcodeFilename;
+        file_put_contents($barcodePath, $barcodeImage);
+
         if (count($customer_data) > 0) {
             $customer = Customer::create([
             'customersl'    => $request->customersl,
@@ -140,6 +154,7 @@ class CustomerOnceController extends Controller
             'cusLname'      => $request->cusLname,
             'gender'        => $request->gender,
             'passportNo'    => $request->passportNo,
+            'passport_img'  => $barcodeFilename,
             'phone'         => $request->phone,
             'agentId'       => $request->agentId,
             'birthPlace'    => $request->birthPlace,
@@ -216,6 +231,7 @@ class CustomerOnceController extends Controller
             'cusLname'      => $request->cusLname,
             'gender'        => $request->gender,
             'passportNo'    => $request->passportNo,
+            'passport_img'  => $barcodeFilename,
             'phone'         => $request->phone,
             'agentId'       => $request->agentId,
             'birthPlace'    => $request->birthPlace,

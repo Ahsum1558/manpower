@@ -15,9 +15,11 @@
 
 <div class="app_wrapper clear">
     <div class="header_area clear">
+        
 @foreach ($embassy_single_data as $embassy)
+
         <div class="top_header clear">
-            <div class="barcodecell top_barcode"><barcode code="{{ $embassy->visano_en }}" type="C128B" class="barcode" text="{{ $embassy->visano_en }}" /> 
+            <div class="barcodecell top_barcode"><img src="{{ asset('public/admin/uploads/barcode/'.$embassy->visano_img) }}"  width="220"> 
                 <div class="barcode_text">{{ $embassy->visano_en }}</div>
                 <div class="barcode_doc">Document Date: {{ $embassy->visa_date }}</div>
             </div>
@@ -358,7 +360,7 @@
             <div class="consular_right">Checked by:</div>
         </div>
 
-        <div class="barcodecell passport_barcode clear"><barcode code="{{ $customer_single_data[0]->passportNo }}" type="C128B" class="barcode" text="{{ $customer_single_data[0]->passportNo }}" />
+        <div class="barcodecell passport_barcode clear"><img src="{{ asset('public/admin/uploads/passcode/'.$customer_single_data[0]->passport_img) }}"  width="220">
             <div class="barcode_text">{{ $customer_single_data[0]->passportNo }}</div>
         </div>
 @endforeach

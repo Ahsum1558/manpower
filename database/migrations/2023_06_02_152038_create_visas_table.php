@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('visano_en')->nullable();
             $table->string('visano_ar')->nullable();
+            $table->string('visano_img')->nullable()
             $table->string('sponsorid_en')->nullable();
             $table->string('sponsorid_ar')->nullable();
             $table->string('sponsorname_en')->nullable();

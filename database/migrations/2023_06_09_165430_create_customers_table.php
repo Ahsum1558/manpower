@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('cusLname')->nullable();
             $table->string('gender')->nullable();
             $table->string('passportNo')->nullable();
+            $table->string('passport_img')->nullable()
             $table->string('phone')->nullable();
             $table->integer('agentId')->nullable();
             $table->string('photo')->nullable();
