@@ -273,6 +273,7 @@
                 <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.customer.stampingVisa', ['id'=>$customer_single_data[0]->id]) }}">Add Visa Stamping Info</a>
             @endif
                 <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.customer.editEmbassy', ['id'=>$customer_single_data[0]->id]) }}">Update Embassy Info</a>
+                <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.customer.editVisa', ['id'=>$customer_single_data[0]->id]) }}">Update Visa Info</a>
                 <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.customer.editMofa', ['id'=>$customer_single_data[0]->id]) }}">Update Mofa Number</a>
                 <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase pull-right" href="{{ route('admin.customer') }}">Back</a>
             </div>

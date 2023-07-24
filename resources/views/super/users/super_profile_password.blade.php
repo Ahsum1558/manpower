@@ -60,8 +60,7 @@
                             </div>
                         </div>
                         <div class="row mb-2">
-                            <div class="col-3"></div>
-                            <div class="col-9 mybtn">
+                            <div class="col-12 mybtn">
                                 <button type="submit" name="updatePassword" class="form-control inline_setup btn submitbtn text-uppercase">Update</button>
                                 <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase pull-right" href="{{ route('super.profile') }}">Back</a>
                             </div>

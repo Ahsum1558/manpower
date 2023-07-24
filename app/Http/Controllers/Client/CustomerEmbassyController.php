@@ -136,7 +136,6 @@ class CustomerEmbassyController extends Controller
         $this->validationInfo($request);
 
         $embassy_edit->visaTypeId       = $request->visaTypeId;
-        $embassy_edit->visaId           = $request->visaId;
         $embassy_edit->fieldId          = $request->fieldId;
         $embassy_edit->fieldarId        = $request->fieldarId;
         $embassy_edit->fieldbnId        = $request->fieldbnId;
@@ -146,6 +145,48 @@ class CustomerEmbassyController extends Controller
         $embassy_edit->update();
 
         return redirect() -> back() -> with('message', 'Customer Embassy Info is Updated successfully');
+    }
+
+    public function editVisa($id)
+    {
+        $data_customer_visa = Customer::find($id);
+        $visa_edit = CustomerEmbassy::where('customerId', $id)->get();
+        $all_visa = Visa::latest()->where('status','=',1) -> get();
+
+        $visaCounts = [];
+
+        foreach ($all_visa as $visa) {
+            $visaId = $visa->id;
+            $total_customer = CustomerEmbassy::where('visaId', $visaId)->count();
+            $visaCounts[$visaId] = $total_customer;
+        }
+        if ($data_customer_visa !== null) {
+            return view('admin.client.customer.embassy.editVisa', [
+            'data_customer_visa'=>$data_customer_visa,
+            'visa_edit'=>$visa_edit,
+            'all_visa'=>$all_visa,
+            'visaCounts'=>$visaCounts,
+            ]);
+        }else{
+            return redirect('/customer');
+        }
+    }
+
+    public function updateVisa(Request $request, $id)
+    {
+        $visa_edit = CustomerEmbassy::where('customerId', $id)->first();
+        $this -> validate($request, [
+            'visaId'   => 'required|exists:visas,id',
+        ],
+        [
+            'visaId.required' => 'Visa Info Field is required',
+            'visaId.exists'   => 'Invalid Visa Info Field',
+        ]);
+
+        $visa_edit->visaId             = $request->visaId;
+        $visa_edit->update();
+
+        return redirect() -> back() -> with('message', 'Customer Visa Info is Updated successfully');
     }
 
     public function editMofa($id)
@@ -166,7 +207,7 @@ class CustomerEmbassyController extends Controller
     {
         $mofa_edit = CustomerEmbassy::where('customerId', $id)->first();
         $this -> validate($request, [
-            'mofa'              => 'required|unique:customer_embassies',
+            'mofa' => 'required|unique:customer_embassies',
         ],
         [
             'mofa.unique'               => 'Mofa Number is already exist',
@@ -215,7 +256,6 @@ class CustomerEmbassyController extends Controller
     protected function validationInfo($request){
         $this -> validate($request, [
             'visaTypeId'        => 'required|exists:visatypes,id',
-            'visaId'            => 'required|exists:visas,id',
             'fieldId'           => 'required|exists:fields,id',
             'fieldarId'         => 'required|exists:fieldars,id',
             'fieldbnId'         => 'required|exists:fieldbns,id',
@@ -226,8 +266,6 @@ class CustomerEmbassyController extends Controller
         [
             'visaTypeId.required'     => 'Visa Type Field is required',
             'visaTypeId.exists'       => 'Visa Type Field is Invalid',
-            'visaId.required'         => 'Visa Info Field is required',
-            'visaId.exists'           => 'Invalid Visa Info Field',
             'fieldId.required'        => "Office Name Field is required !!",
             'fieldId.exists'          => "Office Name Field is Invalid !!",
             'fieldarId.required'      => "Office Name Arabic Field is required !!",

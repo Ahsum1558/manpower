@@ -235,6 +235,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/customer/updateEmbassy/{id}', [CustomerEmbassyController::class, 'updateEmbassy'])->name('admin.customer.updateEmbassy');
 
     // Customer Mofa Number Update
+    Route::get('/customer/editVisa/{id}', [CustomerEmbassyController::class, 'editVisa'])->name('admin.customer.editVisa');
+    Route::post('/customer/updateVisa/{id}', [CustomerEmbassyController::class, 'updateVisa'])->name('admin.customer.updateVisa');
+
+     // Customer Mofa Number Update
     Route::get('/customer/editMofa/{id}', [CustomerEmbassyController::class, 'editMofa'])->name('admin.customer.editMofa');
     Route::post('/customer/updateMofa/{id}', [CustomerEmbassyController::class, 'updateMofa'])->name('admin.customer.updateMofa');
 });

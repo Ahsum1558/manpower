@@ -224,7 +224,7 @@ class CustomerOnceController extends Controller
             }
         } else {
             $customerSerial = "CUS00001";
-            Customer::create([
+            $customer = Customer::create([
             'customersl'    => $customerSerial,
             'bookRef'       => $request->bookRef,
             'cusFname'      => $request->cusFname,

@@ -28,7 +28,6 @@
                             <div class="product-detail-content">
                                 <!--Product details-->
                                 <div class="new-arrival-content pr">
-                                    
                                     <div class="row mb-2">
                                         <div class="col-3">
                                             <h5 class="f-w-500">Religion<span class="pull-right">:</span></h5>
@@ -56,26 +55,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="row mb-2">
-                                        <div class="col-3">
-                                            <h5 class="f-w-500">Visa No<span class="pull-right">:</span></h5>
-                                        </div>
-                                        <div class="col-9">
-                                            <select id="select" name="visaId" class="form-control d-inline-block inline_setup disabling-options">
-                                              <option selected="selected">Select Visa No</option>
-                                            @foreach($all_visa as $visa)
-                                    @php
-                                        $remainingVisa = isset($visaCounts[$visa->id]) ? $visa->delegated_visa - $visaCounts[$visa->id] : 0;
-                                        $remainingVisaText = $remainingVisa >= 0 ? $remainingVisa : 0;
-                                        $isDisabled = $remainingVisa <= 0 ? 'disabled' : '';
-                                    @endphp
-                                    <option value="{{ $visa->id }}" {{ $isDisabled }} {{ $embassy->visaId == $visa->id ? 'selected' : '' }}>
-                                        {{ $visa->visano_en .' - ('. $remainingVisaText .')' .' - '. $visa->occupation_ar }}
-                                    </option>
-                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="row mb-2">
                                         <div class="col-3">
                                             <h5 class="f-w-500">Office Name<span class="pull-right">:</span></h5>

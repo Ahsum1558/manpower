@@ -82,3 +82,4 @@ php artisan db:seed --class=MenuItemSeeder
 </div>
 <!-- Sidebar end -->
 
+composer require picqer/php-barcode-generator
