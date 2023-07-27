@@ -23,6 +23,34 @@
                 <form action="{{ route('admin.manpower.storeStampingVisa', ['id'=>$data_stamped_customer->id]) }}" class="form-group" method="POST" enctype="multipart/form-data">
                      @csrf
                     <div class="profile-personal-info">
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <h5 class="f-w-500">Serial Number<span class="pull-right">:</span></h5>
+                            </div>
+                            <div class="col-9"><span>{{ $data_stamped_customer->customersl }}</span>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <h5 class="f-w-500">Book Ref. Number<span class="pull-right">:</span></h5>
+                            </div>
+                            <div class="col-9"><span>{{ $data_stamped_customer->bookRef }}</span>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <h5 class="f-w-500">Name<span class="pull-right">:</span></h5>
+                            </div>
+                            <div class="col-9"><span>{{ $data_stamped_customer->cusFname }} {{ $data_stamped_customer->cusLname }}</span>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <h5 class="f-w-500">Passport Number<span class="pull-right">:</span></h5>
+                            </div>
+                            <div class="col-9"><span>{{ $data_stamped_customer->passportNo }}</span>
+                            </div>
+                        </div>
                 
                         <div class="row mb-2">
                             <div class="col-3">

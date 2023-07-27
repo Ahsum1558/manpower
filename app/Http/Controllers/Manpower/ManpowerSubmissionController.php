@@ -75,6 +75,7 @@ class ManpowerSubmissionController extends Controller
         $manpower_data->fieldbnId      = $request->fieldbnId;
         $manpower_data->manpowerDate   = $request->manpowerDate;
         $manpower_data->putupSl        = $request->putupSl;
+        $manpower_data->countrynamebn  = $request->countrynamebn;
         $manpower_data->userId         = Auth::user()->id;
         $manpower_data->status         = $request->status;
         $manpower_data->save();
@@ -134,6 +135,7 @@ class ManpowerSubmissionController extends Controller
         $manpower_info->fieldId      = $request->fieldId;
         $manpower_info->fieldarId    = $request->fieldarId;
         $manpower_info->fieldbnId    = $request->fieldbnId;
+        $manpower_info->countrynamebn = $request->countrynamebn;
         $manpower_info->status       = $request->status;
         $manpower_info->update();
 
@@ -167,31 +169,31 @@ class ManpowerSubmissionController extends Controller
         return redirect() -> back() -> with('message', 'Manpower Submission Date is Updated successfully');
     }
 
-    public function editPutup($id)
+    public function editNotesheet($id)
     {
         $manpower_putup_info = ManpowerSubmission::find($id);
         if ($manpower_putup_info !== null) {
-            return view('admin.client.manpower.editPutup', compact('manpower_putup_info'));
+            return view('admin.client.manpower.editNotesheet', compact('manpower_putup_info'));
         }else{
             return redirect('/manpower');
         }
     }
 
-    public function updatePutup(Request $request, $id)
+    public function updateNotesheet(Request $request, $id)
     {
         $manpower_putup_info = ManpowerSubmission::findOrFail($id);
         $this -> validate($request, [
             'putupSl' => 'required|unique:manpower_submissions',
         ],
         [
-            'putupSl.required' => "Put Up List Field is required !!",
-            'putupSl.unique'   => "Put Up List Field is already exist !!",
+            'putupSl.required' => "Notesheet Number Field is required !!",
+            'putupSl.unique'   => "Notesheet Number Field is already exist !!",
         ]);
 
         $manpower_putup_info->putupSl = $request->putupSl;
         $manpower_putup_info->update();
 
-        return redirect() -> back() -> with('message', 'Put Up List is Updated successfully');
+        return redirect() -> back() -> with('message', 'Notesheet Number is Updated successfully');
     }
 
     /**
@@ -237,6 +239,7 @@ class ManpowerSubmissionController extends Controller
             'manpowerDate' => 'required|date|unique:manpower_submissions',
             'putupSl'      => 'required|unique:manpower_submissions',
             'status'       => 'required|in:1,0',
+            'countrynamebn' => 'required',
         ],
         [
             'fieldId.required'        => "Office Name Field is required !!",
@@ -247,10 +250,11 @@ class ManpowerSubmissionController extends Controller
             'fieldbnId.exists'        => "Office Name Bengali Field is Invalid !!",
             'manpowerDate.required'   => "Manpower Submission Date Field is required !!",
             'manpowerDate.unique'     => "Manpower Submission Date Field is already exist !!",
-            'putupSl.required'        => "Put Up List Field is required !!",
-            'putupSl.unique'          => "Put Up List Field is already exist !!",
+            'putupSl.required'        => "Notesheet Number Field is required !!",
+            'putupSl.unique'          => "Notesheet Number Field is already exist !!",
             'status.required'         => 'Status Field is required',
             'status.in'               => 'Invalid status option selected',
+            'countrynamebn.required'   => "Country Name in Bengali Field is required !!",
         ]);
     }
 
@@ -260,6 +264,7 @@ class ManpowerSubmissionController extends Controller
             'fieldarId' => 'required|exists:fieldars,id',
             'fieldbnId' => 'required|exists:fieldbns,id',
             'status'    => 'required|in:1,0',
+            'countrynamebn' => 'required',
         ],
         [
             'fieldId.required'   => "Office Name Field is required !!",
@@ -270,6 +275,7 @@ class ManpowerSubmissionController extends Controller
             'fieldbnId.exists'   => "Office Name Bengali Field is Invalid !!",
             'status.required'    => 'Status Field is required',
             'status.in'          => 'Invalid status option selected',
+            'countrynamebn.required'   => "Country Name in Bengali Field is required !!",
         ]);
     }
 

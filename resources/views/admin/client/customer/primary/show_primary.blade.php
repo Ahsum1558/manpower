@@ -104,6 +104,19 @@
                             </div>
                             <div class="row mb-2">
                                 <div class="col-3">
+                                    <h5 class="f-w-500">Medical Update<span class="pull-right">:</span></h5>
+                                </div>
+                                <div class="col-9"><span>
+                                    @if($customer_single_data[0]->medical_update == 1)
+                                    {{ __('Medical Updated') }}
+                                    @elseif($customer_single_data[0]->medical_update == 0)
+                                    {{ __('Medical Not Updated') }}
+                                    @endif
+                                </span>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-3">
                                     <h5 class="f-w-500">Trade<span class="pull-right">:</span></h5>
                                 </div>
                                 <div class="col-9"><span>{{ $customer_single_data[0]->visatrade_name }}</span>

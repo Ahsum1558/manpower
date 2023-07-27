@@ -75,9 +75,16 @@
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
-                                <h5 class="f-w-500">Put Up List<span class="pull-right">:</span></h5>
+                                <h5 class="f-w-500">Note Sheet No.<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="text" name="putupSl" class="form-control d-inline-block inline_setup" placeholder="Enter Put Up List" value="{{ old('putupSl') }}">
+                            <div class="col-9"><input type="text" name="putupSl" class="form-control d-inline-block inline_setup" placeholder="Enter Note Sheet No." value="{{ old('putupSl') }}">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <h5 class="f-w-500">Destination Country in Bengali<span class="pull-right">:</span></h5>
+                            </div>
+                            <div class="col-9"><input type="text" name="countrynamebn" class="form-control d-inline-block inline_setup" placeholder="Enter Destination Country Name in Bengali" value="{{ old('countrynamebn') }}">
                             </div>
                         </div>
                         

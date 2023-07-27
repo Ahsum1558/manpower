@@ -164,6 +164,7 @@ class CustomerOnceController extends Controller
             'countryFor'    => $request->countryFor,
             'status'        => $request->status,
             'value'         => 3,
+            'medical_update' => 1,
             'userId'        => Auth::user()->id,
             
         ]);
@@ -216,7 +217,6 @@ class CustomerOnceController extends Controller
 
                 DB::commit();
 
-
                 return redirect()->back()->with('message', 'Customer and related data are added successfully');
             } catch (\Exception $e) {
                 DB::rollback();
@@ -241,6 +241,7 @@ class CustomerOnceController extends Controller
             'countryFor'    => $request->countryFor,
             'status'        => $request->status,
             'value'         => 3,
+            'medical_update' => 1,
             'userId'        => Auth::user()->id,
         ]);
 

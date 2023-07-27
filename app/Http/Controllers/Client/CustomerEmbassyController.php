@@ -89,8 +89,9 @@ class CustomerEmbassyController extends Controller
         $customer_embassy->save();
 
         if($customer_embassy){
-            $data_customer->value        = 3;
-            $data_customer->medical      = 2;
+            $data_customer->value          = 3;
+            $data_customer->medical        = 2;
+            $data_customer->medical_update = 1;
             $data_customer->update();
             return redirect() -> back() -> with('message', 'Customer Embassy Info is added successfully');
         }

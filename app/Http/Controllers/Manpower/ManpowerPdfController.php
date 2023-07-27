@@ -45,7 +45,7 @@ use File;
 
 class ManpowerPdfController extends Controller
 {
-    public function printPutup($id)
+    public function printNotesheet($id)
     {
         $numto = new NumberToBangla();
         $mpdf = $this->getMpdfHeader();
@@ -56,7 +56,7 @@ class ManpowerPdfController extends Controller
         
         if($manpower_single_data->count() > 0 && isset($manpower_single_data[0]) && $manpower_single_data[0]->status == 1){
             $license_expiry = date('d/m/Y', strtotime($manpower_single_data[0]->licenseExpiry));
-            $output = view('admin.client.manpower.pdf.printPutup', [
+            $output = view('admin.client.manpower.pdf.printNotesheet', [
             'manpower_single_data'=>$manpower_single_data,
             'manpower_customers'=>$manpower_customers,
             'manpower_payment'=>$manpower_payment,
@@ -167,6 +167,35 @@ class ManpowerPdfController extends Controller
         }
     }
 
+    public function printPutup($id)
+    {
+        $numto = new NumberToBangla();
+        $mpdf = $this->getMpdfHeaderLegalLandscape();
+        $manpower_single_data = $this->getDetails($id);
+        $manpower_customers = $this->getCustomersDetails($id)->where('status','=',1);
+        $manpower_payment = BmetPayment::where('manpowerSubId', $id)->where('status','=',1)->get();
+        $total_customer = CustomerManpower::where('manpowerSubId', $id)->count();
+        
+        if($manpower_single_data->count() > 0 && isset($manpower_single_data[0]) && $manpower_single_data[0]->status == 1){
+            $license_expiry = date('d/m/Y', strtotime($manpower_single_data[0]->licenseExpiry));
+            $output = view('admin.client.manpower.pdf.printPutup', [
+            'manpower_single_data'=>$manpower_single_data,
+            'manpower_customers'=>$manpower_customers,
+            'manpower_payment'=>$manpower_payment,
+            'numto'=>$numto,
+            'total_customer'=>$total_customer,
+            'license_expiry'=>$license_expiry,
+        ])->render();
+            $mpdf->WriteHTML($output);
+            $filename = date('d-M-Y', strtotime($manpower_single_data[0]->manpowerDate)).'-Putup_list.pdf';
+            $mpdf->Output($filename, 'I');
+            exit;
+        }else{
+            return redirect('/manpower');
+        }
+    }
+
+
     protected function getMpdfHeader(){
         $mpdf = new \Mpdf\Mpdf();
         $mpdf->autoScriptToLang = true;
@@ -176,6 +205,16 @@ class ManpowerPdfController extends Controller
 
     protected function getMpdfHeaderLegal(){
         $mpdf = new \Mpdf\Mpdf(['format' => 'Legal']);
+        $mpdf->autoScriptToLang = true;
+        $mpdf->autoLangToFont = true;
+        return $mpdf;
+    }
+
+    protected function getMpdfHeaderLegalLandscape(){
+        $mpdf = new \Mpdf\Mpdf([
+            'format' => 'Legal',
+            'orientation' => 'L'
+        ]);
         $mpdf->autoScriptToLang = true;
         $mpdf->autoLangToFont = true;
         return $mpdf;

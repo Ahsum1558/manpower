@@ -25,6 +25,34 @@
                     <div class="profile-personal-info">
                         <div class="row mb-2">
                             <div class="col-3">
+                                <h5 class="f-w-500">Serial Number<span class="pull-right">:</span></h5>
+                            </div>
+                            <div class="col-9"><span>{{ $customer_manpower->customersl }}</span>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <h5 class="f-w-500">Book Ref. Number<span class="pull-right">:</span></h5>
+                            </div>
+                            <div class="col-9"><span>{{ $customer_manpower->bookRef }}</span>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <h5 class="f-w-500">Name<span class="pull-right">:</span></h5>
+                            </div>
+                            <div class="col-9"><span>{{ $customer_manpower->cusFname }} {{ $customer_manpower->cusLname }}</span>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <h5 class="f-w-500">Passport Number<span class="pull-right">:</span></h5>
+                            </div>
+                            <div class="col-9"><span>{{ $customer_manpower->passportNo }}</span>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3">
                                 <h5 class="f-w-500">Manpower Date<span class="pull-right">:</span></h5>
                             </div>
                             <div class="col-9">
@@ -70,34 +98,34 @@
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
-                                <h5 class="f-w-500">Training Center Name<span class="pull-right">:</span></h5>
+                                <h5 class="f-w-500">Training Center Name/বিদেশ ফেরত<span class="pull-right">:</span></h5>
                             </div>
                             <div class="col-9">
-                                <input type="text" name="ttcname" class="form-control d-inline-block inline_setup" placeholder="Enter Training Center Name" value="{{ old('ttcname') }}">
+                                <input type="text" name="ttcname" class="form-control d-inline-block inline_setup" placeholder="Enter Training Center Name/বিদেশ ফেরত" value="{{ old('ttcname') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
-                                <h5 class="f-w-500">Training Certificate Number<span class="pull-right">:</span></h5>
+                                <h5 class="f-w-500">Training Certificate Number/বিদেশ ফেরত<span class="pull-right">:</span></h5>
                             </div>
                             <div class="col-9">
-                                <input type="text" name="certificateNo" class="form-control d-inline-block inline_setup" placeholder="Enter Training Certificate Number" value="{{ old('certificateNo') }}">
+                                <input type="text" name="certificateNo" class="form-control d-inline-block inline_setup" placeholder="Enter Training Certificate Number/বিদেশ ফেরত" value="{{ old('certificateNo') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
-                                <h5 class="f-w-500">Batch Number<span class="pull-right">:</span></h5>
+                                <h5 class="f-w-500">Batch Number/বিদেশ ফেরত<span class="pull-right">:</span></h5>
                             </div>
                             <div class="col-9">
-                                <input type="text" name="batchNo" class="form-control d-inline-block inline_setup" placeholder="Enter Batch Number" value="{{ old('batchNo') }}">
+                                <input type="text" name="batchNo" class="form-control d-inline-block inline_setup" placeholder="Enter Batch Number/বিদেশ ফেরত" value="{{ old('batchNo') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
-                                <h5 class="f-w-500">Roll Number<span class="pull-right">:</span></h5>
+                                <h5 class="f-w-500">Roll Number/বিদেশ ফেরত<span class="pull-right">:</span></h5>
                             </div>
                             <div class="col-9">
-                                <input type="text" name="rollNo" class="form-control d-inline-block inline_setup" placeholder="Enter Roll Number" value="{{ old('rollNo') }}">
+                                <input type="text" name="rollNo" class="form-control d-inline-block inline_setup" placeholder="Enter Roll Number/বিদেশ ফেরত" value="{{ old('rollNo') }}">
                             </div>
                         </div>
                         <div class="row mb-2">

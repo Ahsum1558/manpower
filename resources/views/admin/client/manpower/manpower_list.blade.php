@@ -6,7 +6,7 @@
               <th>SL</th>
               <th>Office Name</th>
               <th>Manpower Date</th>
-              <th>Put Up List</th>
+              <th>Notesheet</th>
               <th>Status</th>
               <th>Action</th>
           </tr>
@@ -36,7 +36,8 @@
             @elseif($manpower->status == 0)
               <a class="edit_option" href="#activeId{{ $manpower->id }}" data-toggle="modal"><i class="fas fa-caret-square-up"></i><span>Set Active</span></a>
             @endif
-              <a class="view_option" target="_blank" href="{{ route('admin.manpower.printPutup', ['id'=>$manpower->id]) }}"><i class="fa fa-print"></i><span>Print Put Up List</span></a>
+              <a class="view_option bg-success" target="_blank" href="{{ route('admin.manpower.printPutup', ['id'=>$manpower->id]) }}"><i class="fa fa-print"></i><span>Print Put Up List</span></a>
+              <a class="view_option" target="_blank" href="{{ route('admin.manpower.printNotesheet', ['id'=>$manpower->id]) }}"><i class="fa fa-print"></i><span>Print Notesheet</span></a>
               <a class="view_option bg-primary" target="_blank" href="{{ route('admin.manpower.printLetter', ['id'=>$manpower->id]) }}"><i class="fa fa-print"></i><span>Print Application Letter</span></a>
               <a class="view_option bg-info" target="_blank" href="{{ route('admin.manpower.printUndertaking', ['id'=>$manpower->id]) }}"><i class="fa fa-print"></i><span>Print Undertaking</span></a>
             @if(Auth::check() && (Auth::user()->role == 'admin'))

@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('passportCopy')->nullable();
             $table->integer('birthPlace')->nullable();
             $table->string('medical')->nullable();
+            $table->string('medical_update')->nullable();
             $table->string('received')->nullable();
             $table->integer('tradeId')->nullable();
             $table->integer('countryFor')->nullable();

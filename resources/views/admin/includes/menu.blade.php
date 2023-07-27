@@ -54,14 +54,6 @@
                 </ul>
             </li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="fa fa-suitcase" aria-hidden="true"></i>
-                    <span class="nav-text">Support Agent</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="{{ route('admin.favor') }}">Support Agent Info</a></li>
-                </ul>
-            </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="fa fa-address-book" aria-hidden="true"></i>
                     <span class="nav-text">Customer</span>
                 </a>
@@ -71,6 +63,14 @@
                     <li><a href="{{ route('admin.customer.medical') }}">Medical Info</a></li>
                     <li><a href="{{ route('admin.submission') }}">Submission Info</a></li>
                     <li><a href="{{ route('admin.manpower') }}">Manpower Info</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                <i class="fa fa-suitcase" aria-hidden="true"></i>
+                    <span class="nav-text">Support Agent</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('admin.favor') }}">Support Agent Info</a></li>
                 </ul>
             </li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">

@@ -26,16 +26,19 @@
                             <a class="nav-link active" data-toggle="tab" href="#home"><i class="la la-home mr-2"></i>Primary Customer</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#profile"><i class="las la-list mr-2"></i>Medical Done</a>
+                            <a class="nav-link" data-toggle="tab" href="#profile"><i class="las la-list mr-2"></i>MC Done</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#contact"><i class="la la-sticky-note mr-2"></i>Medical Fit</a>
+                            <a class="nav-link" data-toggle="tab" href="#contact"><i class="la la-sticky-note mr-2"></i>MC Fit</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#message"><i class="la la-pencil-square-o mr-2"></i>Medical Problem</a>
+                            <a class="nav-link" data-toggle="tab" href="#mcUpdate"><i class="las la-save mr-2"></i>MC Updated</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#othertab"><i class="la la-laptop mr-2"></i>Medical Unfit</a>
+                            <a class="nav-link" data-toggle="tab" href="#message"><i class="la la-pencil-square-o mr-2"></i>MC Problem</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#othertab"><i class="la la-laptop mr-2"></i>MC Unfit</a>
                         </li>
                     </ul>
 
@@ -55,6 +58,12 @@
                         <div class="tab-pane fade" id="contact">
                             <div class="pt-4 content_panel">
                                 @include('admin.client.customer.medical.medical_fit')
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="mcUpdate">
+                            <div class="pt-4 content_panel">
+                                @include('admin.client.customer.medical.medical_update')
                             </div>
                         </div>
 

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('fieldbnId')->nullable();
             $table->string('manpowerDate')->nullable();
             $table->string('putupSl')->nullable();
+            $table->string('countrynamebn')->nullable();
             $table->integer('userId')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();

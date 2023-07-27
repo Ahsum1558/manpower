@@ -25,6 +25,35 @@
                     <div class="profile-personal-info">
                         <div class="row mb-2">
                             <div class="col-3">
+                                <h5 class="f-w-500">Serial Number<span class="pull-right">:</span></h5>
+                            </div>
+                            <div class="col-9"><span>{{ $customer_emb->customersl }}</span>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <h5 class="f-w-500">Book Ref. Number<span class="pull-right">:</span></h5>
+                            </div>
+                            <div class="col-9"><span>{{ $customer_emb->bookRef }}</span>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <h5 class="f-w-500">Name<span class="pull-right">:</span></h5>
+                            </div>
+                            <div class="col-9"><span>{{ $customer_emb->cusFname }} {{ $customer_emb->cusLname }}</span>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <h5 class="f-w-500">Passport Number<span class="pull-right">:</span></h5>
+                            </div>
+                            <div class="col-9"><span>{{ $customer_emb->passportNo }}</span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-3">
                                 <h5 class="f-w-500">Submission Date<span class="pull-right">:</span></h5>
                             </div>
                             <div class="col-9">

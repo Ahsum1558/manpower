@@ -8,7 +8,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="javascript:void(0)">Customers</a></li>
             <li class="breadcrumb-item"><a href="javascript:void(0)">Manpower Info</a></li>
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Update Put Up List Serial</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Update Notesheet</a></li>
         </ol>
     </div>
 </div>
@@ -16,11 +16,11 @@
     <div class="col-12">
         <div class="card card_line">
             <div class="card-header card_headline">
-                <h4 class="card-title headline">Update Put Up List Serial</h4>
+                <h4 class="card-title headline">Update Notesheet Number</h4>
             </div>
             <div class="card-body">
 @include('admin.includes.alert')
-                <form action="{{ route('admin.manpower.updatePutup', ['id'=>$manpower_putup_info->id]) }}" class="form-group" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.manpower.updateNotesheet', ['id'=>$manpower_putup_info->id]) }}" class="form-group" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                     <!--Tab slider End-->
@@ -30,7 +30,7 @@
                             <div class="new-arrival-content pr">
                                 <div class="row mb-2">
                                     <div class="col-3">
-                                        <h5 class="f-w-500">Put Up List Serial<span class="pull-right">:</span></h5>
+                                        <h5 class="f-w-500">Notesheet No.<span class="pull-right">:</span></h5>
                                     </div>
                                     <div class="col-9"><span><input type="text" name="putupSl" class="form-control d-inline-block inline_setup" value="{{ $manpower_putup_info->putupSl }}"></span>
                                     </div>

@@ -69,6 +69,13 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="row mb-2">
+                                    <div class="col-3">
+                                        <h5 class="f-w-500">Destination Country in Bengali<span class="pull-right">:</span></h5>
+                                    </div>
+                                    <div class="col-9"><span><input type="text" name="countrynamebn" class="form-control d-inline-block inline_setup" value="{{ $manpower_info->countrynamebn }}"></span>
+                                    </div>
+                                </div>
 
                                 <div class="row mb-2">
                                     <div class="col-3">

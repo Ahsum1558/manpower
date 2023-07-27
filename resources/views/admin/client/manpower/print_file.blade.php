@@ -9,7 +9,7 @@
               <th>Passport No.</th>
               <th>Visa No.</th>
               <th>Manpower Date</th>
-              <th width="35%">Action</th>
+              <th width="25%">Action</th>
           </tr>
       </thead>
       <tbody>
@@ -30,7 +30,7 @@
                 {{ __('N/A') }}
               @endif
             </td>
-            <td>
+            <td width="25%">
               <a class="view_option" href="{{ route('admin.manpower.display', ['id'=>$customer->id]) }}"><i class="fas fa-eye"></i><span>View Details</span></a>
             @if($customer->manpowerlist == 0)
               <a class="edit_option" href="{{ route('admin.manpower.statement', ['id'=>$customer->id]) }}"><i class="fas fa-pencil"></i><span>Add To Manpower</span></a>

@@ -54,8 +54,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/manpower/updateDate/{id}', [ManpowerSubmissionController::class, 'updateDate'])->name('admin.manpower.updateDate');
 
     // Manpower Update Put Up List Serial
-    Route::get('/manpower/editPutup/{id}', [ManpowerSubmissionController::class, 'editPutup'])->name('admin.manpower.editPutup');
-    Route::post('/manpower/updatePutup/{id}', [ManpowerSubmissionController::class, 'updatePutup'])->name('admin.manpower.updatePutup');
+    Route::get('/manpower/editNotesheet/{id}', [ManpowerSubmissionController::class, 'editNotesheet'])->name('admin.manpower.editNotesheet');
+    Route::post('/manpower/updateNotesheet/{id}', [ManpowerSubmissionController::class, 'updateNotesheet'])->name('admin.manpower.updateNotesheet');
 
     // Manpower Delete
     Route::get('/manpower/destroy/{id}', [ManpowerSubmissionController::class, 'destroy'])->name('admin.manpower.destroy');
@@ -132,8 +132,8 @@ Route::middleware(['auth'])->group(function () {
 
 // Manpower Print Area Start
 Route::middleware(['auth'])->group(function () {
-    // Put Up List
-    Route::get('/manpower/printPutup/{id}', [ManpowerPdfController::class, 'printPutup'])->name('admin.manpower.printPutup');
+    // Notesheet
+    Route::get('/manpower/printNotesheet/{id}', [ManpowerPdfController::class, 'printNotesheet'])->name('admin.manpower.printNotesheet');
 
     // Customer Contact Paper
     Route::get('/manpower/printContact/{id}', [ManpowerPdfController::class, 'printContact'])->name('admin.manpower.printContact');
@@ -146,5 +146,8 @@ Route::middleware(['auth'])->group(function () {
 
     // Customer Data Sheet
     Route::get('/manpower/printData/{id}', [ManpowerPdfController::class, 'printData'])->name('admin.manpower.printData');
+
+    // Put Up List
+    Route::get('/manpower/printPutup/{id}', [ManpowerPdfController::class, 'printPutup'])->name('admin.manpower.printPutup');
 });
 // Manpower Print Area End

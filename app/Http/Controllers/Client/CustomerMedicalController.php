@@ -36,12 +36,14 @@ class CustomerMedicalController extends Controller
         $all_medical_fit = $this->getInfo()->where('medical','=',2); // as latest
         $all_medical_unfit = $this->getInfo()->where('medical','=',3); // as latest
         $all_medical_problem = $this->getInfo()->where('medical','=',5); // as latest
+        $all_medical_update = $this->getInfo()->where('medical','=',2)->where('medical_update','=',1); // as latest
         return view('admin.client.customer.medical.medical', [
             'all_medical_none'=>$all_medical_none,
             'all_medical_done'=>$all_medical_done,
             'all_medical_fit'=>$all_medical_fit,
             'all_medical_unfit'=>$all_medical_unfit,
             'all_medical_problem'=>$all_medical_problem,
+            'all_medical_update'=>$all_medical_update,
         ]);
     }
 
@@ -59,16 +61,20 @@ class CustomerMedicalController extends Controller
     public function updateMedical(Request $request, $id)
     {
         $this -> validate($request, [
-            'medical'       => 'required|in:1,2,3,4,5',
+            'medical'           => 'required|in:1,2,3,4,5',
+            'medical_update'    => 'required|in:0,1',
         ],
         [
             'medical.required'    => 'Medical Field is required',
             'medical.in'          => 'Invalid Medical option selected',
+            'medical_update.required' => 'Medical Update Field is required',
+            'medical_update.in'       => 'Invalid Medical Update option selected',
 
         ]);
         $customer_medical = Customer::findOrFail($id);
 
-        $customer_medical->medical    = $request->medical;
+        $customer_medical->medical        = $request->medical;
+        $customer_medical->medical_update = $request->medical_update;
         $customer_medical->update();
 
         return redirect() -> back() -> with('message', 'Customer Medical Info is Updated successfully');

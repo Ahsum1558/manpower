@@ -199,6 +199,7 @@ class CustomerController extends Controller
         $customer_data_info->agentId     = $request->agentId;
         $customer_data_info->birthPlace  = $request->birthPlace;
         $customer_data_info->medical     = $request->medical;
+        $customer_data_info->medical_update = $request->medical_update;
         $customer_data_info->tradeId     = $request->tradeId;
         $customer_data_info->countryFor  = $request->countryFor;
         $customer_data_info->status      = $request->status;
@@ -459,6 +460,7 @@ class CustomerController extends Controller
             'status'        => 'required|in:1,0',
             'gender'        => 'required|in:1,2,3',
             'medical'       => 'required|in:1,2,3,4,5',
+            'medical_update' => 'required|in:0,1',
             'tradeId'       => 'required|exists:visatrades,id',
             'countryFor'    => 'required|exists:countries,id',
         ],
@@ -476,6 +478,8 @@ class CustomerController extends Controller
             'gender.in'           => 'Invalid Gender option selected',
             'medical.required'    => 'Medical Field is required',
             'medical.in'          => 'Invalid Medical option selected',
+            'medical_update.required' => 'Medical Update Field is required',
+            'medical_update.in'       => 'Invalid Medical Update option selected',
             'tradeId.required'    => "Visa Trade Field must not be empty !!",
             'tradeId.exists'      => "Invalid Visa Trade Field !!",
             'countryFor.required' => "Country Field is required !!",

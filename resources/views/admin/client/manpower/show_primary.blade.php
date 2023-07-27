@@ -21,9 +21,16 @@
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-3">
-                                        <h5 class="f-w-500">Put Up List<span class="pull-right">:</span></h5>
+                                        <h5 class="f-w-500">Notesheet<span class="pull-right">:</span></h5>
                                     </div>
                                     <div class="col-9"><span>{{ $manpower_single_data[0]->putupSl }}</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-3">
+                                        <h5 class="f-w-500">Destination Country<span class="pull-right">:</span></h5>
+                                    </div>
+                                    <div class="col-9"><span>{{ $manpower_single_data[0]->countrynamebn }}</span>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
@@ -151,7 +158,7 @@
             <div class="mybtn">
                 <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.manpower.edit', ['id'=>$manpower_single_data[0]->id]) }}">Update Info</a>
                 <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.manpower.editDate', ['id'=>$manpower_single_data[0]->id]) }}">Update Date</a>
-                <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.manpower.editPutup', ['id'=>$manpower_single_data[0]->id]) }}">Update Put Up List Serial</a>
+                <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.manpower.editNotesheet', ['id'=>$manpower_single_data[0]->id]) }}">Update Notesheet No.</a>
                 <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase pull-right" href="{{ route('admin.manpower') }}">Back</a>
             </div>                
         </div>

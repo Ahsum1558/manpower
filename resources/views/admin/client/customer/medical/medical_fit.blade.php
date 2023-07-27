@@ -11,6 +11,7 @@
               <th>Delegate</th>
               <th>Trade</th>
               <th>Medical</th>
+              <th>MC Update</th>
               <th>Status</th>
               <th>Action</th>
           </tr>
@@ -39,6 +40,13 @@
                 {{ __('N/A') }}
                 @elseif($medical_fit->medical == 5)
                 {{ __('Problem') }}
+              @endif
+            </td>
+            <td>
+              @if($medical_fit->medical_update == 1)
+                {{ __('Medical Updated') }}
+                @elseif($medical_fit->medical_update == 0)
+                {{ __('Medical Not Updated') }}
               @endif
             </td>
             <td>
