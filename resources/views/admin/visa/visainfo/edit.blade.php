@@ -72,20 +72,6 @@
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-3">
-                                        <h5 class="f-w-500">Occupation in English<span class="pull-right">:</span></h5>
-                                    </div>
-                                    <div class="col-9"><span><input type="text" name="occupation_en" class="form-control d-inline-block inline_setup" value="{{ $visa_data->occupation_en }}"></span>
-                                    </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-3">
-                                        <h5 class="f-w-500">Occupation in Arabic<span class="pull-right">:</span></h5>
-                                    </div>
-                                    <div class="col-9"><span><input type="text" name="occupation_ar" class="form-control d-inline-block inline_setup" value="{{ $visa_data->occupation_ar }}"></span>
-                                    </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-3">
                                         <h5 class="f-w-500">Visa Delegation/ Wakaalah Date<span class="pull-right">:</span></h5>
                                     </div>
                                     <div class="col-9"><span><input type="date" name="delegation_date" class="form-control d-inline-block inline_setup" value="{{ $visa_data->delegation_date }}"></span>

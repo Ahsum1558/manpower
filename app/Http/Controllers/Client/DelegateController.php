@@ -15,7 +15,7 @@ use App\Models\Division;
 use App\Models\District;
 use App\Models\Policestation;
 use App\Models\City;
-use File;
+use Illuminate\Support\Facades\File;
 
 class DelegateController extends Controller
 {

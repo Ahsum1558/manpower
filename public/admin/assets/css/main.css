@@ -71,8 +71,10 @@
 #main-wrapper .header .header-left .header_bar{}
 #main-wrapper .header .header-right .header-info .user_name{
   color: #DD2F6E;
-  font-weight: 600;
+  font-weight: 800;
   text-transform: capitalize;
+  font-size: 16px;
+  text-align: center;
 }
 
 #main-wrapper .header .header-right .header-info #ourTime{

@@ -49,14 +49,14 @@
                             <div class="col-3">
                                 <h5 class="f-w-500">Passport Issue Date<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="date" name="passportIssue" class="form-control d-inline-block inline_setup" value="{{ old('passportIssue') }}">
+                            <div class="col-9"><input type="date" name="passportIssue" class="form-control d-inline-block inline_setup" value="{{ old('passportIssue') }}" max="{{ date('Y-m-d') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <h5 class="f-w-500">Passport Expiry Date<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="date" name="passportExpiry" class="form-control d-inline-block inline_setup" value="{{ old('passportExpiry') }}">
+                            <div class="col-9"><input type="date" name="passportExpiry" class="form-control d-inline-block inline_setup" value="{{ old('passportExpiry') }}" min="{{ date('Y-m-d') }}">
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -70,7 +70,7 @@
                             <div class="col-3">
                                 <h5 class="f-w-500">Date of Birth<span class="pull-right">:</span></h5>
                             </div>
-                            <div class="col-9"><input type="date" name="dateOfBirth" class="form-control d-inline-block inline_setup" value="{{ old('dateOfBirth') }}">
+                            <div class="col-9"><input type="date" name="dateOfBirth" class="form-control d-inline-block inline_setup" value="{{ old('dateOfBirth') }}" max="{{ date('Y-m-d') }}">
                             </div>
                         </div>
                         <div class="row mb-2">

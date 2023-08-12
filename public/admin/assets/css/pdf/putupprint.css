@@ -120,13 +120,26 @@ body{
 } */
 
 .app_wrapper .main_content .putup_translate{
-	padding-top: 5px;
+	padding-top: 15px;
 	padding-bottom: 5px;
 }
 .app_wrapper .main_content .putup_translate .translate_info{}
-.app_wrapper .main_content .putup_translate .translate_info .translate_content{
-	font-size: 18px;
+
+.app_wrapper .main_content .putup_translate .translate_info #paymentTable{
+	border-collapse: collapse;
+	border: 1px solid #000;
+	width: 100%;
 }
+.app_wrapper .main_content .putup_translate .translate_info #paymentTable tr{
+	padding-bottom: 10px;
+}
+.app_wrapper .main_content .putup_translate .translate_info #paymentTable tr td{
+	border: 1px solid #000;
+   text-align: center;
+	font-size: 16px;
+	padding: 4px;
+}
+
 .app_wrapper .main_content .putup_translator{
 	font-size: 20px;
 	text-align: center;
@@ -146,31 +159,63 @@ body{
 }
 .app_wrapper .main_content .putup_sign{
 	width: 100%;
-	padding-top: 100px;
+	margin-top: 20px;
 	text-align: center;
 	font-size: 14px;
+	border: 1px solid #000;
 }
 .app_wrapper .main_content .putup_sign .sign_first{
 	float: left;
-	width: 15%;
+	width: 20%;
+	border: 1px solid #000;
 }
+.app_wrapper .main_content .putup_sign .sign_first .note{
+	padding-bottom: 90px;
+	color: #fff;
+}
+.app_wrapper .main_content .putup_sign .sign_first .signature{}
 .app_wrapper .main_content .putup_sign .sign_second{
 	float: left;
-	width: 15%;
+	width: 17%;
+	border: 1px solid #000;
 }
+.app_wrapper .main_content .putup_sign .sign_second .note{
+	padding-bottom: 90px;
+}
+.app_wrapper .main_content .putup_sign .sign_second .signature{}
 .app_wrapper .main_content .putup_sign .sign_third{
 	float: left;
 	width: 15%;
+	border: 1px solid #000;
 }
+.app_wrapper .main_content .putup_sign .sign_third .note{
+	padding-bottom: 90px;
+}
+.app_wrapper .main_content .putup_sign .sign_third .signature{}
 .app_wrapper .main_content .putup_sign .sign_forth{
 	float: left;
 	width: 15%;
+	border: 1px solid #000;
 }
+.app_wrapper .main_content .putup_sign .sign_forth .note{
+	padding-bottom: 90px;
+}
+.app_wrapper .main_content .putup_sign .sign_forth .signature{}
 .app_wrapper .main_content .putup_sign .sign_fifth{
 	float: left;
 	width: 15%;
+	border: 1px solid #000;
 }
+.app_wrapper .main_content .putup_sign .sign_fifth .note{
+	padding-bottom: 90px;
+}
+.app_wrapper .main_content .putup_sign .sign_fifth .signature{}
 .app_wrapper .main_content .putup_sign .sign_sixth{
 	float: left;
 	width: auto;
+	border: 1px solid #000;
 }
+.app_wrapper .main_content .putup_sign .sign_sixth .note{
+	padding-bottom: 90px;
+}
+.app_wrapper .main_content .putup_sign .sign_sixth .signature{}

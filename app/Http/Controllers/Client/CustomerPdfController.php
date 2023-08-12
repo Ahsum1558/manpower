@@ -216,7 +216,7 @@ class CustomerPdfController extends Controller
             ->leftJoin('submissions', 'submission_customers.submissionId', '=', 'submissions.id')
             ->select('customers.*', 'visas.visano_en', 'visas.visano_ar', 'visas.sponsorid_en', 'visas.sponsorid_ar', 'visas.sponsorname_en', 'visas.sponsorname_ar', 'visas.visa_date', 'visas.visa_address', 'visas.occupation_en', 'visas.occupation_ar', 'visas.delegation_no', 'visas.delegation_date', 'visas.delegated_visa', 'visas.visa_duration', 'submission_customers.submissionType', 'submission_customers.ordinal', 'submission_customers.visaYear', 'submissions.submissionDate')
             ->where('submission_customers.submissionId', $id)
-            ->where('customers.value', '=', 3)
+            // ->where('customers.value', '=', 3)
             ->orderBy('submission_customers.ordinal')
             ->get();
         

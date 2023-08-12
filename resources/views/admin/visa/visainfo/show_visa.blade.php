@@ -158,7 +158,6 @@
             <div class="mybtn">
                 <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.visa.edit', ['id'=>$single_visa->id]) }}">Update</a>
                 <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.visa.editVisa', ['id'=>$single_visa->id]) }}">Update Visa No.</a>
-                <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase" href="{{ route('admin.visa.editDelegation', ['id'=>$single_visa->id]) }}">Update Visa Delegation No.</a>
                 <a class="btn submitbtn mb-2 form-control inline_setup text-uppercase pull-right" href="{{ route('admin.visa') }}">Back</a>
             </div>
         </div>

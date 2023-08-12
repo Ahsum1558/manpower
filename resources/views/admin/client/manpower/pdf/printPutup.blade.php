@@ -122,36 +122,67 @@
             </div>
         </div>
 
-        @foreach ($manpower_payment as $payment)
-            @php
-                $income_tax_date = date('d/m/Y', strtotime($payment->incomeTaxDate));
-                $insurance_date = date('d/m/Y', strtotime($payment->welfareInsuranceDate));
-                $card_date = date('d/m/Y', strtotime($payment->smartCardDate));
-            @endphp
+        
         <div class="putup_translate">
             <div class="translate_info">
-                <div class="translate_content">পে-অর্ডার টাকা {{ $numto->bnNum($payment->welfareInsurance) }}/- নং- {{ $numto->bnNum($payment->welfareInsuranceNo) }} তারিখঃ {{ $data->convertToBanglaNumber($insurance_date) }}, আয়কর টাকা {{ $numto->bnNum($payment->incomeTax) }}/- নং- {{ $numto->bnNum($payment->incomeTaxNo) }} তারিখঃ {{ $data->convertToBanglaNumber($income_tax_date) }}</div>
+                <div class="translate_content">
+                    <table id="paymentTable">
+                        <tbody>
+                        @foreach ($manpower_payment as $payment)
+                        @php
+                            $income_tax_date = date('d/m/Y', strtotime($payment->incomeTaxDate));
+                            $insurance_date = date('d/m/Y', strtotime($payment->welfareInsuranceDate));
+                            $card_date = date('d/m/Y', strtotime($payment->smartCardDate));
+                        @endphp
+                            <tr>
+                                <td>পে-অর্ডার নং- {{ $numto->bnNum($payment->welfareInsuranceNo) }}</td>
+                                <td>তারিখঃ {{ $data->convertToBanglaNumber($insurance_date) }}</td>
+                                <td>টাকাঃ- {{ $numto->bnNum($payment->welfareInsurance) }}/-</td>
+                                <td>আয়কর চালান নং- {{ $numto->bnNum($payment->incomeTaxNo) }}</td>
+                                <td>তারিখঃ {{ $data->convertToBanglaNumber($income_tax_date) }}</td>
+                                <td>টাকাঃ- {{ $numto->bnNum($payment->incomeTax) }}/-</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-        @endforeach
+        
 
         <div class="putup_promise clear">
             <div class="promise_info">
                 <div class="promise_heading">এজেন্সীর অঙ্গীকারঃ</div>
-                <div class="promise_content">বর্ণিত কর্মী গ্রুপ ভিসার অন্তর্ভুক্ত নয়। কর্মীদের পাসপোর্ট, ভিসা, চাকুরীর চুক্তিপত্রে বর্ণিত বেতন ও শর্তাদি সঠিক আছে। উক্ত বিষয়ে ত্রুটির কারণে কর্মীদের কোন প্রকার সমস্যা হলে আমরা <span style="font-size: 20px;">মেসার্স {{ $manpower_single_data[0]->title_bn }}, {{ $manpower_single_data[0]->license_bn }}</span> সম্পূর্ণ দায় দায়িত্ব গ্রহন ও কর্মীদের ক্ষতিপূরণ দান করতে বাধ্য থাকবে।</div>
-                <div class="promise_bottom">পরীক্ষিত হয়েছে। কাগজপত্র বর্ণিত তথ্যাদি যথাযথ আছে। বহির্গমনের ছাড়পত্র দেওয়া যায়। সঠিক আছে।</div>
+                <div class="promise_content">বর্ণিত কর্মী গ্রুপ ভিসার অন্তর্ভুক্ত নয়। কর্মীদের পাসপোর্ট, ভিসা, চাকুরীর চুক্তিপত্রে বর্ণিত বেতন ও শর্তাদি সঠিক আছে। উক্ত বিষয়ে ত্রুটির কারণে কর্মীদের কোন প্রকার সমস্যা হলে আমরা <span style="font-size: 20px;">মেসার্স {{ $manpower_single_data[0]->title_bn }}, {{ $manpower_single_data[0]->license_bn }}</span> সম্পূর্ণ দায় দায়িত্ব গ্রহন ও কর্মীদের ক্ষতিপূরণ দান করতে বাধ্য থাকব।</div>
             </div>
         </div>
 
         <div class="putup_sign clear">
-            <div class="sign_first">সহকারীর স্বাক্ষর</div>
-            <div class="sign_second">সহকারী পরিচালকের স্বাক্ষর</div>
-            <div class="sign_third">উপ-পরিচালকের স্বাক্ষর</div>
-            <div class="sign_forth">পরিচালকের স্বাক্ষর</div>
-            <div class="sign_fifth">মহাপরিচালক</div>
-            <div class="sign_sixth">এজেন্সীর মালিক/প্রতিনিধির স্বাক্ষর প্রস্তাবমত</div>
+            <div class="sign_first">
+                <div class="note">-</div>
+                <div class="signature">এজেন্সীর মালিক/প্রতিনিধির স্বাক্ষর প্রস্তাবমত</div>
+            </div>
+            <div class="sign_second">
+                <div class="note">পরীক্ষিত হয়েছে। কাগজপত্র সঠিক আছে/নাই</div>
+                <div class="signature">সহকারীর স্বাক্ষর</div>
+            </div>
+            <div class="sign_third">
+                <div class="note">বর্ণিত তথ্যাদি যথাযথ আছে/নাই</div>
+                <div class="signature">সহকারী পরিচালকের স্বাক্ষর</div>
+            </div>
+            <div class="sign_forth">
+                <div class="note">বহির্গমনের ছাড়পত্র দেওয়া যায়</div>
+                <div class="signature">উপ-পরিচালকের স্বাক্ষর</div>
+            </div>
+            <div class="sign_fifth">
+                <div class="note">বহির্গমনের ছাড়পত্র দেওয়া যায়</div>
+                <div class="signature">পরিচালকের স্বাক্ষর</div>
+            </div>
+            <div class="sign_sixth">
+                <div class="note">বহির্গমনের ছাড়পত্র দেওয়া যায়</div>
+                <div class="signature">মহাপরিচালক</div>
+            </div>
         </div>
-      
     </div>
 </div>
 

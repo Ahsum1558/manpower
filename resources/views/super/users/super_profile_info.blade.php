@@ -72,7 +72,7 @@
                                 <div class="col-3">
                                     <h5 class="f-w-500">Date Of Birth <span class="pull-right">:</span></h5>
                                 </div>
-                                <div class="col-9"><input type="date" name="dateOfBirth" class="form-control d-inline-block inline_setup" value="{{ $superData->dateOfBirth }}">
+                                <div class="col-9"><input type="date" name="dateOfBirth" class="form-control d-inline-block inline_setup" value="{{ $superData->dateOfBirth }}" max="{{ date('Y-m-d') }}">
                                 </div>
                             </div>
 

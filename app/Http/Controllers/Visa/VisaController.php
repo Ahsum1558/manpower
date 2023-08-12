@@ -56,8 +56,9 @@ class VisaController extends Controller
     {
         $existingRecord = Visa::where([
             'visano_en'=>$request->visano_en,
-            'sponsorid_en'=>$request->sponsorid_en,
+            'visano_ar'=>$request->visano_ar,
             'occupation_ar'=>$request->occupation_ar,
+            'occupation_en'=>$request->occupation_en,
             'delegation_no'=>$request->delegation_no,
         ])->first();
         if (!$existingRecord){
@@ -152,8 +153,6 @@ class VisaController extends Controller
         $visa_data->sponsorname_ar  = $request->sponsorname_ar;
         $visa_data->visa_date       = $request->visa_date;
         $visa_data->visa_address    = $request->visa_address;
-        $visa_data->occupation_en   = $request->occupation_en;
-        $visa_data->occupation_ar   = $request->occupation_ar;
         $visa_data->delegation_date = $request->delegation_date;
         $visa_data->delegated_visa  = $request->delegated_visa;
         $visa_data->visa_duration   = $request->visa_duration;
@@ -176,8 +175,16 @@ class VisaController extends Controller
 
     public function updateVisa(Request $request, string $id)
     {
-        $this->validationVisaNo($request);
         $visaNo_data = Visa::findOrFail($id);
+        $existingRecord = Visa::where([
+            'visano_en'=>$request->visano_en,
+            'visano_ar'=>$request->visano_ar,
+            'occupation_ar'=>$request->occupation_ar,
+            'occupation_en'=>$request->occupation_en,
+            'delegation_no'=>$request->delegation_no,
+        ])->first();
+        if (!$existingRecord){
+        $this->validationVisa($request);
 
         if (File::exists(public_path('admin/uploads/barcode/' . $visaNo_data->visano_img))) {
             File::delete(public_path('admin/uploads/barcode/' . $visaNo_data->visano_img));
@@ -197,31 +204,15 @@ class VisaController extends Controller
         $visaNo_data->visano_img = $barcodeFilename;
         $visaNo_data->visano_en = $request->visano_en;
         $visaNo_data->visano_ar = $request->visano_ar;
+        $visaNo_data->occupation_ar = $request->occupation_ar;
+        $visaNo_data->occupation_en = $request->occupation_en;
+        $visaNo_data->delegation_no = $request->delegation_no;
         $visaNo_data->update();
 
         return back()->with('message', 'The Visa Number is Updated Successfully');
-    }
-
-    public function editDelegation(string $id)
-    {
-        $delegation_data = Visa::find($id);
-        
-        if ($delegation_data !== null) {
-            return view('admin.visa.visainfo.editDelegation', compact('delegation_data'));
         }else{
-            return redirect('/visa');
+            return redirect() -> back() -> with('error_message', 'Visa no is already exist in the table !');
         }
-    }
-
-    public function updateDelegation(Request $request, string $id)
-    {
-        $this->validationDelegation($request);
-        $delegation_data = Visa::findOrFail($id);
-
-        $delegation_data->delegation_no   = $request->delegation_no;
-        $delegation_data->update();
-
-        return back()->with('message', 'The Visa Delegation No. is Updated Successfully');
     }
 
     /**
@@ -306,8 +297,6 @@ class VisaController extends Controller
             'sponsorname_ar'    => 'required',
             'visa_date'         => 'required',
             'visa_address'      => 'required',
-            'occupation_en'     => 'required',
-            'occupation_ar'     => 'required',
             'delegation_date'   => 'required|date',
             'delegated_visa'    => 'required',
             'visa_duration'     => 'required',
@@ -320,8 +309,6 @@ class VisaController extends Controller
             'sponsorname_ar.required'   => 'Sponsor Name Arabic Field is required',
             'visa_date.required'        => 'Visa date in Hijri Field must not be Empty',
             'visa_address.required'     => 'Visa Address Field is required',
-            'occupation_en.required'    => 'Occupation Field must not be Empty',
-            'occupation_ar.required'    => 'Occupation Arabic Field must not be Empty',
             'delegation_date.required'  => 'Visa Delegation Date Field is required',
             'delegated_visa.required'   => 'Total Delegated visa count Field must not be Empty',
             'visa_duration.required'    => 'Visa Duration Field is required',
@@ -330,24 +317,20 @@ class VisaController extends Controller
         ]);
     }
 
-    protected function validationVisaNo($request){
+    protected function validationVisa($request){
         $this -> validate($request, [
             'visano_en'       => 'required',
             'visano_ar'       => 'required',
+            'delegation_no'   => 'required',
+            'occupation_en'   => 'required',
+            'occupation_ar'   => 'required',
         ],
         [
             'visano_en.required' => 'Visa No. Field must not be Empty',
             'visano_ar.required' => 'Visa No. Arabic Field must not be Empty',
-        ]);
-    }
-
-    protected function validationDelegation($request){
-        $this -> validate($request, [
-            'delegation_no'   => 'required|unique:visas',
-        ],
-        [
             'delegation_no.required'    => 'Visa Delegation No. Field must not be Empty',
-            'delegation_no.unique'      => 'Visa Delegation No. already exist !',
+            'occupation_en.required'    => 'Occupation Field must not be Empty',
+            'occupation_ar.required'    => 'Occupation Arabic Field must not be Empty',
         ]);
     }
 

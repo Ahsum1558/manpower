@@ -15,6 +15,7 @@ use App\Http\Controllers\Visa\VisatradeController;
 use App\Http\Controllers\Visa\VisatypeController;
 use App\Http\Controllers\Visa\VisapdfController;
 use App\Http\Controllers\Visa\LinkController;
+use App\Http\Controllers\Client\AgeCalculatorController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -98,10 +99,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/visa/editVisa/{id}', [VisaController::class, 'editVisa'])->name('admin.visa.editVisa');
     Route::post('/visa/updateVisa/{id}', [VisaController::class, 'updateVisa'])->name('admin.visa.updateVisa');
 
-    // Visa Delegation Number Update
-    Route::get('/visa/editDelegation/{id}', [VisaController::class, 'editDelegation'])->name('admin.visa.editDelegation');
-    Route::post('/visa/updateDelegation/{id}', [VisaController::class, 'updateDelegation'])->name('admin.visa.updateDelegation');
-
     // Visa Delete
     Route::get('/visa/destroy/{id}', [VisaController::class, 'destroy'])->name('admin.visa.destroy');
 
@@ -143,6 +140,9 @@ Route::middleware(['auth'])->group(function () {
 
     // Link Active
     Route::post('/link/active/{id}', [LinkController::class, 'active'])->name('admin.link.active');
+
+    // Age Calculator Page
+    Route::get('/calculateAge', [AgeCalculatorController::class, 'calculateAge'])->name('admin.calculateAge');
 });
 // Important Links Area End
 

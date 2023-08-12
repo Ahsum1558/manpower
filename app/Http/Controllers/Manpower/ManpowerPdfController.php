@@ -277,7 +277,7 @@ class ManpowerPdfController extends Controller
         DB::raw('(SELECT COUNT(*) FROM customer_manpowers WHERE customer_manpowers.manpowerSubId = manpower_submissions.id) AS total_customer')
     )
     ->where('manpower_submissions.id', $id)
-    ->where('customers.value', '=', 4)
+    // ->where('customers.value', '=', 4)
     ->orderBy('customer_manpowers.ordinal')
     ->get();
     return $data_customerDetails;
@@ -310,7 +310,7 @@ class ManpowerPdfController extends Controller
         'customer_manpowers.salary', 'customer_embassies.age', 'visatypes.visatype_name'
     )
     ->where('customers.id', $id)
-    ->where('customers.value', '=', 4)
+    // ->where('customers.value', '=', 4)
     ->get();
     return $data_customerDetails;
     }

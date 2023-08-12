@@ -102,7 +102,7 @@
                                         <div class="col-3">
                                             <h5 class="f-w-500">Embassy Submission Date<span class="pull-right">:</span></h5>
                                         </div>
-                                        <div class="col-9"><input type="date" name="submissionDate" class="form-control d-inline-block inline_setup" value="{{ $embassy->submissionDate }}">
+                                        <div class="col-9"><input type="date" name="submissionDate" class="form-control d-inline-block inline_setup" value="{{ $embassy->submissionDate }}" min="{{ date('Y-m-d') }}">
                                         </div>
                                     </div>
                                     

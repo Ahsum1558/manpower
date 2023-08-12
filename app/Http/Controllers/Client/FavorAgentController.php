@@ -16,7 +16,10 @@ use App\Models\District;
 use App\Models\Policestation;
 use App\Models\City;
 use App\Models\FavorAgent;
-use File;
+use App\Http\Requests\Auth\LoginRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\File;
 
 class FavorAgentController extends Controller
 {
@@ -26,7 +29,11 @@ class FavorAgentController extends Controller
     public function index()
     {
         $all_favor = FavorAgent::latest() -> get(); // as latest
-        return view('admin.client.favor.index', compact('all_favor'));
+        if (Auth::user()->role == 'admin' || Auth::user()->role == 'author') {
+            return view('admin.client.favor.index', compact('all_favor'));
+        }else{
+            return redirect('/');
+        }
     }
 
     public function getDivision(Request $request)
@@ -96,14 +103,18 @@ class FavorAgentController extends Controller
         $all_city = City::latest()->where('status','=',1) -> get();
         $all_upzila = Policestation::latest()->where('status','=',1) -> get();
 
-        return view('admin.client.favor.create', [
+        if (Auth::user()->role == 'admin' || Auth::user()->role == 'author') {
+            return view('admin.client.favor.create', [
             'favor_data'=>$favor_data,
             'all_country'=>$all_country,
             'all_division'=>$all_division,
             'all_district'=>$all_district,
             'all_city'=>$all_city,
             'all_upzila'=>$all_upzila,
-        ]);
+            ]);
+        }else{
+            return redirect('/');
+        } 
     }
 
     /**
@@ -181,14 +192,18 @@ class FavorAgentController extends Controller
     public function show(string $id)
     {
         $favor_single_data = $this->getDetails($id);
-        
-        if($favor_single_data->count() > 0){
-            return view('admin.client.favor.show', [
-            'favor_single_data'=>$favor_single_data,
-        ]);
+
+        if (Auth::user()->role == 'admin' || Auth::user()->role == 'author') {
+            if($favor_single_data->count() > 0){
+                return view('admin.client.favor.show', [
+                'favor_single_data'=>$favor_single_data,
+            ]);
+            }else{
+                return redirect('/favor');
+            }
         }else{
-            return redirect('/favor');
-        }
+            return redirect('/');
+        } 
     }
 
     /**
@@ -204,14 +219,18 @@ class FavorAgentController extends Controller
         $all_upzila = Policestation::latest()->where('status','=',1) -> get();
         
         if($favor_data_info->count() > 0){
-            return view('admin.client.favor.edit', [
-            'favor_data_info'=>$favor_data_info,
-            'all_country'=>$all_country,
-            'all_division'=>$all_division,
-            'all_district'=>$all_district,
-            'all_city'=>$all_city,
-            'all_upzila'=>$all_upzila,
-        ]);
+            if (Auth::user()->role == 'admin' || Auth::user()->role == 'author') {
+                return view('admin.client.favor.edit', [
+                'favor_data_info'=>$favor_data_info,
+                'all_country'=>$all_country,
+                'all_division'=>$all_division,
+                'all_district'=>$all_district,
+                'all_city'=>$all_city,
+                'all_upzila'=>$all_upzila,
+            ]);
+            }else{
+                return redirect('/');
+            } 
         }else{
             return redirect('/favor');
         }
@@ -252,9 +271,13 @@ class FavorAgentController extends Controller
     public function editBook($id)
     {
         $favor_book_data = FavorAgent::find($id);
-        
+
         if ($favor_book_data !== null) {
-            return view('admin.client.favor.editBook', compact('favor_book_data'));
+            if (Auth::user()->role == 'admin' || Auth::user()->role == 'author') {
+                return view('admin.client.favor.editBook', compact('favor_book_data'));
+            }else{
+                return redirect('/');
+            } 
         }else{
             return redirect('/favor');
         }
@@ -280,9 +303,13 @@ class FavorAgentController extends Controller
     public function editOffice($id)
     {
         $favor_office_data = FavorAgent::find($id);
-        
+
         if ($favor_office_data !== null) {
-            return view('admin.client.favor.editOffice', compact('favor_office_data'));
+            if (Auth::user()->role == 'admin' || Auth::user()->role == 'author') {
+                return view('admin.client.favor.editOffice', compact('favor_office_data'));
+            }else{
+                return redirect('/');
+            } 
         }else{
             return redirect('/favor');
         }
@@ -308,9 +335,12 @@ class FavorAgentController extends Controller
     public function editLicense($id)
     {
         $favor_license_data = FavorAgent::find($id);
-        
         if ($favor_license_data !== null) {
-            return view('admin.client.favor.editLicense', compact('favor_license_data'));
+            if (Auth::user()->role == 'admin' || Auth::user()->role == 'author') {
+                return view('admin.client.favor.editLicense', compact('favor_license_data'));
+            }else{
+                return redirect('/');
+            } 
         }else{
             return redirect('/favor');
         }
@@ -336,9 +366,13 @@ class FavorAgentController extends Controller
     public function editEmail($id)
     {
         $favor_email_data = FavorAgent::find($id);
-        
+
         if ($favor_email_data !== null) {
-            return view('admin.client.favor.editEmail', compact('favor_email_data'));
+            if (Auth::user()->role == 'admin' || Auth::user()->role == 'author') {
+                return view('admin.client.favor.editEmail', compact('favor_email_data'));
+            }else{
+                return redirect('/');
+            } 
         }else{
             return redirect('/favor');
         }
@@ -365,9 +399,12 @@ class FavorAgentController extends Controller
     public function editImage($id)
     {
         $favor_image_data = FavorAgent::find($id);
-        
         if ($favor_image_data !== null) {
-            return view('admin.client.favor.editImage', compact('favor_image_data'));
+            if (Auth::user()->role == 'admin' || Auth::user()->role == 'author') {
+                return view('admin.client.favor.editImage', compact('favor_image_data'));
+            }else{
+                return redirect('/');
+            } 
         }else{
             return redirect('/favor');
         }
@@ -413,21 +450,27 @@ class FavorAgentController extends Controller
     public function inactive($id)
     {
         $favor_inactive = FavorAgent::findOrFail($id);
+        if (Auth::user()->role == 'admin' || Auth::user()->role == 'author') {
+            $favor_inactive->status   = 0;
+            $favor_inactive->update();              
 
-        $favor_inactive->status   = 0;
-        $favor_inactive->update();              
-
-        return redirect('/favor')->with('message', 'The Favor Agent is Inactive Successfully');
+            return redirect('/favor')->with('message', 'The Favor Agent is Inactive Successfully');
+        }else{
+            return redirect('/');
+        }
     }
     
     public function active($id)
     {
         $favor_active = FavorAgent::findOrFail($id);
+        if (Auth::user()->role == 'admin' || Auth::user()->role == 'author') {
+            $favor_active->status   = 1;
+            $favor_active->update();              
 
-        $favor_active->status   = 1;
-        $favor_active->update();              
-
-        return redirect('/favor')->with('message', 'The Favor Agent is Active Successfully');
+            return redirect('/favor')->with('message', 'The Favor Agent is Active Successfully');
+        }else{
+            return redirect('/');
+        }
     }
 
     protected function validation($request){

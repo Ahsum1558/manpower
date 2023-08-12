@@ -17,7 +17,7 @@
                     <li><a href="{{ route('admin.profile') }}">Profile</a></li>
                     <li><a href="{{ route('admin.theme') }}">Theme Option</a></li>
                     <li><a href="{{ route('admin.customerRef') }}">Customer Ref</a></li>
-                @if(Auth::user()->role == 'admin')                    
+                @if(Auth::user()->role == 'admin')
                     <li><a href="{{ route('admin.operator') }}">All Operator</a></li>
                 @endif                    
                 </ul>
@@ -65,6 +65,7 @@
                     <li><a href="{{ route('admin.manpower') }}">Manpower Info</a></li>
                 </ul>
             </li>
+        @if(Auth::user()->role == 'admin' || Auth::user()->role == 'author')
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                 <i class="fa fa-suitcase" aria-hidden="true"></i>
                     <span class="nav-text">Support Agent</span>
@@ -74,11 +75,36 @@
                 </ul>
             </li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                <i class="flaticon-381-settings-2"></i>
+                    <span class="nav-text">Category</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('admin.category') }}">Account Category</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-bank"></i>
+                    <span class="nav-text">Bank</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('admin.bank') }}">Bank Account</a></li>
+                </ul>
+            </li>
+        @endif
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="fa fa-link"></i>
                     <span class="nav-text">Important Links</span>
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="{{ route('admin.link') }}">Links</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-calculator"></i>
+                    <span class="nav-text">Age Calculator</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('admin.calculateAge') }}">Calculate Age</a></li>
                 </ul>
             </li>
             <li><a href="{{ url('logout') }}" class="ai-icon" aria-expanded="false">

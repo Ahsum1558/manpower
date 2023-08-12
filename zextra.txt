@@ -92,6 +92,11 @@ php artisan make:controller Manpower/ManpowerPdfController
 php artisan make:controller Client/FavorAgentController --resource
 php artisan make:model FavorAgent -m
 php artisan make:controller Client/CustomerOnceController
+php artisan make:model AccountCategory -m
+php artisan make:controller Account/AccountCategoryController --resource
+php artisan make:controller Client/AgeCalculatorController
+php artisan make:model BankAccount -m
+php artisan make:controller Account/BankAccountController --resource
 
 
 
