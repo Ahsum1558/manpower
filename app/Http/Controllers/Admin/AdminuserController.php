@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\RedirectResponse;
-use File;
+use Illuminate\Support\Facades\File;
 
 class AdminuserController extends Controller
 {

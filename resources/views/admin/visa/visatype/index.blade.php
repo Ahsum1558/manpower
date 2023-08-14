@@ -51,7 +51,7 @@
                             <td>
                               <a class="view_option" href="{{ route('admin.visaType.show', ['id'=>$visa_type->id]) }}"><i class="fas fa-eye"></i><span>View Details</span></a>
                             @if($visa_type->status == 1)
-                              <a class="edit_option bg-warning" href="#inActiveId{{ $visa_type->id }}" data-toggle="modal"><i class="fas fa-caret-square-down"></i><span>Set Inctive</span></a>
+                              <a class="edit_option bg-warning" href="#inActiveId{{ $visa_type->id }}" data-toggle="modal"><i class="fas fa-caret-square-down"></i><span>Set Inactive</span></a>
                             @elseif($visa_type->status == 0)
                               <a class="edit_option" href="#activeId{{ $visa_type->id }}" data-toggle="modal"><i class="fas fa-caret-square-up"></i><span>Set Active</span></a>
                             @endif

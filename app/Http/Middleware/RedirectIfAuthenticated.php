@@ -24,6 +24,9 @@ class RedirectIfAuthenticated
                 if($guard == 'super'){
                     return redirect(RouteServiceProvider::SUPER);
                 }
+                if(Auth::user()->role == 'editor' || Auth::user()->role == 'contributor'){
+                    return redirect(RouteServiceProvider::TRAVEL);
+                }
                 return redirect(RouteServiceProvider::HOME);
             }
         }

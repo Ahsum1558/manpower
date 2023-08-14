@@ -19,6 +19,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/';
     public const SUPER = '/super';
+    public const TRAVEL = '/travel';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
@@ -42,6 +43,10 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/admin.php'));
+
+            Route::middleware('web')
+                ->group(base_path('routes/travel.php'));
+                
             Route::middleware('web')
                 ->group(base_path('routes/client.php'));
             Route::middleware('web')
@@ -50,6 +55,8 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/category.php'));
             Route::middleware('web')
                 ->group(base_path('routes/bank.php'));
+            Route::middleware('web')
+                ->group(base_path('routes/mobile.php'));
         });
     }
 }

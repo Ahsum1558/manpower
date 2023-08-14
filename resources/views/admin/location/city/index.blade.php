@@ -57,7 +57,7 @@
                             <td>
                               <a class="view_option" href="{{ route('admin.city.show', ['id'=>$city->id]) }}"><i class="fas fa-eye"></i><span>View Details</span></a>
                             @if($city->status == 1)
-                              <a class="edit_option bg-warning" href="#inActiveId{{ $city->id }}" data-toggle="modal"><i class="fas fa-caret-square-down"></i><span>Set Inctive</span></a>
+                              <a class="edit_option bg-warning" href="#inActiveId{{ $city->id }}" data-toggle="modal"><i class="fas fa-caret-square-down"></i><span>Set Inactive</span></a>
                             @elseif($city->status == 0)
                               <a class="edit_option" href="#activeId{{ $city->id }}" data-toggle="modal"><i class="fas fa-caret-square-up"></i><span>Set Active</span></a>
                             @endif

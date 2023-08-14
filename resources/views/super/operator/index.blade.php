@@ -69,7 +69,7 @@
                             <td>
                               <a class="view_option" href="{{ route('super.operator.show', ['id'=>$super_user->id]) }}"><i class="fas fa-eye"></i><span>View Operator</span></a>
                             @if($super_user->status == 'active')
-                              <a class="edit_option bg-warning" href="#inActiveId{{ $super_user->id }}" data-toggle="modal"><i class="fas fa-caret-square-down"></i><span>Set Inctive</span></a>
+                              <a class="edit_option bg-warning" href="#inActiveId{{ $super_user->id }}" data-toggle="modal"><i class="fas fa-caret-square-down"></i><span>Set Inactive</span></a>
                             @elseif($super_user->status == 'inactive')
                               <a class="edit_option bg-success" href="#activeId{{ $super_user->id }}" data-toggle="modal"><i class="fas fa-caret-square-up"></i><span>Set Active</span></a>
                             @endif

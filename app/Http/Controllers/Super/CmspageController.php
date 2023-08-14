@@ -32,21 +32,7 @@ class CmspageController extends Controller
      */
     public function store(Request $request)
     {
-        $this -> validate($request, [
-            'title'         => 'required',
-            'description'   => 'required',
-            'url'           => 'required',
-            'meta_keywords' => 'required',
-            'status'        => 'required|in:1,0',
-        ],
-        [
-            'title.required'         => 'Title Field must not be Empty',
-            'description.required'   => 'Description Field must not be Empty',
-            'url.required'           => 'URL Field is required',
-            'meta_keywords.required' => 'Meta Keywords Field is required',
-            'status.required'        => 'Status Field is required',
-            'status.in'              => 'Invalid status option selected',
-        ]);
+        $this->validation($request);
 
         Cmspage::create([
             'title'             => $request->title,
@@ -57,7 +43,7 @@ class CmspageController extends Controller
             'meta_keywords'     => $request->meta_keywords,
             'status'            => $request->status,
         ]);
-        return redirect() -> back() -> with('message', 'Meta added successfull');
+        return redirect() -> back() -> with('message', 'Meta added successfully');
     }
 
     /**
@@ -66,7 +52,12 @@ class CmspageController extends Controller
     public function show($id)
     {
         $single_meta_data = Cmspage::find($id);
-        return view('super.meta.show', compact('single_meta_data'));
+
+        if ($single_meta_data !== null) {
+            return view('super.meta.show', compact('single_meta_data'));
+        }else{
+            return redirect('/super/meta');
+        }
     }
 
     /**
@@ -74,9 +65,15 @@ class CmspageController extends Controller
      */
     public function edit($id)
     {
-        $meta_data = Cmspage::findOrFail($id);
+        $meta_data = Cmspage::find($id);
 
-        return view('super.meta.edit', compact('meta_data'));
+        if ($meta_data !== null) {
+            return view('super.meta.edit', compact('meta_data'));
+        }else{
+            return redirect('/super/meta');
+        }
+
+        
     }
 
     /**
@@ -84,21 +81,7 @@ class CmspageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this -> validate($request, [
-            'title'         => 'required',
-            'description'   => 'required',
-            'url'           => 'required',
-            'meta_keywords' => 'required',
-            'status'        => 'required|in:1,0',
-        ],
-        [
-            'title.required'         => 'Title Field must not be Empty',
-            'description.required'   => 'Description Field must not be Empty',
-            'url.required'           => 'URL Field is required',
-            'meta_keywords.required' => 'Meta Keywords Field is required',
-            'status.required'        => 'Status Field is required',
-            'status.in'              => 'Invalid status option selected',
-        ]);
+        $this->validation($request);
 
         $meta_data = Cmspage::findOrFail($id);
 
@@ -155,5 +138,23 @@ class CmspageController extends Controller
             $request->session()->put('session_meta', $session_meta);
         }
         return view('super.home.index');
+    }
+
+    protected function validation($request){
+        $this -> validate($request, [
+            'title'         => 'required',
+            'description'   => 'required',
+            'url'           => 'required',
+            'meta_keywords' => 'required',
+            'status'        => 'required|in:1,0',
+        ],
+        [
+            'title.required'         => 'Title Field must not be Empty',
+            'description.required'   => 'Description Field must not be Empty',
+            'url.required'           => 'URL Field is required',
+            'meta_keywords.required' => 'Travel Meta Keywords Field is required',
+            'status.required'        => 'Status Field is required',
+            'status.in'              => 'Invalid status option selected',
+        ]);
     }
 }

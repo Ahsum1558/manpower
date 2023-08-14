@@ -170,6 +170,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\Custom\SuperServiceProvider::class,
         App\Providers\Custom\AdminServiceProvider::class,
+        App\Providers\Custom\TravelServiceProvider::class,
         Milon\Barcode\BarcodeServiceProvider::class,
         Rakibhstu\Banglanumber\NumberToBanglaServiceProvider::class,
     ])->toArray(),

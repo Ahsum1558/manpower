@@ -9,9 +9,11 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Super;
 use App\Models\Cmspage;
 use App\Models\Headerfooter;
+use App\Models\TravelCmspage;
+use App\Models\TravelSetup;
 use App\Models\Field;
-use File;
-use Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
 
 class AdminServiceProvider extends ServiceProvider
 {

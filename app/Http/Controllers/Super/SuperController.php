@@ -13,7 +13,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\SuperLoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\View\View;
-use File;
+use Illuminate\Support\Facades\File;
 
 class SuperController extends Controller
 {

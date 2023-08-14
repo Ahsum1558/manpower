@@ -9,6 +9,8 @@ use App\Http\Controllers\Super\FieldbnController;
 use App\Http\Controllers\Super\FieldController;
 use App\Http\Controllers\Super\HeaderfooterController;
 use App\Http\Controllers\Super\SuperuserController;
+use App\Http\Controllers\Super\TravelCmspageController;
+use App\Http\Controllers\Super\TravelSetupController;
 use App\Http\Controllers\Super\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -245,5 +247,55 @@ Route::group(['middleware' => 'super'], function() {
     Route::post('/super/operator/active/{id}', [SuperuserController::class, 'active'])->name('super.operator.active');
 });
 // Super Operator Area End
+
+// Travel Area Start
+// Travel Meta Area Start
+Route::group(['middleware' => 'super'], function() {
+    // Super Travel Meta Home Page
+    Route::get('/super/travelmeta', [TravelCmspageController::class, 'index'])->name('super.travelmeta');
+    Route::post('/super/travelmeta/store', [TravelCmspageController::class, 'store'])->name('super.travelmeta.store');
+
+    // Travel Meta Info Update
+    Route::get('/super/travelmeta/edit/{id}', [TravelCmspageController::class, 'edit'])->name('super.travelmeta.edit');
+    Route::post('/super/travelmeta/update/{id}', [TravelCmspageController::class, 'update'])->name('super.travelmeta.update');
+
+    // Travel Meta Delete
+    Route::get('/super/travelmeta/destroy/{id}', [TravelCmspageController::class, 'destroy'])->name('super.travelmeta.destroy');
+
+    // Travel Meta Inactive
+    Route::post('/super/travelmeta/inactive/{id}', [TravelCmspageController::class, 'inactive'])->name('super.travelmeta.inactive');
+
+    // Travel Meta Active
+    Route::post('/super/travelmeta/active/{id}', [TravelCmspageController::class, 'active'])->name('super.travelmeta.active');
+});
+// Travel Meta Area End
+
+// Travel Header and Footer Setting Area Start
+Route::group(['middleware' => 'super'], function() {
+    // Super Travel Header and Footer Setting Home Page
+    Route::get('/super/travelset', [TravelSetupController::class, 'index'])->name('super.travelset');
+
+     // Travel Header and Footer Setting Create
+    Route::get('/super/travelset/create', [TravelSetupController::class, 'create'])->name('super.travelset.create');
+    Route::post('/super/travelset/store', [TravelSetupController::class, 'store'])->name('super.travelset.store');
+
+    Route::get('/super/travelset/show/{id}', [TravelSetupController::class, 'show'])->name('super.travelset.show');
+
+    // Travel Header and Footer Setting Info Update
+    Route::get('/super/travelset/edit/{id}', [TravelSetupController::class, 'edit'])->name('super.travelset.edit');
+    Route::post('/super/travelset/update/{id}', [TravelSetupController::class, 'update'])->name('super.travelset.update');
+
+    // Travel Header and Footer Setting Delete
+    Route::get('/super/travelset/destroy/{id}', [TravelSetupController::class, 'destroy'])->name('super.travelset.destroy');
+
+    // Travel Header and Footer Setting Inactive
+    Route::post('/super/travelset/inactive/{id}', [TravelSetupController::class, 'inactive'])->name('super.travelset.inactive');
+
+    // Travel Header and Footer Setting Active
+    Route::post('/super/travelset/active/{id}', [TravelSetupController::class, 'active'])->name('super.travelset.active');
+});
+// Travel Header and Footer Setting Area End
+
+// Travel Area End
 
 // Super Admin Page End

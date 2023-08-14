@@ -21,7 +21,7 @@ use App\Models\District;
 use App\Models\Policestation;
 use App\Models\City;
 use Illuminate\Support\Facades\DB;
-use File;
+use Illuminate\Support\Facades\File;
 
 class AdminController extends Controller
 {

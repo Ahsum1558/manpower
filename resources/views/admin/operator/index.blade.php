@@ -70,7 +70,7 @@
                               <a class="view_option" href="{{ route('admin.operator.show', ['id'=>$admin_user->id]) }}"><i class="fas fa-eye"></i><span>View Operator</span></a>
                           @if(Auth::user()->role == 'admin' && Auth::user()->id !== $admin_user->id)
                             @if($admin_user->status == 'active')
-                              <a class="edit_option bg-warning" href="#inActiveId{{ $admin_user->id }}" data-toggle="modal"><i class="fas fa-caret-square-down"></i><span>Set Inctive</span></a>
+                              <a class="edit_option bg-warning" href="#inActiveId{{ $admin_user->id }}" data-toggle="modal"><i class="fas fa-caret-square-down"></i><span>Set Inactive</span></a>
                             @elseif($admin_user->status == 'inactive')
                               <a class="edit_option bg-success" href="#activeId{{ $admin_user->id }}" data-toggle="modal"><i class="fas fa-caret-square-up"></i><span>Set Active</span></a>
                             @endif

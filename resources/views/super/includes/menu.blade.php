@@ -29,6 +29,15 @@
                 </ul>
             </li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-381-settings-2"></i>
+                    <span class="nav-text">Setup</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('super.travelmeta') }}">Travel Meta</a></li>
+                    <li><a href="{{ route('super.travelset') }}">Travel Setup</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                 <i class="fa fa-user"></i>
                     <span class="nav-text">Users</span>
                 </a>

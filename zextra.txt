@@ -97,6 +97,16 @@ php artisan make:controller Account/AccountCategoryController --resource
 php artisan make:controller Client/AgeCalculatorController
 php artisan make:model BankAccount -m
 php artisan make:controller Account/BankAccountController --resource
+php artisan make:model MobileAccount -m
+php artisan make:controller Account/MobileAccountController --resource
+php artisan make:model TravelSetup -m
+php artisan make:controller Super/TravelSetupController --resource
+php artisan make:provider Custom/TravelServiceProvider
+php artisan make:controller Super/TravelCmspageController --resource
+php artisan make:model TravelCmspage -m
+php artisan make:controller Travel/TravelController
+php artisan make:controller Travel/TraveluserController --resource
+php artisan make:middleware Travel
 
 
 

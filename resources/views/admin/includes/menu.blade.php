@@ -90,6 +90,14 @@
                     <li><a href="{{ route('admin.bank') }}">Bank Account</a></li>
                 </ul>
             </li>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-money-bill-alt"></i>
+                    <span class="nav-text">Mobile</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('admin.mobile') }}">Mobile Account</a></li>
+                </ul>
+            </li>
         @endif
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="fa fa-link"></i>

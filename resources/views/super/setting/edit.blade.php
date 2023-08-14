@@ -7,7 +7,7 @@
     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="javascript:void(0)">Setting</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Meta</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Header and Footer</a></li>
             <li class="breadcrumb-item active"><a href="javascript:void(0)">Update</a></li>
         </ol>
     </div>
@@ -16,7 +16,7 @@
     <div class="col-12">
         <div class="card card_line">
             <div class="card-header card_headline">
-                <h4 class="card-title headline">Update Meta</h4>
+                <h4 class="card-title headline">Update Header and Footer</h4>
             </div>
             <div class="card-body">
 @include('super.includes.alert')

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Super;
 use App\Models\Field;
 use App\Models\Headerfooter;
-use File;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 
 class HeaderfooterController extends Controller
